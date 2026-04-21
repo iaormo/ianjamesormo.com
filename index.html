@@ -57,6 +57,9 @@
     .newsletter-h { font-size: clamp(56px, 13vw, 112px) !important; }
   }
 
+  @media (min-width: 901px) {
+    .themes-cell { min-height: 300px; justify-content: space-between !important; }
+  }
   @media (max-width: 560px) {
     .themes-grid { grid-template-columns: 1fr !important; }
   }
@@ -366,7 +369,7 @@ function Eyebrow({ children, color }) {
           </div>
           <div className="themes-grid" style={{ display: 'grid', gridTemplateColumns: 'repeat(5, 1fr)', gap: 1, background: T.color.mist, border: `1px solid ${T.color.mist}` }}>
             {themes.map(([n, t, d]) => (
-              <div key={n} style={{ background: T.color.page, padding: '40px 28px', minHeight: 300, display: 'flex', flexDirection: 'column', justifyContent: 'space-between' }}>
+              <div key={n} className="themes-cell" style={{ background: T.color.page, padding: '40px 28px', display: 'flex', flexDirection: 'column', gap: 28 }}>
                 <div style={{ fontFamily: T.font.mono, fontSize: 12, fontWeight: 500, color: T.color.copper, letterSpacing: '.08em' }}>{n} /05</div>
                 <div>
                   <div style={{ fontFamily: T.font.head, fontSize: 22, fontWeight: 800, lineHeight: 1.1, letterSpacing: '-0.02em', marginBottom: 14 }}>{t}</div>
@@ -447,9 +450,9 @@ function Eyebrow({ children, color }) {
         <div style={{ maxWidth: 1400, margin: '0 auto' }}>
           <div className="daily-grid" style={{ display: 'grid', gridTemplateColumns: '1fr 1.4fr', gap: 80 }}>
             <div>
-              <Eyebrow color={T.color.copper}>Daily devotionals</Eyebrow>
-              <div style={{ fontFamily: T.font.head, fontSize: 84, fontWeight: 900, lineHeight: .88, letterSpacing: '-0.04em', textTransform: 'uppercase' }}>
-                Three<br />minutes.<br />Every<br />morning.
+              <Eyebrow color={T.color.copper}>Devotional</Eyebrow>
+              <div style={{ fontFamily: T.font.head, fontSize: 84, fontWeight: 900, lineHeight: .92, letterSpacing: '-0.04em', textTransform: 'uppercase' }}>
+                Three minutes.<br /><span style={{ color: T.color.copper }}>One question.</span><br /><span style={{ color: T.color.copper }}>Every morning.</span>
               </div>
               <div style={{ fontFamily: T.font.body, fontSize: 17, lineHeight: 1.65, color: 'rgba(250,247,242,.75)', marginTop: 32, marginBottom: 36, maxWidth: 440 }}>
                 A short, honest reading for people who have tried the <em>conquer your day</em> stuff and are looking for something truer, slower, and harder to fake.
