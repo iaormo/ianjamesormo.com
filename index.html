@@ -252,33 +252,34 @@ function Footer() {
 
 function BookCover({ title, subtitle, variant = 'ink', w = 280, h = 420, rotate = 0, shadow = true }) {
   const palettes = {
-    ink:    { bg: T.color.ink,    fg: T.color.page, accent: T.color.copper },
-    copper: { bg: T.color.copper, fg: T.color.page, accent: T.color.ink },
-    page:   { bg: T.color.page,   fg: T.color.ink,  accent: T.color.copper },
-    bone:   { bg: T.color.bone,   fg: T.color.ink,  accent: T.color.copper },
+    ink:    { bg: T.color.ink,    fg: T.color.page, accent: T.color.copper, spine: '#000' },
+    copper: { bg: T.color.copper, fg: T.color.page, accent: T.color.ink,    spine: '#7a2f12' },
+    page:   { bg: T.color.page,   fg: T.color.ink,  accent: T.color.copper, spine: '#d9d3c5' },
+    bone:   { bg: T.color.bone,   fg: T.color.ink,  accent: T.color.copper, spine: '#d9d3c5' },
   };
-  const p = palettes[variant];
+  const p = palettes[variant] || palettes.ink;
   return (
     <div style={{
       width: w, height: h, background: p.bg, color: p.fg, position: 'relative',
-      boxShadow: shadow ? '0 30px 60px -30px rgba(0,0,0,.5), 0 1px 3px rgba(0,0,0,.15)' : 'none',
-      transform: `rotate(${rotate}deg)`, flexShrink: 0,
+      boxShadow: `0 0 0 1px rgba(0,0,0,.05), 40px 55px 110px -30px rgba(0,0,0,.55), 14px 22px 44px -10px rgba(0,0,0,.32), inset 10px 0 14px -10px rgba(0,0,0,.45), inset -2px 0 0 rgba(255,255,255,.06)`,
+      transform: `perspective(1600px) rotateY(-7deg) rotate(${rotate}deg)`,
+      transformOrigin: 'center',
+      flexShrink: 0,
+      borderRadius: '2px 3px 3px 2px',
     }}>
+      <div style={{ position: 'absolute', left: 0, top: 0, bottom: 0, width: 6, background: `linear-gradient(90deg, ${p.spine} 0%, rgba(0,0,0,.25) 40%, transparent 100%)`, pointerEvents: 'none' }} />
       <div style={{ position: 'absolute', inset: 0, padding: '9%', display: 'flex', flexDirection: 'column', justifyContent: 'center' }}>
         <div>
-          <div style={{ fontFamily: T.font.head, fontSize: w * .13, fontWeight: 900, lineHeight: .88, letterSpacing: '-0.035em', textTransform: 'uppercase' }}>
-            {title}
-          </div>
+          <div style={{ fontFamily: T.font.head, fontSize: w * .13, fontWeight: 900, lineHeight: .95, letterSpacing: '-0.035em', textTransform: 'uppercase' }}>{title}</div>
           <div style={{ width: w * .22, height: 4, background: p.accent, margin: `${w * .04}px 0` }} />
           {subtitle && <div style={{ fontFamily: T.font.body, fontSize: w * .045, fontWeight: 500, lineHeight: 1.35, opacity: .88 }}>{subtitle}</div>}
         </div>
       </div>
-      <div style={{ position: 'absolute', bottom: '9%', left: '9%', fontFamily: T.font.body, fontSize: w * .028, fontWeight: 700, letterSpacing: '.2em', textTransform: 'uppercase', opacity: .55, color: p.fg }}>
-        Ian James Ormo
-      </div>
+      <div style={{ position: 'absolute', bottom: '9%', left: '9%', fontFamily: T.font.body, fontSize: w * .028, fontWeight: 700, letterSpacing: '.2em', textTransform: 'uppercase', opacity: .55, color: p.fg }}>Ian James Ormo</div>
     </div>
   );
 }
+
 
 function Btn({ children, kind = 'primary', href, dark, onClick }) {
   const styles = {
@@ -428,7 +429,7 @@ function Eyebrow({ children, color }) {
               </div>
             </div>
             <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', height: 560, background: T.color.page, border: `1px solid ${T.color.mist}` }}>
-              <BookCover title={<>You are<br /><span style={{fontFamily:T.font.quote,fontStyle:'italic',fontWeight:400,letterSpacing:'0em',textTransform:'none',fontSize:'1.5em',lineHeight:.8}}>not</span> your<br />paycheck</>} subtitle="Stop letting a number set your ceiling." variant="copper" w={320} h={480} rotate={2} />
+              <BookCover title={<>You are<br /><span style={{fontFamily:T.font.quote,fontStyle:'italic',fontWeight:400,letterSpacing:'0em',textTransform:'none',fontSize:'1.5em',lineHeight:.8}}>not</span><br />your<br />paycheck</>} subtitle="Stop letting a number set your ceiling." variant="copper" w={320} h={480} rotate={2} />
             </div>
           </div>
         </div>
