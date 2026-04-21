@@ -253,7 +253,6 @@ function Hero() {
 function What() {
   const features = [
     ['One letter', 'Not a newsletter roundup. Not three things I liked this week. One piece, written for you.'],
-    ['Under 700 words', 'Short by design. Long enough to land. Short enough to actually read on a Sunday.'],
     ['No subject-line tricks', 'No urgency theater. No curiosity gaps. The subject line is the subject.'],
     ['From a real person', 'Written by me. No ghostwriter. No team. Just what I wrote that week.'],
   ];
@@ -264,7 +263,7 @@ function What() {
         <div style={{ fontFamily: T.font.head, fontSize: 'clamp(32px, 5vw, 72px)', fontWeight: 900, lineHeight: 1.04, letterSpacing: '-0.04em', textTransform: 'uppercase', marginBottom: 56, maxWidth: 900 }}>
           The thing you actually <span style={{ color: T.color.copper }}>needed to hear.</span>
         </div>
-        <div className="nl-features" style={{ display: 'grid', gridTemplateColumns: 'repeat(4, 1fr)', gap: 40 }}>
+        <div className="nl-features" style={{ display: 'grid', gridTemplateColumns: 'repeat(3, 1fr)', gap: 40 }}>
           {features.map(([h, b]) => (
             <div key={h}>
               <div style={{ fontFamily: T.font.head, fontSize: 22, fontWeight: 800, lineHeight: 1.2, letterSpacing: '-0.02em', marginBottom: 14 }}>{h}</div>
