@@ -4,7 +4,7 @@
   "description": "Ian James Ormo — author site. Static HTML + React via CDN.",
   "private": true,
   "scripts": {
-    "start": "serve -l tcp://0.0.0.0:${PORT:-3000} -s .",
+    "start": "serve -l tcp://0.0.0.0:${PORT:-3000} --no-clipboard .",
     "dev": "serve -l 3000 ."
   },
   "dependencies": {
