@@ -363,8 +363,9 @@ function Archive() {
 }
 
 function Subscribe() {
-  const [email, setEmail] = React.useState('');
+  const [form, setForm] = React.useState({ first: '', last: '', email: '' });
   const [submitted, setSubmitted] = React.useState(false);
+  const inputStyle = { width: '100%', border: 'none', padding: '16px 18px', fontFamily: T.font.body, fontSize: 14, color: T.color.ink, outline: 'none', background: 'transparent' };
   return (
     <section className="section-pad" style={{ padding: '120px 56px', background: T.color.copper, color: T.color.page }}>
       <div style={{ maxWidth: 900, margin: '0 auto', textAlign: 'center' }}>
@@ -377,9 +378,15 @@ function Subscribe() {
         {submitted ? (
           <div style={{ fontFamily: T.font.quote, fontSize: 28, fontStyle: 'italic', color: T.color.ink }}>You&rsquo;re in. See you tomorrow morning.</div>
         ) : (
-          <form onSubmit={e => { e.preventDefault(); if (email) setSubmitted(true); }} style={{ display: 'flex', maxWidth: 540, margin: '0 auto', background: T.color.page }}>
-            <input type="email" placeholder="you@email.com" value={email} onChange={e => setEmail(e.target.value)} required style={{ flex: 1, border: 'none', padding: '18px 22px', fontFamily: T.font.body, fontSize: 15, color: T.color.ink, outline: 'none', background: 'transparent' }} />
-            <button type="submit" style={{ background: T.color.ink, color: T.color.page, border: 'none', padding: '0 28px', fontFamily: T.font.body, fontSize: 12, fontWeight: 700, letterSpacing: '.15em', textTransform: 'uppercase', cursor: 'pointer', whiteSpace: 'nowrap' }}>Subscribe</button>
+          <form onSubmit={e => { e.preventDefault(); if (form.first && form.last && form.email) setSubmitted(true); }} style={{ maxWidth: 540, margin: '0 auto' }}>
+            <div style={{ display: 'flex', background: T.color.page, marginBottom: 2 }}>
+              <input type="text" placeholder="First name" value={form.first} onChange={e => setForm(f => ({ ...f, first: e.target.value }))} required style={{ ...inputStyle, borderRight: `1px solid ${T.color.mist}` }} />
+              <input type="text" placeholder="Last name" value={form.last} onChange={e => setForm(f => ({ ...f, last: e.target.value }))} required style={inputStyle} />
+            </div>
+            <div style={{ display: 'flex', background: T.color.page }}>
+              <input type="email" placeholder="your@email.com" value={form.email} onChange={e => setForm(f => ({ ...f, email: e.target.value }))} required style={inputStyle} />
+              <button type="submit" style={{ background: T.color.ink, color: T.color.page, border: 'none', padding: '0 28px', fontFamily: T.font.body, fontSize: 12, fontWeight: 700, letterSpacing: '.15em', textTransform: 'uppercase', cursor: 'pointer', whiteSpace: 'nowrap' }}>Subscribe</button>
+            </div>
           </form>
         )}
         <div style={{ fontFamily: T.font.body, fontSize: 12, marginTop: 16, opacity: .75 }}>Unsubscribe anytime</div>
