@@ -9,17 +9,13 @@
   if (path.indexOf('/og/') !== -1) return;
   if (path.indexOf('404') !== -1) return;
 
-  var KEY_SUB = 'ij_popup_subscribed';
-  var KEY_DISMISS = 'ij_popup_dismissed_at';
-  var DISMISS_COOLDOWN_DAYS = 7;
+  // First-visit-only. Once the popup opens once, never again.
+  var KEY_SEEN = 'ij_popup_seen_at';
 
   function now() { return Date.now(); }
-  function days(n) { return n * 24 * 60 * 60 * 1000; }
 
   try {
-    if (localStorage.getItem(KEY_SUB)) return;
-    var dismissed = parseInt(localStorage.getItem(KEY_DISMISS) || '0', 10);
-    if (dismissed && now() - dismissed < days(DISMISS_COOLDOWN_DAYS)) return;
+    if (localStorage.getItem(KEY_SEEN)) return;
   } catch (e) { /* private mode — still show once */ }
 
   var css = '\
@@ -70,8 +66,13 @@
   </div>\
 </div>';
 
+  function markSeen() {
+    try { localStorage.setItem(KEY_SEEN, String(now())); } catch (e) {}
+  }
+
   function show() {
     if (document.getElementById('ij-pop-overlay')) return;
+    markSeen();
     var style = document.createElement('style');
     style.id = 'ij-pop-style';
     style.textContent = css;
@@ -100,14 +101,7 @@
     }, 450);
   }
 
-  function dismiss() {
-    try { localStorage.setItem(KEY_DISMISS, String(now())); } catch (e) {}
-    close();
-  }
-
-  function subscribed() {
-    try { localStorage.setItem(KEY_SUB, String(now())); } catch (e) {}
-  }
+  function dismiss() { close(); }
 
   function onSubmit(e) {
     e.preventDefault();
@@ -116,7 +110,6 @@
     var last  = f.last.value.trim();
     var email = f.email.value.trim();
     if (!first || !last || !email) return;
-    subscribed();
     var body = overlay.querySelector('#ij-pop-body');
     body.innerHTML = '\
 <div class="ij-thanks-eyebrow">You&rsquo;re in.</div>\
@@ -124,6 +117,8 @@
     setTimeout(close, 4200);
   }
 
+  // Random delay between 10–15s, first visit only.
+  var delay = 10000 + Math.floor(Math.random() * 5000);
   setTimeout(function () {
     if (document.hidden) {
       document.addEventListener('visibilitychange', function fire() {
@@ -132,5 +127,5 @@
     } else {
       show();
     }
-  }, 10000);
+  }, delay);
 })();
