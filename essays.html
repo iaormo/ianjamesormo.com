@@ -14,6 +14,10 @@
 <meta property="og:title" content="Essays — Ian James Ormo" />
 <meta property="og:description" content="Longer than a post. Shorter than a book. Writing on presence, faith, work, and the unglamorous middle." />
 <meta property="og:url" content="https://ianjamesormo.com/essays.html" />
+<meta property="og:image" content="https://ianjamesormo.com/og/default-essays.png" />
+<meta property="og:image:width" content="1200" />
+<meta property="og:image:height" content="630" />
+<meta name="twitter:image" content="https://ianjamesormo.com/og/default-essays.png" />
 <meta name="twitter:card" content="summary_large_image" />
 <meta name="twitter:title" content="Essays — Ian James Ormo" />
 <meta name="twitter:description" content="Longer than a post. Shorter than a book. Writing on presence, faith, work, and the unglamorous middle." />
@@ -260,7 +264,7 @@ const T = window.IJ_TOKENS;
 
 function ShareBar({ title, num, pagePath }) {
   const [copied, setCopied] = useState(false);
-  const url = `https://ianjamesormo.com/${pagePath}#${num}`;
+  const url = `https://ianjamesormo.com/share/essay-${num}.html`;
   const shareText = `"${title}" — Ian James Ormo`;
   const twitter = `https://twitter.com/intent/tweet?text=${encodeURIComponent(shareText)}&url=${encodeURIComponent(url)}`;
   const facebook = `https://www.facebook.com/sharer/sharer.php?u=${encodeURIComponent(url)}`;

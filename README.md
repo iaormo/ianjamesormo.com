@@ -32,3 +32,27 @@ Pushed to Railway via `railway up`. Serves statically with `serve` on `$PORT`.
 - `sitemap.xml`, `robots.txt` at root
 - OG + Twitter + canonical meta on every page
 - JSON-LD `Person` + `WebSite` schemas on homepage
+
+## Social share images
+
+Every essay and devotional has a dedicated 1200×630 PNG share card under `/og/`
+and a matching redirect page under `/share/`. When someone shares `https://ianjamesormo.com/share/essay-014.html`, social scrapers read the per-piece
+`og:image` tag; clicking the link bounces them to `essays.html#014`.
+
+**Adding a new entry:**
+
+1. Add the essay to the `essays` array in `essays.html` (or the devotional to
+   `devotionals` in `daily.html`) as usual.
+2. Add a matching object to the `essays` or `daily` array in
+   `scripts/gen-og.js`.
+3. With the local dev server running (`npm run dev`), regenerate:
+   ```sh
+   node scripts/gen-og.js
+   ```
+   This writes `og/essay-{num}.png` + `share/essay-{num}.html` (same for daily).
+4. Commit the new PNG + share HTML files alongside the essay/devotional.
+
+**Fallback behavior:** If a per-piece PNG is missing, the page-level `og:image`
+on `essays.html` (`/og/default-essays.png`) or `daily.html`
+(`/og/default-daily.png`) is still served for any share link pointing at those
+pages directly.

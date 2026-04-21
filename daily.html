@@ -14,6 +14,10 @@
 <meta property="og:title" content="Daily Devotionals — Ian James Ormo" />
 <meta property="og:description" content="Three minutes every morning. Short, honest readings for people looking for something truer, slower, and harder to fake." />
 <meta property="og:url" content="https://ianjamesormo.com/daily.html" />
+<meta property="og:image" content="https://ianjamesormo.com/og/default-daily.png" />
+<meta property="og:image:width" content="1200" />
+<meta property="og:image:height" content="630" />
+<meta name="twitter:image" content="https://ianjamesormo.com/og/default-daily.png" />
 <meta name="twitter:card" content="summary_large_image" />
 <meta name="twitter:title" content="Daily Devotionals — Ian James Ormo" />
 <meta name="twitter:description" content="Three minutes every morning. Short, honest readings for people looking for something truer, slower, and harder to fake." />
@@ -184,7 +188,7 @@ function Eyebrow({ children, color }) {
 
 function ShareBar({ title, num, pagePath, onDark }) {
   const [copied, setCopied] = React.useState(false);
-  const url = `https://ianjamesormo.com/${pagePath}#${num}`;
+  const url = `https://ianjamesormo.com/share/daily-${num}.html`;
   const shareText = `"${title}" — Ian James Ormo`;
   const twitter = `https://twitter.com/intent/tweet?text=${encodeURIComponent(shareText)}&url=${encodeURIComponent(url)}`;
   const facebook = `https://www.facebook.com/sharer/sharer.php?u=${encodeURIComponent(url)}`;
