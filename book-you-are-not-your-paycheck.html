@@ -93,7 +93,7 @@ function Wordmark({ size = 0.7, onDark = false }) {
   const nameColor = onDark ? T.color.page : T.color.ink;
   return (
     <div style={{ display: 'inline-flex', flexDirection: 'column', lineHeight: 1, gap: 10 * scale }}>
-      <div style={{ fontFamily: T.font.head, fontWeight: 900, fontSize: 96 * scale, letterSpacing: '-0.05em', textTransform: 'uppercase', color: nameColor, lineHeight: .85 }}>IAN JAMES</div>
+      <div style={{ fontFamily: T.font.head, fontWeight: 900, fontSize: 96 * scale, letterSpacing: '-0.05em', textTransform: 'uppercase', color: nameColor, lineHeight: .85 }}>IAN</div><div style={{ fontFamily: T.font.head, fontWeight: 900, fontSize: 96 * scale, letterSpacing: '-0.05em', textTransform: 'uppercase', color: T.color.copper, lineHeight: .85 }}>JAMES</div>
     </div>
   );
 }
@@ -103,7 +103,7 @@ function Nav({ active }) {
   return (
     <nav style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', padding: '28px 56px', borderBottom: `1px solid rgba(255,255,255,.1)`, background: T.color.copper }}>
       <a href="index.html" style={{ textDecoration: 'none', color: T.color.page, display: 'inline-flex', flexDirection: 'column', lineHeight: 1, gap: 6, marginRight: 48, whiteSpace: 'nowrap' }}>
-        <span style={{ fontFamily: T.font.head, fontSize: 22, fontWeight: 900, letterSpacing: '-0.03em', textTransform: 'uppercase', lineHeight: 1 }}>IAN JAMES</span>
+        <span style={{ fontFamily: T.font.head, fontSize: 22, fontWeight: 900, letterSpacing: '-0.03em', textTransform: 'uppercase', lineHeight: .85, display: 'block' }}>IAN</span><span style={{ fontFamily: T.font.head, fontSize: 22, fontWeight: 900, letterSpacing: '-0.03em', textTransform: 'uppercase', lineHeight: .85, display: 'block', color: T.color.copper }}>JAMES</span>
       </a>
       <div style={{ display: 'flex', gap: 36, alignItems: 'center', flexWrap: 'wrap' }}>
         {items.map(([k, label, href]) => (

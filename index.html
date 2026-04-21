@@ -180,9 +180,8 @@ function Wordmark({ size = 'md', onDark = false, eyebrow = true, inline = false 
           I am
         </div>
       )}
-      <div style={{ fontFamily: T.font.head, fontWeight: 900, fontSize: 96 * scale, letterSpacing: '-0.05em', textTransform: 'uppercase', color: nameColor, lineHeight: .85 }}>
-        IAN JAMES
-      </div>
+      <div style={{ fontFamily: T.font.head, fontWeight: 900, fontSize: 96 * scale, letterSpacing: '-0.05em', textTransform: 'uppercase', color: nameColor, lineHeight: .85 }}>IAN</div>
+      <div style={{ fontFamily: T.font.head, fontWeight: 900, fontSize: 96 * scale, letterSpacing: '-0.05em', textTransform: 'uppercase', color: T.color.copper, lineHeight: .85 }}>JAMES</div>
     </div>
   );
 }
@@ -200,7 +199,7 @@ function Nav({ active, onDark = false }) {
   return (
     <nav style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', padding: '28px 56px', borderBottom: `1px solid ${onDark ? 'rgba(255,255,255,.1)' : T.color.mist}` }}>
       <a href="index.html" style={{ textDecoration: 'none', color: c, display: 'inline-flex', flexDirection: 'column', lineHeight: 1, gap: 6, marginRight: 48, whiteSpace: 'nowrap' }}>
-        <span style={{ fontFamily: T.font.head, fontSize: 22, fontWeight: 900, letterSpacing: '-0.03em', textTransform: 'uppercase', lineHeight: 1 }}>IAN JAMES</span>
+        <span style={{ fontFamily: T.font.head, fontSize: 22, fontWeight: 900, letterSpacing: '-0.03em', textTransform: 'uppercase', lineHeight: .85, display: 'block' }}>IAN</span><span style={{ fontFamily: T.font.head, fontSize: 22, fontWeight: 900, letterSpacing: '-0.03em', textTransform: 'uppercase', lineHeight: .85, display: 'block', color: T.color.copper }}>JAMES</span>
       </a>
       <div style={{ display: 'flex', gap: 36, alignItems: 'center' }}>
         {items.map(([k, label, href]) => (
@@ -493,14 +492,8 @@ function Eyebrow({ children, color }) {
           </div>
           <div className="about-grid" style={{ display: 'grid', gridTemplateColumns: '1fr 2fr', gap: 60 }}>
             <div>
-              <div style={{ aspectRatio: '3/4', background: T.color.mist, position: 'relative', overflow: 'hidden' }}>
-                <div style={{ position: 'absolute', inset: 0, display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
-                  <svg viewBox="0 0 200 260" style={{ width: '80%', height: '80%', opacity: .35 }}>
-                    <circle cx="100" cy="90" r="42" fill={T.color.steel} />
-                    <path d="M30 260 Q30 160 100 160 Q170 160 170 260 Z" fill={T.color.steel} />
-                  </svg>
-                </div>
-                <div style={{ position: 'absolute', bottom: 12, left: 12, fontFamily: T.font.mono, fontSize: 10, color: T.color.steel, letterSpacing: '.1em', textTransform: 'uppercase' }}>Photo coming soon</div>
+              <div style={{ aspectRatio: '3/4', overflow: 'hidden' }}>
+                <img src="images/ian-author.png" alt="Ian James" style={{ width: '100%', height: '100%', objectFit: 'cover', display: 'block' }} />
               </div>
             </div>
             <div>
