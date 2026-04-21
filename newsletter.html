@@ -187,10 +187,21 @@ function Footer() {
 
 function Hero() {
   const [form, setForm] = useState({ first: '', last: '', email: '' });
-  const [submitted, setSubmitted] = useState(false);
-  function submit(e) {
+  const [step, setStep] = useState('idle');
+  async function api(source) {
+    try { const r = await fetch('/api/subscribe', { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ ...form, source }) }); return r.ok; } catch { return false; }
+  }
+  async function submit(e) {
     e.preventDefault();
-    if (form.first && form.last && form.email) setSubmitted(true);
+    if (!form.first || !form.last || !form.email) return;
+    setStep('submitting');
+    await api('newsletter');
+    setStep('cross');
+  }
+  async function addBoth() {
+    setStep('submitting');
+    await api('both');
+    setStep('thanks');
   }
   const inputStyle = { width: '100%', border: `1px solid rgba(255,255,255,.35)`, background: 'transparent', padding: '16px 18px', fontFamily: T.font.body, fontSize: 15, color: T.color.page, outline: 'none' };
   return (
@@ -207,10 +218,17 @@ function Hero() {
           </div>
         </div>
         <div style={{ background: T.color.ink, padding: 36 }}>
-          {submitted ? (
+          {step === 'thanks' ? (
             <div>
               <div style={{ fontFamily: T.font.body, fontSize: 11, fontWeight: 700, letterSpacing: '.3em', textTransform: 'uppercase', color: T.color.copper, marginBottom: 14 }}>You are in</div>
               <div style={{ fontFamily: T.font.quote, fontStyle: 'italic', fontSize: 24, lineHeight: 1.4, color: T.color.page }}>See you Sunday. Check your inbox for the confirmation.</div>
+            </div>
+          ) : step === 'cross' ? (
+            <div>
+              <div style={{ fontFamily: T.font.body, fontSize: 11, fontWeight: 700, letterSpacing: '.3em', textTransform: 'uppercase', color: T.color.copper, marginBottom: 14 }}>One more?</div>
+              <div style={{ fontFamily: T.font.quote, fontStyle: 'italic', fontSize: 20, lineHeight: 1.45, color: T.color.page, marginBottom: 24 }}>Would you like the daily devotional too? Three minutes every morning.</div>
+              <button onClick={addBoth} style={{ width: '100%', background: T.color.copper, color: T.color.page, border: 'none', padding: '14px 20px', marginBottom: 10, fontFamily: T.font.body, fontSize: 12, fontWeight: 700, letterSpacing: '.2em', textTransform: 'uppercase', cursor: 'pointer' }}>Yes, send me that too</button>
+              <button onClick={() => setStep('thanks')} style={{ width: '100%', background: 'transparent', color: T.color.page, border: `1px solid rgba(255,255,255,.35)`, padding: '12px 20px', fontFamily: T.font.body, fontSize: 12, fontWeight: 700, letterSpacing: '.2em', textTransform: 'uppercase', cursor: 'pointer' }}>No thanks</button>
             </div>
           ) : (
             <form onSubmit={submit}>
@@ -220,8 +238,8 @@ function Hero() {
                 <input required placeholder="Last name" value={form.last} onChange={e => setForm(f => ({ ...f, last: e.target.value }))} style={inputStyle} />
               </div>
               <input required type="email" placeholder="your@email.com" value={form.email} onChange={e => setForm(f => ({ ...f, email: e.target.value }))} style={{ ...inputStyle, marginBottom: 20 }} />
-              <button type="submit" style={{ width: '100%', background: T.color.copper, color: T.color.page, border: 'none', padding: '16px 24px', fontFamily: T.font.body, fontSize: 12, fontWeight: 700, letterSpacing: '.2em', textTransform: 'uppercase', cursor: 'pointer' }}>
-                Get the letter →
+              <button type="submit" disabled={step === 'submitting'} style={{ width: '100%', background: T.color.copper, color: T.color.page, border: 'none', padding: '16px 24px', fontFamily: T.font.body, fontSize: 12, fontWeight: 700, letterSpacing: '.2em', textTransform: 'uppercase', cursor: 'pointer', opacity: step === 'submitting' ? .6 : 1 }}>
+                {step === 'submitting' ? 'Sending…' : 'Get the letter →'}
               </button>
               <div style={{ fontFamily: T.font.body, fontSize: 11, marginTop: 16, opacity: .6, color: T.color.page, textAlign: 'center' }}>Unsubscribe anytime.</div>
             </form>

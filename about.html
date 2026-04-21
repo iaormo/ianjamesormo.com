@@ -296,8 +296,20 @@ function Timeline() {
 }
 
 function NewsletterCTA() {
-  const [email, setEmail] = React.useState('');
-  const [submitted, setSubmitted] = React.useState(false);
+  const [form, setForm] = React.useState({ first: '', last: '', email: '' });
+  const [step, setStep] = React.useState('idle');
+  async function api(source) {
+    try { const r = await fetch('/api/subscribe', { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ ...form, source }) }); return r.ok; } catch { return false; }
+  }
+  async function submit(e) {
+    e.preventDefault();
+    if (!form.first || !form.last || !form.email) return;
+    setStep('submitting');
+    await api('newsletter');
+    setStep('cross');
+  }
+  async function addBoth() { setStep('submitting'); await api('both'); setStep('thanks'); }
+  const inp = { flex: 1, border: 'none', padding: '16px 18px', fontFamily: T.font.body, fontSize: 14, background: 'transparent', color: T.color.ink, outline: 'none' };
   return (
     <section className="section-pad" style={{ padding: '120px 56px', background: T.color.copper, color: T.color.page }}>
       <div style={{ maxWidth: 840, margin: '0 auto', textAlign: 'center' }}>
@@ -308,17 +320,25 @@ function NewsletterCTA() {
         <div style={{ fontFamily: T.font.quote, fontSize: 20, fontStyle: 'italic', lineHeight: 1.55, maxWidth: 580, margin: '0 auto 40px' }}>
           Some weeks it&rsquo;s a passage that hit me at 5am. Some weeks it&rsquo;s a question I&rsquo;ve been sitting with. Every week it&rsquo;s the thing I actually needed to hear.
         </div>
-        {submitted ? (
+        {step === 'thanks' ? (
           <div style={{ fontFamily: T.font.quote, fontSize: 28, fontStyle: 'italic', color: T.color.ink }}>You&rsquo;re in. See you Sunday.</div>
+        ) : step === 'cross' ? (
+          <div style={{ maxWidth: 560, margin: '0 auto' }}>
+            <div style={{ fontFamily: T.font.quote, fontStyle: 'italic', fontSize: 22, lineHeight: 1.45, color: T.color.ink, marginBottom: 24 }}>You&rsquo;re in. Would you like the daily devotional too? Three minutes every morning.</div>
+            <div style={{ display: 'flex', gap: 10, justifyContent: 'center', flexWrap: 'wrap' }}>
+              <button onClick={addBoth} style={{ background: T.color.ink, color: T.color.page, border: 'none', padding: '14px 26px', fontFamily: T.font.body, fontSize: 12, fontWeight: 700, letterSpacing: '.18em', textTransform: 'uppercase', cursor: 'pointer' }}>Yes, send me that too</button>
+              <button onClick={() => setStep('thanks')} style={{ background: 'transparent', color: T.color.ink, border: `2px solid ${T.color.ink}`, padding: '12px 24px', fontFamily: T.font.body, fontSize: 12, fontWeight: 700, letterSpacing: '.18em', textTransform: 'uppercase', cursor: 'pointer' }}>No thanks</button>
+            </div>
+          </div>
         ) : (
-          <form onSubmit={e => { e.preventDefault(); if (email) setSubmitted(true); }} style={{ maxWidth: 480, margin: '0 auto' }}>
+          <form onSubmit={submit} style={{ maxWidth: 480, margin: '0 auto' }}>
             <div style={{ display: 'flex', background: T.color.page, marginBottom: 2 }}>
-              <input type="text" placeholder="First name" required style={{ flex: 1, border: 'none', padding: '16px 18px', fontFamily: T.font.body, fontSize: 14, background: 'transparent', color: T.color.ink, outline: 'none', borderRight: '1px solid #E6E1D8' }} />
-              <input type="text" placeholder="Last name" required style={{ flex: 1, border: 'none', padding: '16px 18px', fontFamily: T.font.body, fontSize: 14, background: 'transparent', color: T.color.ink, outline: 'none' }} />
+              <input type="text" placeholder="First name" value={form.first} onChange={e => setForm(f => ({ ...f, first: e.target.value }))} required style={{ ...inp, borderRight: '1px solid #E6E1D8' }} />
+              <input type="text" placeholder="Last name" value={form.last} onChange={e => setForm(f => ({ ...f, last: e.target.value }))} required style={inp} />
             </div>
             <div style={{ display: 'flex', background: T.color.page }}>
-              <input type="email" placeholder="your@email.com" value={email} onChange={e => setEmail(e.target.value)} required style={{ flex: 1, border: 'none', padding: '16px 18px', fontFamily: T.font.body, fontSize: 14, background: 'transparent', color: T.color.ink, outline: 'none' }} />
-              <button type="submit" style={{ background: T.color.ink, color: T.color.page, border: 'none', padding: '0 24px', fontFamily: T.font.body, fontSize: 11, fontWeight: 700, letterSpacing: '.18em', textTransform: 'uppercase', cursor: 'pointer', whiteSpace: 'nowrap' }}>Subscribe →</button>
+              <input type="email" placeholder="your@email.com" value={form.email} onChange={e => setForm(f => ({ ...f, email: e.target.value }))} required style={inp} />
+              <button type="submit" disabled={step === 'submitting'} style={{ background: T.color.ink, color: T.color.page, border: 'none', padding: '0 24px', fontFamily: T.font.body, fontSize: 11, fontWeight: 700, letterSpacing: '.18em', textTransform: 'uppercase', cursor: 'pointer', whiteSpace: 'nowrap', opacity: step === 'submitting' ? .6 : 1 }}>{step === 'submitting' ? 'Sending…' : 'Subscribe →'}</button>
             </div>
           </form>
         )}

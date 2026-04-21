@@ -364,8 +364,30 @@ function Archive() {
 
 function Subscribe() {
   const [form, setForm] = React.useState({ first: '', last: '', email: '' });
-  const [submitted, setSubmitted] = React.useState(false);
+  const [step, setStep] = React.useState('idle'); // idle | submitting | cross | thanks
   const inputStyle = { width: '100%', border: 'none', padding: '16px 18px', fontFamily: T.font.body, fontSize: 14, color: T.color.ink, outline: 'none', background: 'transparent' };
+
+  async function api(source) {
+    try {
+      const r = await fetch('/api/subscribe', { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ ...form, source }) });
+      return r.ok;
+    } catch { return false; }
+  }
+
+  async function handleSubmit(e) {
+    e.preventDefault();
+    if (!form.first || !form.last || !form.email) return;
+    setStep('submitting');
+    await api('devotional');
+    setStep('cross');
+  }
+
+  async function addBoth() {
+    setStep('submitting');
+    await api('both');
+    setStep('thanks');
+  }
+
   return (
     <section className="section-pad" style={{ padding: '120px 56px', background: T.color.copper, color: T.color.page }}>
       <div style={{ maxWidth: 900, margin: '0 auto', textAlign: 'center' }}>
@@ -375,17 +397,25 @@ function Subscribe() {
         <div style={{ fontFamily: T.font.quote, fontSize: 20, fontStyle: 'italic', lineHeight: 1.5, marginBottom: 40, opacity: .95 }}>
           One reading, one question. Every morning. 3 minutes or less.
         </div>
-        {submitted ? (
+        {step === 'thanks' ? (
           <div style={{ fontFamily: T.font.quote, fontSize: 28, fontStyle: 'italic', color: T.color.ink }}>You&rsquo;re in. See you tomorrow morning.</div>
+        ) : step === 'cross' ? (
+          <div style={{ maxWidth: 560, margin: '0 auto' }}>
+            <div style={{ fontFamily: T.font.quote, fontStyle: 'italic', fontSize: 22, lineHeight: 1.45, color: T.color.ink, marginBottom: 28 }}>You&rsquo;re in. Would you like the Sunday letter too? Short, honest, weekly.</div>
+            <div style={{ display: 'flex', gap: 10, justifyContent: 'center', flexWrap: 'wrap' }}>
+              <button onClick={addBoth} style={{ background: T.color.ink, color: T.color.page, border: 'none', padding: '14px 26px', fontFamily: T.font.body, fontSize: 12, fontWeight: 700, letterSpacing: '.18em', textTransform: 'uppercase', cursor: 'pointer' }}>Yes, send me that too</button>
+              <button onClick={() => setStep('thanks')} style={{ background: 'transparent', color: T.color.ink, border: `2px solid ${T.color.ink}`, padding: '12px 24px', fontFamily: T.font.body, fontSize: 12, fontWeight: 700, letterSpacing: '.18em', textTransform: 'uppercase', cursor: 'pointer' }}>No thanks</button>
+            </div>
+          </div>
         ) : (
-          <form onSubmit={e => { e.preventDefault(); if (form.first && form.last && form.email) setSubmitted(true); }} style={{ maxWidth: 540, margin: '0 auto' }}>
+          <form onSubmit={handleSubmit} style={{ maxWidth: 540, margin: '0 auto' }}>
             <div style={{ display: 'flex', background: T.color.page, marginBottom: 2 }}>
               <input type="text" placeholder="First name" value={form.first} onChange={e => setForm(f => ({ ...f, first: e.target.value }))} required style={{ ...inputStyle, borderRight: `1px solid ${T.color.mist}` }} />
               <input type="text" placeholder="Last name" value={form.last} onChange={e => setForm(f => ({ ...f, last: e.target.value }))} required style={inputStyle} />
             </div>
             <div style={{ display: 'flex', background: T.color.page }}>
               <input type="email" placeholder="your@email.com" value={form.email} onChange={e => setForm(f => ({ ...f, email: e.target.value }))} required style={inputStyle} />
-              <button type="submit" style={{ background: T.color.ink, color: T.color.page, border: 'none', padding: '0 28px', fontFamily: T.font.body, fontSize: 12, fontWeight: 700, letterSpacing: '.15em', textTransform: 'uppercase', cursor: 'pointer', whiteSpace: 'nowrap' }}>Subscribe</button>
+              <button type="submit" disabled={step === 'submitting'} style={{ background: T.color.ink, color: T.color.page, border: 'none', padding: '0 28px', fontFamily: T.font.body, fontSize: 12, fontWeight: 700, letterSpacing: '.15em', textTransform: 'uppercase', cursor: 'pointer', whiteSpace: 'nowrap', opacity: step === 'submitting' ? .6 : 1 }}>{step === 'submitting' ? 'Sending…' : 'Subscribe'}</button>
             </div>
           </form>
         )}

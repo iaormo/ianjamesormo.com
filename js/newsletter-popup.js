@@ -103,18 +103,56 @@
 
   function dismiss() { close(); }
 
-  function onSubmit(e) {
+  var subscriberPayload = null;
+
+  async function apiSubscribe(source) {
+    try {
+      var r = await fetch('/api/subscribe', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ first: subscriberPayload.first, last: subscriberPayload.last, email: subscriberPayload.email, source: source })
+      });
+      return r.ok;
+    } catch (e) { return false; }
+  }
+
+  function showFinalThanks() {
+    var body = overlay.querySelector('#ij-pop-body');
+    body.innerHTML = '\
+<div class="ij-thanks-eyebrow">You&rsquo;re in.</div>\
+<h2 class="ij-thanks-h">See you Sunday. I&rsquo;ll write to you like I mean it, because I will.</h2>';
+    setTimeout(close, 4200);
+  }
+
+  function showCrossPromo() {
+    var body = overlay.querySelector('#ij-pop-body');
+    body.innerHTML = '\
+<div class="ij-eyebrow">One more?</div>\
+<h2 class="ij-h">Want the daily devotional too?</h2>\
+<p class="ij-sub">Three minutes every morning. One passage, one question, one small unglamorous thing. Short enough to read before the coffee is done.</p>\
+<button id="ij-pop-yes" type="button" style="width:100%;background:#B8471C;color:#FAF7F2;border:none;padding:16px 20px;font-family:Inter,sans-serif;font-size:12px;font-weight:700;letter-spacing:.18em;text-transform:uppercase;cursor:pointer;margin-top:8px;">Yes, send me that too</button>\
+<button id="ij-pop-no" type="button" style="width:100%;background:transparent;color:rgba(250,247,242,.65);border:1px solid rgba(255,255,255,.18);padding:14px 20px;font-family:Inter,sans-serif;font-size:12px;font-weight:700;letter-spacing:.18em;text-transform:uppercase;cursor:pointer;margin-top:10px;">No thanks</button>';
+    overlay.querySelector('#ij-pop-yes').addEventListener('click', async function () {
+      this.textContent = 'Sending…';
+      this.disabled = true;
+      await apiSubscribe('both');
+      showFinalThanks();
+    });
+    overlay.querySelector('#ij-pop-no').addEventListener('click', showFinalThanks);
+  }
+
+  async function onSubmit(e) {
     e.preventDefault();
     var f = e.target;
     var first = f.first.value.trim();
     var last  = f.last.value.trim();
     var email = f.email.value.trim();
     if (!first || !last || !email) return;
-    var body = overlay.querySelector('#ij-pop-body');
-    body.innerHTML = '\
-<div class="ij-thanks-eyebrow">You&rsquo;re in.</div>\
-<h2 class="ij-thanks-h">See you Sunday. I&rsquo;ll write to you like I mean it, because I will.</h2>';
-    setTimeout(close, 4200);
+    subscriberPayload = { first: first, last: last, email: email };
+    var btn = f.querySelector('button[type=submit]');
+    if (btn) { btn.textContent = 'Sending…'; btn.disabled = true; }
+    await apiSubscribe('newsletter');
+    showCrossPromo();
   }
 
   // Random delay between 10–15s, first visit only.

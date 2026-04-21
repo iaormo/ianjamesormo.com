@@ -558,11 +558,25 @@ function Eyebrow({ children, color }) {
 
   function Newsletter() {
     const [form, setForm] = React.useState({ first: '', last: '', email: '' });
-    const [submitted, setSubmitted] = React.useState(false);
+    const [step, setStep] = React.useState('idle');
 
-    function handleSubmit(e) {
+    async function api(source) {
+      try {
+        const r = await fetch('/api/subscribe', { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ ...form, source }) });
+        return r.ok;
+      } catch { return false; }
+    }
+    async function handleSubmit(e) {
       e.preventDefault();
-      if (form.first && form.last && form.email) setSubmitted(true);
+      if (!form.first || !form.last || !form.email) return;
+      setStep('submitting');
+      await api('newsletter');
+      setStep('cross');
+    }
+    async function addBoth() {
+      setStep('submitting');
+      await api('both');
+      setStep('thanks');
     }
 
     const inputStyle = { flex: 1, border: 'none', padding: '18px 20px', fontFamily: T.font.body, fontSize: 14, background: 'transparent', color: T.color.ink, outline: 'none', width: '100%' };
@@ -577,9 +591,17 @@ function Eyebrow({ children, color }) {
           <div style={{ fontFamily: T.font.quote, fontSize: 22, fontStyle: 'italic', lineHeight: 1.5, maxWidth: 660, margin: '0 auto 48px' }}>
             Some weeks it&rsquo;s a passage that hit me at 5am. Some weeks it&rsquo;s a question I&rsquo;ve been sitting with. Every week it&rsquo;s the thing I actually needed to hear, not the thing that sounds good in a subject line.
           </div>
-          {submitted ? (
+          {step === 'thanks' ? (
             <div style={{ fontFamily: T.font.quote, fontSize: 28, fontStyle: 'italic', color: T.color.ink }}>
               You&rsquo;re in. See you Sunday.
+            </div>
+          ) : step === 'cross' ? (
+            <div style={{ maxWidth: 620, margin: '0 auto' }}>
+              <div style={{ fontFamily: T.font.quote, fontStyle: 'italic', fontSize: 24, lineHeight: 1.45, color: T.color.ink, marginBottom: 28 }}>You&rsquo;re in. Would you like the daily devotional too? Three minutes every morning.</div>
+              <div style={{ display: 'flex', gap: 10, justifyContent: 'center', flexWrap: 'wrap' }}>
+                <button onClick={addBoth} style={{ background: T.color.ink, color: T.color.page, border: 'none', padding: '14px 26px', fontFamily: T.font.body, fontSize: 12, fontWeight: 700, letterSpacing: '.18em', textTransform: 'uppercase', cursor: 'pointer' }}>Yes, send me that too</button>
+                <button onClick={() => setStep('thanks')} style={{ background: 'transparent', color: T.color.ink, border: `2px solid ${T.color.ink}`, padding: '12px 24px', fontFamily: T.font.body, fontSize: 12, fontWeight: 700, letterSpacing: '.18em', textTransform: 'uppercase', cursor: 'pointer' }}>No thanks</button>
+              </div>
             </div>
           ) : (
             <form onSubmit={handleSubmit} style={{ maxWidth: 540, margin: '0 auto' }}>
@@ -589,8 +611,8 @@ function Eyebrow({ children, color }) {
               </div>
               <div style={{ display: 'flex', background: T.color.page }}>
                 <input type="email" placeholder="your@email.com" value={form.email} onChange={e => setForm(f => ({...f, email: e.target.value}))} required style={inputStyle} />
-                <button type="submit" style={{ background: T.color.ink, color: T.color.page, border: 'none', padding: '0 28px', fontFamily: T.font.body, fontSize: 11, fontWeight: 700, letterSpacing: '.18em', textTransform: 'uppercase', cursor: 'pointer', whiteSpace: 'nowrap' }}>
-                  Subscribe →
+                <button type="submit" disabled={step === 'submitting'} style={{ background: T.color.ink, color: T.color.page, border: 'none', padding: '0 28px', fontFamily: T.font.body, fontSize: 11, fontWeight: 700, letterSpacing: '.18em', textTransform: 'uppercase', cursor: 'pointer', whiteSpace: 'nowrap', opacity: step === 'submitting' ? .6 : 1 }}>
+                  {step === 'submitting' ? 'Sending…' : 'Subscribe →'}
                 </button>
               </div>
             </form>

@@ -13,14 +13,14 @@ const CHROME_PATHS = [
 ];
 
 const essays = [
-  { num:'014', date:'Apr 18 · 2026', tag:'Presence',  title:'The room you are already in.',      quote:'The room has been there. You just haven\u2019t been in it.' },
-  { num:'013', date:'Apr 17 · 2026', tag:'Grace',     title:'A letter to the man rebuilding.',   quote:'Nobody hands you credit for the work you did before anyone was watching. But it still happened.' },
-  { num:'012', date:'Apr 16 · 2026', tag:'Work',      title:'Worth and the paycheck ceiling.',   quote:'Your value was never the number. But your nervous system never got that memo.' },
-  { num:'011', date:'Apr 15 · 2026', tag:'Body',      title:'The body as witness.',              quote:'My body knew before I did. It was keeping a record I did not know how to read.' },
-  { num:'010', date:'Apr 14 · 2026', tag:'Faith',     title:'Faithfulness is not resilience.',   quote:'Resilience is for people who expect the fall. Faithfulness is for people who stay anyway.' },
-  { num:'009', date:'Apr 13 · 2026', tag:'Marriage',  title:'On wives who stay.',                quote:'She was not waiting for me to become someone worth staying for. She had already decided.' },
-  { num:'008', date:'Apr 12 · 2026', tag:'Grace',     title:'Cost as proof.',                    quote:'If it costs nothing, I do not know what to do with it.' },
-  { num:'007', date:'Apr 11 · 2026', tag:'Memoir',    title:'The man you were in the kitchen.',  quote:'Nothing important was happening. That was exactly what made it matter.' },
+  { num:'014', date:'Apr 19 · 2026', tag:'Presence',  title:'The room you are already in.',      quote:'The room has been there. You just haven\u2019t been in it.' },
+  { num:'013', date:'Apr 15 · 2026', tag:'Grace',     title:'A letter to the man rebuilding.',   quote:'Nobody hands you credit for the work you did before anyone was watching. But it still happened.' },
+  { num:'012', date:'Apr 08 · 2026', tag:'Work',      title:'Worth and the paycheck ceiling.',   quote:'Your value was never the number. But your nervous system never got that memo.' },
+  { num:'011', date:'Apr 05 · 2026', tag:'Body',      title:'The body as witness.',              quote:'My body knew before I did. It was keeping a record I did not know how to read.' },
+  { num:'010', date:'Mar 29 · 2026', tag:'Faith',     title:'Faithfulness is not resilience.',   quote:'Resilience is for people who expect the fall. Faithfulness is for people who stay anyway.' },
+  { num:'009', date:'Mar 22 · 2026', tag:'Marriage',  title:'On wives who stay.',                quote:'She was not waiting for me to become someone worth staying for. She had already decided.' },
+  { num:'008', date:'Mar 15 · 2026', tag:'Grace',     title:'Cost as proof.',                    quote:'If it costs nothing, I do not know what to do with it.' },
+  { num:'007', date:'Mar 08 · 2026', tag:'Memoir',    title:'The man you were in the kitchen.',  quote:'Nothing important was happening. That was exactly what made it matter.' },
 ];
 
 const daily = [
