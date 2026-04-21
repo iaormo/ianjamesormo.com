@@ -138,7 +138,7 @@ function Wordmark({ size = 0.7, onDark = false }) {
 }
 
 function Nav({ active }) {
-  const items = [['home','Home','index.html'],['about','About','about.html'],['books','Books','books.html'],['daily','Daily','daily.html'],['essays','Essays','essays.html'],['contact','Contact','contact.html']];
+  const items = [['home','Home','index.html'],['about','About','about.html'],['books','Books','books.html'],['daily','Devotional','daily.html'],['essays','Musings','essays.html'],['contact','Contact','contact.html']];
   return (
     <nav style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', padding: '28px 56px', borderBottom: `1px solid rgba(255,255,255,.1)`, background: T.color.ink }}>
       <a href="index.html" style={{ textDecoration: 'none', color: T.color.page, display: 'inline-flex', flexDirection: 'column', lineHeight: 1, gap: 6, marginRight: 48, whiteSpace: 'nowrap' }}>
@@ -163,7 +163,7 @@ function Footer() {
           <div style={{ fontFamily: T.font.quote, fontStyle: 'italic', fontSize: 18, marginTop: 28, maxWidth: 380, lineHeight: 1.5, opacity: .85 }}>Writer of the unglamorous middle. Faith, work, and the long way home.</div>
         </div>
         {[
-          ['Read',[['Books','books.html'],['Daily devotionals','daily.html'],['Essays','essays.html']]],
+          ['Read',[['Books','books.html'],['Devotional','daily.html'],['Musings','essays.html']]],
           ['About',[['Story','about.html'],['Press / Media','about.html'],['Contact','contact.html']]],
           ['Follow',[['Newsletter','newsletter.html'],['Instagram','#'],['YouTube','#']]],
         ].map(([title, links]) => (
@@ -245,7 +245,7 @@ function Hero() {
             />
           </div>
           <div>
-            <div style={{ fontFamily: T.font.mono, fontSize: 12, color: T.color.copper, letterSpacing: '.15em', marginBottom: 18 }}>[ Memoir · Spring 2026 ]</div>
+            <div style={{ fontFamily: T.font.mono, fontSize: 12, color: T.color.copper, letterSpacing: '.15em', marginBottom: 18 }}>[ Memoir · Coming soon ]</div>
             <h1 className="hero-h" style={{ fontFamily: T.font.head, fontSize: 112, fontWeight: 900, lineHeight: .85, letterSpacing: '-0.05em', textTransform: 'uppercase', margin: '0 0 32px' }}>
               You are {NOT} <span style={{ color: T.color.copper }}>finished.</span>
             </h1>
@@ -357,9 +357,9 @@ function Excerpt() {
 
 function Praise() {
   const q = [
-    ['A rare voice in a crowded genre. Ian writes the middle without flinching.', 'Benediction Magazine'],
-    ['Unsparing, warm, and impossibly honest. A book you will press into someone\u2019s hands.', 'Notional Press'],
-    ['The quiet theology we didn\u2019t know we were waiting for.', 'The Weekly Review'],
+    ['A rare voice in a crowded genre. Ian writes the middle without flinching.', 'Marcus T.'],
+    ['Unsparing, warm, and impossibly honest. A book you will press into someone\u2019s hands.', 'Sarah L.'],
+    ['The quiet theology we didn\u2019t know we were waiting for.', 'David R.'],
   ];
   return (
     <section className="section-pad" style={{ padding: '120px 56px', background: T.color.ink, color: T.color.page }}>

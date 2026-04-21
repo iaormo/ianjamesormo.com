@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
-<title>Essays — I am Ian James</title>
+<title>Musings — I am Ian James</title>
 <meta name="description" content="Longer than a post. Shorter than a book. Ian James on presence, faith, work, and the unglamorous middle." />
 <meta name="robots" content="index, follow" />
 <meta name="author" content="Ian James Ormo" />
@@ -11,7 +11,7 @@
 <link rel="canonical" href="https://ianjamesormo.com/essays.html" />
 <meta property="og:type" content="website" />
 <meta property="og:site_name" content="Ian James Ormo" />
-<meta property="og:title" content="Essays — Ian James Ormo" />
+<meta property="og:title" content="Musings — Ian James Ormo" />
 <meta property="og:description" content="Longer than a post. Shorter than a book. Writing on presence, faith, work, and the unglamorous middle." />
 <meta property="og:url" content="https://ianjamesormo.com/essays.html" />
 <meta property="og:image" content="https://ianjamesormo.com/og/default-essays.png" />
@@ -19,7 +19,7 @@
 <meta property="og:image:height" content="630" />
 <meta name="twitter:image" content="https://ianjamesormo.com/og/default-essays.png" />
 <meta name="twitter:card" content="summary_large_image" />
-<meta name="twitter:title" content="Essays — Ian James Ormo" />
+<meta name="twitter:title" content="Musings — Ian James Ormo" />
 <meta name="twitter:description" content="Longer than a post. Shorter than a book. Writing on presence, faith, work, and the unglamorous middle." />
 
 
@@ -163,8 +163,8 @@ function Nav({ active, onDark = false }) {
     ['home', 'Home', 'index.html'],
     ['about', 'About', 'about.html'],
     ['books', 'Books', 'books.html'],
-    ['daily', 'Daily', 'daily.html'],
-    ['essays', 'Essays', 'essays.html'],
+    ['daily', 'Devotional', 'daily.html'],
+    ['essays', 'Musings', 'essays.html'],
     ['contact', 'Contact', 'contact.html'],
   ];
   const c = onDark ? T.color.page : T.color.ink;
@@ -206,7 +206,7 @@ function Footer() {
           </div>
         </div>
         {[
-          ['Read', [['Books', 'books.html'], ['Daily devotionals', 'daily.html'], ['Essays', 'essays.html']]],
+          ['Read', [['Books', 'books.html'], ['Devotional', 'daily.html'], ['Musings', 'essays.html']]],
           ['About', [['Story', 'about.html'], ['Press / Media', 'about.html'], ['Contact', 'contact.html']]],
           ['Follow', [['Newsletter', 'newsletter.html'], ['Instagram', '#'], ['YouTube', '#']]],
         ].map(([title, links]) => (
@@ -458,7 +458,7 @@ function Hero() {
   return (
     <section className="section-pad" style={{ padding: '80px 56px 40px', background: T.color.page }}>
       <div style={{ maxWidth: 1400, margin: '0 auto' }}>
-        <div style={{ fontFamily: T.font.body, fontSize: 11, fontWeight: 700, letterSpacing: '.3em', textTransform: 'uppercase', color: T.color.copper, marginBottom: 20 }}>Essays</div>
+        <div style={{ fontFamily: T.font.body, fontSize: 11, fontWeight: 700, letterSpacing: '.3em', textTransform: 'uppercase', color: T.color.copper, marginBottom: 20 }}>Musings</div>
         <div className="essays-hero-h" style={{ fontFamily: T.font.head, fontSize: 'clamp(28px, 4vw, 76px)', fontWeight: 900, lineHeight: 1.05, letterSpacing: '-0.04em', textTransform: 'uppercase' }}>
           <span style={{ display: 'block', color: T.color.ink, whiteSpace: 'nowrap' }}>Longer than a post.</span>
           <span style={{ display: 'block', color: T.color.copper, whiteSpace: 'nowrap' }}>Shorter than a book.</span>

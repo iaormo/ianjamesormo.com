@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
-<title>Daily: I am Ian James</title>
+<title>Devotional: I am Ian James</title>
 <meta name="description" content="Three minutes every morning. Short, honest readings for people looking for something truer, slower, and harder to fake." />
 <meta name="robots" content="index, follow" />
 <meta name="author" content="Ian James Ormo" />
@@ -11,7 +11,7 @@
 <link rel="canonical" href="https://ianjamesormo.com/daily.html" />
 <meta property="og:type" content="website" />
 <meta property="og:site_name" content="Ian James Ormo" />
-<meta property="og:title" content="Daily Devotionals — Ian James Ormo" />
+<meta property="og:title" content="Devotional — Ian James Ormo" />
 <meta property="og:description" content="Three minutes every morning. Short, honest readings for people looking for something truer, slower, and harder to fake." />
 <meta property="og:url" content="https://ianjamesormo.com/daily.html" />
 <meta property="og:image" content="https://ianjamesormo.com/og/default-daily.png" />
@@ -19,7 +19,7 @@
 <meta property="og:image:height" content="630" />
 <meta name="twitter:image" content="https://ianjamesormo.com/og/default-daily.png" />
 <meta name="twitter:card" content="summary_large_image" />
-<meta name="twitter:title" content="Daily Devotionals — Ian James Ormo" />
+<meta name="twitter:title" content="Devotional — Ian James Ormo" />
 <meta name="twitter:description" content="Three minutes every morning. Short, honest readings for people looking for something truer, slower, and harder to fake." />
 
 <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -137,7 +137,7 @@ function Wordmark({ size = 0.7, onDark = false }) {
 }
 
 function Nav({ active }) {
-  const items = [['home','Home','index.html'],['about','About','about.html'],['books','Books','books.html'],['daily','Daily','daily.html'],['essays','Essays','essays.html'],['contact','Contact','contact.html']];
+  const items = [['home','Home','index.html'],['about','About','about.html'],['books','Books','books.html'],['daily','Devotional','daily.html'],['essays','Musings','essays.html'],['contact','Contact','contact.html']];
   return (
     <nav style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', padding: '28px 56px', borderBottom: `1px solid ${T.color.mist}` }}>
       <a href="index.html" style={{ textDecoration: 'none', color: T.color.ink, display: 'inline-flex', flexDirection: 'column', lineHeight: 1, gap: 6, marginRight: 48, whiteSpace: 'nowrap' }}>
@@ -162,7 +162,7 @@ function Footer() {
           <div style={{ fontFamily: T.font.quote, fontStyle: 'italic', fontSize: 18, marginTop: 28, maxWidth: 380, lineHeight: 1.5, opacity: .85 }}>Writer of the unglamorous middle. Faith, work, and the long way home.</div>
         </div>
         {[
-          ['Read',[['Books','books.html'],['Daily devotionals','daily.html'],['Essays','essays.html']]],
+          ['Read',[['Books','books.html'],['Devotional','daily.html'],['Musings','essays.html']]],
           ['About',[['Story','about.html'],['Press / Media','about.html'],['Contact','contact.html']]],
           ['Follow',[['Newsletter','newsletter.html'],['Instagram','#'],['YouTube','#']]],
         ].map(([title, links]) => (
@@ -267,7 +267,7 @@ function Hero() {
   return (
     <section className="section-pad" style={{ padding: '80px 56px 48px', background: T.color.page }}>
       <div style={{ maxWidth: 1400, margin: '0 auto' }}>
-        <Eyebrow>Daily devotionals</Eyebrow>
+        <Eyebrow>Devotional</Eyebrow>
         <div className="hero-h" style={{ fontFamily: T.font.head, fontSize: 120, fontWeight: 900, lineHeight: .86, letterSpacing: '-0.05em', textTransform: 'uppercase' }}>
           Three minutes.<br /><span style={{ color: T.color.copper }}>One question.</span><br /><span style={{ color: T.color.copper }}>Every morning.</span>
         </div>

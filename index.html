@@ -189,8 +189,8 @@ function Nav({ active, onDark = false }) {
     ['home', 'Home', 'index.html'],
     ['about', 'About', 'about.html'],
     ['books', 'Books', 'books.html'],
-    ['daily', 'Daily', 'daily.html'],
-    ['essays', 'Essays', 'essays.html'],
+    ['daily', 'Devotional', 'daily.html'],
+    ['essays', 'Musings', 'essays.html'],
     ['contact', 'Contact', 'contact.html'],
   ];
   const c = onDark ? T.color.page : T.color.ink;
@@ -232,7 +232,7 @@ function Footer() {
           </div>
         </div>
         {[
-          ['Read', [['Books', 'books.html'], ['Daily devotionals', 'daily.html'], ['Essays', 'essays.html']]],
+          ['Read', [['Books', 'books.html'], ['Devotional', 'daily.html'], ['Musings', 'essays.html']]],
           ['About', [['Story', 'about.html'], ['Press / Media', 'about.html'], ['Contact', 'contact.html']]],
           ['Follow', [['Newsletter', 'newsletter.html'], ['Instagram', '#'], ['YouTube', '#']]],
         ].map(([title, links]) => (
@@ -396,11 +396,11 @@ function Eyebrow({ children, color }) {
 
           {/* Book 1 */}
           <div className="book-row" style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 80, alignItems: 'center' }}>
-            <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', height: 560, background: T.color.page, border: `1px solid ${T.color.mist}` }}>
+            <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', height: 560 }}>
               <BookCover title={<>You are<br /><span style={{fontFamily:T.font.quote,fontStyle:'italic',fontWeight:400,letterSpacing:'0em',textTransform:'none',fontSize:'1.5em',lineHeight:.8}}>not</span><br />finished</>} subtitle="Grace, grit, and the long way home." variant="ink" w={320} h={480} rotate={-2} />
             </div>
             <div>
-              <div style={{ fontFamily: T.font.mono, fontSize: 12, color: T.color.copper, marginBottom: 16 }}>[ Memoir · 2026 ]</div>
+              <div style={{ fontFamily: T.font.mono, fontSize: 12, color: T.color.copper, marginBottom: 16 }}>[ Memoir · Coming soon ]</div>
               <div style={{ fontFamily: T.font.head, fontSize: 48, fontWeight: 900, lineHeight: .95, letterSpacing: '-0.035em', textTransform: 'uppercase', marginBottom: 24 }}>
                 You are not finished.
               </div>
@@ -420,7 +420,7 @@ function Eyebrow({ children, color }) {
           {/* Book 2 */}
           <div className="book-row" style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 80, alignItems: 'center', marginTop: 100 }}>
             <div>
-              <div style={{ fontFamily: T.font.mono, fontSize: 12, color: T.color.copper, marginBottom: 16 }}>[ Self-help · Business · 2025 ]</div>
+              <div style={{ fontFamily: T.font.mono, fontSize: 12, color: T.color.copper, marginBottom: 16 }}>[ Self-help · Business · Coming soon ]</div>
               <div style={{ fontFamily: T.font.head, fontSize: 48, fontWeight: 900, lineHeight: .95, letterSpacing: '-0.035em', textTransform: 'uppercase', marginBottom: 24 }}>
                 You are not<br />your paycheck.
               </div>
@@ -432,7 +432,7 @@ function Eyebrow({ children, color }) {
                 <Btn kind="ghost" href="books.html">Buy</Btn>
               </div>
             </div>
-            <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', height: 560, background: T.color.page, border: `1px solid ${T.color.mist}` }}>
+            <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', height: 560 }}>
               <BookCover title={<>You are<br /><span style={{fontFamily:T.font.quote,fontStyle:'italic',fontWeight:400,letterSpacing:'0em',textTransform:'none',fontSize:'1.5em',lineHeight:.8}}>not</span><br />your<br />paycheck</>} subtitle="Stop letting a number set your ceiling." variant="copper" w={320} h={480} rotate={2} />
             </div>
           </div>
@@ -528,7 +528,7 @@ function Eyebrow({ children, color }) {
         <div style={{ maxWidth: 1400, margin: '0 auto' }}>
           <div className="essays-header" style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-end', marginBottom: 56 }}>
             <div>
-              <Eyebrow>Essays</Eyebrow>
+              <Eyebrow>Musings</Eyebrow>
               <div style={{ fontFamily: T.font.head, fontSize: 72, fontWeight: 900, lineHeight: .9, letterSpacing: '-0.04em', textTransform: 'uppercase' }}>
                 Longer<br />than a post.<br />Shorter<br />than a book.
               </div>

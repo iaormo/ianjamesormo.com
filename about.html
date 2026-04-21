@@ -139,7 +139,7 @@ function Wordmark({ size = 0.7, onDark = false }) {
 }
 
 function Nav({ active }) {
-  const items = [['home','Home','index.html'],['about','About','about.html'],['books','Books','books.html'],['daily','Daily','daily.html'],['essays','Essays','essays.html'],['contact','Contact','contact.html']];
+  const items = [['home','Home','index.html'],['about','About','about.html'],['books','Books','books.html'],['daily','Devotional','daily.html'],['essays','Musings','essays.html'],['contact','Contact','contact.html']];
   return (
     <nav style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', padding: '28px 56px', borderBottom: `1px solid ${T.color.mist}` }}>
       <a href="index.html" style={{ textDecoration: 'none', color: T.color.ink, display: 'inline-flex', flexDirection: 'column', lineHeight: 1, gap: 6, marginRight: 48, whiteSpace: 'nowrap' }}>
@@ -166,7 +166,7 @@ function Footer() {
           </div>
         </div>
         {[
-          ['Read',[['Books','books.html'],['Daily devotionals','daily.html'],['Essays','essays.html']]],
+          ['Read',[['Books','books.html'],['Devotional','daily.html'],['Musings','essays.html']]],
           ['About',[['Story','about.html'],['Press / Media','about.html'],['Contact','contact.html']]],
           ['Follow',[['Newsletter','newsletter.html'],['Instagram','#'],['YouTube','#']]],
         ].map(([title, links]) => (

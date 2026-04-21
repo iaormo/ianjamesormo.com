@@ -137,7 +137,7 @@ function Wordmark({ size = 0.7, onDark = false }) {
 }
 
 function Nav({ active }) {
-  const items = [['home','Home','index.html'],['about','About','about.html'],['books','Books','books.html'],['daily','Daily','daily.html'],['essays','Essays','essays.html'],['contact','Contact','contact.html']];
+  const items = [['home','Home','index.html'],['about','About','about.html'],['books','Books','books.html'],['daily','Devotional','daily.html'],['essays','Musings','essays.html'],['contact','Contact','contact.html']];
   return (
     <nav style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', padding: '28px 56px', borderBottom: `1px solid ${T.color.mist}` }}>
       <a href="index.html" style={{ textDecoration: 'none', color: T.color.ink, display: 'inline-flex', flexDirection: 'column', lineHeight: 1, gap: 6, marginRight: 48, whiteSpace: 'nowrap' }}>
@@ -162,7 +162,7 @@ function Footer() {
           <div style={{ fontFamily: T.font.quote, fontStyle: 'italic', fontSize: 18, marginTop: 28, maxWidth: 380, lineHeight: 1.5, opacity: .85 }}>Writer of the unglamorous middle. Faith, work, and the long way home.</div>
         </div>
         {[
-          ['Read',[['Books','books.html'],['Daily devotionals','daily.html'],['Essays','essays.html']]],
+          ['Read',[['Books','books.html'],['Devotional','daily.html'],['Musings','essays.html']]],
           ['About',[['Story','about.html'],['Press / Media','about.html'],['Contact','contact.html']]],
           ['Follow',[['Newsletter','newsletter.html'],['Instagram','#'],['YouTube','#']]],
         ].map(([title, links]) => (
@@ -273,7 +273,7 @@ function Books() {
 
         <BookRow
           cover={<BookCover title={<>You are<br /><span style={{fontFamily:T.font.quote,fontStyle:'italic',fontWeight:400,letterSpacing:'0em',textTransform:'none',fontSize:'1.5em',lineHeight:.8}}>not</span><br />finished</>} subtitle="Grace, grit, and the long way home." variant="ink" w={280} h={420} rotate={-2} />}
-          cat="Memoir · Spring 2026"
+          cat="Memoir · Coming soon"
           title="You are not finished."
           sub="Grace, grit, and the long way home."
           desc="A memoir about a man who lost everything and was rebuilt through grace he did not earn, a wife who remained, and the daily unglamorous work of becoming. For the person in the long quiet middle, still doing the next small thing."
@@ -284,7 +284,7 @@ function Books() {
         <BookRow
           flipped
           cover={<BookCover title={<>You are<br /><span style={{fontFamily:T.font.quote,fontStyle:'italic',fontWeight:400,letterSpacing:'0em',textTransform:'none',fontSize:'1.5em',lineHeight:.8}}>not</span><br />your<br />paycheck</>} subtitle="Stop letting a number set your ceiling." variant="copper" w={280} h={420} rotate={2} />}
-          cat="Self-help · Business · 2025"
+          cat="Self-help · Business · Coming soon"
           title="You are not your paycheck."
           sub="The honest guide to leaving your job without burning everything down."
           desc="Why the number on your last paycheck is still setting your ceiling. Not a book about passion or personal branding. A book about arithmetic, runway, and the one honest conversation you have been avoiding."
