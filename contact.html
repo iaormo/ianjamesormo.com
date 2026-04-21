@@ -1,0 +1,287 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Contact: I am Ian James</title>
+<meta name="description" content="Get in touch with Ian James Ormo. For press, podcasts, bulk book orders, or just to say hello." />
+<meta name="robots" content="index, follow" />
+<meta name="author" content="Ian James Ormo" />
+<meta name="theme-color" content="#B8471C" />
+<link rel="canonical" href="https://ianjamesormo.com/contact.html" />
+<meta property="og:type" content="website" />
+<meta property="og:site_name" content="Ian James Ormo" />
+<meta property="og:title" content="Contact Ian James Ormo" />
+<meta property="og:description" content="For press, podcasts, or bulk orders. Or just to say hello." />
+<meta property="og:url" content="https://ianjamesormo.com/contact.html" />
+<meta name="twitter:card" content="summary_large_image" />
+<meta name="twitter:title" content="Contact Ian James Ormo" />
+<meta name="twitter:description" content="For press, podcasts, or bulk orders. Or just to say hello." />
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Archivo:wght@400;500;600;700;800;900&family=Inter:wght@400;500;600;700&family=Fraunces:ital,wght@0,400;0,500;0,600;1,400;1,500&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  html, body { margin: 0; padding: 0; background: #FAF7F2; color: #111; }
+  body { font-family: "Inter", -apple-system, sans-serif; }
+  * { box-sizing: border-box; }
+  a { color: inherit; }
+  .nav-mobile-btn { display: none; }
+  @media (max-width: 1024px) {
+    .contact-grid { grid-template-columns: 1fr !important; gap: 48px !important; }
+    .nav-full { display: none !important; }
+    .nav-mobile-btn { display: block !important; }
+    .hero-h { font-size: clamp(48px, 10vw, 96px) !important; }
+    .section-pad { padding-left: 32px !important; padding-right: 32px !important; }
+    .footer-grid { grid-template-columns: 1fr 1fr !important; }
+  }
+  @media (max-width: 600px) {
+    .section-pad { padding-left: 20px !important; padding-right: 20px !important; }
+    .nav-pad { padding-left: 20px !important; padding-right: 20px !important; }
+    .footer-grid { grid-template-columns: 1fr !important; }
+  }
+  section { opacity: 0; transform: translateY(28px); transition: opacity .65s cubic-bezier(.22,1,.36,1), transform .65s cubic-bezier(.22,1,.36,1); }
+  section.in-view { opacity: 1; transform: none; }
+  .mobile-menu { display: none; }
+  .mobile-menu.open { display: flex; }
+/* MOBILE-OVERRIDES-V1 */
+@media (max-width: 600px) {
+  [style*="font-size: 168px"]{font-size:56px !important; line-height: 1.02 !important;}
+  [style*="font-size: 144px"]{font-size:50px !important; line-height: 1.02 !important;}
+  [style*="font-size: 132px"]{font-size:48px !important; line-height: 1.02 !important;}
+  [style*="font-size: 120px"]{font-size:46px !important; line-height: 1.02 !important;}
+  [style*="font-size: 112px"]{font-size:44px !important; line-height: 1.02 !important;}
+  [style*="font-size: 96px"]{font-size:40px !important; line-height: 1.02 !important;}
+  [style*="font-size: 88px"]{font-size:38px !important; line-height: 1.02 !important;}
+  [style*="font-size: 80px"]{font-size:36px !important; line-height: 1.02 !important;}
+  [style*="font-size: 72px"]{font-size:34px !important;}
+  [style*="font-size: 68px"]{font-size:32px !important;}
+  [style*="font-size: 64px"]{font-size:32px !important;}
+  [style*="font-size: 56px"]{font-size:28px !important;}
+  [style*="font-size: 52px"]{font-size:28px !important;}
+  [style*="font-size: 48px"]{font-size:26px !important;}
+  [style*="font-size: 44px"]{font-size:24px !important;}
+  [style*="font-size: 40px"]{font-size:24px !important;}
+  [style*="font-size: 36px"]{font-size:22px !important;}
+  [style*="font-size: 34px"]{font-size:22px !important;}
+  [style*="font-size: 32px"]{font-size:21px !important;}
+  [style*="font-size: 30px"]{font-size:20px !important;}
+  [style*="font-size: 28px"]{font-size:19px !important;}
+  [style*="font-size: 26px"]{font-size:17px !important;}
+  [style*="font-size: 24px"]{font-size:17px !important;}
+  [style*="font-size: 22px"]{font-size:16px !important;}
+  .hero-h1, .hero-h, .essays-hero-h, .newsletter-h { font-size: clamp(32px, 10vw, 52px) !important; line-height: 1.05 !important; letter-spacing: -0.03em !important; }
+  .hero-h1 span, .hero-h span, .essays-hero-h span, .newsletter-h span, h1 span { white-space: normal !important; }
+  [style*="white-space: nowrap"]:not(nav *):not(button):not(a[href*=".html"]) { white-space: normal !important; }
+  /* Nav on mobile - wrap and reduce */
+  nav { padding: 18px 20px !important; flex-wrap: wrap !important; gap: 12px !important; }
+  nav > div:last-child { gap: 14px !important; flex-wrap: wrap !important; }
+  nav > div:last-child > a { font-size: 10px !important; padding: 8px 14px !important; }
+  /* Shrink section padding */
+  section, .section-pad { padding-top: 56px !important; padding-bottom: 56px !important; padding-left: 20px !important; padding-right: 20px !important; }
+  /* Forms */
+  input, textarea, select, button { font-size: 14px !important; }
+  /* Footer */
+  footer { padding: 48px 20px 28px !important; }
+}
+@media (max-width: 768px) and (min-width: 601px) {
+  [style*="font-size: 168px"]{font-size:96px !important;}
+  [style*="font-size: 144px"]{font-size:84px !important;}
+  [style*="font-size: 132px"]{font-size:76px !important;}
+  [style*="font-size: 120px"]{font-size:68px !important;}
+  [style*="font-size: 112px"]{font-size:64px !important;}
+  [style*="font-size: 96px"]{font-size:56px !important;}
+  [style*="font-size: 88px"]{font-size:52px !important;}
+  [style*="font-size: 80px"]{font-size:48px !important;}
+  [style*="font-size: 72px"]{font-size:44px !important;}
+  [style*="font-size: 68px"]{font-size:42px !important;}
+  [style*="font-size: 64px"]{font-size:40px !important;}
+  [style*="font-size: 56px"]{font-size:36px !important;}
+  [style*="font-size: 52px"]{font-size:34px !important;}
+  [style*="font-size: 48px"]{font-size:32px !important;}
+  [style*="font-size: 44px"]{font-size:30px !important;}
+  [style*="font-size: 40px"]{font-size:28px !important;}
+}
+/* END-MOBILE-OVERRIDES */
+</style>
+<script src="https://unpkg.com/react@18.3.1/umd/react.production.min.js" crossorigin="anonymous"></script>
+<script src="https://unpkg.com/react-dom@18.3.1/umd/react-dom.production.min.js" crossorigin="anonymous"></script>
+<script src="https://unpkg.com/@babel/standalone@7.29.0/babel.min.js" crossorigin="anonymous"></script>
+</head>
+<body>
+<div id="root"></div>
+<script>
+window.IJ_TOKENS = {
+  color: { ink:'#111111', page:'#FAF7F2', copper:'#B8471C', steel:'#6B6B6B', mist:'#E6E1D8', bone:'#EFEAE0', deep:'#0A0A0A' },
+  font: {
+    head: '"Archivo", "Inter", -apple-system, sans-serif',
+    body: '"Inter", -apple-system, sans-serif',
+    quote: '"Fraunces", "Source Serif 4", Georgia, serif',
+    mono: '"JetBrains Mono", ui-monospace, monospace',
+  },
+};
+</script>
+<script type="text/babel">
+const { useState } = React;
+const T = window.IJ_TOKENS;
+
+function Nav({ active }) {
+  const [open, setOpen] = useState(false);
+  const items = [['home','Home','index.html'],['about','About','about.html'],['books','Books','books.html'],['daily','Daily','daily.html'],['essays','Essays','essays.html'],['contact','Contact','contact.html']];
+  return (
+    <nav className="nav-pad" style={{ position: 'relative', display: 'flex', justifyContent: 'space-between', alignItems: 'center', padding: '28px 56px', borderBottom: `1px solid ${T.color.mist}` }}>
+      <a href="index.html" style={{ textDecoration: 'none', color: T.color.ink, whiteSpace: 'nowrap' }}>
+        <span style={{ fontFamily: T.font.head, fontSize: 22, fontWeight: 900, letterSpacing: '-0.03em', textTransform: 'uppercase', lineHeight: 1 }}>IAN JAMES</span>
+      </a>
+      <div className="nav-full" style={{ display: 'flex', gap: 36, alignItems: 'center', flexWrap: 'wrap' }}>
+        {items.map(([k, label, href]) => (
+          <a key={k} href={href} style={{ textDecoration: 'none', color: T.color.ink, fontFamily: T.font.body, fontSize: 12, fontWeight: 600, letterSpacing: '.14em', textTransform: 'uppercase', opacity: active === k ? 1 : .55, borderBottom: active === k ? `2px solid ${T.color.copper}` : '2px solid transparent', paddingBottom: 4 }}>{label}</a>
+        ))}
+        <a href="newsletter.html" style={{ textDecoration: 'none', background: T.color.copper, color: T.color.page, fontFamily: T.font.body, fontSize: 12, fontWeight: 700, letterSpacing: '.14em', textTransform: 'uppercase', padding: '12px 20px' }}>Subscribe →</a>
+      </div>
+      <button className="nav-mobile-btn" onClick={() => setOpen(o => !o)} style={{ background: 'none', border: 'none', cursor: 'pointer', padding: 8 }} aria-label="Menu">
+        <span style={{ display: 'block', width: 24, height: 2, background: T.color.ink, margin: '5px 0' }} />
+        <span style={{ display: 'block', width: 24, height: 2, background: T.color.ink, margin: '5px 0' }} />
+        <span style={{ display: 'block', width: 24, height: 2, background: T.color.ink, margin: '5px 0' }} />
+      </button>
+      <div className={`mobile-menu ${open ? 'open' : ''}`} style={{ position: 'absolute', top: '100%', left: 0, right: 0, background: T.color.page, borderBottom: `1px solid ${T.color.mist}`, flexDirection: 'column', padding: '16px 0', zIndex: 100 }}>
+        {items.map(([k, label, href]) => (
+          <a key={k} href={href} style={{ padding: '14px 24px', textDecoration: 'none', color: T.color.ink, fontFamily: T.font.body, fontSize: 13, fontWeight: 600, letterSpacing: '.14em', textTransform: 'uppercase', opacity: active === k ? 1 : .7 }}>{label}</a>
+        ))}
+        <a href="newsletter.html" style={{ margin: '12px 24px', textDecoration: 'none', background: T.color.copper, color: T.color.page, fontFamily: T.font.body, fontSize: 12, fontWeight: 700, letterSpacing: '.14em', textTransform: 'uppercase', padding: '14px 20px', textAlign: 'center' }}>Subscribe →</a>
+      </div>
+    </nav>
+  );
+}
+
+function Footer() {
+  return (
+    <footer style={{ background: T.color.ink, color: T.color.page, padding: '72px 32px 36px' }}>
+      <div className="footer-grid" style={{ display: 'grid', gridTemplateColumns: '2fr 1fr 1fr 1fr', gap: 48, paddingBottom: 56, borderBottom: '1px solid rgba(255,255,255,.1)', maxWidth: 1400, margin: '0 auto' }}>
+        <div>
+          <div style={{ fontFamily: T.font.head, fontSize: 34, fontWeight: 900, letterSpacing: '-0.04em', textTransform: 'uppercase' }}>IAN JAMES</div>
+          <div style={{ fontFamily: T.font.quote, fontStyle: 'italic', fontSize: 17, marginTop: 20, maxWidth: 380, lineHeight: 1.5, opacity: .85 }}>Writer of the unglamorous middle. Faith, work, and the long way home.</div>
+        </div>
+        {[
+          ['Read',[['Books','books.html'],['Daily devotionals','daily.html'],['Essays','essays.html']]],
+          ['About',[['Story','about.html'],['Contact','contact.html']]],
+          ['Follow',[['Newsletter','newsletter.html'],['Instagram','#'],['YouTube','#']]],
+        ].map(([title, links]) => (
+          <div key={title}>
+            <div style={{ fontFamily: T.font.body, fontSize: 11, fontWeight: 700, letterSpacing: '.25em', textTransform: 'uppercase', color: T.color.copper, marginBottom: 18 }}>{title}</div>
+            <div style={{ display: 'flex', flexDirection: 'column', gap: 12 }}>
+              {links.map(([l, href]) => <a key={l} href={href} style={{ color: T.color.page, textDecoration: 'none', fontFamily: T.font.body, fontSize: 14, fontWeight: 500, opacity: .75 }}>{l}</a>)}
+            </div>
+          </div>
+        ))}
+      </div>
+      <div style={{ maxWidth: 1400, margin: '0 auto', display: 'flex', justifyContent: 'space-between', alignItems: 'center', paddingTop: 28, fontFamily: T.font.body, fontSize: 12, opacity: .55, flexWrap: 'wrap', gap: 12 }}>
+        <span>© 2026 Ian James Ormo. All rights reserved.</span>
+        <span style={{ letterSpacing: '.2em', textTransform: 'uppercase' }}>Books · Words · Witness</span>
+      </div>
+    </footer>
+  );
+}
+
+function Hero() {
+  return (
+    <section className="section-pad" style={{ padding: '96px 56px 48px', background: T.color.page }}>
+      <div style={{ maxWidth: 1200, margin: '0 auto' }}>
+        <div style={{ fontFamily: T.font.body, fontSize: 11, fontWeight: 700, letterSpacing: '.3em', textTransform: 'uppercase', color: T.color.copper, marginBottom: 20 }}>Contact</div>
+        <h1 className="hero-h" style={{ fontFamily: T.font.head, fontSize: 'clamp(44px, 6.5vw, 104px)', fontWeight: 900, lineHeight: 1.02, letterSpacing: '-0.04em', textTransform: 'uppercase', margin: 0 }}>
+          <span style={{ display: 'block', whiteSpace: 'nowrap' }}>Say something</span>
+          <span style={{ display: 'block', color: T.color.copper, whiteSpace: 'nowrap' }}>worth saying.</span>
+        </h1>
+        <div style={{ fontFamily: T.font.quote, fontStyle: 'italic', fontSize: 22, marginTop: 32, maxWidth: 680, color: T.color.steel, lineHeight: 1.5 }}>
+          For press, podcasts, bulk book orders, or just to say hello. I read every message. I reply when I can.
+        </div>
+      </div>
+    </section>
+  );
+}
+
+function ContactForm() {
+  const [form, setForm] = useState({ first: '', last: '', email: '', reason: '', message: '' });
+  const [submitted, setSubmitted] = useState(false);
+  const reasons = ['General hello', 'Press / interview', 'Podcast guest', 'Bulk book order', 'Something else'];
+  const inputStyle = { width: '100%', border: `1px solid ${T.color.mist}`, background: T.color.page, padding: '16px 18px', fontFamily: T.font.body, fontSize: 15, color: T.color.ink, outline: 'none' };
+  const labelStyle = { display: 'block', fontFamily: T.font.body, fontSize: 11, fontWeight: 700, letterSpacing: '.22em', textTransform: 'uppercase', color: T.color.copper, marginBottom: 10 };
+
+  function submit(e) {
+    e.preventDefault();
+    if (form.first && form.email && form.message) setSubmitted(true);
+  }
+
+  return (
+    <section className="section-pad" style={{ padding: '72px 56px 120px', background: T.color.page }}>
+      <div className="contact-grid" style={{ maxWidth: 1200, margin: '0 auto', display: 'grid', gridTemplateColumns: '1fr 380px', gap: 72 }}>
+        <div>
+          {submitted ? (
+            <div style={{ padding: '56px 40px', background: T.color.bone, border: `1px solid ${T.color.mist}` }}>
+              <div style={{ fontFamily: T.font.body, fontSize: 11, fontWeight: 700, letterSpacing: '.3em', textTransform: 'uppercase', color: T.color.copper, marginBottom: 16 }}>Thank you</div>
+              <div style={{ fontFamily: T.font.quote, fontStyle: 'italic', fontSize: 26, lineHeight: 1.4 }}>Your message landed. I read every one. If it asks for a reply, I will get there.</div>
+              <div style={{ fontFamily: T.font.quote, fontStyle: 'italic', fontSize: 18, marginTop: 20, color: T.color.steel }}>Ian</div>
+            </div>
+          ) : (
+            <form onSubmit={submit}>
+              <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 16, marginBottom: 24 }}>
+                <div>
+                  <label style={labelStyle}>First name *</label>
+                  <input required type="text" value={form.first} onChange={e => setForm(f => ({ ...f, first: e.target.value }))} style={inputStyle} />
+                </div>
+                <div>
+                  <label style={labelStyle}>Last name</label>
+                  <input type="text" value={form.last} onChange={e => setForm(f => ({ ...f, last: e.target.value }))} style={inputStyle} />
+                </div>
+              </div>
+              <div style={{ marginBottom: 24 }}>
+                <label style={labelStyle}>Email *</label>
+                <input required type="email" value={form.email} onChange={e => setForm(f => ({ ...f, email: e.target.value }))} style={inputStyle} />
+              </div>
+              <div style={{ marginBottom: 24 }}>
+                <label style={labelStyle}>Reason</label>
+                <select value={form.reason} onChange={e => setForm(f => ({ ...f, reason: e.target.value }))} style={{ ...inputStyle, appearance: 'none', cursor: 'pointer' }}>
+                  <option value="">Choose one</option>
+                  {reasons.map(r => <option key={r} value={r}>{r}</option>)}
+                </select>
+              </div>
+              <div style={{ marginBottom: 32 }}>
+                <label style={labelStyle}>Message *</label>
+                <textarea required rows={6} value={form.message} onChange={e => setForm(f => ({ ...f, message: e.target.value }))} style={{ ...inputStyle, resize: 'vertical', fontFamily: T.font.body }} />
+              </div>
+              <button type="submit" style={{ background: T.color.ink, color: T.color.page, border: 'none', padding: '18px 36px', fontFamily: T.font.body, fontSize: 12, fontWeight: 700, letterSpacing: '.2em', textTransform: 'uppercase', cursor: 'pointer' }}>
+                Send message →
+              </button>
+            </form>
+          )}
+        </div>
+        <aside>
+          <div style={{ padding: '32px 28px', background: T.color.ink, color: T.color.page, marginBottom: 24 }}>
+            <div style={{ fontFamily: T.font.body, fontSize: 11, fontWeight: 700, letterSpacing: '.25em', textTransform: 'uppercase', color: T.color.copper, marginBottom: 14 }}>Direct</div>
+            <div style={{ fontFamily: T.font.mono, fontSize: 15, marginBottom: 18 }}>hello@ianjamesormo.com</div>
+            <div style={{ fontFamily: T.font.quote, fontStyle: 'italic', fontSize: 15, lineHeight: 1.55, opacity: .85 }}>Best for press, podcasts, and anything that needs an actual answer.</div>
+          </div>
+          <div style={{ padding: '32px 28px', border: `1px solid ${T.color.mist}`, marginBottom: 24 }}>
+            <div style={{ fontFamily: T.font.body, fontSize: 11, fontWeight: 700, letterSpacing: '.25em', textTransform: 'uppercase', color: T.color.copper, marginBottom: 14 }}>Response time</div>
+            <div style={{ fontFamily: T.font.body, fontSize: 15, lineHeight: 1.6, color: T.color.steel }}>I check email on weekday mornings from Dauin. Expect two or three business days.</div>
+          </div>
+          <div style={{ padding: '32px 28px', border: `1px solid ${T.color.mist}` }}>
+            <div style={{ fontFamily: T.font.body, fontSize: 11, fontWeight: 700, letterSpacing: '.25em', textTransform: 'uppercase', color: T.color.copper, marginBottom: 14 }}>Follow</div>
+            <div style={{ display: 'flex', flexDirection: 'column', gap: 10 }}>
+              <a href="#" style={{ color: T.color.ink, textDecoration: 'none', fontFamily: T.font.body, fontSize: 14, fontWeight: 500 }}>Instagram →</a>
+              <a href="#" style={{ color: T.color.ink, textDecoration: 'none', fontFamily: T.font.body, fontSize: 14, fontWeight: 500 }}>YouTube →</a>
+              <a href="newsletter.html" style={{ color: T.color.ink, textDecoration: 'none', fontFamily: T.font.body, fontSize: 14, fontWeight: 500 }}>Newsletter →</a>
+            </div>
+          </div>
+        </aside>
+      </div>
+    </section>
+  );
+}
+
+ReactDOM.createRoot(document.getElementById('root')).render(
+  <><Nav active="contact" /><Hero /><ContactForm /><Footer /></>
+);
+</script>
+<script>(function(){var obs=new IntersectionObserver(function(e){e.forEach(function(x){if(x.isIntersecting){x.target.classList.add("in-view");obs.unobserve(x.target);}});},{threshold:0.05,rootMargin:"0px 0px -40px 0px"});var attached=new WeakSet();function attach(){document.querySelectorAll("section").forEach(function(s){if(!attached.has(s)){attached.add(s);obs.observe(s);}});}var tries=0;function poll(){attach();tries++;if(tries<60)setTimeout(poll,100);}if(document.readyState==="complete"){poll();}else{window.addEventListener("load",poll);}})();</script>
+</body>
+</html>

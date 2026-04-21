@@ -1,0 +1,630 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Essays — I am Ian James</title>
+<meta name="description" content="Longer than a post. Shorter than a book. Ian James on presence, faith, work, and the unglamorous middle." />
+<meta name="robots" content="index, follow" />
+<meta name="author" content="Ian James Ormo" />
+<meta name="theme-color" content="#B8471C" />
+<link rel="canonical" href="https://ianjamesormo.com/essays.html" />
+<meta property="og:type" content="website" />
+<meta property="og:site_name" content="Ian James Ormo" />
+<meta property="og:title" content="Essays — Ian James Ormo" />
+<meta property="og:description" content="Longer than a post. Shorter than a book. Writing on presence, faith, work, and the unglamorous middle." />
+<meta property="og:url" content="https://ianjamesormo.com/essays.html" />
+<meta name="twitter:card" content="summary_large_image" />
+<meta name="twitter:title" content="Essays — Ian James Ormo" />
+<meta name="twitter:description" content="Longer than a post. Shorter than a book. Writing on presence, faith, work, and the unglamorous middle." />
+
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Archivo:wght@400;500;600;700;800;900&family=Inter:wght@400;500;600;700&family=Fraunces:ital,wght@0,400;0,500;0,600;1,400;1,500&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+
+<style>
+  html, body { margin: 0; padding: 0; background: #FAF7F2; color: #111; }
+  body { font-family: "Inter", -apple-system, sans-serif; }
+  * { box-sizing: border-box; }
+  a { color: inherit; }
+
+  @media (max-width: 900px) {
+    .essays-featured-grid { grid-template-columns: 1fr !important; gap: 48px !important; }
+    .essays-list-row { grid-template-columns: 60px 1fr 80px !important; gap: 16px !important; }
+    .essays-list-date, .essays-list-tag, .essays-list-time { display: none !important; }
+    .section-pad { padding-left: 24px !important; padding-right: 24px !important; }
+    .footer-grid { grid-template-columns: 1fr 1fr !important; }
+    .filter-bar { padding-left: 24px !important; padding-right: 24px !important; }
+  }
+  section { opacity: 0; transform: translateY(28px); transition: opacity .65s cubic-bezier(.22,1,.36,1), transform .65s cubic-bezier(.22,1,.36,1); }
+  section.in-view { opacity: 1; transform: none; }
+
+  @media (max-width: 1024px) and (min-width: 901px) {
+    .section-pad { padding-left: 40px !important; padding-right: 40px !important; }
+  }
+  @media (max-width: 600px) {
+    .section-pad { padding-left: 20px !important; padding-right: 20px !important; }
+  }
+/* MOBILE-OVERRIDES-V1 */
+@media (max-width: 600px) {
+  [style*="font-size: 168px"]{font-size:56px !important; line-height: 1.02 !important;}
+  [style*="font-size: 144px"]{font-size:50px !important; line-height: 1.02 !important;}
+  [style*="font-size: 132px"]{font-size:48px !important; line-height: 1.02 !important;}
+  [style*="font-size: 120px"]{font-size:46px !important; line-height: 1.02 !important;}
+  [style*="font-size: 112px"]{font-size:44px !important; line-height: 1.02 !important;}
+  [style*="font-size: 96px"]{font-size:40px !important; line-height: 1.02 !important;}
+  [style*="font-size: 88px"]{font-size:38px !important; line-height: 1.02 !important;}
+  [style*="font-size: 80px"]{font-size:36px !important; line-height: 1.02 !important;}
+  [style*="font-size: 72px"]{font-size:34px !important;}
+  [style*="font-size: 68px"]{font-size:32px !important;}
+  [style*="font-size: 64px"]{font-size:32px !important;}
+  [style*="font-size: 56px"]{font-size:28px !important;}
+  [style*="font-size: 52px"]{font-size:28px !important;}
+  [style*="font-size: 48px"]{font-size:26px !important;}
+  [style*="font-size: 44px"]{font-size:24px !important;}
+  [style*="font-size: 40px"]{font-size:24px !important;}
+  [style*="font-size: 36px"]{font-size:22px !important;}
+  [style*="font-size: 34px"]{font-size:22px !important;}
+  [style*="font-size: 32px"]{font-size:21px !important;}
+  [style*="font-size: 30px"]{font-size:20px !important;}
+  [style*="font-size: 28px"]{font-size:19px !important;}
+  [style*="font-size: 26px"]{font-size:17px !important;}
+  [style*="font-size: 24px"]{font-size:17px !important;}
+  [style*="font-size: 22px"]{font-size:16px !important;}
+  .hero-h1, .hero-h, .essays-hero-h, .newsletter-h { font-size: clamp(32px, 10vw, 52px) !important; line-height: 1.05 !important; letter-spacing: -0.03em !important; }
+  .hero-h1 span, .hero-h span, .essays-hero-h span, .newsletter-h span, h1 span { white-space: normal !important; }
+  [style*="white-space: nowrap"]:not(nav *):not(button):not(a[href*=".html"]) { white-space: normal !important; }
+  /* Nav on mobile - wrap and reduce */
+  nav { padding: 18px 20px !important; flex-wrap: wrap !important; gap: 12px !important; }
+  nav > div:last-child { gap: 14px !important; flex-wrap: wrap !important; }
+  nav > div:last-child > a { font-size: 10px !important; padding: 8px 14px !important; }
+  /* Shrink section padding */
+  section, .section-pad { padding-top: 56px !important; padding-bottom: 56px !important; padding-left: 20px !important; padding-right: 20px !important; }
+  /* Forms */
+  input, textarea, select, button { font-size: 14px !important; }
+  /* Footer */
+  footer { padding: 48px 20px 28px !important; }
+}
+@media (max-width: 768px) and (min-width: 601px) {
+  [style*="font-size: 168px"]{font-size:96px !important;}
+  [style*="font-size: 144px"]{font-size:84px !important;}
+  [style*="font-size: 132px"]{font-size:76px !important;}
+  [style*="font-size: 120px"]{font-size:68px !important;}
+  [style*="font-size: 112px"]{font-size:64px !important;}
+  [style*="font-size: 96px"]{font-size:56px !important;}
+  [style*="font-size: 88px"]{font-size:52px !important;}
+  [style*="font-size: 80px"]{font-size:48px !important;}
+  [style*="font-size: 72px"]{font-size:44px !important;}
+  [style*="font-size: 68px"]{font-size:42px !important;}
+  [style*="font-size: 64px"]{font-size:40px !important;}
+  [style*="font-size: 56px"]{font-size:36px !important;}
+  [style*="font-size: 52px"]{font-size:34px !important;}
+  [style*="font-size: 48px"]{font-size:32px !important;}
+  [style*="font-size: 44px"]{font-size:30px !important;}
+  [style*="font-size: 40px"]{font-size:28px !important;}
+}
+/* END-MOBILE-OVERRIDES */
+</style>
+
+<script src="https://unpkg.com/react@18.3.1/umd/react.production.min.js" crossorigin="anonymous"></script>
+<script src="https://unpkg.com/react-dom@18.3.1/umd/react-dom.production.min.js" crossorigin="anonymous"></script>
+<script src="https://unpkg.com/@babel/standalone@7.29.0/babel.min.js" crossorigin="anonymous"></script>
+</head>
+<body>
+<div id="root"></div>
+
+<script>
+window.IJ_TOKENS = {
+  color: {
+    ink:    '#111111',
+    page:   '#FAF7F2',
+    copper: '#B8471C',
+    steel:  '#6B6B6B',
+    mist:   '#E6E1D8',
+    bone:   '#EFEAE0',
+    deep:   '#0A0A0A',
+  },
+  font: {
+    head:  '"Archivo", "Inter", -apple-system, sans-serif',
+    body:  '"Inter", -apple-system, sans-serif',
+    quote: '"Fraunces", "Source Serif 4", Georgia, serif',
+    mono:  '"JetBrains Mono", ui-monospace, monospace',
+  },
+};
+</script>
+
+<script type="text/babel">
+const T = window.IJ_TOKENS;
+
+function Wordmark({ size = 'md', onDark = false, eyebrow = true }) {
+  const scale = size === 'sm' ? 0.4 : size === 'md' ? 0.7 : size === 'lg' ? 1.3 : size === 'xl' ? 2 : size;
+  const nameColor = onDark ? T.color.page : T.color.ink;
+  return (
+    <div style={{ display: 'inline-flex', flexDirection: 'column', lineHeight: 1, gap: 10 * scale }}>
+      {eyebrow && (
+        <div style={{ fontFamily: T.font.body, fontSize: 13 * scale, fontWeight: 700, letterSpacing: '.28em', textTransform: 'uppercase', color: T.color.copper }}>
+          I am
+        </div>
+      )}
+      <div style={{ fontFamily: T.font.head, fontWeight: 900, fontSize: 96 * scale, letterSpacing: '-0.05em', textTransform: 'uppercase', color: nameColor, lineHeight: .85 }}>
+        IAN JAMES
+      </div>
+    </div>
+  );
+}
+
+function Nav({ active, onDark = false }) {
+  const items = [
+    ['home', 'Home', 'index.html'],
+    ['about', 'About', 'about.html'],
+    ['books', 'Books', 'books.html'],
+    ['daily', 'Daily', 'daily.html'],
+    ['essays', 'Essays', 'essays.html'],
+    ['contact', 'Contact', 'contact.html'],
+  ];
+  const c = onDark ? T.color.page : T.color.ink;
+  return (
+    <nav style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', padding: '28px 56px', borderBottom: `1px solid ${onDark ? 'rgba(255,255,255,.1)' : T.color.mist}` }}>
+      <a href="index.html" style={{ textDecoration: 'none', color: c, display: 'inline-flex', flexDirection: 'column', lineHeight: 1, gap: 6, marginRight: 48, whiteSpace: 'nowrap' }}>
+        <span style={{ fontFamily: T.font.head, fontSize: 22, fontWeight: 900, letterSpacing: '-0.03em', textTransform: 'uppercase', lineHeight: 1 }}>IAN JAMES</span>
+      </a>
+      <div style={{ display: 'flex', gap: 36, alignItems: 'center' }}>
+        {items.map(([k, label, href]) => (
+          <a key={k} href={href} style={{
+            textDecoration: 'none', color: c,
+            fontFamily: T.font.body, fontSize: 12, fontWeight: 600,
+            letterSpacing: '.14em', textTransform: 'uppercase',
+            opacity: active === k ? 1 : .55,
+            borderBottom: active === k ? `2px solid ${T.color.copper}` : '2px solid transparent',
+            paddingBottom: 4,
+          }}>{label}</a>
+        ))}
+        <a href="newsletter.html" style={{
+          textDecoration: 'none',
+          background: T.color.copper, color: T.color.page,
+          fontFamily: T.font.body, fontSize: 12, fontWeight: 700, letterSpacing: '.14em', textTransform: 'uppercase',
+          padding: '12px 20px',
+        }}>Subscribe →</a>
+      </div>
+    </nav>
+  );
+}
+
+function Footer() {
+  return (
+    <footer style={{ background: T.color.ink, color: T.color.page, padding: '72px 56px 36px' }}>
+      <div className="footer-grid" style={{ display: 'grid', gridTemplateColumns: '2fr 1fr 1fr 1fr', gap: 48, paddingBottom: 56, borderBottom: '1px solid rgba(255,255,255,.1)' }}>
+        <div>
+          <Wordmark size={0.55} onDark eyebrow={false} />
+          <div style={{ fontFamily: T.font.quote, fontStyle: 'italic', fontSize: 18, marginTop: 28, maxWidth: 380, lineHeight: 1.5, opacity: .85 }}>
+            Writer of the unglamorous middle. Faith, work, and the long way home.
+          </div>
+        </div>
+        {[
+          ['Read', [['Books', 'books.html'], ['Daily devotionals', 'daily.html'], ['Essays', 'essays.html']]],
+          ['About', [['Story', 'about.html'], ['Press / Media', 'about.html'], ['Contact', 'contact.html']]],
+          ['Follow', [['Newsletter', 'newsletter.html'], ['Instagram', '#'], ['YouTube', '#']]],
+        ].map(([title, links]) => (
+          <div key={title}>
+            <div style={{ fontFamily: T.font.body, fontSize: 11, fontWeight: 700, letterSpacing: '.25em', textTransform: 'uppercase', color: T.color.copper, marginBottom: 18 }}>{title}</div>
+            <div style={{ display: 'flex', flexDirection: 'column', gap: 12 }}>
+              {links.map(([l, href]) => (
+                <a key={l} href={href} style={{ color: T.color.page, textDecoration: 'none', fontFamily: T.font.body, fontSize: 14, fontWeight: 500, opacity: .75 }}>{l}</a>
+              ))}
+            </div>
+          </div>
+        ))}
+      </div>
+      <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', paddingTop: 28, fontFamily: T.font.body, fontSize: 12, opacity: .55 }}>
+        <span>© 2026 Ian James. All rights reserved.</span>
+        <span style={{ letterSpacing: '.2em', textTransform: 'uppercase' }}>Books · Words · Witness</span>
+      </div>
+    </footer>
+  );
+}
+
+function Btn({ children, kind = 'primary', href, dark, onClick }) {
+  const styles = {
+    primary: { background: T.color.copper, color: T.color.page, border: `2px solid ${T.color.copper}` },
+    ghost:   { background: 'transparent', color: dark ? T.color.page : T.color.ink, border: `2px solid ${dark ? 'rgba(255,255,255,.3)' : T.color.ink}` },
+    solid:   { background: T.color.ink, color: T.color.page, border: `2px solid ${T.color.ink}` },
+  };
+  return (
+    <a href={href} onClick={onClick} style={{
+      ...styles[kind], textDecoration: 'none',
+      padding: '16px 30px', display: 'inline-flex', alignItems: 'center', gap: 10,
+      fontFamily: T.font.body, fontSize: 12, fontWeight: 700, letterSpacing: '.18em', textTransform: 'uppercase',
+      cursor: 'pointer',
+    }}>
+      {children}
+    </a>
+  );
+}
+
+function Eyebrow({ children, color }) {
+  return (
+    <div style={{
+      fontFamily: T.font.body, fontSize: 11, fontWeight: 700,
+      letterSpacing: '.3em', textTransform: 'uppercase',
+      color: color || T.color.copper,
+      marginBottom: 20,
+    }}>{children}</div>
+  );
+}
+</script>
+
+<script type="text/babel">
+const { useState, useEffect, useRef } = React;
+const T = window.IJ_TOKENS;
+
+function ShareBar({ title, num, pagePath }) {
+  const [copied, setCopied] = useState(false);
+  const url = `https://ianjamesormo.com/${pagePath}#${num}`;
+  const shareText = `"${title}" — Ian James Ormo`;
+  const twitter = `https://twitter.com/intent/tweet?text=${encodeURIComponent(shareText)}&url=${encodeURIComponent(url)}`;
+  const facebook = `https://www.facebook.com/sharer/sharer.php?u=${encodeURIComponent(url)}`;
+  const linkedin = `https://www.linkedin.com/sharing/share-offsite/?url=${encodeURIComponent(url)}`;
+  const whatsapp = `https://wa.me/?text=${encodeURIComponent(shareText + ' ' + url)}`;
+
+  function copy(e) {
+    e.preventDefault();
+    const fallback = () => { const ta = document.createElement('textarea'); ta.value = url; document.body.appendChild(ta); ta.select(); try { document.execCommand('copy'); } catch(e){} document.body.removeChild(ta); };
+    if (navigator.clipboard) {
+      navigator.clipboard.writeText(url).catch(fallback);
+    } else fallback();
+    setCopied(true);
+    setTimeout(() => setCopied(false), 2000);
+  }
+
+  function nativeShare(e) {
+    if (navigator.share) {
+      e.preventDefault();
+      navigator.share({ title, text: shareText, url }).catch(() => {});
+    }
+  }
+
+  const btn = { display: 'inline-flex', alignItems: 'center', gap: 8, padding: '10px 16px', border: `1px solid ${T.color.mist}`, background: 'transparent', color: T.color.ink, fontFamily: T.font.body, fontSize: 11, fontWeight: 700, letterSpacing: '.18em', textTransform: 'uppercase', textDecoration: 'none', cursor: 'pointer' };
+
+  return (
+    <div style={{ display: 'flex', gap: 10, flexWrap: 'wrap', marginTop: 40, paddingTop: 28, borderTop: `1px solid ${T.color.mist}`, alignItems: 'center' }}>
+      <div style={{ fontFamily: T.font.body, fontSize: 11, fontWeight: 700, letterSpacing: '.25em', textTransform: 'uppercase', color: T.color.copper, marginRight: 8 }}>Share</div>
+      <a href={twitter} target="_blank" rel="noopener noreferrer" onClick={nativeShare} style={btn} aria-label="Share on X">X</a>
+      <a href={facebook} target="_blank" rel="noopener noreferrer" style={btn} aria-label="Share on Facebook">Facebook</a>
+      <a href={linkedin} target="_blank" rel="noopener noreferrer" style={btn} aria-label="Share on LinkedIn">LinkedIn</a>
+      <a href={whatsapp} target="_blank" rel="noopener noreferrer" style={btn} aria-label="Share on WhatsApp">WhatsApp</a>
+      <button onClick={copy} style={btn} aria-label="Copy link">{copied ? 'Copied ✓' : 'Copy link'}</button>
+    </div>
+  );
+}
+
+const essays = [
+  {
+    num: '014',
+    date: 'Apr 18 · 2026',
+    title: 'The room you are already in.',
+    sub: 'On presence, attention, and the marriage I was not actually showing up to.',
+    time: '6 min',
+    tag: 'Presence',
+    quote: 'The room has been there. You just haven\u2019t been in it.',
+    body: [
+      'There is a version of me that was always home but never present. I was in the house. I was at the table. My phone was face-down, which I told myself counted for something. But I was not in the room. I was in the next conversation, the next deadline, the next version of the problem I had been carrying since Tuesday. My wife learned how to tell the difference between when I was sitting beside her and when I was actually there. She did not say anything about it for a long time. That patience was love. I did not know how to receive it.',
+      'I used to think presence was about eliminating distraction. Get off the phone. Close the laptop. That kind of thing. But the harder thing, the thing I kept avoiding, was learning how to stop auditing the day I had already lived while I was still inside the one I was currently in. I would be giving my kids a bath and mentally drafting a client email. I would be lying next to my wife and cataloguing everything I had not yet finished. I was efficient. I was also somewhere else.',
+      'What changed it for me was not a habit or a system. It was a question. My wife asked me once, very quietly, not as an accusation but just as a real question: "Where are you right now?" I said I was right there. She looked at me and said nothing. I knew she was right. I had not been right there for weeks.',
+      'Presence is not a mood you summon. It is a choice you make every few minutes to stop rehearsing the past and auditing the future and just be inside the room you are actually in. The room that has your wife in it. The room where your kid is asking you to read the same book for the fourth night in a row. The room that will not wait for you to finish everything else first.',
+      'I am still learning this. I have better days and worse ones. But I know now that the room has always been there. I just was not always in it. That is the thing I most regret about the early years. Not the income, not the career stumbles, not the wrong turns. The presence I withheld without meaning to.',
+      'You may be doing the same thing. Not out of cruelty. Just out of momentum. The machine keeps moving and so do you, and you do not stop to notice that the people waiting for you are not asking for more of your time. They are asking for more of your attention while you are already there.',
+      'Start there. That is the whole essay.',
+    ],
+  },
+  {
+    num: '013',
+    date: 'Apr 17 · 2026',
+    title: 'A letter to the man rebuilding.',
+    sub: 'The foundations you are laying in secret are being counted.',
+    time: '8 min',
+    tag: 'Grace',
+    quote: 'Nobody hands you credit for the work you did before anyone was watching. But it still happened. It still counts.',
+    body: [
+      'I want to write to the man who is doing the hard work and has nobody watching.',
+      'You are waking up earlier than anyone requires. You are reading things you are not sure you understand yet. You are apologizing to people who did not expect an apology and so did not know what to do with it. You are staying consistent in rooms where consistency earns you nothing visible. You are choosing differently than you used to, and the only person who can see the difference is you.',
+      'I know how that feels. You do not get a receipt. There is no announcement. The people in your life see the current version of you but they do not know yet that this version is different, that something shifted, that the quiet faithfulness has been accumulating for months. They will see it eventually. But right now you are doing it without the validation, and that is the most honest kind of change.',
+      'I also know the temptation at this stage, which is to announce it. To let someone know what you have been doing. To post something that signals the turn you have made. I understand that impulse. The loneliness of private growth is real. But resist it for now. Not because sharing is wrong, but because the foundation is not ready to bear the weight of an audience. The private months are not a delay. They are the point. They are where you find out if you actually mean it.',
+      'You do not need the credit to keep going. That is the thing you are learning right now. That you can do the next right thing even when it earns you nothing. That the obedience itself is the reward, even when it does not feel like one.',
+      'God counts the private work. Fathers count it. Marriage counts it. The man you are becoming counts it, even when the man you currently are cannot always see it clearly.',
+      'Keep going. The room is being built. You just cannot see it yet from inside the construction.',
+    ],
+  },
+  {
+    num: '012',
+    date: 'Apr 16 · 2026',
+    title: 'Worth and the paycheck ceiling.',
+    sub: 'How a number on a stub quietly trained you to stay small.',
+    time: '11 min',
+    tag: 'Work',
+    quote: 'Your value was never the number. But your nervous system never got that memo.',
+    body: [
+      'There is a number most employed people carry in their heads. It is their salary, or their hourly rate, or the highest amount they have ever been paid. It becomes, over time, a kind of ceiling. Not a real ceiling. Not one anyone built. But a psychological one, invisible and sturdy, that shapes every decision about what to charge, what to ask for, what to think is possible.',
+      'I carried mine for years. I started in the call center industry at eighteen. The number I was paid in those early years became, without me realizing it, a reference point. Even after I left, even after I began freelancing and building things of genuine value, some part of me kept reverting to that original number when deciding what I was worth.',
+      'The paycheck ceiling is not about greed. It is about safety. The number you were paid was, at some point, validated by someone you respected or feared. It represented what the market said you were worth. And the market is not abstract; it is made of specific people who told you your value with a number and a signature at the bottom.',
+      'The problem is that the market was not measuring your worth. It was measuring your leverage at that particular moment in that particular job. It was measuring what they could get away with paying you. It was measuring your negotiating skill, or lack of it. It was measuring what the role was budgeted for in a spreadsheet someone made three years before you arrived.',
+      'Your value and your pay rate are different things. But they do not feel different. They feel like the same thing. And so the number follows you.',
+      'The way out is not to inflate your self-image until you believe you are worth more. The way out is to understand that the number was never a measurement of you at all. It was a transaction. Transactions end. Your worth does not.',
+      'I did not fully understand this until I started charging for my work based on the outcome I was delivering, not the hours I was putting in. The first time I charged more in a single project than I had made in three months at a salaried job, I felt like I was lying. I was waiting for someone to catch me. Nobody did. Because there was nothing to catch. The number was just more accurate.',
+      'Check what ceiling you are operating under. You probably know the number. Ask yourself when it was set, by whom, and what they were actually measuring. Then ask yourself what you have built and learned since then. The ceiling is not real. You just stopped testing it.',
+    ],
+  },
+  {
+    num: '011',
+    date: 'Apr 15 · 2026',
+    title: 'The body as witness.',
+    sub: 'What it carried, and why I trust it more than what I understood.',
+    time: '7 min',
+    tag: 'Body',
+    quote: 'My body knew before I did. It was keeping a record I did not know how to read.',
+    body: [
+      'I had a season in my late twenties where I could not sleep past 4am. No alarm. No reason. I would just wake up with a tightness in my chest that I told myself was acid reflux or the wrong pillow. I went to a doctor. Nothing wrong with the heart. Nothing wrong with the stomach. The body, he said, sometimes holds what the mind has not yet processed.',
+      'I did not know what that meant at the time. I thought I was fine. I was handling things. I had learned to perform competence and stability so well that I had convinced myself the performance was real. The body was not convinced.',
+      'The Psalms say we are fearfully and wonderfully made. I used to read that as a statement about biology. About the complexity of cells and systems. But I think it is also a statement about witness. The body witnesses the life you are actually living, not the one you are narrating to the world.',
+      'It witnesses the marriage tension you are minimizing. The grief you have not sat with. The anger you have converted into productivity. The fear you have labeled ambition. It holds these things not to punish you but because it is faithful. It is more honest than the story you tell about yourself.',
+      'I have come to trust my body more than my explanations. When something tightens in my chest in a conversation, I no longer tell myself it is acid reflux. I ask what just happened in that room. When I feel exhausted after an interaction I told myself was fine, I take that seriously. The body is a more reliable narrator than I am.',
+      'Psalm 139 says God knew us before we were formed. I think the body carries some of that original knowing. It has not forgotten what you have been through. It is not trying to protect your narrative. It just keeps the record.',
+      'You can spend a long time overriding it. You can eat around it, medicate around it, grind through it. Some men do this for decades. Or you can start listening to it like the honest witness it is, even when what it is telling you is inconvenient.',
+      'The 4am waking stopped eventually. Not because I fixed the pillow. Because I sat down with what the tightness was pointing at and stopped calling it something else.',
+    ],
+  },
+  {
+    num: '010',
+    date: 'Apr 14 · 2026',
+    title: 'Faithfulness is not resilience.',
+    sub: 'It is quieter. It is not about bouncing back. It is about not leaving.',
+    time: '5 min',
+    tag: 'Faith',
+    quote: 'Resilience is for people who expect the fall. Faithfulness is for people who stay anyway.',
+    body: [
+      'We have made resilience the highest virtue. Bounce back. Get up. Rise again. The narrative arc of every redemption story follows the same shape: fall, struggle, comeback. We celebrate the comeback. We make the comeback into content.',
+      'But there is another thing that does not get as much attention, which is the people who never left in the first place. Who showed up on the bad Tuesday. Who made dinner when no one was watching. Who prayed the same prayer for the four hundredth time without visible results. Who stayed in the marriage, in the calling, in the practice, not because they felt inspired but because they decided to.',
+      'That is faithfulness. And it looks nothing like resilience.',
+      'Resilience has drama. There is a before and after. There is a moment of breaking and a moment of recovery. Faithfulness has no such moment. It is undramatic almost by definition. It is the same day repeated with the same intention, again and again, across years you will not fully remember.',
+      'Galatians 6:9 says do not grow weary in doing good, for in due season you will reap if you do not give up. I used to read the "due season" part as the reward for resilience. You fell, you recovered, and the harvest came. But I think the harvest is promised to something quieter. To the person who just kept showing up. Who did not give up not because they were strong but because they chose, on the days when they were not strong, to stay anyway.',
+      'God is faithful. Not resilient. Not bouncing back from anything. Just steadily, quietly, consistently present. That is the word used over and over. Faithful.',
+      'I want to be faithful more than I want to be resilient. I want to be the kind of man who is simply there, year after year, in the same role, with the same people, doing the same unglamorous things. That does not make a good story. But I think it makes a good life.',
+    ],
+  },
+  {
+    num: '009',
+    date: 'Apr 13 · 2026',
+    title: 'On wives who stay.',
+    sub: 'A short essay about a long sentence.',
+    time: '4 min',
+    tag: 'Marriage',
+    quote: 'She was not waiting for me to become someone worth staying for. She had already decided.',
+    body: [
+      'My wife has stayed through versions of me I would not have stayed through.',
+      'The version who was present in body and absent in spirit for longer than I want to say. The version who thought providing was the same as leading. The version who knew all the right words about faith and family and kept living in a way that contradicted them. She watched that version. She did not leave.',
+      'I used to tell myself she stayed because of commitment, and that is true, but it is incomplete. She stayed because she saw something I could not see about myself. Not who I was performing, but who I was underneath it. She made a bet on that person long before he showed up consistently.',
+      'That is not a small thing. That is a very large thing. It is the kind of thing that is almost impossible to talk about without sounding like I am praising her for tolerating me, which is not what I am saying. I am saying she exercised a kind of seeing that I have never fully understood. A long vision.',
+      'Peter 3:7 says to dwell with your wife with understanding, honoring her as a weaker vessel. I used to read that verse as a verse about care. Now I read it as a verse about humility. Because the man who has been seen through his worst seasons by someone who stayed knows that the understanding in that marriage has not been evenly distributed. She has understood far more than I have, for far longer.',
+      'I am a better man because she stayed. That sentence is too small for what I mean, but it is true. Whatever I am building now, whatever I am becoming, the foundation has her name on it in places she will never ask me to acknowledge.',
+      'I am acknowledging it.',
+    ],
+  },
+  {
+    num: '008',
+    date: 'Apr 12 · 2026',
+    title: 'Cost as proof.',
+    sub: 'Love and faith are not feelings. They are what they cost.',
+    time: '9 min',
+    tag: 'Grace',
+    quote: 'If it costs nothing, I do not know what to do with it.',
+    body: [
+      'I have a complicated relationship with cheap grace.',
+      'Not because grace should be earned. It should not. That is the whole point. But there is a version of the grace message that has been so flattened, so reduced to its simplest form, that it functions as permission to stay the same. That God loves you as you are and therefore you can relax into the you that you currently are, and that will be enough.',
+      'I think the actual message is stranger and harder than that. That God loves you as you are, yes. But the love is the kind that does not leave you as you are. It is an active force, not a comfortable one. It cost something enormous. And things that cost something enormous tend to change what they touch.',
+      'John 15:13 says there is no greater love than to lay down your life for your friends. The cost is the measure. The cost is the evidence. If something costs nothing, I am not sure it is love. It might be affection. It might be tolerance. It might be convenience dressed up in the vocabulary of love. But love, the real kind, is measurable by what it was willing to give up.',
+      'This applies to more than theology. It applies to the marriage you are in. The cost is the evidence. Are you actually in it, or are you just present when it is comfortable? It applies to the business you are building. Did you actually risk something, or did you build in every possible safety net and then call yourself an entrepreneur? It applies to the faith you say you have. Does it cost you anything? Does it change your behavior in ways that are inconvenient?',
+      'The cross is the shape of love because the cross is the shape of maximum cost. That is not an accident. That is the definition.',
+      'I am not asking for suffering for its own sake. I am asking what you have been willing to give up for the things you say you love. That answer tells you more about where your actual faith and love live than any statement you could make.',
+      'Cost is proof. Where nothing is being spent, I am not sure something is really there.',
+    ],
+  },
+  {
+    num: '007',
+    date: 'Apr 11 · 2026',
+    title: 'The man you were in the kitchen.',
+    sub: 'A late afternoon. Nothing extraordinary happening.',
+    time: '6 min',
+    tag: 'Memoir',
+    quote: 'Nothing important was happening. That was exactly what made it matter.',
+    body: [
+      'It was a late afternoon in our house. The kind with yellow light coming in sideways through the kitchen window. My wife was making something. I cannot remember what. I was at the table not doing anything in particular, which is unusual enough for me that I remember it.',
+      'My son came in and climbed onto the chair next to me and did not ask for anything. He just sat there. He was looking at what I was looking at, which was nothing. We were just in the room together.',
+      'I did not do anything memorable in that moment. I did not say anything wise. I did not teach him something. I did not even make him laugh. I just stayed there with him. I did not check my phone. I did not start planning the next thing. I just let the moment be what it was, which was ordinary, which was light in a kitchen, which was a boy sitting next to his father for no reason.',
+      'I think about that afternoon a lot. More than I think about the client wins, more than I think about the things I have built and been recognized for. That afternoon in the kitchen is, for some reason, the thing I return to.',
+      'Maybe it is because it required nothing from me. No performance. No outcome. Just presence, which is the thing I have historically been worst at.',
+      'The men I have admired most in my life are not the ones who did the big things. They are the ones who were present in the unremarkable moments. Who were in the room in the afternoons when nothing was happening. Who made the ordinary feel like it was worth staying for.',
+      'I want to be that man. I am still learning what he looks like. But I know one thing: he was in the kitchen that afternoon. I was glad to be him, just for a little while.',
+    ],
+  },
+];
+
+const tags = ['All', 'Presence', 'Grace', 'Work', 'Body', 'Faith', 'Marriage', 'Memoir'];
+
+function Hero() {
+  return (
+    <section className="section-pad" style={{ padding: '80px 56px 40px', background: T.color.page }}>
+      <div style={{ maxWidth: 1400, margin: '0 auto' }}>
+        <div style={{ fontFamily: T.font.body, fontSize: 11, fontWeight: 700, letterSpacing: '.3em', textTransform: 'uppercase', color: T.color.copper, marginBottom: 20 }}>Essays</div>
+        <div className="essays-hero-h" style={{ fontFamily: T.font.head, fontSize: 'clamp(28px, 4vw, 76px)', fontWeight: 900, lineHeight: 1.05, letterSpacing: '-0.04em', textTransform: 'uppercase' }}>
+          <span style={{ display: 'block', color: T.color.ink, whiteSpace: 'nowrap' }}>Longer than a post.</span>
+          <span style={{ display: 'block', color: T.color.copper, whiteSpace: 'nowrap' }}>Shorter than a book.</span>
+        </div>
+      </div>
+    </section>
+  );
+}
+
+function Filter({ active, setActive }) {
+  return (
+    <section className="filter-bar" style={{ padding: '24px 56px', background: T.color.page, borderTop: `1px solid ${T.color.mist}`, borderBottom: `1px solid ${T.color.mist}` }}>
+      <div style={{ maxWidth: 1400, margin: '0 auto', display: 'flex', gap: 8, flexWrap: 'wrap' }}>
+        {tags.map((t) => (
+          <button key={t} onClick={() => setActive(t)} style={{
+            border: 'none', background: active === t ? T.color.ink : 'transparent',
+            color: active === t ? T.color.page : T.color.ink,
+            padding: '10px 18px', fontFamily: T.font.body, fontSize: 11, fontWeight: 700,
+            letterSpacing: '.18em', textTransform: 'uppercase', cursor: 'pointer',
+          }}>{t}</button>
+        ))}
+      </div>
+    </section>
+  );
+}
+
+function FeaturedEssay({ e }) {
+  const [open, setOpen] = useState(false);
+  const ref = useRef(null);
+  useEffect(() => {
+    if (typeof window !== 'undefined' && window.location.hash === `#${e.num}`) {
+      setOpen(true);
+      setTimeout(() => ref.current?.scrollIntoView({ behavior: 'smooth', block: 'start' }), 300);
+    }
+  }, [e.num]);
+  return (
+    <section ref={ref} id={e.num} className="section-pad" style={{ padding: '72px 56px', background: T.color.bone, scrollMarginTop: 80 }}>
+      <div style={{ maxWidth: 1400, margin: '0 auto' }}>
+        <div className="essays-featured-grid" style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 72, alignItems: 'center' }}>
+          <div style={{ aspectRatio: '4/3', background: T.color.ink, color: T.color.page, padding: 48, display: 'flex', flexDirection: 'column', justifyContent: 'space-between' }}>
+            <div style={{ fontFamily: T.font.mono, fontSize: 11, color: T.color.copper, letterSpacing: '.2em' }}>[ FEATURED · NO. {e.num} ]</div>
+            <div style={{ fontFamily: T.font.quote, fontStyle: 'italic', fontSize: 36, lineHeight: 1.2 }}>&ldquo;{e.quote}&rdquo;</div>
+            <div style={{ fontFamily: T.font.body, fontSize: 12, fontWeight: 600, letterSpacing: '.15em', textTransform: 'uppercase', opacity: .6 }}>Ian James</div>
+          </div>
+          <div>
+            <div style={{ fontFamily: T.font.mono, fontSize: 12, color: T.color.copper, marginBottom: 16, letterSpacing: '.12em' }}>[ {e.tag} · {e.date} · {e.time} ]</div>
+            <div style={{ fontFamily: T.font.head, fontSize: 56, fontWeight: 900, lineHeight: .92, letterSpacing: '-0.04em', textTransform: 'uppercase', marginBottom: 28 }}>{e.title}</div>
+            <div style={{ fontFamily: T.font.quote, fontStyle: 'italic', fontSize: 20, lineHeight: 1.5, color: T.color.steel, marginBottom: 32, maxWidth: 540 }}>{e.sub}</div>
+            <button onClick={() => setOpen(o => !o)} style={{
+              background: T.color.ink, color: T.color.page, border: `2px solid ${T.color.ink}`,
+              padding: '16px 30px', fontFamily: T.font.body, fontSize: 12, fontWeight: 700,
+              letterSpacing: '.18em', textTransform: 'uppercase', cursor: 'pointer',
+            }}>{open ? 'Close essay' : 'Read the essay'} {open ? '↑' : '→'}</button>
+          </div>
+        </div>
+        {open && (
+          <div style={{ marginTop: 64, maxWidth: 720 }}>
+            {e.body.map((p, i) => (
+              <p key={i} style={{ fontFamily: T.font.quote, fontSize: 18, lineHeight: 1.75, color: T.color.ink, marginBottom: 28 }}>{p}</p>
+            ))}
+            <div style={{ marginTop: 40, fontFamily: T.font.body, fontSize: 13, fontWeight: 700, letterSpacing: '.15em', textTransform: 'uppercase', color: T.color.copper }}>Ian James · {e.date}</div>
+            <ShareBar title={e.title} num={e.num} pagePath="essays.html" />
+          </div>
+        )}
+      </div>
+    </section>
+  );
+}
+
+function EssayRow({ e }) {
+  const [open, setOpen] = useState(false);
+  const ref = useRef(null);
+  useEffect(() => {
+    if (typeof window !== 'undefined' && window.location.hash === `#${e.num}`) {
+      setOpen(true);
+      setTimeout(() => ref.current?.scrollIntoView({ behavior: 'smooth', block: 'start' }), 300);
+    }
+  }, [e.num]);
+  return (
+    <div ref={ref} id={e.num} style={{ borderTop: `1px solid ${T.color.mist}`, scrollMarginTop: 80 }}>
+      <div
+        onClick={() => setOpen(o => !o)}
+        className="essays-list-row"
+        style={{ display: 'grid', gridTemplateColumns: '80px 140px 1fr 140px 100px 60px', gap: 32, alignItems: 'center', padding: '32px 0', cursor: 'pointer', color: T.color.ink, textDecoration: 'none' }}
+      >
+        <div style={{ fontFamily: T.font.mono, fontSize: 12, color: T.color.copper, letterSpacing: '.1em' }}>No. {e.num}</div>
+        <div className="essays-list-date" style={{ fontFamily: T.font.mono, fontSize: 12, color: T.color.steel }}>{e.date}</div>
+        <div>
+          <div style={{ fontFamily: T.font.head, fontSize: 28, fontWeight: 800, lineHeight: 1.1, letterSpacing: '-0.02em', marginBottom: 6 }}>{e.title}</div>
+          <div style={{ fontFamily: T.font.body, fontSize: 14, color: T.color.steel, lineHeight: 1.5 }}>{e.sub}</div>
+        </div>
+        <div className="essays-list-tag" style={{ fontFamily: T.font.body, fontSize: 11, fontWeight: 700, letterSpacing: '.15em', textTransform: 'uppercase', color: T.color.copper }}>{e.tag}</div>
+        <div className="essays-list-time" style={{ fontFamily: T.font.body, fontSize: 12, fontWeight: 600, letterSpacing: '.12em', textTransform: 'uppercase', color: T.color.steel, textAlign: 'right' }}>{e.time}</div>
+        <div style={{ textAlign: 'right', fontFamily: T.font.body, fontSize: 20, color: T.color.copper }}>{open ? '↑' : '→'}</div>
+      </div>
+      {open && (
+        <div style={{ paddingBottom: 48, maxWidth: 720 }}>
+          {e.body.map((p, i) => (
+            <p key={i} style={{ fontFamily: T.font.quote, fontSize: 17, lineHeight: 1.75, color: T.color.ink, marginBottom: 24 }}>{p}</p>
+          ))}
+          <div style={{ marginTop: 32, fontFamily: T.font.body, fontSize: 13, fontWeight: 700, letterSpacing: '.15em', textTransform: 'uppercase', color: T.color.copper }}>Ian James · {e.date}</div>
+          <ShareBar title={e.title} num={e.num} pagePath="essays.html" />
+        </div>
+      )}
+    </div>
+  );
+}
+
+function List({ filtered }) {
+  return (
+    <section className="section-pad" style={{ padding: '80px 56px 120px', background: T.color.page }}>
+      <div style={{ maxWidth: 1400, margin: '0 auto' }}>
+        {filtered.slice(1).map((e) => (
+          <EssayRow key={e.num} e={e} />
+        ))}
+        <div style={{ borderTop: `1px solid ${T.color.mist}` }} />
+      </div>
+    </section>
+  );
+}
+
+function SubscribeCTA() {
+  return (
+    <section className="section-pad" style={{ padding: '80px 56px', background: T.color.copper, color: T.color.page }}>
+      <div style={{ maxWidth: 1400, margin: '0 auto', display: 'flex', justifyContent: 'space-between', alignItems: 'center', flexWrap: 'wrap', gap: 32 }}>
+        <div>
+          <div style={{ fontFamily: T.font.body, fontSize: 11, fontWeight: 700, letterSpacing: '.3em', textTransform: 'uppercase', opacity: .7, marginBottom: 16 }}>Every Sunday morning</div>
+          <div style={{ fontFamily: T.font.head, fontSize: 48, fontWeight: 900, lineHeight: .9, letterSpacing: '-0.04em', textTransform: 'uppercase' }}>
+            Get one letter<br />every week.
+          </div>
+        </div>
+        <div style={{ maxWidth: 480 }}>
+          <div style={{ fontFamily: T.font.quote, fontStyle: 'italic', fontSize: 18, lineHeight: 1.6, opacity: .9, marginBottom: 28 }}>
+            Some weeks it is a passage that hit me at 5am. Some weeks it is a question I have been sitting with. Every week it is the thing I actually needed to hear.
+          </div>
+          <a href="newsletter.html" style={{
+            textDecoration: 'none', background: T.color.page, color: T.color.ink,
+            padding: '16px 30px', display: 'inline-flex', alignItems: 'center', gap: 10,
+            fontFamily: T.font.body, fontSize: 12, fontWeight: 700, letterSpacing: '.18em', textTransform: 'uppercase',
+          }}>Subscribe free →</a>
+        </div>
+      </div>
+    </section>
+  );
+}
+
+function App() {
+  const [activeTag, setActiveTag] = useState('All');
+  const filtered = activeTag === 'All' ? essays : essays.filter(e => e.tag === activeTag);
+
+  return (
+    <>
+      <Nav active="essays" />
+      <Hero />
+      <Filter active={activeTag} setActive={setActiveTag} />
+      {filtered.length > 0 && <FeaturedEssay e={filtered[0]} />}
+      {filtered.length > 1 && <List filtered={filtered} />}
+      {filtered.length === 0 && (
+        <section style={{ padding: '120px 56px', textAlign: 'center', background: T.color.page }}>
+          <div style={{ fontFamily: T.font.quote, fontStyle: 'italic', fontSize: 24, color: T.color.steel }}>No essays in this category yet.</div>
+        </section>
+      )}
+      <SubscribeCTA />
+      <Footer />
+    </>
+  );
+}
+
+ReactDOM.createRoot(document.getElementById('root')).render(<App />);
+</script>
+<script>(function(){var obs=new IntersectionObserver(function(e){e.forEach(function(x){if(x.isIntersecting){x.target.classList.add("in-view");obs.unobserve(x.target);}});},{threshold:0.05,rootMargin:"0px 0px -40px 0px"});var attached=new WeakSet();function attach(){document.querySelectorAll("section").forEach(function(s){if(!attached.has(s)){attached.add(s);obs.observe(s);}});}var tries=0;function poll(){attach();tries++;if(tries<60)setTimeout(poll,100);}if(document.readyState==="complete"){poll();}else{window.addEventListener("load",poll);}})();</script>
+</body>
+</html>

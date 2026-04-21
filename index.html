@@ -1,0 +1,618 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>I am Ian James</title>
+<meta name="description" content="Ian James writes for the person who is rebuilding, quietly, without a blueprint, without applause. Memoir, devotionals, and essays on faith, work, and the long way home." />
+<meta name="robots" content="index, follow" />
+<meta name="author" content="Ian James Ormo" />
+<meta name="theme-color" content="#B8471C" />
+<link rel="canonical" href="https://ianjamesormo.com/" />
+<meta property="og:type" content="website" />
+<meta property="og:site_name" content="Ian James Ormo" />
+<meta property="og:title" content="Ian James Ormo — Writer of the unglamorous middle" />
+<meta property="og:description" content="Memoir, devotionals, and essays on faith, work, and the long way home. New book spring 2026." />
+<meta property="og:url" content="https://ianjamesormo.com/" />
+<meta name="twitter:card" content="summary_large_image" />
+<meta name="twitter:title" content="Ian James Ormo — Writer of the unglamorous middle" />
+<meta name="twitter:description" content="Memoir, devotionals, and essays on faith, work, and the long way home. New book spring 2026." />
+<script type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@type":"Person","@id":"https://ianjamesormo.com/#person","name":"Ian James Ormo","alternateName":"Ian James","url":"https://ianjamesormo.com/","jobTitle":"Writer","description":"Writer of memoir, devotionals, and essays on faith, work, and the long way home.","sameAs":["https://www.instagram.com/ianjamesormo"]},{"@type":"WebSite","@id":"https://ianjamesormo.com/#website","url":"https://ianjamesormo.com/","name":"Ian James Ormo","description":"Memoir, devotionals, and essays on faith, work, and the long way home.","author":{"@id":"https://ianjamesormo.com/#person"}}]}</script>
+
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Archivo:wght@400;500;600;700;800;900&family=Inter:wght@400;500;600;700&family=Fraunces:ital,wght@0,400;0,500;0,600;1,400;1,500&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+
+<style>
+  html, body { margin: 0; padding: 0; background: #FAF7F2; color: #111; }
+  body { font-family: "Inter", -apple-system, sans-serif; }
+  * { box-sizing: border-box; }
+  a { color: inherit; }
+
+  /* Mobile nav toggle */
+  .nav-links { display: flex; gap: 36px; align-items: center; }
+  .nav-menu-btn { display: none; background: none; border: none; cursor: pointer; padding: 8px; }
+  .nav-menu-btn span { display: block; width: 22px; height: 2px; background: #111; margin: 5px 0; transition: all .2s; }
+
+  @media (max-width: 900px) {
+    .nav-links { display: none; flex-direction: column; gap: 0; position: absolute; top: 100%; left: 0; right: 0; background: #FAF7F2; border-bottom: 1px solid #E6E1D8; padding: 16px 0; z-index: 100; }
+    .nav-links.open { display: flex; }
+    .nav-links a { padding: 12px 56px !important; }
+    .nav-menu-btn { display: block; }
+    .hero-h1 { font-size: clamp(72px, 16vw, 168px) !important; }
+    .hero-grid { grid-template-columns: 1fr !important; gap: 40px !important; }
+    .themes-header { grid-template-columns: 1fr !important; }
+    .themes-grid { grid-template-columns: 1fr 1fr !important; }
+    .book-row { grid-template-columns: 1fr !important; gap: 48px !important; }
+    .daily-grid { grid-template-columns: 1fr !important; }
+    .about-grid { grid-template-columns: 1fr !important; }
+    .essays-header { flex-direction: column !important; align-items: flex-start !important; gap: 24px !important; }
+    .footer-grid { grid-template-columns: 1fr 1fr !important; }
+    .section-pad { padding-left: 24px !important; padding-right: 24px !important; }
+    .newsletter-h { font-size: clamp(56px, 13vw, 112px) !important; }
+  }
+
+  @media (max-width: 560px) {
+    .themes-grid { grid-template-columns: 1fr !important; }
+  }
+  section { opacity: 0; transform: translateY(28px); transition: opacity .65s cubic-bezier(.22,1,.36,1), transform .65s cubic-bezier(.22,1,.36,1); }
+  section.in-view { opacity: 1; transform: none; }
+
+  @media (max-width: 1024px) and (min-width: 901px) {
+    .section-pad { padding-left: 40px !important; padding-right: 40px !important; }
+  }
+  @media (max-width: 600px) {
+    .section-pad { padding-left: 20px !important; padding-right: 20px !important; }
+  }
+/* MOBILE-OVERRIDES-V1 */
+@media (max-width: 600px) {
+  [style*="font-size: 168px"]{font-size:56px !important; line-height: 1.02 !important;}
+  [style*="font-size: 144px"]{font-size:50px !important; line-height: 1.02 !important;}
+  [style*="font-size: 132px"]{font-size:48px !important; line-height: 1.02 !important;}
+  [style*="font-size: 120px"]{font-size:46px !important; line-height: 1.02 !important;}
+  [style*="font-size: 112px"]{font-size:44px !important; line-height: 1.02 !important;}
+  [style*="font-size: 96px"]{font-size:40px !important; line-height: 1.02 !important;}
+  [style*="font-size: 88px"]{font-size:38px !important; line-height: 1.02 !important;}
+  [style*="font-size: 80px"]{font-size:36px !important; line-height: 1.02 !important;}
+  [style*="font-size: 72px"]{font-size:34px !important;}
+  [style*="font-size: 68px"]{font-size:32px !important;}
+  [style*="font-size: 64px"]{font-size:32px !important;}
+  [style*="font-size: 56px"]{font-size:28px !important;}
+  [style*="font-size: 52px"]{font-size:28px !important;}
+  [style*="font-size: 48px"]{font-size:26px !important;}
+  [style*="font-size: 44px"]{font-size:24px !important;}
+  [style*="font-size: 40px"]{font-size:24px !important;}
+  [style*="font-size: 36px"]{font-size:22px !important;}
+  [style*="font-size: 34px"]{font-size:22px !important;}
+  [style*="font-size: 32px"]{font-size:21px !important;}
+  [style*="font-size: 30px"]{font-size:20px !important;}
+  [style*="font-size: 28px"]{font-size:19px !important;}
+  [style*="font-size: 26px"]{font-size:17px !important;}
+  [style*="font-size: 24px"]{font-size:17px !important;}
+  [style*="font-size: 22px"]{font-size:16px !important;}
+  .hero-h1, .hero-h, .essays-hero-h, .newsletter-h { font-size: clamp(32px, 10vw, 52px) !important; line-height: 1.05 !important; letter-spacing: -0.03em !important; }
+  .hero-h1 span, .hero-h span, .essays-hero-h span, .newsletter-h span, h1 span { white-space: normal !important; }
+  [style*="white-space: nowrap"]:not(nav *):not(button):not(a[href*=".html"]) { white-space: normal !important; }
+  /* Nav on mobile - wrap and reduce */
+  nav { padding: 18px 20px !important; flex-wrap: wrap !important; gap: 12px !important; }
+  nav > div:last-child { gap: 14px !important; flex-wrap: wrap !important; }
+  nav > div:last-child > a { font-size: 10px !important; padding: 8px 14px !important; }
+  /* Shrink section padding */
+  section, .section-pad { padding-top: 56px !important; padding-bottom: 56px !important; padding-left: 20px !important; padding-right: 20px !important; }
+  /* Forms */
+  input, textarea, select, button { font-size: 14px !important; }
+  /* Footer */
+  footer { padding: 48px 20px 28px !important; }
+}
+@media (max-width: 768px) and (min-width: 601px) {
+  [style*="font-size: 168px"]{font-size:96px !important;}
+  [style*="font-size: 144px"]{font-size:84px !important;}
+  [style*="font-size: 132px"]{font-size:76px !important;}
+  [style*="font-size: 120px"]{font-size:68px !important;}
+  [style*="font-size: 112px"]{font-size:64px !important;}
+  [style*="font-size: 96px"]{font-size:56px !important;}
+  [style*="font-size: 88px"]{font-size:52px !important;}
+  [style*="font-size: 80px"]{font-size:48px !important;}
+  [style*="font-size: 72px"]{font-size:44px !important;}
+  [style*="font-size: 68px"]{font-size:42px !important;}
+  [style*="font-size: 64px"]{font-size:40px !important;}
+  [style*="font-size: 56px"]{font-size:36px !important;}
+  [style*="font-size: 52px"]{font-size:34px !important;}
+  [style*="font-size: 48px"]{font-size:32px !important;}
+  [style*="font-size: 44px"]{font-size:30px !important;}
+  [style*="font-size: 40px"]{font-size:28px !important;}
+}
+/* END-MOBILE-OVERRIDES */
+</style>
+
+<script src="https://unpkg.com/react@18.3.1/umd/react.production.min.js" crossorigin="anonymous"></script>
+<script src="https://unpkg.com/react-dom@18.3.1/umd/react-dom.production.min.js" crossorigin="anonymous"></script>
+<script src="https://unpkg.com/@babel/standalone@7.29.0/babel.min.js" crossorigin="anonymous"></script>
+</head>
+<body>
+<div id="root"></div>
+
+<script>
+window.IJ_TOKENS = {
+  color: {
+    ink:    '#111111',
+    page:   '#FAF7F2',
+    copper: '#B8471C',
+    steel:  '#6B6B6B',
+    mist:   '#E6E1D8',
+    bone:   '#EFEAE0',
+    deep:   '#0A0A0A',
+  },
+  font: {
+    head:  '"Archivo", "Inter", -apple-system, sans-serif',
+    body:  '"Inter", -apple-system, sans-serif',
+    quote: '"Fraunces", "Source Serif 4", Georgia, serif',
+    mono:  '"JetBrains Mono", ui-monospace, monospace',
+  },
+};
+</script>
+
+<script type="text/babel">
+const T = window.IJ_TOKENS;
+
+function Wordmark({ size = 'md', onDark = false, eyebrow = true, inline = false }) {
+  const scale = size === 'sm' ? 0.4 : size === 'md' ? 0.7 : size === 'lg' ? 1.3 : size === 'xl' ? 2 : size;
+  const nameColor = onDark ? T.color.page : T.color.ink;
+  if (inline) {
+    return (
+      <span style={{ fontFamily: T.font.head, fontWeight: 900, fontSize: 28 * scale, letterSpacing: '-0.04em', textTransform: 'uppercase', color: nameColor, lineHeight: 1 }}>
+        IAN JAMES
+      </span>
+    );
+  }
+  return (
+    <div style={{ display: 'inline-flex', flexDirection: 'column', lineHeight: 1, gap: 10 * scale }}>
+      {eyebrow && (
+        <div style={{ fontFamily: T.font.body, fontSize: 13 * scale, fontWeight: 700, letterSpacing: '.28em', textTransform: 'uppercase', color: T.color.copper }}>
+          I am
+        </div>
+      )}
+      <div style={{ fontFamily: T.font.head, fontWeight: 900, fontSize: 96 * scale, letterSpacing: '-0.05em', textTransform: 'uppercase', color: nameColor, lineHeight: .85 }}>
+        IAN JAMES
+      </div>
+    </div>
+  );
+}
+
+function Nav({ active, onDark = false }) {
+  const items = [
+    ['home', 'Home', 'index.html'],
+    ['about', 'About', 'about.html'],
+    ['books', 'Books', 'books.html'],
+    ['daily', 'Daily', 'daily.html'],
+    ['essays', 'Essays', 'essays.html'],
+    ['contact', 'Contact', 'contact.html'],
+  ];
+  const c = onDark ? T.color.page : T.color.ink;
+  return (
+    <nav style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', padding: '28px 56px', borderBottom: `1px solid ${onDark ? 'rgba(255,255,255,.1)' : T.color.mist}` }}>
+      <a href="index.html" style={{ textDecoration: 'none', color: c, display: 'inline-flex', flexDirection: 'column', lineHeight: 1, gap: 6, marginRight: 48, whiteSpace: 'nowrap' }}>
+        <span style={{ fontFamily: T.font.head, fontSize: 22, fontWeight: 900, letterSpacing: '-0.03em', textTransform: 'uppercase', lineHeight: 1 }}>IAN JAMES</span>
+      </a>
+      <div style={{ display: 'flex', gap: 36, alignItems: 'center' }}>
+        {items.map(([k, label, href]) => (
+          <a key={k} href={href} style={{
+            textDecoration: 'none', color: c,
+            fontFamily: T.font.body, fontSize: 12, fontWeight: 600,
+            letterSpacing: '.14em', textTransform: 'uppercase',
+            opacity: active === k ? 1 : .55,
+            borderBottom: active === k ? `2px solid ${T.color.copper}` : '2px solid transparent',
+            paddingBottom: 4,
+          }}>{label}</a>
+        ))}
+        <a href="newsletter.html" style={{
+          textDecoration: 'none',
+          background: T.color.copper, color: T.color.page,
+          fontFamily: T.font.body, fontSize: 12, fontWeight: 700, letterSpacing: '.14em', textTransform: 'uppercase',
+          padding: '12px 20px',
+        }}>Subscribe →</a>
+      </div>
+    </nav>
+  );
+}
+
+function Footer() {
+  return (
+    <footer style={{ background: T.color.ink, color: T.color.page, padding: '72px 56px 36px' }}>
+      <div className="footer-grid" style={{ display: 'grid', gridTemplateColumns: '2fr 1fr 1fr 1fr', gap: 48, paddingBottom: 56, borderBottom: '1px solid rgba(255,255,255,.1)' }}>
+        <div>
+          <Wordmark size={0.55} onDark eyebrow={false} />
+          <div style={{ fontFamily: T.font.quote, fontStyle: 'italic', fontSize: 18, marginTop: 28, maxWidth: 380, lineHeight: 1.5, opacity: .85 }}>
+            Writer of the unglamorous middle. Faith, work, and the long way home.
+          </div>
+        </div>
+        {[
+          ['Read', [['Books', 'books.html'], ['Daily devotionals', 'daily.html'], ['Essays', 'essays.html']]],
+          ['About', [['Story', 'about.html'], ['Press / Media', 'about.html'], ['Contact', 'contact.html']]],
+          ['Follow', [['Newsletter', 'newsletter.html'], ['Instagram', '#'], ['YouTube', '#']]],
+        ].map(([title, links]) => (
+          <div key={title}>
+            <div style={{ fontFamily: T.font.body, fontSize: 11, fontWeight: 700, letterSpacing: '.25em', textTransform: 'uppercase', color: T.color.copper, marginBottom: 18 }}>{title}</div>
+            <div style={{ display: 'flex', flexDirection: 'column', gap: 12 }}>
+              {links.map(([l, href]) => (
+                <a key={l} href={href} style={{ color: T.color.page, textDecoration: 'none', fontFamily: T.font.body, fontSize: 14, fontWeight: 500, opacity: .75 }}>{l}</a>
+              ))}
+            </div>
+          </div>
+        ))}
+      </div>
+      <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', paddingTop: 28, fontFamily: T.font.body, fontSize: 12, opacity: .55 }}>
+        <span>© 2026 Ian James. All rights reserved.</span>
+        <span style={{ letterSpacing: '.2em', textTransform: 'uppercase' }}>Books · Words · Witness</span>
+      </div>
+    </footer>
+  );
+}
+
+function BookCover({ title, subtitle, variant = 'ink', w = 280, h = 420, rotate = 0, shadow = true }) {
+  const palettes = {
+    ink:    { bg: T.color.ink,    fg: T.color.page, accent: T.color.copper },
+    copper: { bg: T.color.copper, fg: T.color.page, accent: T.color.ink },
+    page:   { bg: T.color.page,   fg: T.color.ink,  accent: T.color.copper },
+    bone:   { bg: T.color.bone,   fg: T.color.ink,  accent: T.color.copper },
+  };
+  const p = palettes[variant];
+  return (
+    <div style={{
+      width: w, height: h, background: p.bg, color: p.fg, position: 'relative',
+      boxShadow: shadow ? '0 30px 60px -30px rgba(0,0,0,.5), 0 1px 3px rgba(0,0,0,.15)' : 'none',
+      transform: `rotate(${rotate}deg)`, flexShrink: 0,
+    }}>
+      <div style={{ position: 'absolute', inset: 0, padding: '9%', display: 'flex', flexDirection: 'column', justifyContent: 'center' }}>
+        <div>
+          <div style={{ fontFamily: T.font.head, fontSize: w * .13, fontWeight: 900, lineHeight: .88, letterSpacing: '-0.035em', textTransform: 'uppercase' }}>
+            {title}
+          </div>
+          <div style={{ width: w * .22, height: 4, background: p.accent, margin: `${w * .04}px 0` }} />
+          {subtitle && <div style={{ fontFamily: T.font.body, fontSize: w * .045, fontWeight: 500, lineHeight: 1.35, opacity: .88 }}>{subtitle}</div>}
+        </div>
+      </div>
+      <div style={{ position: 'absolute', bottom: '9%', left: '9%', fontFamily: T.font.body, fontSize: w * .028, fontWeight: 700, letterSpacing: '.2em', textTransform: 'uppercase', opacity: .55, color: p.fg }}>
+        Ian James Ormo
+      </div>
+    </div>
+  );
+}
+
+function Btn({ children, kind = 'primary', href, dark, onClick }) {
+  const styles = {
+    primary: { background: T.color.copper, color: T.color.page, border: `2px solid ${T.color.copper}` },
+    ghost:   { background: 'transparent', color: dark ? T.color.page : T.color.ink, border: `2px solid ${dark ? 'rgba(255,255,255,.3)' : T.color.ink}` },
+    solid:   { background: T.color.ink, color: T.color.page, border: `2px solid ${T.color.ink}` },
+  };
+  return (
+    <a href={href} onClick={onClick} style={{
+      ...styles[kind], textDecoration: 'none',
+      padding: '16px 30px', display: 'inline-flex', alignItems: 'center', gap: 10,
+      fontFamily: T.font.body, fontSize: 12, fontWeight: 700, letterSpacing: '.18em', textTransform: 'uppercase',
+      cursor: 'pointer',
+    }}>
+      {children}
+    </a>
+  );
+}
+
+function Eyebrow({ children, color }) {
+  return (
+    <div style={{
+      fontFamily: T.font.body, fontSize: 11, fontWeight: 700,
+      letterSpacing: '.3em', textTransform: 'uppercase',
+      color: color || T.color.copper,
+      marginBottom: 20,
+    }}>{children}</div>
+  );
+}
+</script>
+
+<script type="text/babel">
+  const T = window.IJ_TOKENS;
+
+  function Hero() {
+    return (
+      <section className="section-pad" style={{ background: T.color.ink, color: T.color.page, padding: '96px 56px 120px', position: 'relative', overflow: 'hidden' }}>
+        <div style={{ position: 'absolute', top: -40, right: -60, fontFamily: T.font.head, fontSize: 520, fontWeight: 900, color: T.color.copper, opacity: .08, lineHeight: .8, letterSpacing: '-0.06em', pointerEvents: 'none', userSelect: 'none' }}>
+          IJ
+        </div>
+        <div style={{ maxWidth: 1400, margin: '0 auto', position: 'relative' }}>
+          <h1 className="hero-h1" style={{ fontFamily: T.font.head, fontSize: 168, fontWeight: 900, lineHeight: .85, letterSpacing: '-0.05em', textTransform: 'uppercase', margin: 0 }}>
+            You<br />are not<br /><span style={{ color: T.color.copper }}>finished.</span>
+          </h1>
+          <div className="hero-grid" style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 80, marginTop: 72, alignItems: 'end' }}>
+            <div style={{ fontFamily: T.font.quote, fontStyle: 'italic', fontSize: 26, lineHeight: 1.4, maxWidth: 560, opacity: .9 }}>
+              A memoir about the unglamorous daily work of being rebuilt. By grace you didn&rsquo;t earn, a wife who stayed, and a God who keeps no receipts.
+            </div>
+            <div style={{ display: 'flex', gap: 14, flexWrap: 'wrap' }}>
+              <Btn kind="primary" href="book-you-are-not-finished.html">Pre-order →</Btn>
+              <Btn kind="ghost" dark href="book-you-are-not-finished.html">Read chapter one</Btn>
+            </div>
+          </div>
+        </div>
+      </section>
+    );
+  }
+
+  function Themes() {
+    const themes = [
+      ['01', 'Presence over performance.', 'The difference between being in the room and actually being in the room.'],
+      ['02', 'Grace that doesn\u2019t wait for readiness.', 'It arrives before you\u2019ve cleaned up, before you\u2019ve earned the right.'],
+      ['03', 'The body keeps the record.', 'What was felt, held, and physically carried is more trusted than what was understood.'],
+      ['04', 'Rebuilding without a blueprint.', 'Doing the next small unglamorous thing when you don\u2019t know if it matters.'],
+      ['05', 'Cost as proof.', 'Love and faith are not feelings. They are what they cost the person who chose them.'],
+    ];
+    return (
+      <section className="section-pad" style={{ padding: '120px 56px', background: T.color.page }}>
+        <div style={{ maxWidth: 1400, margin: '0 auto' }}>
+          <div className="themes-header" style={{ display: 'grid', gridTemplateColumns: '340px 1fr', gap: 80, marginBottom: 72 }}>
+            <div>
+              <Eyebrow>What I write about</Eyebrow>
+              <div style={{ fontFamily: T.font.head, fontSize: 56, fontWeight: 900, lineHeight: .95, letterSpacing: '-0.04em', textTransform: 'uppercase' }}>
+                Five ideas<br />I keep<br /><span style={{ color: T.color.copper }}>circling back</span><br />to.
+              </div>
+            </div>
+            <div style={{ fontFamily: T.font.quote, fontSize: 22, fontStyle: 'italic', lineHeight: 1.55, color: T.color.steel, alignSelf: 'end', maxWidth: 540 }}>
+              I don&rsquo;t write about love or faith as feelings. I write about them as what they cost the person who chose them. The cost is the evidence.
+            </div>
+          </div>
+          <div className="themes-grid" style={{ display: 'grid', gridTemplateColumns: 'repeat(5, 1fr)', gap: 1, background: T.color.mist, border: `1px solid ${T.color.mist}` }}>
+            {themes.map(([n, t, d]) => (
+              <div key={n} style={{ background: T.color.page, padding: '40px 28px', minHeight: 300, display: 'flex', flexDirection: 'column', justifyContent: 'space-between' }}>
+                <div style={{ fontFamily: T.font.mono, fontSize: 12, fontWeight: 500, color: T.color.copper, letterSpacing: '.08em' }}>{n} /05</div>
+                <div>
+                  <div style={{ fontFamily: T.font.head, fontSize: 22, fontWeight: 800, lineHeight: 1.1, letterSpacing: '-0.02em', marginBottom: 14 }}>{t}</div>
+                  <div style={{ fontFamily: T.font.body, fontSize: 14, lineHeight: 1.55, color: T.color.steel }}>{d}</div>
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+    );
+  }
+
+  function Books() {
+    return (
+      <section className="section-pad" style={{ padding: '120px 56px', background: T.color.bone }}>
+        <div style={{ maxWidth: 1400, margin: '0 auto' }}>
+          <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-end', marginBottom: 72, flexWrap: 'wrap', gap: 24 }}>
+            <div>
+              <Eyebrow>The books</Eyebrow>
+              <div style={{ fontFamily: T.font.head, fontSize: 72, fontWeight: 900, lineHeight: .9, letterSpacing: '-0.04em', textTransform: 'uppercase' }}>
+                Written in the<br />middle, for<br />the middle.
+              </div>
+            </div>
+            <a href="books.html" style={{ fontFamily: T.font.body, fontSize: 12, fontWeight: 700, letterSpacing: '.2em', textTransform: 'uppercase', textDecoration: 'none', color: T.color.copper }}>All books →</a>
+          </div>
+
+          {/* Book 1 */}
+          <div className="book-row" style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 80, alignItems: 'center' }}>
+            <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', height: 560, background: T.color.page, border: `1px solid ${T.color.mist}` }}>
+              <BookCover title={<>You are<br /><span style={{fontFamily:T.font.quote,fontStyle:'italic',fontWeight:400,letterSpacing:'0em',textTransform:'none',fontSize:'1.5em',lineHeight:.8}}>not</span><br />finished</>} subtitle="Grace, grit, and the long way home." variant="ink" w={320} h={480} rotate={-2} />
+            </div>
+            <div>
+              <div style={{ fontFamily: T.font.mono, fontSize: 12, color: T.color.copper, marginBottom: 16 }}>[ Memoir · 2026 ]</div>
+              <div style={{ fontFamily: T.font.head, fontSize: 48, fontWeight: 900, lineHeight: .95, letterSpacing: '-0.035em', textTransform: 'uppercase', marginBottom: 24 }}>
+                You are not finished.
+              </div>
+              <div style={{ fontFamily: T.font.body, fontSize: 17, lineHeight: 1.65, color: T.color.steel, marginBottom: 28, maxWidth: 520 }}>
+                A memoir about a man who lost everything and was rebuilt through grace he did not earn, a wife who remained, and the daily unglamorous work of becoming.
+              </div>
+              <div style={{ fontFamily: T.font.quote, fontStyle: 'italic', fontSize: 22, lineHeight: 1.5, borderLeft: `3px solid ${T.color.copper}`, paddingLeft: 22, marginBottom: 36, color: T.color.ink, maxWidth: 520 }}>
+                &ldquo;Not resilience. Just doing the next small unglamorous thing when you don&rsquo;t know if it matters.&rdquo;
+              </div>
+              <div style={{ display: 'flex', gap: 12, flexWrap: 'wrap' }}>
+                <Btn kind="solid" href="book-you-are-not-finished.html">Pre-order the book</Btn>
+                <Btn kind="ghost" href="book-you-are-not-finished.html">About the book</Btn>
+              </div>
+            </div>
+          </div>
+
+          {/* Book 2 */}
+          <div className="book-row" style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 80, alignItems: 'center', marginTop: 100 }}>
+            <div>
+              <div style={{ fontFamily: T.font.mono, fontSize: 12, color: T.color.copper, marginBottom: 16 }}>[ Self-help · Business · 2025 ]</div>
+              <div style={{ fontFamily: T.font.head, fontSize: 48, fontWeight: 900, lineHeight: .95, letterSpacing: '-0.035em', textTransform: 'uppercase', marginBottom: 24 }}>
+                You are not<br />your paycheck.
+              </div>
+              <div style={{ fontFamily: T.font.body, fontSize: 17, lineHeight: 1.65, color: T.color.steel, marginBottom: 28, maxWidth: 520 }}>
+                Why the number on your last paycheck is still setting your ceiling. How to stop letting an institution&rsquo;s assessment of your worth run your life.
+              </div>
+              <div style={{ display: 'flex', gap: 12, flexWrap: 'wrap' }}>
+                <Btn kind="solid" href="books.html">Read more</Btn>
+                <Btn kind="ghost" href="books.html">Buy</Btn>
+              </div>
+            </div>
+            <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', height: 560, background: T.color.page, border: `1px solid ${T.color.mist}` }}>
+              <BookCover title={<>You are<br /><span style={{fontFamily:T.font.quote,fontStyle:'italic',fontWeight:400,letterSpacing:'0em',textTransform:'none',fontSize:'1.5em',lineHeight:.8}}>not</span> your<br />paycheck</>} subtitle="Stop letting a number set your ceiling." variant="copper" w={320} h={480} rotate={2} />
+            </div>
+          </div>
+        </div>
+      </section>
+    );
+  }
+
+  function Daily() {
+    return (
+      <section className="section-pad" style={{ padding: '120px 56px', background: T.color.ink, color: T.color.page }}>
+        <div style={{ maxWidth: 1400, margin: '0 auto' }}>
+          <div className="daily-grid" style={{ display: 'grid', gridTemplateColumns: '1fr 1.4fr', gap: 80 }}>
+            <div>
+              <Eyebrow color={T.color.copper}>Daily devotionals</Eyebrow>
+              <div style={{ fontFamily: T.font.head, fontSize: 84, fontWeight: 900, lineHeight: .88, letterSpacing: '-0.04em', textTransform: 'uppercase' }}>
+                Three<br />minutes.<br />Every<br />morning.
+              </div>
+              <div style={{ fontFamily: T.font.body, fontSize: 17, lineHeight: 1.65, color: 'rgba(250,247,242,.75)', marginTop: 32, marginBottom: 36, maxWidth: 440 }}>
+                A short, honest reading for people who have tried the <em>conquer your day</em> stuff and are looking for something truer, slower, and harder to fake.
+              </div>
+              <Btn kind="primary" href="daily.html">Read today&rsquo;s →</Btn>
+            </div>
+            <div style={{ background: T.color.page, color: T.color.ink, padding: 56, position: 'relative' }}>
+              <div style={{ position: 'absolute', top: 28, left: 28, right: 28, display: 'flex', justifyContent: 'space-between', fontFamily: T.font.mono, fontSize: 11, letterSpacing: '.15em', textTransform: 'uppercase', color: T.color.steel }}>
+                <span>Day 047</span>
+                <span>Proverbs 4:23</span>
+              </div>
+              <div style={{ marginTop: 60 }}>
+                <div style={{ fontFamily: T.font.quote, fontStyle: 'italic', fontSize: 42, lineHeight: 1.15, letterSpacing: '-0.01em' }}>
+                  &ldquo;Grace doesn&rsquo;t wait for your readiness. It arrives before you&rsquo;ve cleaned up.&rdquo;
+                </div>
+                <div style={{ fontFamily: T.font.body, fontSize: 15, lineHeight: 1.7, marginTop: 32, color: T.color.steel }}>
+                  This is the quiet theology of the rebuild. You do not earn your way back into the room. You are carried in, and then you are asked to stay. Today, do the small, unglamorous thing. Count it. Go again tomorrow.
+                </div>
+                <div style={{ borderTop: `1px solid ${T.color.mist}`, marginTop: 40, paddingTop: 20, display: 'flex', justifyContent: 'space-between', fontFamily: T.font.body, fontSize: 12, fontWeight: 600, letterSpacing: '.15em', textTransform: 'uppercase', color: T.color.copper }}>
+                  <span>Ian</span>
+                  <a href="daily.html" style={{ color: T.color.copper, textDecoration: 'none' }}>Archive →</a>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+    );
+  }
+
+  function About() {
+    return (
+      <section className="section-pad" style={{ padding: '120px 56px', background: T.color.page }}>
+        <div style={{ maxWidth: 1100, margin: '0 auto' }}>
+          <Eyebrow>About</Eyebrow>
+          <div style={{ fontFamily: T.font.quote, fontSize: 44, fontStyle: 'italic', lineHeight: 1.25, letterSpacing: '-0.01em', maxWidth: 960, marginBottom: 56 }}>
+            I write for the person who is rebuilding, quietly, without a blueprint, without applause, and who has started to suspect that the small, unglamorous thing they did today was the foundation.
+          </div>
+          <div className="about-grid" style={{ display: 'grid', gridTemplateColumns: '1fr 2fr', gap: 60 }}>
+            <div>
+              <div style={{ aspectRatio: '3/4', background: T.color.mist, position: 'relative', overflow: 'hidden' }}>
+                <div style={{ position: 'absolute', inset: 0, display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
+                  <svg viewBox="0 0 200 260" style={{ width: '80%', height: '80%', opacity: .35 }}>
+                    <circle cx="100" cy="90" r="42" fill={T.color.steel} />
+                    <path d="M30 260 Q30 160 100 160 Q170 160 170 260 Z" fill={T.color.steel} />
+                  </svg>
+                </div>
+                <div style={{ position: 'absolute', bottom: 12, left: 12, fontFamily: T.font.mono, fontSize: 10, color: T.color.steel, letterSpacing: '.1em', textTransform: 'uppercase' }}>Photo coming soon</div>
+              </div>
+            </div>
+            <div>
+              <div style={{ fontFamily: T.font.body, fontSize: 17, lineHeight: 1.75, color: T.color.ink, maxWidth: 600 }}>
+                <p style={{ marginTop: 0 }}>I&rsquo;m Ian James. Former call center executive, current homeschool father, freelancer in tech and automations, and founder of ScalePlus. I&rsquo;ve lost things I didn&rsquo;t know how to get back. I&rsquo;ve been held by people who had no reason to stay. The books come from there.</p>
+                <p>What I trust: the body, what it carried, and the daily unglamorous work. What I don&rsquo;t trust: the polished version of anyone&rsquo;s testimony, including my own.</p>
+                <p style={{ fontFamily: T.font.quote, fontStyle: 'italic', fontSize: 20, lineHeight: 1.55, borderLeft: `3px solid ${T.color.copper}`, paddingLeft: 20, color: T.color.ink, margin: '36px 0' }}>
+                  If you are in the middle, not the collapse, not the comeback, just the long quiet middle, the writing on this site is for you.
+                </p>
+                <Btn kind="solid" href="about.html">Read the full story</Btn>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+    );
+  }
+
+  function Essays() {
+    const essays = [
+      ['014', 'The room you are already in.', 'On presence, attention, and the marriage I was not actually showing up to.', '6 min'],
+      ['013', 'A letter to the man rebuilding.', 'The foundations you are laying in secret are being counted.', '8 min'],
+      ['012', 'Worth and the paycheck ceiling.', 'How a number on a stub quietly trained you to stay small.', '11 min'],
+      ['011', 'The body as witness.', 'What it carried, and why I trust it more than what I understood.', '7 min'],
+    ];
+    return (
+      <section className="section-pad" style={{ padding: '120px 56px', background: T.color.page }}>
+        <div style={{ maxWidth: 1400, margin: '0 auto' }}>
+          <div className="essays-header" style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-end', marginBottom: 56 }}>
+            <div>
+              <Eyebrow>Essays</Eyebrow>
+              <div style={{ fontFamily: T.font.head, fontSize: 72, fontWeight: 900, lineHeight: .9, letterSpacing: '-0.04em', textTransform: 'uppercase' }}>
+                Longer<br />than a post.<br />Shorter<br />than a book.
+              </div>
+            </div>
+            <a href="essays.html" style={{ fontFamily: T.font.body, fontSize: 12, fontWeight: 700, letterSpacing: '.2em', textTransform: 'uppercase', textDecoration: 'none', color: T.color.copper, flexShrink: 0 }}>All essays →</a>
+          </div>
+          <div>
+            {essays.map(([n, t, d, r], i) => (
+              <a key={n} href="essays.html" style={{ display: 'grid', gridTemplateColumns: '80px 1fr 140px 80px', gap: 32, alignItems: 'center', padding: '32px 0', borderTop: `1px solid ${T.color.mist}`, borderBottom: i === essays.length - 1 ? `1px solid ${T.color.mist}` : 'none', textDecoration: 'none', color: T.color.ink }}>
+                <div style={{ fontFamily: T.font.mono, fontSize: 12, color: T.color.copper, letterSpacing: '.1em' }}>No. {n}</div>
+                <div>
+                  <div style={{ fontFamily: T.font.head, fontSize: 28, fontWeight: 800, lineHeight: 1.1, letterSpacing: '-0.02em', marginBottom: 8 }}>{t}</div>
+                  <div style={{ fontFamily: T.font.body, fontSize: 14, color: T.color.steel, lineHeight: 1.5 }}>{d}</div>
+                </div>
+                <div style={{ fontFamily: T.font.body, fontSize: 12, fontWeight: 600, letterSpacing: '.15em', textTransform: 'uppercase', color: T.color.steel, textAlign: 'right' }}>{r}</div>
+                <div style={{ textAlign: 'right', fontFamily: T.font.body, fontSize: 18, fontWeight: 700, color: T.color.copper }}>→</div>
+              </a>
+            ))}
+          </div>
+        </div>
+      </section>
+    );
+  }
+
+  function Newsletter() {
+    const [form, setForm] = React.useState({ first: '', last: '', email: '' });
+    const [submitted, setSubmitted] = React.useState(false);
+
+    function handleSubmit(e) {
+      e.preventDefault();
+      if (form.first && form.last && form.email) setSubmitted(true);
+    }
+
+    const inputStyle = { flex: 1, border: 'none', padding: '18px 20px', fontFamily: T.font.body, fontSize: 14, background: 'transparent', color: T.color.ink, outline: 'none', width: '100%' };
+
+    return (
+      <section className="section-pad" style={{ padding: '140px 56px', background: T.color.copper, color: T.color.page, position: 'relative', overflow: 'hidden' }}>
+        <div style={{ maxWidth: 1100, margin: '0 auto', textAlign: 'center' }}>
+          <Eyebrow color={T.color.ink}>The letter</Eyebrow>
+          <div className="newsletter-h" style={{ fontFamily: T.font.head, fontSize: 112, fontWeight: 900, lineHeight: .88, letterSpacing: '-0.05em', textTransform: 'uppercase', marginBottom: 40 }}>
+            Get one<br />letter every<br />Sunday morning.
+          </div>
+          <div style={{ fontFamily: T.font.quote, fontSize: 22, fontStyle: 'italic', lineHeight: 1.5, maxWidth: 660, margin: '0 auto 48px' }}>
+            Some weeks it&rsquo;s a passage that hit me at 5am. Some weeks it&rsquo;s a question I&rsquo;ve been sitting with. Every week it&rsquo;s the thing I actually needed to hear, not the thing that sounds good in a subject line.
+          </div>
+          {submitted ? (
+            <div style={{ fontFamily: T.font.quote, fontSize: 28, fontStyle: 'italic', color: T.color.ink }}>
+              You&rsquo;re in. See you Sunday.
+            </div>
+          ) : (
+            <form onSubmit={handleSubmit} style={{ maxWidth: 540, margin: '0 auto' }}>
+              <div style={{ display: 'flex', background: T.color.page, marginBottom: 2 }}>
+                <input type="text" placeholder="First name" value={form.first} onChange={e => setForm(f => ({...f, first: e.target.value}))} required style={{...inputStyle, borderRight: `1px solid #E6E1D8`}} />
+                <input type="text" placeholder="Last name" value={form.last} onChange={e => setForm(f => ({...f, last: e.target.value}))} required style={inputStyle} />
+              </div>
+              <div style={{ display: 'flex', background: T.color.page }}>
+                <input type="email" placeholder="your@email.com" value={form.email} onChange={e => setForm(f => ({...f, email: e.target.value}))} required style={inputStyle} />
+                <button type="submit" style={{ background: T.color.ink, color: T.color.page, border: 'none', padding: '0 28px', fontFamily: T.font.body, fontSize: 11, fontWeight: 700, letterSpacing: '.18em', textTransform: 'uppercase', cursor: 'pointer', whiteSpace: 'nowrap' }}>
+                  Subscribe →
+                </button>
+              </div>
+            </form>
+          )}
+          <div style={{ fontFamily: T.font.body, fontSize: 12, marginTop: 20, opacity: .75 }}>Unsubscribe anytime</div>
+        </div>
+      </section>
+    );
+  }
+
+  function App() {
+    return (
+      <>
+        <Nav active="home" />
+        <main>
+          <Hero />
+          <Themes />
+          <Books />
+          <Daily />
+          <About />
+          <Essays />
+          <Newsletter />
+        </main>
+        <Footer />
+      </>
+    );
+  }
+
+  ReactDOM.createRoot(document.getElementById('root')).render(<App />);
+</script>
+<script>(function(){var obs=new IntersectionObserver(function(e){e.forEach(function(x){if(x.isIntersecting){x.target.classList.add('in-view');obs.unobserve(x.target);}});},{threshold:0.05,rootMargin:'0px 0px -40px 0px'});var attached=new WeakSet();function attach(){document.querySelectorAll('section').forEach(function(s){if(!attached.has(s)){attached.add(s);obs.observe(s);}});}var tries=0;function poll(){attach();tries++;if(tries<60)setTimeout(poll,100);}if(document.readyState==='complete'){poll();}else{window.addEventListener('load',poll);}})();</script>
+</body>
+</html>

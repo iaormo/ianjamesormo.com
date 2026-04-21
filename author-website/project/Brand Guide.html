@@ -1,0 +1,366 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8"/><meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>Brand Guide — Ian James</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Archivo:wght@400;500;600;700;800;900&family=Inter:wght@400;500;600;700&family=Fraunces:ital,wght@0,400;0,500;0,600;1,400;1,500&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>html,body{margin:0;padding:0;background:#FAF7F2;color:#111;font-family:"Inter",-apple-system,sans-serif}*{box-sizing:border-box}a{color:inherit}</style>
+<script src="https://unpkg.com/react@18.3.1/umd/react.development.js" integrity="sha384-hD6/rw4ppMLGNu3tX5cjIb+uRZ7UkRJ6BPkLpg4hAu/6onKUg4lLsHAs9EBPT82L" crossorigin="anonymous"></script>
+<script src="https://unpkg.com/react-dom@18.3.1/umd/react-dom.development.js" integrity="sha384-u6aeetuaXnQ38mYT8rp6sbXaQe3NL9t+IBXmnYxwkUI2Hw4bsp2Wvmx4yRQF1uAm" crossorigin="anonymous"></script>
+<script src="https://unpkg.com/@babel/standalone@7.29.0/babel.min.js" integrity="sha384-m08KidiNqLdpJqLq95G/LEi8Qvjl/xUYll3QILypMoQ65QorJ9Lvtp2RXYGBFj1y" crossorigin="anonymous"></script>
+</head><body><div id="root"></div>
+<script src="lib/tokens.js"></script><script type="text/babel" src="lib/components.jsx"></script>
+<script type="text/babel">
+const T=window.IJ_TOKENS;
+
+function Section({n,title,children,bg,color}){return(
+  <section style={{padding:'96px 56px',background:bg||T.color.page,color:color||T.color.ink,borderTop:`1px solid ${T.color.mist}`}}>
+    <div style={{maxWidth:1400,margin:'0 auto'}}>
+      <div style={{display:'flex',alignItems:'baseline',gap:24,marginBottom:48}}>
+        <div style={{fontFamily:T.font.mono,fontSize:14,color:T.color.copper,letterSpacing:'.1em'}}>§ {n}</div>
+        <div style={{fontFamily:T.font.head,fontSize:56,fontWeight:900,lineHeight:.95,letterSpacing:'-0.04em',textTransform:'uppercase'}}>{title}</div>
+      </div>
+      {children}
+    </div>
+  </section>
+);}
+
+function Swatch({hex,name,role,dark,light}){return(
+  <div>
+    <div style={{height:180,background:hex,border:light?`1px solid ${T.color.mist}`:'none'}}/>
+    <div style={{display:'flex',justifyContent:'space-between',alignItems:'baseline',marginTop:14}}>
+      <div style={{fontFamily:T.font.body,fontSize:12,fontWeight:700,letterSpacing:'.18em',textTransform:'uppercase'}}>{name}</div>
+      <div style={{fontFamily:T.font.mono,fontSize:11,opacity:.6}}>{hex}</div>
+    </div>
+    <div style={{fontFamily:T.font.body,fontSize:13,color:T.color.steel,marginTop:4,lineHeight:1.4}}>{role}</div>
+  </div>
+);}
+
+function Cover(){return(
+  <section style={{background:T.color.ink,color:T.color.page,padding:'96px 56px 120px',position:'relative',overflow:'hidden',minHeight:'100vh',display:'flex',flexDirection:'column',justifyContent:'space-between'}}>
+    <div style={{position:'absolute',top:-80,right:-80,fontFamily:T.font.head,fontSize:720,fontWeight:900,color:T.color.copper,opacity:.08,lineHeight:.8,letterSpacing:'-0.06em',pointerEvents:'none'}}>IJ</div>
+    <div style={{position:'relative',display:'flex',justifyContent:'space-between',fontFamily:T.font.mono,fontSize:12,letterSpacing:'.2em',textTransform:'uppercase',opacity:.6}}>
+      <span>Brand Guide · v1.0</span><span>Ian James · 2026</span><span>Confidential</span>
+    </div>
+    <div style={{position:'relative'}}>
+      <Eyebrow color={T.color.copper}>The brand guide</Eyebrow>
+      <div style={{fontFamily:T.font.head,fontSize:220,fontWeight:900,lineHeight:.82,letterSpacing:'-0.055em',textTransform:'uppercase'}}>
+        The rules<br/>of a <span style={{color:T.color.copper}}>voice.</span>
+      </div>
+      <div style={{fontFamily:T.font.quote,fontStyle:'italic',fontSize:28,lineHeight:1.4,marginTop:48,maxWidth:820,opacity:.9}}>
+        This is the brand system for Ian James — author, teacher, and storyteller. It exists so every page, cover, letter, and post sounds like the same person on their best day.
+      </div>
+    </div>
+    <div style={{position:'relative',display:'grid',gridTemplateColumns:'repeat(4,1fr)',gap:32,fontFamily:T.font.body,fontSize:13,lineHeight:1.5}}>
+      {[['01','Logo system'],['02','Color'],['03','Typography'],['04','Voice & tone'],['05','Book covers'],['06','Social templates'],['07','Photography'],['08','Stationery']].map(([n,t])=>(
+        <div key={n} style={{borderTop:'1px solid rgba(255,255,255,.2)',paddingTop:14}}>
+          <div style={{color:T.color.copper,fontFamily:T.font.mono,fontSize:11,letterSpacing:'.15em',marginBottom:6}}>§ {n}</div>
+          <div style={{fontWeight:600}}>{t}</div>
+        </div>
+      ))}
+    </div>
+  </section>
+);}
+
+function S1_Logo(){return(
+  <Section n="01" title="Logo system">
+    <div style={{display:'grid',gridTemplateColumns:'1fr 1fr',gap:48,marginBottom:56}}>
+      <div style={{background:T.color.page,border:`1px solid ${T.color.mist}`,padding:80,display:'flex',alignItems:'center',justifyContent:'center',minHeight:360}}>
+        <Wordmark size={1.1}/>
+      </div>
+      <div style={{background:T.color.ink,padding:80,display:'flex',alignItems:'center',justifyContent:'center',minHeight:360}}>
+        <Wordmark size={1.1} onDark/>
+      </div>
+    </div>
+    <div style={{display:'grid',gridTemplateColumns:'repeat(3,1fr)',gap:32}}>
+      <div style={{background:T.color.bone,border:`1px solid ${T.color.mist}`,padding:48,display:'flex',alignItems:'center',justifyContent:'center',minHeight:220}}>
+        <div style={{textAlign:'center'}}>
+          <Wordmark size={0.55} eyebrow={false}/>
+          <div style={{fontFamily:T.font.mono,fontSize:10,color:T.color.steel,letterSpacing:'.15em',marginTop:24,textTransform:'uppercase'}}>Inline · no eyebrow</div>
+        </div>
+      </div>
+      <div style={{background:T.color.copper,padding:48,display:'flex',alignItems:'center',justifyContent:'center',minHeight:220}}>
+        <div style={{textAlign:'center'}}>
+          <div style={{fontFamily:T.font.head,fontSize:96,fontWeight:900,color:T.color.ink,lineHeight:.8,letterSpacing:'-0.05em'}}>IJ</div>
+          <div style={{fontFamily:T.font.mono,fontSize:10,color:T.color.page,letterSpacing:'.15em',marginTop:18,textTransform:'uppercase',opacity:.8}}>Monogram · IJ</div>
+        </div>
+      </div>
+      <div style={{background:T.color.ink,color:T.color.page,padding:48,display:'flex',alignItems:'center',justifyContent:'center',minHeight:220}}>
+        <div style={{textAlign:'center'}}>
+          <div style={{fontFamily:T.font.head,fontSize:32,fontWeight:900,letterSpacing:'-0.03em',textTransform:'uppercase'}}>IAN · JAMES</div>
+          <div style={{height:2,background:T.color.copper,width:60,margin:'12px auto'}}/>
+          <div style={{fontFamily:T.font.body,fontSize:10,letterSpacing:'.3em',textTransform:'uppercase',opacity:.7}}>Author · Teacher</div>
+          <div style={{fontFamily:T.font.mono,fontSize:10,color:T.color.copper,letterSpacing:'.15em',marginTop:18,textTransform:'uppercase'}}>Editorial lockup</div>
+        </div>
+      </div>
+    </div>
+    <div style={{marginTop:56,display:'grid',gridTemplateColumns:'repeat(3,1fr)',gap:40,fontFamily:T.font.body,fontSize:14,lineHeight:1.65,color:T.color.steel}}>
+      <div><b style={{color:T.color.ink}}>Clear space.</b> Always leave space equal to the x-height of IAN JAMES around every side of the mark.</div>
+      <div><b style={{color:T.color.ink}}>Minimum size.</b> The full wordmark reads down to 120px wide. Below that, use the IJ monogram.</div>
+      <div><b style={{color:T.color.ink}}>Don&rsquo;t.</b> Don&rsquo;t recolor the name in gradients. Don&rsquo;t italicize it. Don&rsquo;t drop the copper eyebrow in primary lockups.</div>
+    </div>
+  </Section>
+);}
+
+function S2_Color(){return(
+  <Section n="02" title="Color palette" bg={T.color.bone}>
+    <div style={{display:'grid',gridTemplateColumns:'repeat(5,1fr)',gap:20,marginBottom:48}}>
+      <Swatch hex={T.color.ink} name="Ink" role="Primary text · dark surfaces"/>
+      <Swatch hex={T.color.page} name="Page" role="Canvas · primary background" light/>
+      <Swatch hex={T.color.copper} name="Copper" role="Accent · CTA · heat"/>
+      <Swatch hex={T.color.steel} name="Steel" role="Secondary text"/>
+      <Swatch hex={T.color.mist} name="Mist" role="Divider · panel" light/>
+    </div>
+    <div style={{display:'grid',gridTemplateColumns:'1fr 1fr 1fr',gap:32}}>
+      <div style={{background:T.color.ink,color:T.color.page,padding:40}}>
+        <div style={{fontFamily:T.font.mono,fontSize:11,letterSpacing:'.18em',color:T.color.copper,marginBottom:12}}>60 / 30 / 10</div>
+        <div style={{fontFamily:T.font.head,fontSize:22,fontWeight:800,letterSpacing:'-0.02em',textTransform:'uppercase',marginBottom:16}}>The ratio</div>
+        <div style={{fontSize:14,lineHeight:1.6,opacity:.85}}>60% Page or Ink · 30% supporting neutral (Steel · Mist · Bone) · 10% Copper. Never flip copper into the dominant role.</div>
+      </div>
+      <div style={{background:T.color.copper,color:T.color.page,padding:40}}>
+        <div style={{fontFamily:T.font.mono,fontSize:11,letterSpacing:'.18em',color:T.color.ink,marginBottom:12}}>When to use copper</div>
+        <div style={{fontFamily:T.font.head,fontSize:22,fontWeight:800,letterSpacing:'-0.02em',textTransform:'uppercase',marginBottom:16}}>Heat. Direction. Weight.</div>
+        <div style={{fontSize:14,lineHeight:1.6,opacity:.9}}>Copper is the accent — reserve it for CTAs, the &ldquo;I am&rdquo; eyebrow, a single word in a headline, and editorial pull-quotes. Used sparingly, it carries the whole brand.</div>
+      </div>
+      <div style={{background:T.color.page,border:`1px solid ${T.color.mist}`,padding:40}}>
+        <div style={{fontFamily:T.font.mono,fontSize:11,letterSpacing:'.18em',color:T.color.copper,marginBottom:12}}>Contrast</div>
+        <div style={{fontFamily:T.font.head,fontSize:22,fontWeight:800,letterSpacing:'-0.02em',textTransform:'uppercase',marginBottom:16}}>Accessibility</div>
+        <div style={{fontSize:14,lineHeight:1.6,color:T.color.steel}}>Ink on Page: AAA. Page on Ink: AAA. Copper on Page: AA at 18px+. Copper on Ink: AA at 14px+. Never set Steel on Mist for body copy.</div>
+      </div>
+    </div>
+  </Section>
+);}
+
+function S3_Type(){return(
+  <Section n="03" title="Typography">
+    <div style={{display:'grid',gridTemplateColumns:'1fr 1fr 1fr',gap:40,marginBottom:48}}>
+      {[
+        ['Archivo','Display · wordmark · headlines','900, 800, 700','ABCDEFGHIJKLMNOPQRSTUVWXYZ 0123456789'],
+        ['Inter','Body · UI · navigation','400, 500, 600, 700','The quick brown fox jumps over the lazy dog.'],
+        ['Fraunces','Editorial serif · pull-quotes','400, 500 · italic','&ldquo;The cost is the evidence.&rdquo;'],
+      ].map(([fam,role,weights,sample])=>(
+        <div key={fam} style={{borderTop:`3px solid ${T.color.ink}`,paddingTop:24}}>
+          <div style={{fontFamily:T.font.mono,fontSize:11,color:T.color.copper,letterSpacing:'.15em',marginBottom:10}}>{role}</div>
+          <div style={{fontFamily:fam==='Fraunces'?T.font.quote:(fam==='Archivo'?T.font.head:T.font.body),fontSize:64,fontWeight:fam==='Archivo'?900:(fam==='Fraunces'?400:600),fontStyle:fam==='Fraunces'?'italic':'normal',lineHeight:1,letterSpacing:'-0.03em',marginBottom:16}}>{fam}</div>
+          <div style={{fontFamily:T.font.body,fontSize:12,color:T.color.steel,marginBottom:18,letterSpacing:'.1em',textTransform:'uppercase'}}>{weights}</div>
+          <div style={{fontFamily:fam==='Fraunces'?T.font.quote:(fam==='Archivo'?T.font.head:T.font.body),fontSize:18,fontStyle:fam==='Fraunces'?'italic':'normal',lineHeight:1.4}} dangerouslySetInnerHTML={{__html:sample}}/>
+        </div>
+      ))}
+    </div>
+    <div style={{background:T.color.bone,padding:48}}>
+      <div style={{fontFamily:T.font.mono,fontSize:11,color:T.color.copper,letterSpacing:'.18em',marginBottom:32,textTransform:'uppercase'}}>Scale</div>
+      {[
+        ['Display XL','144 / 900 / −5% tracking','You are not finished.'],
+        ['Display L','88 / 900 / −4.5% tracking','Presence over performance.'],
+        ['Display M','56 / 900 / −4% tracking','The body keeps the record.'],
+        ['Pull quote','28 / 400 italic / Fraunces','The cost is the evidence of the love.'],
+        ['Body','17 / 400 / Inter / 1.65 leading','Not resilience — just doing the next small unglamorous thing.'],
+        ['Eyebrow','11 / 700 / .3em tracked / uppercase','— New essay · 04.2026'],
+      ].map(([l,spec,s])=>(
+        <div key={l} style={{display:'grid',gridTemplateColumns:'160px 260px 1fr',gap:24,alignItems:'baseline',padding:'18px 0',borderTop:`1px solid ${T.color.mist}`}}>
+          <div style={{fontFamily:T.font.body,fontSize:12,fontWeight:700,letterSpacing:'.15em',textTransform:'uppercase'}}>{l}</div>
+          <div style={{fontFamily:T.font.mono,fontSize:11,color:T.color.steel}}>{spec}</div>
+          <div style={{fontFamily:l.includes('Pull')?T.font.quote:(l.includes('Body')||l.includes('Eyebrow')?T.font.body:T.font.head),fontSize:l==='Display XL'?48:l==='Display L'?36:l==='Display M'?28:l==='Pull quote'?22:l==='Body'?15:11,fontWeight:l.includes('Display')?900:(l==='Eyebrow'?700:500),fontStyle:l.includes('Pull')?'italic':'normal',letterSpacing:l==='Eyebrow'?'.3em':'-0.02em',textTransform:l==='Eyebrow'?'uppercase':'none',lineHeight:1.1,color:l==='Eyebrow'?T.color.copper:T.color.ink}}>{s}</div>
+        </div>
+      ))}
+    </div>
+  </Section>
+);}
+
+function S4_Voice(){const v=[
+  ['We are','We are not'],
+  ['Honest, slow, specific','Loud, fast, inspirational'],
+  ['Pastoral, not performative','Spiritual-adjacent, not spiritual'],
+  ['Literary — earned sentences','Quotable — empty sentences'],
+  ['Warm with a spine','Warm without a spine'],
+  ['Faithful, without brand-safe hedging','&ldquo;Faith-adjacent&rdquo;'],
+  ['A teacher','A guru'],
+];return(
+  <Section n="04" title="Voice & tone" bg={T.color.ink} color={T.color.page}>
+    <div style={{display:'grid',gridTemplateColumns:'1fr 1fr',gap:72}}>
+      <div>
+        <div style={{fontFamily:T.font.quote,fontStyle:'italic',fontSize:36,lineHeight:1.35,marginBottom:40}}>
+          The voice is: a trusted older friend who has lost things, rebuilt slowly, and will not lie to you to make you feel better.
+        </div>
+        <div style={{fontFamily:T.font.body,fontSize:15,lineHeight:1.8,opacity:.85}}>
+          <p style={{marginTop:0}}>Short sentences. One idea per sentence. A body verb before an abstract one. We name the cost. We never use the word <em>journey</em>. We trust the reader to sit with difficulty for a beat before we relieve it.</p>
+          <p>When in doubt, ask: would Ian say this out loud, to one person, in a kitchen?</p>
+        </div>
+      </div>
+      <div style={{background:'rgba(255,255,255,.06)',padding:40,border:'1px solid rgba(255,255,255,.1)'}}>
+        <div style={{display:'grid',gridTemplateColumns:'1fr 1fr',gap:16,fontFamily:T.font.body,fontSize:14,lineHeight:1.55}}>
+          {v.map(([a,b],i)=>(<React.Fragment key={i}>
+            <div style={{fontWeight:i===0?700:500,color:i===0?T.color.copper:T.color.page,letterSpacing:i===0?'.2em':0,textTransform:i===0?'uppercase':'none',fontSize:i===0?11:14,padding:'10px 0',borderTop:i===0?'none':'1px solid rgba(255,255,255,.1)'}} dangerouslySetInnerHTML={{__html:a}}/>
+            <div style={{fontWeight:i===0?700:500,color:i===0?T.color.copper:'rgba(250,247,242,.5)',letterSpacing:i===0?'.2em':0,textTransform:i===0?'uppercase':'none',fontSize:i===0?11:14,padding:'10px 0',borderTop:i===0?'none':'1px solid rgba(255,255,255,.1)',textDecoration:i===0?'none':'line-through'}} dangerouslySetInnerHTML={{__html:b}}/>
+          </React.Fragment>))}
+        </div>
+      </div>
+    </div>
+  </Section>
+);}
+
+function S5_Covers(){return(
+  <Section n="05" title="Book cover system" bg={T.color.bone}>
+    <div style={{display:'flex',gap:40,flexWrap:'wrap',justifyContent:'center',alignItems:'flex-end',padding:'24px 0 48px'}}>
+      <BookCover title={<>You are<br/>not<br/>finished</>} subtitle="Grace, grit, and the long way home." variant="ink" w={260} h={390}/>
+      <BookCover title={<>You are<br/>not your<br/>paycheck</>} subtitle="Stop letting a number set your ceiling." variant="copper" w={260} h={390}/>
+      <BookCover title={<>The<br/>room<br/>you are in</>} subtitle="Essays on presence." variant="page" w={260} h={390}/>
+      <BookCover title={<>What the<br/>body<br/>carried</>} subtitle="Devotionals for the long middle." variant="bone" w={260} h={390}/>
+    </div>
+    <div style={{display:'grid',gridTemplateColumns:'repeat(4,1fr)',gap:32,fontFamily:T.font.body,fontSize:14,lineHeight:1.65,color:T.color.steel}}>
+      <div><b style={{color:T.color.ink,textTransform:'uppercase',letterSpacing:'.1em',fontSize:12}}>Grid</b><br/>Every cover uses the same grid: author top, title + rule + subtitle in the lower third, imprint bottom.</div>
+      <div><b style={{color:T.color.ink,textTransform:'uppercase',letterSpacing:'.1em',fontSize:12}}>Type</b><br/>Archivo 900, tight tracking, UPPER. Subtitle in Inter 500. Never italic. Never a script face.</div>
+      <div><b style={{color:T.color.ink,textTransform:'uppercase',letterSpacing:'.1em',fontSize:12}}>Color roles</b><br/>Ink (flagship), Copper (loud), Page (quiet), Bone (devotional). One cover per role per season.</div>
+      <div><b style={{color:T.color.ink,textTransform:'uppercase',letterSpacing:'.1em',fontSize:12}}>No images</b><br/>No stock photography. No illustrations. Type carries the whole system. Trust the restraint.</div>
+    </div>
+  </Section>
+);}
+
+function S6_Social(){return(
+  <Section n="06" title="Social templates">
+    <div style={{display:'grid',gridTemplateColumns:'1fr 1fr 1fr',gap:24}}>
+      {/* Quote tile */}
+      <div style={{aspectRatio:'1/1',background:T.color.ink,color:T.color.page,padding:40,display:'flex',flexDirection:'column',justifyContent:'space-between',position:'relative'}}>
+        <div style={{fontFamily:T.font.mono,fontSize:10,color:T.color.copper,letterSpacing:'.2em'}}>DAY 047</div>
+        <div style={{fontFamily:T.font.quote,fontStyle:'italic',fontSize:32,lineHeight:1.2}}>&ldquo;Grace doesn&rsquo;t wait for your readiness.&rdquo;</div>
+        <div style={{display:'flex',justifyContent:'space-between',alignItems:'flex-end'}}>
+          <div style={{fontFamily:T.font.head,fontSize:14,fontWeight:900,letterSpacing:'-0.02em'}}>— IAN JAMES</div>
+          <div style={{fontFamily:T.font.mono,fontSize:9,color:T.color.copper,letterSpacing:'.15em'}}>@IANJAMES</div>
+        </div>
+      </div>
+      {/* Essay tile */}
+      <div style={{aspectRatio:'1/1',background:T.color.copper,color:T.color.page,padding:40,display:'flex',flexDirection:'column',justifyContent:'space-between'}}>
+        <div style={{fontFamily:T.font.mono,fontSize:10,color:T.color.ink,letterSpacing:'.2em'}}>[ ESSAY NO. 014 ]</div>
+        <div style={{fontFamily:T.font.head,fontSize:38,fontWeight:900,lineHeight:.95,letterSpacing:'-0.035em',textTransform:'uppercase'}}>The room<br/>you are<br/>already in.</div>
+        <div style={{fontFamily:T.font.body,fontSize:11,fontWeight:700,letterSpacing:'.18em',textTransform:'uppercase'}}>Read · ianjames.co</div>
+      </div>
+      {/* Book tile */}
+      <div style={{aspectRatio:'1/1',background:T.color.page,border:`1px solid ${T.color.mist}`,padding:32,display:'flex',alignItems:'center',justifyContent:'center',position:'relative'}}>
+        <div style={{position:'absolute',top:24,left:24,right:24,display:'flex',justifyContent:'space-between',fontFamily:T.font.mono,fontSize:10,color:T.color.copper,letterSpacing:'.2em'}}>
+          <span>NEW · 2026</span><span>PRE-ORDER</span>
+        </div>
+        <BookCover title={<>You are<br/>not<br/>finished</>} subtitle="Grace, grit, and the long way home." variant="ink" w={170} h={255} rotate={-3}/>
+      </div>
+      {/* Pull tile */}
+      <div style={{aspectRatio:'1/1',background:T.color.bone,padding:40,display:'flex',flexDirection:'column',justifyContent:'center',alignItems:'center',textAlign:'center'}}>
+        <div style={{width:40,height:3,background:T.color.copper,marginBottom:24}}/>
+        <div style={{fontFamily:T.font.head,fontSize:40,fontWeight:900,lineHeight:.95,letterSpacing:'-0.04em',textTransform:'uppercase',color:T.color.ink}}>Cost is the<br/>evidence.</div>
+        <div style={{width:40,height:3,background:T.color.copper,marginTop:24}}/>
+        <div style={{fontFamily:T.font.mono,fontSize:10,color:T.color.steel,letterSpacing:'.2em',marginTop:24}}>— IAN JAMES</div>
+      </div>
+      {/* Story tile */}
+      <div style={{aspectRatio:'9/16',background:T.color.ink,color:T.color.page,padding:32,display:'flex',flexDirection:'column',justifyContent:'space-between',gridColumn:'span 1'}}>
+        <div style={{fontFamily:T.font.mono,fontSize:10,color:T.color.copper,letterSpacing:'.2em'}}>SUNDAY LETTER</div>
+        <div>
+          <div style={{fontFamily:T.font.head,fontSize:48,fontWeight:900,lineHeight:.9,letterSpacing:'-0.04em',textTransform:'uppercase'}}>This<br/>week&rsquo;s<br/><span style={{color:T.color.copper}}>letter.</span></div>
+          <div style={{fontFamily:T.font.body,fontSize:13,lineHeight:1.5,marginTop:20,opacity:.8}}>A passage, a paragraph, a question. Link in bio.</div>
+        </div>
+        <div style={{fontFamily:T.font.head,fontSize:16,fontWeight:900,letterSpacing:'-0.02em'}}>— IAN JAMES</div>
+      </div>
+      {/* Announcement tile */}
+      <div style={{aspectRatio:'1/1',background:T.color.ink,color:T.color.page,padding:40,display:'flex',flexDirection:'column',justifyContent:'space-between',gridColumn:'span 2'}}>
+        <div style={{fontFamily:T.font.mono,fontSize:11,color:T.color.copper,letterSpacing:'.25em'}}>— NEW BOOK · SPRING 2026</div>
+        <div style={{fontFamily:T.font.head,fontSize:96,fontWeight:900,lineHeight:.88,letterSpacing:'-0.05em',textTransform:'uppercase'}}>You are<br/>not <span style={{color:T.color.copper}}>finished.</span></div>
+        <div style={{display:'flex',justifyContent:'space-between',fontFamily:T.font.body,fontSize:11,fontWeight:700,letterSpacing:'.2em',textTransform:'uppercase',opacity:.85}}>
+          <span>A memoir by Ian James</span><span>Pre-order · ianjames.co</span>
+        </div>
+      </div>
+    </div>
+  </Section>
+);}
+
+function S7_Photo(){return(
+  <Section n="07" title="Photography" bg={T.color.ink} color={T.color.page}>
+    <div style={{display:'grid',gridTemplateColumns:'1fr 1fr',gap:56}}>
+      <div>
+        <div style={{fontFamily:T.font.quote,fontStyle:'italic',fontSize:30,lineHeight:1.3,marginBottom:32}}>Real light. Real rooms. Real hands.</div>
+        <div style={{fontFamily:T.font.body,fontSize:15,lineHeight:1.8,opacity:.85}}>
+          <p style={{marginTop:0}}>Photography is quiet. Natural light, preferably late afternoon. Shot on film or processed to look like it. Kitchens, studies, walks, edges of rooms.</p>
+          <p>Favor negative space. Favor the back of a head over a posed smile. Favor the open book, the cold coffee, the second draft. Never a speaker&rsquo;s stage. Never an arena crowd. Never anything that looks like a brand shoot.</p>
+          <p>When in doubt: under-stage it.</p>
+        </div>
+      </div>
+      <div style={{display:'grid',gridTemplateColumns:'repeat(2,1fr)',gap:12}}>
+        {[['A kitchen, late afternoon','#5a4a3a'],['Hands on paper','#c4a884'],['A window, a chair','#2a2a24'],['Back of head, walking','#8a7a5a']].map(([l,bg])=>(
+          <div key={l} style={{aspectRatio:'1/1',background:bg,position:'relative',display:'flex',flexDirection:'column',justifyContent:'flex-end',padding:16}}>
+            <div style={{fontFamily:T.font.mono,fontSize:9,color:T.color.page,letterSpacing:'.15em',textTransform:'uppercase',opacity:.7}}>[ Placeholder ]</div>
+            <div style={{fontFamily:T.font.head,fontSize:14,fontWeight:800,letterSpacing:'-0.02em',color:T.color.page,textTransform:'uppercase'}}>{l}</div>
+          </div>
+        ))}
+      </div>
+    </div>
+  </Section>
+);}
+
+function S8_Stationery(){return(
+  <Section n="08" title="Stationery">
+    <div style={{display:'grid',gridTemplateColumns:'1fr 1fr',gap:40}}>
+      {/* Business card front */}
+      <div style={{aspectRatio:'1.75/1',background:T.color.ink,color:T.color.page,padding:36,display:'flex',alignItems:'center',justifyContent:'center',position:'relative'}}>
+        <div style={{position:'absolute',top:20,left:20,fontFamily:T.font.mono,fontSize:9,color:T.color.copper,letterSpacing:'.2em'}}>FRONT</div>
+        <div style={{textAlign:'center'}}>
+          <div style={{fontFamily:T.font.body,fontSize:11,fontWeight:700,letterSpacing:'.3em',color:T.color.copper}}>I AM</div>
+          <div style={{fontFamily:T.font.head,fontSize:56,fontWeight:900,letterSpacing:'-0.05em',lineHeight:.9,textTransform:'uppercase',marginTop:8}}>IAN JAMES</div>
+        </div>
+      </div>
+      {/* Business card back */}
+      <div style={{aspectRatio:'1.75/1',background:T.color.page,border:`1px solid ${T.color.mist}`,padding:36,display:'flex',flexDirection:'column',justifyContent:'space-between',position:'relative'}}>
+        <div style={{position:'absolute',top:20,left:20,fontFamily:T.font.mono,fontSize:9,color:T.color.copper,letterSpacing:'.2em'}}>BACK</div>
+        <div/>
+        <div>
+          <div style={{fontFamily:T.font.head,fontSize:18,fontWeight:800,letterSpacing:'-0.02em'}}>Ian James</div>
+          <div style={{fontFamily:T.font.body,fontSize:11,fontWeight:600,letterSpacing:'.1em',textTransform:'uppercase',color:T.color.copper,marginTop:4}}>Author · Teacher · Storyteller</div>
+          <div style={{display:'flex',gap:20,marginTop:18,fontFamily:T.font.mono,fontSize:11,color:T.color.steel}}>
+            <span>ianjames.co</span><span>hello@ianjames.co</span>
+          </div>
+        </div>
+      </div>
+      {/* Letterhead */}
+      <div style={{aspectRatio:'.77/1',background:T.color.page,border:`1px solid ${T.color.mist}`,padding:48,position:'relative',gridColumn:'span 2'}}>
+        <div style={{position:'absolute',top:20,left:20,fontFamily:T.font.mono,fontSize:9,color:T.color.copper,letterSpacing:'.2em'}}>LETTERHEAD</div>
+        <div style={{display:'flex',justifyContent:'space-between',alignItems:'baseline',paddingBottom:28,borderBottom:`1px solid ${T.color.mist}`}}>
+          <Wordmark size={0.5}/>
+          <div style={{fontFamily:T.font.mono,fontSize:10,color:T.color.steel,letterSpacing:'.15em'}}>ianjames.co · hello@ianjames.co</div>
+        </div>
+        <div style={{marginTop:48,fontFamily:T.font.body,fontSize:14,lineHeight:1.8,color:T.color.steel,maxWidth:520}}>
+          <div style={{fontFamily:T.font.mono,fontSize:11,color:T.color.copper,letterSpacing:'.15em',marginBottom:18}}>21 APRIL · 2026</div>
+          Dear friend, — <br/><br/>
+          Thank you for the letter. I read it twice, slowly, with coffee that went cold. You asked a real question, which is rarer than it should be, and I owe you a real answer.<br/><br/>
+          The short version is this: the small unglamorous thing you did this week counted. I know because you wrote to me about it. I will write again soon, and less politely, when I have had more time.<br/><br/>
+          Until then — grace before readiness.<br/><br/>
+          <span style={{fontFamily:T.font.quote,fontStyle:'italic',fontSize:20,color:T.color.ink}}>— Ian</span>
+        </div>
+      </div>
+    </div>
+  </Section>
+);}
+
+function End(){return(
+  <section style={{padding:'96px 56px',background:T.color.copper,color:T.color.page,textAlign:'center'}}>
+    <div style={{maxWidth:900,margin:'0 auto'}}>
+      <div style={{fontFamily:T.font.mono,fontSize:11,color:T.color.ink,letterSpacing:'.25em',marginBottom:32}}>END · BRAND GUIDE · V1.0</div>
+      <div style={{fontFamily:T.font.quote,fontStyle:'italic',fontSize:40,lineHeight:1.3}}>
+        Use the system. Trust the restraint. When in doubt, less, quieter, and slower.
+      </div>
+      <div style={{fontFamily:T.font.body,fontSize:12,fontWeight:700,letterSpacing:'.25em',textTransform:'uppercase',marginTop:40,opacity:.85}}>
+        — Ian James · 2026
+      </div>
+    </div>
+  </section>
+);}
+
+ReactDOM.createRoot(document.getElementById('root')).render(<>
+  <Nav active="home"/>
+  <Cover/>
+  <S1_Logo/>
+  <S2_Color/>
+  <S3_Type/>
+  <S4_Voice/>
+  <S5_Covers/>
+  <S6_Social/>
+  <S7_Photo/>
+  <S8_Stationery/>
+  <End/>
+  <Footer/>
+</>);
+</script>
+</body></html>
