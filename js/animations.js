@@ -466,6 +466,7 @@
     '/book-you-are-not-finished.html': { kicker:'Memoir', title:'You Are Not Finished', desc:'Grace, grit, and the long way home. A memoir on rebuilding.', img:'/og/book-you-are-not-finished.png' },
     '/book-you-are-not-your-paycheck.html': { kicker:'Freelancing guide', title:'You Are Not Your Paycheck', desc:'On identity, work, and the number that was never yours.', img:'/og/book-you-are-not-your-paycheck.png' },
     '/newsletter.html':{kicker:'Weekly letter',    title:'The weekly letter', desc:'One or two honest letters a week. Short, hard to fake.', img:'/og/newsletter.png' },
+    '/travels.html':  { kicker:'Travels',           title:'Where we went. What it took with us.', desc:'Slow travel with a wife and three kids. Notebooks, fires, tent pitches.', img:'/og/default-site.png' },
     '/about.html':    { kicker:'About',            title:'Ian James Ormo', desc:'Writer from the Philippines. Memoir, devotionals, essays.', img:'/og/about.png' },
     '/contact.html':  { kicker:'Contact',          title:'Get in touch', desc:'For speaking, press, or a real conversation.', img:'/og/contact.png' },
   };

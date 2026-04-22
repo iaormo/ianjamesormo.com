@@ -158,7 +158,7 @@ function Wordmark({ size = 0.7, onDark = false }) {
 
 function Nav({ active, onDark = false }) {
   const [open, setOpen] = React.useState(false);
-  const items = [['home','Home','index.html'],['about','About','about.html'],['books','Books','books.html'],['daily','Devotional','daily.html'],['essays','Musings','musings.html'],['contact','Contact','contact.html']];
+  const items = [['home','Home','index.html'],['about','About','about.html'],['books','Books','books.html'],['daily','Devotional','daily.html'],['essays','Musings','musings.html'],['travels','Travels','travels.html'],['contact','Contact','contact.html']];
   const c = onDark ? T.color.page : T.color.ink;
   const bg = onDark ? T.color.ink : T.color.page;
   return (
@@ -199,7 +199,7 @@ function Footer() {
           </div>
         </div>
         {[
-          ['Read',[['Books','books.html'],['Devotional','daily.html'],['Musings','musings.html']]],
+          ['Read',[['Books','books.html'],['Devotional','daily.html'],['Musings','musings.html'],['Travels','travels.html']]],
           ['About',[['Story','about.html'],['Press / Media','about.html'],['Contact','contact.html']]],
           ['Follow',[['Newsletter','newsletter.html'],['Instagram','https://www.instagram.com/ianormore'],['LinkedIn','https://www.linkedin.com/in/ianjamesormo/'],['Facebook','https://www.facebook.com/ian.ormo']]],
         ].map(([title, links]) => (
@@ -399,6 +399,6 @@ ReactDOM.createRoot(document.getElementById('root')).render(<>
 <script src="/js/verse-popup.js?v=3" defer></script>
 <script src="/js/cursor.js?v=6" defer></script>
 <script src="/js/nav-prefetch.js?v=3" defer></script>
-<script src="/js/animations.js?v=19" defer></script>
+<script src="/js/animations.js?v=20" defer></script>
 </body>
 </html>

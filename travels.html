@@ -1,0 +1,276 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+<title>Travels — Ian James Ormo</title>
+<meta name="description" content="Travel writing from Ian James Ormo — places, moments, and what we took with us. Philippines slow-travel with wife and kids, homeschool on the road." />
+<meta name="keywords" content="Philippines travel writing, slow travel family Philippines, homeschool travel Philippines, Mayon Volcano travel, Hobbit Hill Ligao, Filipino travel writer, family travel blog Philippines, Ian James Ormo travel" />
+<meta name="robots" content="index, follow" />
+<meta name="author" content="Ian James Ormo" />
+<meta name="theme-color" content="#B8471C" />
+<meta name="geo.region" content="PH" />
+<meta name="geo.placename" content="Philippines" />
+<meta name="geo.position" content="10.3157;123.8854" />
+<meta name="ICBM" content="10.3157, 123.8854" />
+<meta property="og:locale" content="en_PH" />
+<link rel="canonical" href="https://ianjamesormo.com/travels.html" />
+<meta property="og:type" content="website" />
+<meta property="og:site_name" content="Ian James Ormo" />
+<meta property="og:title" content="Travels — Ian James Ormo" />
+<meta property="og:description" content="Travel writing from Ian James Ormo — places, moments, and what we took with us." />
+<meta property="og:url" content="https://ianjamesormo.com/travels.html" />
+<meta property="og:image" content="https://ianjamesormo.com/og/default-site.png" />
+<meta property="og:image:width" content="1200" />
+<meta property="og:image:height" content="1200" />
+<meta name="twitter:image" content="https://ianjamesormo.com/og/default-site.png" />
+<meta name="twitter:card" content="summary_large_image" />
+<meta name="twitter:title" content="Travels — Ian James Ormo" />
+<meta name="twitter:description" content="Travel writing from Ian James Ormo — places, moments, and what we took with us." />
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Archivo:wght@400;500;600;700;800;900&family=Inter:wght@400;500;600;700&family=Fraunces:ital,wght@0,400;0,500;0,600;1,400;1,500&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" media="print" onload="this.media='all'">
+<noscript><link href="https://fonts.googleapis.com/css2?family=Archivo:wght@400;500;600;700;800;900&family=Inter:wght@400;500;600;700&family=Fraunces:ital,wght@0,400;0,500;0,600;1,400;1,500&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet"></noscript>
+
+<style>
+  html, body { margin: 0; padding: 0; background: #FAF7F2; color: #111; }
+  body { font-family: "Inter", -apple-system, sans-serif; }
+  * { box-sizing: border-box; }
+  a { color: inherit; }
+  .nav-mobile-btn { display: none; }
+  @media (max-width: 1024px) {
+    .nav-full { display: none !important; }
+    .nav-mobile-btn { display: block !important; }
+    .travels-hero-h { font-size: clamp(36px, 9.5vw, 88px) !important; }
+    .section-pad { padding-left: 32px !important; padding-right: 32px !important; }
+    .footer-grid { grid-template-columns: 1fr 1fr !important; }
+  }
+  @media (max-width: 600px) {
+    .section-pad { padding-left: 20px !important; padding-right: 20px !important; }
+    .footer-grid { grid-template-columns: 1fr !important; }
+    .footer-wordmark { transform: scale(0.6); transform-origin: left top; display: block; margin-bottom: -22px; }
+  }
+  section { opacity: 0; transform: translateY(28px); transition: opacity .65s cubic-bezier(.22,1,.36,1), transform .65s cubic-bezier(.22,1,.36,1); }
+  section.in-view { opacity: 1; transform: none; }
+  .mobile-menu { display: none; }
+  .mobile-menu.open { display: flex; }
+
+  /* Travel entry — photo-forward */
+  .travel-photo { width: 100%; height: auto; display: block; background: #0A0A0A; }
+  .travel-body p { margin: 0 0 20px; }
+  .travel-body p:last-child { margin-bottom: 0; }
+</style>
+<script src="https://unpkg.com/react@18.3.1/umd/react.production.min.js" crossorigin="anonymous" defer></script>
+<script src="https://unpkg.com/react-dom@18.3.1/umd/react-dom.production.min.js" crossorigin="anonymous" defer></script>
+<script src="https://unpkg.com/@babel/standalone@7.29.0/babel.min.js" crossorigin="anonymous" defer></script>
+</head>
+<body>
+<div id="root"></div>
+<script>
+window.IJ_TOKENS = {
+  color: { ink:'#111111', page:'#FAF7F2', copper:'#B8471C', steel:'#6B6B6B', mist:'#E6E1D8', bone:'#EFEAE0', deep:'#0A0A0A' },
+  font: {
+    head: '"Archivo", "Inter", -apple-system, sans-serif',
+    body: '"Inter", -apple-system, sans-serif',
+    quote: '"Fraunces", "Source Serif 4", Georgia, serif',
+    mono: '"JetBrains Mono", ui-monospace, monospace',
+  },
+};
+</script>
+<script type="text/babel">
+const T = window.IJ_TOKENS;
+const { useState } = React;
+
+function Wordmark({ size = 0.7, onDark = false }) {
+  const scale = typeof size === 'number' ? size : 0.7;
+  const nameColor = onDark ? T.color.page : T.color.ink;
+  return (
+    <div style={{ display: 'inline-flex', flexDirection: 'column', lineHeight: 1, gap: 10 * scale }}>
+      <div style={{ fontFamily: T.font.head, fontSize: 64 * scale, fontWeight: 900, letterSpacing: '-0.04em', textTransform: 'uppercase', color: nameColor }}>IAN</div>
+      <div style={{ fontFamily: T.font.head, fontSize: 64 * scale, fontWeight: 900, letterSpacing: '-0.04em', textTransform: 'uppercase', color: T.color.copper }}>JAMES</div>
+      <div style={{ fontFamily: T.font.head, fontSize: 64 * scale, fontWeight: 900, letterSpacing: '-0.04em', textTransform: 'uppercase', color: nameColor }}>ORMO</div>
+    </div>
+  );
+}
+
+function Nav({ active, onDark = false }) {
+  const [open, setOpen] = useState(false);
+  const items = [['home','Home','index.html'],['about','About','about.html'],['books','Books','books.html'],['daily','Devotional','daily.html'],['essays','Musings','musings.html'],['travels','Travels','travels.html'],['contact','Contact','contact.html']];
+  const c = onDark ? T.color.page : T.color.ink;
+  const bg = onDark ? T.color.ink : T.color.page;
+  return (
+    <nav style={{ position: 'relative', display: 'flex', justifyContent: 'flex-end', alignItems: 'center', padding: '20px 28px', borderBottom: `1px solid ${onDark ? 'rgba(255,255,255,.1)' : T.color.mist}` }}>
+      <div className="nav-desktop" style={{ display: 'flex', gap: 28, alignItems: 'center' }}>
+        {items.map(([k, label, href]) => (
+          <a key={k} href={href} style={{ textDecoration: 'none', color: c, fontFamily: T.font.body, fontSize: 11, fontWeight: 600, letterSpacing: '.14em', textTransform: 'uppercase', opacity: active === k ? 1 : .55, borderBottom: active === k ? `2px solid ${T.color.copper}` : '2px solid transparent', paddingBottom: 3, whiteSpace: 'nowrap' }}>{label}</a>
+        ))}
+        <a href="newsletter.html" style={{ textDecoration: 'none', background: T.color.copper, color: T.color.page, fontFamily: T.font.body, fontSize: 11, fontWeight: 700, letterSpacing: '.14em', textTransform: 'uppercase', padding: '10px 16px', whiteSpace: 'nowrap' }}>Subscribe →</a>
+      </div>
+      <button className="nav-hamburger" onClick={() => setOpen(o => !o)} aria-label="Menu" style={{ display: 'none', background: 'none', border: 'none', cursor: 'pointer', padding: 6 }}>
+        <span style={{ display: 'block', width: 22, height: 2, background: c, margin: '5px 0' }} />
+        <span style={{ display: 'block', width: 22, height: 2, background: c, margin: '5px 0' }} />
+        <span style={{ display: 'block', width: 22, height: 2, background: c, margin: '5px 0' }} />
+      </button>
+      {open && (
+        <div style={{ position: 'absolute', top: '100%', left: 0, right: 0, background: bg, borderBottom: `1px solid ${T.color.mist}`, zIndex: 200, padding: '12px 0' }}>
+          {items.map(([k, label, href]) => (
+            <a key={k} href={href} style={{ display: 'block', padding: '12px 28px', textDecoration: 'none', color: c, fontFamily: T.font.body, fontSize: 14, fontWeight: 600, letterSpacing: '.1em', textTransform: 'uppercase' }}>{label}</a>
+          ))}
+          <a href="newsletter.html" style={{ display: 'block', padding: '12px 28px', textDecoration: 'none', color: T.color.copper, fontFamily: T.font.body, fontSize: 14, fontWeight: 700, letterSpacing: '.1em', textTransform: 'uppercase' }}>Subscribe →</a>
+        </div>
+      )}
+    </nav>
+  );
+}
+
+function Footer() {
+  return (
+    <footer style={{ background: T.color.ink, color: T.color.page, padding: '80px 56px 36px' }}>
+      <div className="footer-grid" style={{ display: 'grid', gridTemplateColumns: '2fr 1fr 1fr 1fr', gap: 48, paddingBottom: 56, borderBottom: '1px solid rgba(255,255,255,.1)', maxWidth: 1400, margin: '0 auto' }}>
+        <div>
+          <div className="footer-wordmark"><Wordmark size={0.38} onDark eyebrow={false} /></div>
+          <div style={{ fontFamily: T.font.quote, fontStyle: 'italic', fontSize: 18, marginTop: 28, maxWidth: 380, lineHeight: 1.5, opacity: .85 }}>
+            Writer of the unglamorous middle. Faith, work, and the long way home.
+          </div>
+        </div>
+        {[
+          ['Read',   [['Books','books.html'],['Devotional','daily.html'],['Musings','musings.html'],['Travels','travels.html']]],
+          ['About',  [['Story','about.html'],['Press / Media','about.html'],['Contact','contact.html']]],
+          ['Follow', [['Newsletter','newsletter.html'],['Instagram','https://www.instagram.com/ianormore'],['LinkedIn','https://www.linkedin.com/in/ianjamesormo/'],['Facebook','https://www.facebook.com/ian.ormo']]],
+        ].map(([title, links]) => (
+          <div key={title}>
+            <div style={{ fontFamily: T.font.body, fontSize: 11, fontWeight: 700, letterSpacing: '.25em', textTransform: 'uppercase', color: T.color.copper, marginBottom: 18 }}>{title}</div>
+            <div style={{ display: 'flex', flexDirection: 'column', gap: 12 }}>
+              {links.map(([l, href]) => (
+                <a key={l} href={href} style={{ color: T.color.page, textDecoration: 'none', fontFamily: T.font.body, fontSize: 14, fontWeight: 500, opacity: .75 }}>{l}</a>
+              ))}
+            </div>
+          </div>
+        ))}
+      </div>
+      <div className="footer-bottom" style={{ maxWidth: 1400, margin: '0 auto', paddingTop: 28, display: 'flex', justifyContent: 'space-between', fontFamily: T.font.body, fontSize: 11, opacity: .55 }}>
+        <span>© 2026 Ian James Ormo. All rights reserved.</span>
+        <span>Manila / Cebu / Dauin</span>
+      </div>
+    </footer>
+  );
+}
+
+// ─── TRAVEL ENTRIES ──────────────────────────────────────────────
+const travels = [
+  {
+    slug:    'mayon-hobbit-hill',
+    place:   'Mayon Volcano',
+    region:  'Ligao, Albay',
+    date:    'March 2023',
+    title:   'Mayon, from Hobbit Hill.',
+    image:   '/images/travels/mayon-hobbit-hill.jpg',
+    imageAlt:'Mayon Volcano at sunrise and the family watching at dusk, from Hobbit Hill in Ligao, Albay.',
+    body: [
+      "We were about six or seven months into it by then. You stop counting the way you stop counting anything after a while — the days blur, and the blur is the point.",
+      "We were moving through the Philippines the slow way. Schedule was nobody's but ours. The kids were still on homeschool while we moved, which meant the classroom was wherever we set the table down, and the lessons were whatever the country handed us that week.",
+      "Mayon was the stop I had been waiting for without knowing it.",
+      "We rented a small cabin on a ridge in Ligao — the place people call Hobbit Hill. Low ceilings, small doors, the whole thing. The volcano sits about a kilometer off, a perfect triangle against whatever the sky is doing that hour. From the porch you could watch the sun find it in the morning and lose it in the evening, and in between it mostly stayed still while everything else was doing something.",
+      "We built a fire most nights. The kids did their reading around it — homeschool in the open, the notebook on a knee, the volcano behind the words. Some nights we dragged the blankets out and slept under the stars because sleeping under a roof seemed like a waste of what was directly above us.",
+      "The photo at the top was taken early, before the family was awake. Mine, not theirs. The volcano had already been at work, catching the sun the way it was built to.",
+      "The one below is all of us at dusk the same day — backlit, bunched together at the edge of the ridge. My wife in the middle of the huddle because the middle is where she keeps us. The kids close enough to lean.",
+      "We stayed there watching for a while. I mean a while. Nobody was timing anything. The volcano wasn't going anywhere. We weren't either.",
+      "That was the whole thing.",
+    ],
+  },
+];
+
+// ─── PAGE COMPONENTS ─────────────────────────────────────────────
+function Hero() {
+  return (
+    <section className="section-pad" style={{ padding: '120px 56px 48px', background: T.color.page }}>
+      <div style={{ maxWidth: 1400, margin: '0 auto' }}>
+        <div style={{ fontFamily: T.font.body, fontSize: 11, fontWeight: 700, letterSpacing: '.3em', textTransform: 'uppercase', color: T.color.copper, marginBottom: 20 }}>Travels</div>
+        <div className="travels-hero-h" style={{ fontFamily: T.font.head, fontSize: 'min(7.2vw, 108px)', fontWeight: 900, lineHeight: .95, letterSpacing: '-0.045em', textTransform: 'uppercase' }}>
+          <span style={{ display: 'block', color: T.color.ink }}>Where we went.</span>
+          <span style={{ display: 'block', color: T.color.copper }}>What it took with us.</span>
+        </div>
+        <div style={{ fontFamily: T.font.quote, fontStyle: 'italic', fontSize: 22, lineHeight: 1.55, color: T.color.steel, marginTop: 32, maxWidth: 760 }}>
+          As much as I love to write, we are also a family who loves to travel. We homeschool on the drive, and work in between tent pitches. These are the places that kept asking us to stay a little longer, and what we took with us when we went.
+        </div>
+      </div>
+    </section>
+  );
+}
+
+function Entry({ e }) {
+  return (
+    <section className="section-pad" style={{ padding: '32px 56px 96px', background: T.color.page }}>
+      <article style={{ maxWidth: 960, margin: '0 auto' }}>
+        {/* Photo */}
+        <div style={{ position: 'relative', marginBottom: 40, background: T.color.ink }}>
+          <img className="travel-photo" src={e.image} alt={e.imageAlt} loading="lazy" />
+        </div>
+        {/* Meta row */}
+        <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'baseline', fontFamily: T.font.mono, fontSize: 12, letterSpacing: '.18em', textTransform: 'uppercase', color: T.color.copper, marginBottom: 20, flexWrap: 'wrap', gap: 12 }}>
+          <span>{e.place} · {e.region}</span>
+          <span>{e.date}</span>
+        </div>
+        {/* Title */}
+        <h2 style={{ fontFamily: T.font.head, fontSize: 'clamp(32px, 5.4vw, 64px)', fontWeight: 900, lineHeight: 1.02, letterSpacing: '-0.035em', textTransform: 'uppercase', color: T.color.ink, margin: '0 0 36px' }}>
+          {e.title}
+        </h2>
+        {/* Body */}
+        <div className="travel-body" style={{ fontFamily: T.font.quote, fontSize: 22, lineHeight: 1.55, color: T.color.ink }}>
+          {e.body.map((p, i) => <p key={i}>{p}</p>)}
+        </div>
+        <div style={{ marginTop: 48, fontFamily: T.font.body, fontSize: 12, fontWeight: 700, letterSpacing: '.25em', textTransform: 'uppercase', color: T.color.copper }}>Ian</div>
+      </article>
+    </section>
+  );
+}
+
+function SubscribeCTA() {
+  return (
+    <section className="section-pad" style={{ padding: '80px 56px', background: T.color.copper, color: T.color.page }}>
+      <div style={{ maxWidth: 1400, margin: '0 auto', display: 'flex', justifyContent: 'space-between', alignItems: 'center', flexWrap: 'wrap', gap: 32 }}>
+        <div>
+          <div style={{ fontFamily: T.font.body, fontSize: 11, fontWeight: 700, letterSpacing: '.3em', textTransform: 'uppercase', opacity: .7, marginBottom: 16 }}>Honest letters, weekly</div>
+          <div style={{ fontFamily: T.font.head, fontSize: 48, fontWeight: 900, lineHeight: .9, letterSpacing: '-0.04em', textTransform: 'uppercase' }}>
+            One or two letters<br />every week.
+          </div>
+        </div>
+        <div style={{ maxWidth: 480 }}>
+          <div style={{ fontFamily: T.font.quote, fontStyle: 'italic', fontSize: 18, lineHeight: 1.6, opacity: .9, marginBottom: 28 }}>
+            Some weeks it is a passage that meets you where you already are. Some weeks it is a question you have been avoiding. Every week it is the thing you actually needed to hear.
+          </div>
+          <a href="newsletter.html" style={{
+            textDecoration: 'none', background: T.color.page, color: T.color.ink,
+            padding: '16px 30px', display: 'inline-flex', alignItems: 'center', gap: 10,
+            fontFamily: T.font.body, fontSize: 12, fontWeight: 700, letterSpacing: '.18em', textTransform: 'uppercase',
+          }}>Subscribe free →</a>
+        </div>
+      </div>
+    </section>
+  );
+}
+
+function App() {
+  return (
+    <>
+      <Nav active="travels" />
+      <Hero />
+      {travels.map(e => <Entry key={e.slug} e={e} />)}
+      <SubscribeCTA />
+      <Footer />
+    </>
+  );
+}
+
+ReactDOM.createRoot(document.getElementById('root')).render(<App />);
+</script>
+<script>(function(){var obs=new IntersectionObserver(function(e){e.forEach(function(x){if(x.isIntersecting){x.target.classList.add("in-view");obs.unobserve(x.target);}});},{threshold:0,rootMargin:"0px 0px 0px 0px"});var attached=new WeakSet();function attach(){document.querySelectorAll("section").forEach(function(s){if(!attached.has(s)){attached.add(s);obs.observe(s);}});}var tries=0;function poll(){attach();tries++;if(tries<60)setTimeout(poll,100);}if(document.readyState==="complete"){poll();}else{window.addEventListener("load",poll);}})();</script>
+<script src="/js/newsletter-popup.js?v=4" defer></script>
+<script src="/js/verse-popup.js?v=3" defer></script>
+<script src="/js/cursor.js?v=6" defer></script>
+<script src="/js/nav-prefetch.js?v=3" defer></script>
+<script src="/js/animations.js?v=20" defer></script>
+</body>
+</html>

@@ -142,7 +142,7 @@ const T = window.IJ_TOKENS;
 
 function Nav({ active }) {
   const [open, setOpen] = useState(false);
-  const items = [['home','Home','index.html'],['about','About','about.html'],['books','Books','books.html'],['daily','Devotional','daily.html'],['essays','Musings','musings.html'],['contact','Contact','contact.html']];
+  const items = [['home','Home','index.html'],['about','About','about.html'],['books','Books','books.html'],['daily','Devotional','daily.html'],['essays','Musings','musings.html'],['travels','Travels','travels.html'],['contact','Contact','contact.html']];
   return (
     <nav className="nav-pad" style={{ position: 'relative', display: 'flex', justifyContent: 'space-between', alignItems: 'center', padding: '28px 56px', borderBottom: `1px solid ${T.color.mist}` }}>
       <div className="nav-full" style={{ display: 'flex', gap: 36, alignItems: 'center', flexWrap: 'wrap' }}>
@@ -176,7 +176,7 @@ function Footer() {
           <div style={{ fontFamily: T.font.quote, fontStyle: 'italic', fontSize: 17, marginTop: 20, maxWidth: 380, lineHeight: 1.5, opacity: .85 }}>Writer of the unglamorous middle. Faith, work, and the long way home.</div>
         </div>
         {[
-          ['Read',[['Books','books.html'],['Devotional','daily.html'],['Musings','musings.html']]],
+          ['Read',[['Books','books.html'],['Devotional','daily.html'],['Musings','musings.html'],['Travels','travels.html']]],
           ['About',[['Story','about.html'],['Contact','contact.html']]],
           ['Follow',[['Newsletter','newsletter.html'],['Instagram','https://www.instagram.com/ianormore'],['LinkedIn','https://www.linkedin.com/in/ianjamesormo/'],['Facebook','https://www.facebook.com/ian.ormo']]],
         ].map(([title, links]) => (
@@ -316,6 +316,6 @@ ReactDOM.createRoot(document.getElementById('root')).render(
 <script src="/js/verse-popup.js?v=3" defer></script>
 <script src="/js/cursor.js?v=6" defer></script>
 <script src="/js/nav-prefetch.js?v=3" defer></script>
-<script src="/js/animations.js?v=19" defer></script>
+<script src="/js/animations.js?v=20" defer></script>
 </body>
 </html>
