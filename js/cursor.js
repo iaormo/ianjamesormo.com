@@ -12,28 +12,26 @@
       'html, body { cursor: none !important; }'+
       'a, button, [data-verse], .ij-verse-link, input, textarea, select, [role="button"], .book-cover, label { cursor: none !important; }'+
 
-      /* Shared positioning */
+      /* Shared positioning — always visible, positioned off-screen until first mousemove */
       '.ij-tgt-dot, .ij-tgt-ring {'+
         'position: fixed; top: 0; left: 0; pointer-events: none; z-index: 2147483647;'+
-        'will-change: transform, opacity; backface-visibility: hidden;'+
+        'will-change: transform; backface-visibility: hidden;'+
         'transform: translate3d(-9999px,-9999px,0);'+
       '}'+
 
-      /* Center dot — snappy tracker */
+      /* Center dot — snappy tracker, always visible */
       '.ij-tgt-dot {'+
         'width: 6px; height: 6px; border-radius: 50%;'+
         'background: '+COPPER+';'+
         'box-shadow: 0 0 8px rgba(184,71,28,.55), 0 0 2px rgba(255,255,255,.4);'+
-        'opacity: 0; transition: opacity .2s ease, width .18s ease, height .18s ease, background .2s ease;'+
+        'transition: width .18s ease, height .18s ease, background .2s ease;'+
       '}'+
-      '.ij-tgt-dot.is-on { opacity: 1; }'+
 
-      /* Target ring — outer with 4 tick marks, rotates + pulses */
+      /* Target ring — outer with 4 tick marks, rotates + pulses, always visible */
       '.ij-tgt-ring {'+
         'width: 40px; height: 40px;'+
-        'opacity: 0; transition: opacity .25s ease, width .28s cubic-bezier(.22,1,.36,1), height .28s cubic-bezier(.22,1,.36,1);'+
+        'transition: width .28s cubic-bezier(.22,1,.36,1), height .28s cubic-bezier(.22,1,.36,1);'+
       '}'+
-      '.ij-tgt-ring.is-on { opacity: 1; }'+
 
       /* SVG ring visuals — drawn via inline SVG child */
       '.ij-tgt-ring svg { width:100%; height:100%; overflow:visible;'+
@@ -59,9 +57,9 @@
       '.ij-tgt-ring.is-down { width: 28px; height: 28px; }'+
       '.ij-tgt-dot.is-down  { width: 4px; height: 4px; }'+
 
-      /* Text-input state: thin vertical bar instead of circle */
-      '.ij-tgt-ring.is-text { width: 3px; height: 26px; opacity: 0; }'+
-      '.ij-tgt-dot.is-text  { width: 3px; height: 26px; border-radius: 1px; }'+
+      /* Text-input state: dot morphs to I-beam, ring shrinks but stays visible */
+      '.ij-tgt-ring.is-text { width: 14px; height: 28px; }'+
+      '.ij-tgt-dot.is-text  { width: 2px; height: 22px; border-radius: 1px; }'+
 
       /* Reduced motion: stop spin/pulse */
       '@media (prefers-reduced-motion: reduce) {'+
@@ -104,16 +102,8 @@
         hasMoved = true;
         rx = tx; ry = ty;
         dx = tx; dy = ty;
-        dot.classList.add('is-on');
-        ring.classList.add('is-on');
       }
     }, { passive: true });
-    document.addEventListener('mouseleave', function () {
-      dot.classList.remove('is-on'); ring.classList.remove('is-on');
-    });
-    window.addEventListener('mouseenter', function () {
-      if (hasMoved) { dot.classList.add('is-on'); ring.classList.add('is-on'); }
-    });
     window.addEventListener('mousedown', function () { dot.classList.add('is-down'); ring.classList.add('is-down'); });
     window.addEventListener('mouseup',   function () { dot.classList.remove('is-down'); ring.classList.remove('is-down'); });
 

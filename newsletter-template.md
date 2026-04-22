@@ -1,8 +1,23 @@
 # Ian James Ormo — Newsletter Template (Go High Level)
 
-A companion guide to `ghl-welcome-email.html`. Use this as the master reference for every email sent from Go High Level under the *Ian James Ormo* brand — welcome emails, weekly letters, devotional drops, and broadcasts.
+A companion guide to the welcome-email templates. Use this as the master reference for every email sent from Go High Level under the *Ian James Ormo* brand — welcome emails, weekly letters, devotional drops, and broadcasts.
 
 Every email follows the same rule as the website: *does it serve the writing, or compete with it?*
+
+## Two welcome templates — which to use when
+
+| File | When it fires | What's different |
+|---|---|---|
+| `ghl-welcome-email.html` | Someone signs up for the **weekly letter** (newsletter form, tag `newsletter`) | Weekly-letter framing, "What you can expect" body, two-column Daily + Musings archive grid, CTA to the site |
+| `ghl-welcome-email-devotional.html` | Someone signs up for the **daily devotional only** (tag `daily` / `devotional`) | Morning-cadence framing, "A few lines, most mornings" body, CTA to today's devotional, soft *"there's also a weekly letter"* invite panel (not a hard pitch) |
+
+**Segmentation logic in GHL:**
+- If the contact has tag `newsletter` (only) → weekly-letter welcome
+- If the contact has tag `daily` or `devotional` (only) → devotional welcome
+- If the contact has **both** tags from a combined form → send the weekly-letter welcome (it already references the devotional in the archive grid)
+- If someone on the daily list later adds the weekly, do NOT resend either welcome — just let the next weekly letter land normally
+
+Both templates share design tokens, typography, spacing, cinematic hero/footer, and the same sign-off. The sections below apply to both unless otherwise noted.
 
 ---
 
