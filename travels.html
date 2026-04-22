@@ -61,29 +61,92 @@
   .mobile-menu { display: none; }
   .mobile-menu.open { display: flex; }
 
-  /* Travel entry — photo floats in the middle, text wraps */
-  .travel-body p { margin: 0 0 22px; }
-  .travel-body p:last-child { margin-bottom: 0; }
-  .travel-float {
-    float: right;
-    width: 46%;
-    margin: 6px 0 24px 36px;
-    shape-outside: margin-box;
+  /* Travel entry — polaroid card (click to expand) + body */
+  .travel-entry {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0;
   }
-  .travel-float img { width: 100%; height: auto; display: block; background: #0A0A0A; }
-  .travel-float figcaption {
+  .travel-card {
+    display: block;
+    width: 100%;
+    max-width: 440px;
+    background: #FAF7F2;
+    padding: 24px 24px 28px;
+    box-shadow: 0 22px 60px rgba(10,5,3,.16), 0 3px 10px rgba(10,5,3,.08);
+    border: 0;
+    cursor: pointer;
+    text-align: center;
+    font: inherit;
+    color: inherit;
+    position: relative;
+    transform: rotate(-1.25deg);
+    transition: transform .45s cubic-bezier(.22,1,.36,1), box-shadow .45s ease;
+  }
+  .travel-card:hover { transform: rotate(0deg) translateY(-3px); box-shadow: 0 28px 70px rgba(10,5,3,.22), 0 3px 10px rgba(10,5,3,.1); }
+  .travel-card.is-open { transform: rotate(0deg); box-shadow: 0 22px 56px rgba(10,5,3,.20), 0 3px 10px rgba(10,5,3,.1); }
+  .travel-card-photo { aspect-ratio: 4/5; overflow: hidden; background: #0A0A0A; }
+  .travel-card-photo img { width: 100%; height: 100%; object-fit: cover; display: block; }
+  .travel-card-meta { padding: 20px 4px 4px; }
+  .travel-card-place {
+    font-family: "Archivo", sans-serif;
+    font-weight: 900; font-size: 22px;
+    letter-spacing: -0.025em;
+    text-transform: uppercase;
+    color: #111;
+  }
+  .travel-card-date {
     font-family: "JetBrains Mono", ui-monospace, monospace;
-    font-size: 11px;
-    letter-spacing: .18em;
+    font-size: 11px; letter-spacing: .22em;
     text-transform: uppercase;
     color: #B8471C;
-    margin-top: 10px;
-    text-align: right;
+    margin-top: 6px;
   }
-  .travel-body::after { content: ''; display: block; clear: both; }
-  @media (max-width: 700px) {
-    .travel-float { float: none; width: 100%; margin: 28px 0 28px; }
-    .travel-float figcaption { text-align: left; }
+  .travel-card-caption {
+    font-family: "Fraunces", Georgia, serif;
+    font-style: italic;
+    font-size: 16px; line-height: 1.45;
+    color: #6B6B6B;
+    margin: 14px 0 18px;
+  }
+  .travel-card-cue {
+    font-family: "Inter", -apple-system, sans-serif;
+    font-size: 11px; font-weight: 700;
+    letter-spacing: .2em; text-transform: uppercase;
+    color: #B8471C;
+    padding-top: 14px;
+    border-top: 1px solid #E6E1D8;
+  }
+
+  /* Collapsible body — grid-row animation (modern browsers) */
+  .travel-body-wrap {
+    display: grid;
+    grid-template-rows: 0fr;
+    width: 100%;
+    max-width: 820px;
+    transition: grid-template-rows .6s cubic-bezier(.22,1,.36,1);
+  }
+  .travel-body-wrap.is-open { grid-template-rows: 1fr; }
+  .travel-body-inner {
+    min-height: 0;
+    overflow: hidden;
+    opacity: 0;
+    transition: opacity .45s ease .05s;
+    padding: 0 8px;
+  }
+  .travel-body-wrap.is-open .travel-body-inner {
+    opacity: 1;
+    padding-top: 56px;
+  }
+  .travel-body p { margin: 0 0 22px; }
+  .travel-body p:last-child { margin-bottom: 0; }
+  @media (max-width: 600px) {
+    .travel-card { padding: 18px 18px 22px; max-width: 340px; }
+    .travel-card-place { font-size: 20px; }
+    .travel-card-caption { font-size: 15px; }
+    .travel-body-wrap.is-open .travel-body-inner { padding-top: 40px; }
+    .travel-body { font-size: 19px !important; }
   }
 </style>
 <script src="https://unpkg.com/react@18.3.1/umd/react.production.min.js" crossorigin="anonymous" defer></script>
@@ -188,19 +251,21 @@ const travels = [
     slug:    'mayon-hobbit-hill',
     place:   'Mayon Volcano',
     region:  'Ligao, Albay',
-    date:    'March 2023',
+    date:    'Summer 2023',
     title:   'Mayon, from Hobbit Hill.',
+    caption: 'Two huts, one fire, and a volcano that held still while we did.',
     image:   '/images/travels/mayon-hobbit-hill.jpg',
     imageAlt:'Mayon Volcano at sunrise and the family watching at dusk, from Hobbit Hill in Ligao, Albay.',
     body: [
+      "It was around 5:30 in the morning, on a summer day in 2023, when I slipped out of the hut with a camera. The rest of my family was still asleep behind me. The volcano had already been at work, catching the sun the way it was built to.",
       "We were about six or seven months into it by then. You stop counting the way you stop counting anything after a while. The days blur, and the blur is the point.",
       "We were moving through the Philippines the slow way. Schedule was nobody's but ours. The kids were still on homeschool while we moved, which meant the classroom was wherever we set the table down, and the lessons were whatever the country handed us that week.",
       "Mayon was the stop I had been waiting for without knowing it.",
       "We rented two small nipa huts on a ridge in Ligao. Raised off the ground on wooden stilts, the way the old ones were built. Low ceiling, a small door, the whole thing. People call the place Hobbit Hill. The volcano sits about a kilometer off, a perfect triangle against whatever the sky is doing that hour. From the porch you could watch the sun find it in the morning and lose it in the evening, and in between it mostly stayed still while everything else was doing something.",
       "We only stayed one night. One was enough.",
       "That night we built a fire. The kids did their reading around it. Homeschool in the open, the notebook on a knee, the volcano behind the words. When the fire went down we laid on the grass for a while and looked up. Then we split for the night: me and my oldest in one hut, my wife with our daughter and the youngest in the other. We rarely sleep apart. The stars had already done their work on us before we closed the doors.",
-      "The photo on the bottom is from that evening, just before the fire. All five of us at the edge of the ridge, backlit, bunched together. My wife in the middle of the huddle because the middle is where she keeps us. The kids close enough to lean.",
-      "The photo on top is the next morning, early, before anyone else was awake. Mine, not theirs. The volcano had already been at work, catching the sun the way it was built to.",
+      "The photo on the bottom of the card is from that evening, just before the fire. All five of us at the edge of the ridge, backlit, bunched together. My wife in the middle of the huddle because the middle is where she keeps us. The kids close enough to lean.",
+      "The photo on top is the 5:30 that came next. Mine alone. I took it, then I watched it, and then I went back to wake up the others.",
       "We stayed watching for a while before we packed. I mean a while. Nobody was timing anything. The volcano was not going anywhere. We were, but we were not in any hurry about it.",
       "That was the whole thing.",
     ],
@@ -225,38 +290,33 @@ function Hero() {
   );
 }
 
-function Entry({ e }) {
-  // Insert the photo after this many paragraphs so text wraps around it mid-body.
-  const photoAfter = 2;
+function Entry({ e, initialOpen = false }) {
+  const [open, setOpen] = useState(initialOpen);
   return (
-    <section className="section-pad" style={{ padding: '72px 56px 96px', background: T.color.page }}>
-      <article style={{ maxWidth: 960, margin: '0 auto' }}>
-        {/* Meta row */}
-        <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'baseline', fontFamily: T.font.mono, fontSize: 12, letterSpacing: '.18em', textTransform: 'uppercase', color: T.color.copper, marginBottom: 20, flexWrap: 'wrap', gap: 12 }}>
-          <span>{e.place} · {e.region}</span>
-          <span>{e.date}</span>
+    <article className="travel-entry">
+      <button className={'travel-card' + (open ? ' is-open' : '')} type="button" onClick={() => setOpen(o => !o)} aria-expanded={open}>
+        <div className="travel-card-photo">
+          <img src={e.image} alt={e.imageAlt} loading="lazy" />
         </div>
-        {/* Title */}
-        <h2 style={{ fontFamily: T.font.head, fontSize: 'clamp(32px, 5.4vw, 64px)', fontWeight: 900, lineHeight: 1.02, letterSpacing: '-0.035em', textTransform: 'uppercase', color: T.color.ink, margin: '0 0 36px' }}>
-          {e.title}
-        </h2>
-        {/* Body with photo floated mid-way so text wraps around it */}
-        <div className="travel-body" style={{ fontFamily: T.font.quote, fontSize: 22, lineHeight: 1.55, color: T.color.ink }}>
-          {e.body.map((p, i) => (
-            <React.Fragment key={i}>
-              {i === photoAfter && e.image && (
-                <figure className="travel-float">
-                  <img src={e.image} alt={e.imageAlt} loading="lazy" />
-                  <figcaption>{e.place} · {e.date}</figcaption>
-                </figure>
-              )}
-              <p>{p}</p>
-            </React.Fragment>
-          ))}
+        <div className="travel-card-meta">
+          <div className="travel-card-place">{e.place}</div>
+          <div className="travel-card-date">{e.region} · {e.date}</div>
+          <p className="travel-card-caption">{e.caption}</p>
+          <div className="travel-card-cue">{open ? 'Close ↑' : 'Read the story ↓'}</div>
         </div>
-        <div style={{ marginTop: 48, fontFamily: T.font.body, fontSize: 12, fontWeight: 700, letterSpacing: '.25em', textTransform: 'uppercase', color: T.color.copper }}>Ian</div>
-      </article>
-    </section>
+      </button>
+      <div className={'travel-body-wrap' + (open ? ' is-open' : '')} aria-hidden={!open}>
+        <div className="travel-body-inner">
+          <h2 style={{ fontFamily: T.font.head, fontSize: 'clamp(28px, 4.6vw, 56px)', fontWeight: 900, lineHeight: 1.02, letterSpacing: '-0.035em', textTransform: 'uppercase', color: T.color.ink, margin: '0 0 32px' }}>
+            {e.title}
+          </h2>
+          <div className="travel-body" style={{ fontFamily: T.font.quote, fontSize: 22, lineHeight: 1.55, color: T.color.ink }}>
+            {e.body.map((p, i) => <p key={i}>{p}</p>)}
+          </div>
+          <div style={{ marginTop: 48, fontFamily: T.font.body, fontSize: 12, fontWeight: 700, letterSpacing: '.25em', textTransform: 'uppercase', color: T.color.copper }}>Ian</div>
+        </div>
+      </div>
+    </article>
   );
 }
 
@@ -290,7 +350,11 @@ function App() {
     <>
       <Nav active="travels" />
       <Hero />
-      {travels.map(e => <Entry key={e.slug} e={e} />)}
+      <section className="section-pad" style={{ padding: '48px 56px 96px', background: T.color.page }}>
+        <div style={{ maxWidth: 1100, margin: '0 auto', display: 'flex', flexDirection: 'column', gap: 72 }}>
+          {travels.map((e, i) => <Entry key={e.slug} e={e} initialOpen={i === 0} />)}
+        </div>
+      </section>
       <SubscribeCTA />
       <Footer />
     </>
