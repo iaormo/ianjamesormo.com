@@ -241,7 +241,24 @@ function ShareBar({ title, num, pagePath, onDark }) {
     if (navigator.clipboard) navigator.clipboard.writeText(url).catch(fallback); else fallback();
     setCopied(true); setTimeout(() => setCopied(false), 2000);
   }
-  function nativeShare(e) { if (navigator.share) { e.preventDefault(); navigator.share({ title, text: shareText, url }).catch(() => {}); } }
+  function nativeShare(e) {
+    // No share API → let the anchor's href + target="_blank" fire normally
+    if (!navigator.share) return;
+    e.preventDefault();
+    e.stopPropagation();
+    var platformUrl = e.currentTarget && e.currentTarget.href;
+    function fallback() { if (platformUrl) window.open(platformUrl, '_blank', 'noopener,noreferrer'); }
+    try {
+      navigator.share({ title, text: shareText, url }).catch(function (err) {
+        // User cancelled — respect that, do nothing
+        if (err && (err.name === 'AbortError' || err.name === 'CanceledError')) return;
+        // Anything else (NotAllowedError, permission denied, etc.) — open the platform share URL
+        fallback();
+      });
+    } catch (err) {
+      fallback();
+    }
+  }
   const borderColor = onDark ? 'rgba(255,255,255,.2)' : T.color.mist;
   const textColor = onDark ? T.color.page : T.color.ink;
   const btn = { display: 'inline-flex', alignItems: 'center', justifyContent: 'center', width: 42, height: 42, border: `1px solid ${borderColor}`, background: 'transparent', color: textColor, textDecoration: 'none', cursor: 'pointer', transition: 'background .18s ease, border-color .18s ease, color .18s ease' };
