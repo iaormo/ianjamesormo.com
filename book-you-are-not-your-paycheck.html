@@ -67,6 +67,11 @@
     nav > div:last-child > a { font-size: 10px !important; padding: 8px 14px !important; }
     footer { padding: 48px 20px 28px !important; }
   }
+/* FOOTER BOTTOM ROW MOBILE */
+ (max-width: 600px) {
+  .footer-bottom { font-size: 9px !important; gap: 6px !important; flex-wrap: nowrap !important; }
+  .footer-bottom span { white-space: nowrap; }
+}
 </style>
 <script src="https://unpkg.com/react@18.3.1/umd/react.production.min.js" crossorigin="anonymous"></script>
 <script src="https://unpkg.com/react-dom@18.3.1/umd/react-dom.production.min.js" crossorigin="anonymous"></script>
@@ -133,7 +138,7 @@ function Footer() {
           </div>
         ))}
       </div>
-      <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', paddingTop: 28, fontFamily: T.font.body, fontSize: 12, opacity: .55 }}>
+      <div className="footer-bottom" style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', paddingTop: 28, fontFamily: T.font.body, fontSize: 12, opacity: .55 }}>
         <span>© 2026 Ian James Ormo. All rights reserved.</span>
         <span style={{ letterSpacing: '.2em', textTransform: 'uppercase' }}>Books · Words · Witness</span>
       </div>
