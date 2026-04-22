@@ -175,7 +175,29 @@ function handleGetMusings(req, res) {
   sendJson(res, 200, essays);
 }
 
+// Safeguard: compute which devotional should be "today" based on current date.
+// Picks the entry whose parsed date matches today (server time), or failing that,
+// the most recent entry whose date is <= today. Mutates `today` flags in-place.
+function refreshTodayFlag() {
+  if (!Array.isArray(devotionals) || devotionals.length === 0) return;
+  const now = new Date();
+  const todayKey = now.toISOString().slice(0, 10);
+  const parsed = devotionals.map((d, i) => {
+    const t = Date.parse(d.date);
+    return { i, key: isNaN(t) ? '' : new Date(t).toISOString().slice(0, 10) };
+  });
+  let chosen = parsed.find(p => p.key === todayKey);
+  if (!chosen) {
+    chosen = parsed
+      .filter(p => p.key && p.key <= todayKey)
+      .sort((a, b) => (a.key < b.key ? 1 : -1))[0];
+  }
+  const chosenIdx = chosen ? chosen.i : 0;
+  devotionals.forEach((d, i) => { d.today = (i === chosenIdx); });
+}
+
 function handleGetDaily(req, res) {
+  refreshTodayFlag();
   sendJson(res, 200, devotionals);
 }
 

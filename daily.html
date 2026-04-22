@@ -387,7 +387,9 @@ function ArchiveEntry({ d, last }) {
 }
 
 function Archive() {
-  const past = devotionals.filter(d => !d.today);
+  const list = (typeof window !== 'undefined' && Array.isArray(window.__IJ_DAILY_LIST)) ? window.__IJ_DAILY_LIST : devotionals;
+  const today = (typeof window !== 'undefined' && window.__IJ_DAILY_TODAY) ? window.__IJ_DAILY_TODAY : list.find(d => d.today);
+  const past = list.filter(d => d !== today);
   return (
     <section className="section-pad" style={{ padding: '72px 56px 120px', background: T.color.page }}>
       <div style={{ maxWidth: 1400, margin: '0 auto' }}>
@@ -464,18 +466,48 @@ function Subscribe() {
   );
 }
 
-const today = devotionals.find(d => d.today);
+// SAFEGUARD: pick today's devotional by matching current date, not by the
+// stale `today: true` flag baked into the JSON. Falls back to the most recent
+// entry whose date is <= today, then to the flagged one, then to the first.
+function pickToday(list) {
+  if (!Array.isArray(list) || list.length === 0) return null;
+  const todayKey = new Date().toISOString().slice(0, 10);
+  const withKeys = list.map(d => {
+    const t = Date.parse(d.date);
+    return { d, key: isNaN(t) ? '' : new Date(t).toISOString().slice(0, 10) };
+  });
+  const exact = withKeys.find(x => x.key === todayKey);
+  if (exact) return exact.d;
+  const past = withKeys.filter(x => x.key && x.key <= todayKey).sort((a, b) => (a.key < b.key ? 1 : -1))[0];
+  if (past) return past.d;
+  return list.find(d => d.today) || list[0];
+}
 
-ReactDOM.createRoot(document.getElementById('root')).render(<>
-  <Nav active="daily" />
-  <main>
-    <Hero />
-    <Featured d={today} />
-    <Archive />
-    <Subscribe />
-  </main>
-  <Footer />
-</>);
+function DailyApp() {
+  const [list, setList] = React.useState(devotionals);
+  React.useEffect(() => {
+    fetch('/api/content/daily').then(r => r.json()).then(d => {
+      if (Array.isArray(d) && d.length) setList(d);
+    }).catch(() => {});
+  }, []);
+  const today = pickToday(list);
+  const past = list.filter(d => d !== today);
+  // Override the module-level devotionals reference so Archive() reads the updated list.
+  window.__IJ_DAILY_LIST = list;
+  window.__IJ_DAILY_TODAY = today;
+  return (<>
+    <Nav active="daily" />
+    <main>
+      <Hero />
+      <Featured d={today} />
+      <Archive />
+      <Subscribe />
+    </main>
+    <Footer />
+  </>);
+}
+
+ReactDOM.createRoot(document.getElementById('root')).render(<DailyApp />);
 </script>
 <script>(function(){var obs=new IntersectionObserver(function(e){e.forEach(function(x){if(x.isIntersecting){x.target.classList.add("in-view");obs.unobserve(x.target);}});},{threshold:0.05,rootMargin:"0px 0px -40px 0px"});var attached=new WeakSet();function attach(){document.querySelectorAll("section").forEach(function(s){if(!attached.has(s)){attached.add(s);obs.observe(s);}});}var tries=0;function poll(){attach();tries++;if(tries<60)setTimeout(poll,100);}if(document.readyState==="complete"){poll();}else{window.addEventListener("load",poll);}})();</script>
 <script src="/js/newsletter-popup.js" defer></script>

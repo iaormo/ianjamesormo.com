@@ -497,6 +497,28 @@ function Eyebrow({ children, color }) {
   }
 
   function Daily() {
+    const [today, setToday] = React.useState({
+      day: '048',
+      verse: 'Colossians 3:23',
+      quote: 'The holy is not elsewhere. It is the hour you were going to call boring.',
+      body: 'Most of your life will be ordinary hours. The meeting that was not remarkable. The dinner that was the same dinner. The prayer that felt like nothing. These are not the waiting room for the real life. They are the life.',
+    });
+    React.useEffect(() => {
+      // Safeguard: fetch the live devotional list and pick today's entry based on date.
+      fetch('/api/content/daily').then(r => r.json()).then(list => {
+        if (!Array.isArray(list) || list.length === 0) return;
+        const todayKey = new Date().toISOString().slice(0, 10);
+        const withKeys = list.map(d => {
+          const t = Date.parse(d.date);
+          return { ...d, _key: isNaN(t) ? '' : new Date(t).toISOString().slice(0, 10) };
+        });
+        let pick = withKeys.find(d => d._key === todayKey);
+        if (!pick) pick = withKeys.filter(d => d._key && d._key <= todayKey).sort((a, b) => (a._key < b._key ? 1 : -1))[0];
+        if (!pick) pick = list.find(d => d.today) || list[0];
+        const bodyPreview = (pick.body || '').split('\n\n').slice(-1)[0] || pick.body || '';
+        setToday({ day: pick.day, verse: pick.verse, quote: pick.quote, body: bodyPreview });
+      }).catch(() => {});
+    }, []);
     return (
       <section className="section-pad" style={{ padding: '120px 56px', background: T.color.ink, color: T.color.page, overflow: 'hidden' }}>
         <div style={{ maxWidth: 1400, margin: '0 auto' }}>
@@ -513,15 +535,15 @@ function Eyebrow({ children, color }) {
             </div>
             <div style={{ background: T.color.page, color: T.color.ink, padding: 56, position: 'relative' }}>
               <div style={{ position: 'absolute', top: 28, left: 28, right: 28, display: 'flex', justifyContent: 'space-between', fontFamily: T.font.mono, fontSize: 11, letterSpacing: '.15em', textTransform: 'uppercase', color: T.color.steel }}>
-                <span>Day 049</span>
-                <span>Luke 16:10</span>
+                <span>Day {today.day}</span>
+                <span>{today.verse}</span>
               </div>
               <div style={{ marginTop: 60 }}>
                 <div style={{ fontFamily: T.font.quote, fontStyle: 'italic', fontSize: 42, lineHeight: 1.15, letterSpacing: '-0.01em' }}>
-                  &ldquo;You do not have a big-faith problem. You have a small-yes problem.&rdquo;
+                  &ldquo;{today.quote}&rdquo;
                 </div>
                 <div style={{ fontFamily: T.font.body, fontSize: 15, lineHeight: 1.7, marginTop: 32, color: T.color.steel }}>
-                  Faithfulness is not built in the moments you expected it to be tested. It is built in the ones you almost did not notice were a test at all. The small yes is the text you finally send, the apology you stop rehearsing, the fifteen minutes you give to the prayer you keep postponing.
+                  {today.body}
                 </div>
                 <div style={{ borderTop: `1px solid ${T.color.mist}`, marginTop: 40, paddingTop: 20, display: 'flex', justifyContent: 'space-between', fontFamily: T.font.body, fontSize: 12, fontWeight: 600, letterSpacing: '.15em', textTransform: 'uppercase', color: T.color.copper }}>
                   <span>Ian</span>
