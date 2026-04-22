@@ -50,12 +50,20 @@
   function open() { ensureModal(); modalEl.classList.add('open'); document.body.style.overflow = 'hidden'; }
   function close() { if (modalEl) { modalEl.classList.remove('open'); document.body.style.overflow = ''; } }
 
-  function formatPassage(text) {
-    if (!text) return '';
+  function formatPassage(text, ref) {
+    if (!text) return { body: '', copyright: '' };
     // Pull out the trailing "(ESV)" and copyright line if present
     var copyright = '';
     var copyMatch = text.match(/\(ESV\)[\s\S]*$/);
     if (copyMatch) { copyright = copyMatch[0].trim(); text = text.slice(0, copyMatch.index); }
+    // ESV API returns the passage with the reference title as the first line — strip it
+    // (e.g., "Proverbs 4:23\n\n[23] Keep your heart…")
+    text = text.replace(/^\s*[1-3]?\s*[A-Z][a-zA-Z]+\s+\d+:\d+(?:-\d+)?\s*\n+/, '');
+    // Also handle the case where the full ref passed in shows up verbatim at the top
+    if (ref) {
+      var esc = ref.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
+      text = text.replace(new RegExp('^\\s*' + esc + '\\s*\\n+'), '');
+    }
     // Wrap verse numbers like [1] in a small-superscript span
     text = text.replace(/\s*\[(\d+)\]\s*/g, ' <span class="v">$1</span>');
     return { body: text.trim(), copyright: copyright };
@@ -74,7 +82,7 @@
           return;
         }
         refEl.textContent = data.reference || ref;
-        var fmt = formatPassage(data.passages.join('\n\n'));
+        var fmt = formatPassage(data.passages.join('\n\n'), data.reference || ref);
         bodyEl.innerHTML = fmt.body;
         copyEl.textContent = fmt.copyright || 'Scripture quotations from the ESV® Bible. Copyright © by Crossway.';
       })
