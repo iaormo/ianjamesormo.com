@@ -26,7 +26,7 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Archivo:wght@400;500;600;700;800;900&family=Inter:wght@400;500;600;700&family=Fraunces:ital,wght@0,400;0,500;0,600;1,400;1,500&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
 <style>
-  html, body { margin: 0; padding: 0; background: #FAF7F2; color: #111; }
+  html, body { margin: 0; padding: 0; background: #FAF7F2; color: #111; overflow-x: hidden; max-width: 100%; }
   body { font-family: "Inter", -apple-system, sans-serif; }
   * { box-sizing: border-box; }
   a { color: inherit; }
@@ -399,9 +399,9 @@ function Subscribe() {
   }
 
   return (
-    <section className="section-pad" style={{ padding: '120px 56px', background: T.color.copper, color: T.color.page }}>
+    <section className="section-pad" style={{ padding: '120px 56px', background: T.color.copper, color: T.color.page, overflow: 'hidden' }}>
       <div style={{ maxWidth: 900, margin: '0 auto', textAlign: 'center' }}>
-        <div style={{ fontFamily: T.font.head, fontSize: 80, fontWeight: 900, lineHeight: .9, letterSpacing: '-0.045em', textTransform: 'uppercase', marginBottom: 28 }}>
+        <div style={{ fontFamily: T.font.head, fontSize: 'clamp(32px, 11vw, 80px)', fontWeight: 900, lineHeight: .9, letterSpacing: '-0.045em', textTransform: 'uppercase', marginBottom: 28 }}>
           Get it in your inbox.
         </div>
         <div style={{ fontFamily: T.font.quote, fontSize: 20, fontStyle: 'italic', lineHeight: 1.5, marginBottom: 40, opacity: .95 }}>

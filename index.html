@@ -72,6 +72,11 @@
   @media (max-width: 600px) {
     .section-pad { padding-left: 20px !important; padding-right: 20px !important; }
   }
+/* FOOTER BOTTOM ROW */
+@media (max-width: 600px) {
+  .footer-bottom { font-size: 9px !important; gap: 6px !important; flex-wrap: nowrap !important; }
+  .footer-bottom span { white-space: nowrap; }
+}
 /* NAV HAMBURGER */
 @media (max-width: 768px) {
   .nav-desktop { display: none !important; }
@@ -293,7 +298,7 @@ function Footer() {
           </div>
         ))}
       </div>
-      <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', paddingTop: 28, fontFamily: T.font.body, fontSize: 12, opacity: .55 }}>
+      <div className="footer-bottom" style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', paddingTop: 28, fontFamily: T.font.body, fontSize: 12, opacity: .55 }}>
         <span>© 2026 Ian James. All rights reserved.</span>
         <span style={{ letterSpacing: '.2em', textTransform: 'uppercase' }}>Books · Words · Witness</span>
       </div>
