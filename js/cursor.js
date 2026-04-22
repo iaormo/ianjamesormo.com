@@ -4,6 +4,8 @@
   if (!window.matchMedia || !window.matchMedia('(pointer: fine)').matches) return;
   if (window.__ijCursorInit) return;
   window.__ijCursorInit = true;
+  // Skip inside HoverPeek iframe previews
+  if (/[?&]peek=1\b/.test(location.search) || window.self !== window.top) return;
 
   var COPPER = '#B8471C';
 

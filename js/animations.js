@@ -10,6 +10,10 @@
   if (window.__ijAnimInit) return;
   window.__ijAnimInit = true;
 
+  // Skip all heavy effects when this page is rendered inside a HoverPeek iframe
+  // (signaled by ?peek=1). Keeps the preview snappy and avoids recursive overlays.
+  if (/[?&]peek=1\b/.test(location.search) || window.self !== window.top) return;
+
   var REDUCED = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
   var FINE    = window.matchMedia && window.matchMedia('(pointer: fine)').matches;
 
@@ -222,23 +226,32 @@
         "97%  { opacity:.50; }"+
       "}"+
 
-      /* ── HOVERPEEK LINK PREVIEW ───────────────────────────────────────── */
-      "#ij-peek { position:fixed; pointer-events:none; z-index:10000; width:280px;"+
+      /* ── HOVERPEEK LINK PREVIEW (live iframe) ─────────────────────────── */
+      "#ij-peek { position:fixed; pointer-events:none; z-index:10000; width:320px;"+
         "background:#0A0A0A; color:#FAF7F2; border:1px solid rgba(184,71,28,.35);"+
         "border-radius:8px; overflow:hidden; box-shadow:0 20px 60px rgba(0,0,0,.55), 0 0 0 1px rgba(250,247,242,.04);"+
         "opacity:0; transform:translateY(10px) scale(.96) rotateX(8deg); transform-origin:center top;"+
         "transition:opacity .25s cubic-bezier(.22,1,.36,1), transform .35s cubic-bezier(.22,1,.36,1);"+
         "perspective:800px; }"+
       "#ij-peek.is-on { opacity:1; transform:translateY(0) scale(1) rotateX(0deg); }"+
-      "#ij-peek .peek-img { width:100%; height:140px; background:#1a1208 center/cover no-repeat;"+
-        "border-bottom:1px solid rgba(184,71,28,.2); position:relative; }"+
-      "#ij-peek .peek-img::after { content:''; position:absolute; inset:0;"+
-        "background:linear-gradient(180deg,transparent 40%, rgba(10,10,10,.7) 100%); }"+
-      "#ij-peek .peek-body { padding:14px 16px 16px; }"+
+      "#ij-peek .peek-frame-wrap { position:relative; width:320px; height:200px;"+
+        "overflow:hidden; background:#1a1208; border-bottom:1px solid rgba(184,71,28,.2); }"+
+      "#ij-peek .peek-frame { position:absolute; top:0; left:0;"+
+        "width:1280px; height:800px; transform:scale(0.25); transform-origin:top left;"+
+        "border:0; pointer-events:none; background:#FAF7F2; }"+
+      "#ij-peek .peek-frame.is-loaded ~ .peek-loading { opacity:0; }"+
+      "#ij-peek .peek-loading { position:absolute; inset:0; display:flex; align-items:center;"+
+        "justify-content:center; color:rgba(250,247,242,.35); font:500 10px/1 'JetBrains Mono',monospace;"+
+        "letter-spacing:.14em; text-transform:uppercase; background:#0A0A0A;"+
+        "transition:opacity .35s ease; }"+
+      "#ij-peek .peek-frame-wrap::after { content:''; position:absolute; inset:0; pointer-events:none;"+
+        "background:linear-gradient(180deg,transparent 55%, rgba(10,10,10,.35) 100%); }"+
+      "#ij-peek .peek-body { padding:14px 16px 14px; }"+
       "#ij-peek .peek-kicker { font:500 10px/1 'JetBrains Mono',monospace; letter-spacing:.14em;"+
         "text-transform:uppercase; color:#B8471C; margin:0 0 8px; }"+
-      "#ij-peek .peek-title { font:700 15px/1.25 'Archivo',sans-serif; color:#FAF7F2; margin:0 0 6px; }"+
-      "#ij-peek .peek-desc { font:400 12px/1.45 'Inter',sans-serif; color:rgba(250,247,242,.68); margin:0; }"+
+      "#ij-peek .peek-title { font:700 15px/1.25 'Archivo',sans-serif; color:#FAF7F2; margin:0 0 4px; }"+
+      "#ij-peek .peek-url { font:500 11px/1.2 'JetBrains Mono',monospace; color:rgba(250,247,242,.5);"+
+        "margin:0; white-space:nowrap; overflow:hidden; text-overflow:ellipsis; }"+
 
       /* ── INTERACTIVE HOVER LINKS (letter stagger) ──────────────────────── */
       ".ij-hoverlink { display:inline-flex; }"+
@@ -470,26 +483,37 @@
 
   function setupHoverPeek() {
     if (!FINE || REDUCED) return;
-    // Build the peek element once
+    // Build the peek element once with a live iframe preview
     var peek = document.getElementById('ij-peek');
     if (!peek) {
       peek = document.createElement('div');
       peek.id = 'ij-peek';
       peek.setAttribute('aria-hidden', 'true');
       peek.innerHTML =
-        '<div class="peek-img"></div>'+
+        '<div class="peek-frame-wrap">'+
+          '<iframe class="peek-frame" loading="eager" frameborder="0" tabindex="-1" aria-hidden="true"></iframe>'+
+          '<div class="peek-loading">Loading preview…</div>'+
+        '</div>'+
         '<div class="peek-body">'+
           '<p class="peek-kicker"></p>'+
           '<h4 class="peek-title"></h4>'+
-          '<p class="peek-desc"></p>'+
+          '<p class="peek-url"></p>'+
         '</div>';
       document.body.appendChild(peek);
     }
-    var imgEl = peek.querySelector('.peek-img');
+    var iframe  = peek.querySelector('.peek-frame');
+    var loading = peek.querySelector('.peek-loading');
     var kickerEl = peek.querySelector('.peek-kicker');
-    var titleEl = peek.querySelector('.peek-title');
-    var descEl  = peek.querySelector('.peek-desc');
+    var titleEl  = peek.querySelector('.peek-title');
+    var urlEl    = peek.querySelector('.peek-url');
     var hideTimer, showTimer;
+    var loadedUrls = Object.create(null);
+    var currentUrl = null;
+
+    iframe.addEventListener('load', function () {
+      if (currentUrl) loadedUrls[currentUrl] = true;
+      iframe.classList.add('is-loaded');
+    });
 
     function position(e) {
       var pad = 16;
@@ -501,30 +525,51 @@
       peek.style.top  = Math.max(8, y) + 'px';
     }
 
-    function show(data, e) {
-      kickerEl.textContent = data.kicker || '';
+    function show(href, data, e) {
+      kickerEl.textContent = data.kicker || 'Preview';
       titleEl.textContent  = data.title || '';
-      descEl.textContent   = data.desc || '';
-      imgEl.style.backgroundImage = data.img ? 'url("' + data.img + '")' : '';
+      urlEl.textContent    = (new URL(href, location.href)).pathname;
       position(e);
+      if (currentUrl !== href) {
+        currentUrl = href;
+        if (loadedUrls[href]) {
+          // Seen before — the iframe is still mounted to this URL, just reveal
+          iframe.classList.add('is-loaded');
+        } else {
+          iframe.classList.remove('is-loaded');
+          iframe.src = href + (href.indexOf('?') >= 0 ? '&' : '?') + 'peek=1';
+        }
+      }
       clearTimeout(hideTimer);
-      showTimer = setTimeout(function(){ peek.classList.add('is-on'); }, 180);
+      showTimer = setTimeout(function () { peek.classList.add('is-on'); }, 220);
     }
     function hide() {
       clearTimeout(showTimer);
-      hideTimer = setTimeout(function(){ peek.classList.remove('is-on'); }, 80);
+      hideTimer = setTimeout(function () { peek.classList.remove('is-on'); }, 100);
     }
 
-    document.querySelectorAll('a[href]').forEach(function(a){
+    function isSameOrigin(href) {
+      try {
+        var u = new URL(href, location.href);
+        return u.origin === location.origin;
+      } catch (err) { return false; }
+    }
+
+    document.querySelectorAll('a[href]').forEach(function (a) {
       if (a.__ijPeek) return;
       // Skip nav/footer anchors (they have letter-hover) and anchors inside buttons
       if (a.closest('nav') || a.closest('footer')) return;
       if (!a.textContent.trim() && !a.querySelector('img')) return;
-      var data = getPeekData(a.getAttribute('href'));
-      if (!data) return;
+      var href = a.getAttribute('href');
+      if (!href || href.charAt(0) === '#' || href.indexOf('mailto:') === 0 || href.indexOf('tel:') === 0) return;
+      // External links can't be iframed (X-Frame-Options) — skip them for preview
+      if (!isSameOrigin(href)) return;
+      // Skip same-page hash links
+      if (new URL(href, location.href).pathname === location.pathname) return;
+      var data = getPeekData(href) || { kicker: 'Preview', title: (new URL(href, location.href)).pathname };
       a.__ijPeek = true;
-      a.addEventListener('mouseenter', function(e){ show(data, e); });
-      a.addEventListener('mousemove', function(e){ position(e); });
+      a.addEventListener('mouseenter', function (e) { show(a.href, data, e); });
+      a.addEventListener('mousemove',  function (e) { position(e); });
       a.addEventListener('mouseleave', hide);
     });
   }

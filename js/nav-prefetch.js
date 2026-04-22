@@ -7,6 +7,8 @@
 (function () {
   if (window.__ijNavInit) return;
   window.__ijNavInit = true;
+  // Skip click-fade + prefetch inside HoverPeek iframe previews
+  if (/[?&]peek=1\b/.test(location.search) || window.self !== window.top) return;
 
   // ── 1. CLICK-FADE + PAGE-FADE-IN STYLES ─────────────────────────────────
   var style = document.createElement('style');

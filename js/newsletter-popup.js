@@ -2,12 +2,13 @@
 (function () {
   'use strict';
 
-  // Don't run on the dedicated newsletter page or the share redirect pages.
+  // Don't run on the dedicated newsletter page, share/OG pages, or HoverPeek iframes.
   var path = location.pathname.toLowerCase();
   if (path.indexOf('newsletter') !== -1) return;
   if (path.indexOf('/share/') === 0 || path.indexOf('/share/') !== -1) return;
   if (path.indexOf('/og/') !== -1) return;
   if (path.indexOf('404') !== -1) return;
+  if (/[?&]peek=1\b/.test(location.search) || window.self !== window.top) return;
 
   // First-visit-only. Once the popup opens once, never again.
   var KEY_SEEN = 'ij_popup_seen_at';
