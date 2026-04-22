@@ -68,9 +68,14 @@
     footer { padding: 48px 20px 28px !important; }
   }
 /* FOOTER BOTTOM ROW MOBILE */
- (max-width: 600px) {
+@media (max-width: 600px) {
   .footer-bottom { font-size: 9px !important; gap: 6px !important; flex-wrap: nowrap !important; }
   .footer-bottom span { white-space: nowrap; }
+}
+/* NAV HAMBURGER */
+@media (max-width: 768px) {
+  .nav-desktop { display: none !important; }
+  .nav-hamburger { display: block !important; }
 }
 </style>
 <script src="https://unpkg.com/react@18.3.1/umd/react.production.min.js" crossorigin="anonymous"></script>
@@ -104,15 +109,32 @@ function Wordmark({ size = 0.7, onDark = false }) {
 }
 
 function Nav({ active }) {
+  const [open, setOpen] = React.useState(false);
   const items = [['home','Home','index.html'],['about','About','about.html'],['books','Books','books.html'],['daily','Devotional','daily.html'],['essays','Musings','essays.html'],['contact','Contact','contact.html']];
+  const c = T.color.page;
   return (
-    <nav style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', padding: '28px 56px', borderBottom: `1px solid rgba(255,255,255,.1)`, background: T.color.copper }}>
-      <div style={{ display: 'flex', gap: 36, alignItems: 'center', flexWrap: 'wrap' }}>
+    <nav style={{ position: 'relative', display: 'flex', justifyContent: 'flex-end', alignItems: 'center', padding: '20px 28px', borderBottom: `1px solid rgba(255,255,255,.1)`, background: T.color.copper }}>
+      <div className="nav-desktop" style={{ display: 'flex', gap: 28, alignItems: 'center' }}>
         {items.map(([k, label, href]) => (
-          <a key={k} href={href} style={{ textDecoration: 'none', color: T.color.page, fontFamily: T.font.body, fontSize: 12, fontWeight: 600, letterSpacing: '.14em', textTransform: 'uppercase', opacity: active === k ? 1 : .7, borderBottom: active === k ? `2px solid ${T.color.ink}` : '2px solid transparent', paddingBottom: 4 }}>{label}</a>
+          <a key={k} href={href} style={{ textDecoration: 'none', color: c, fontFamily: T.font.body, fontSize: 11, fontWeight: 600, letterSpacing: '.14em', textTransform: 'uppercase', opacity: active === k ? 1 : .7, borderBottom: active === k ? `2px solid ${T.color.ink}` : '2px solid transparent', paddingBottom: 3, whiteSpace: 'nowrap' }}>{label}</a>
         ))}
-        <a href="newsletter.html" style={{ textDecoration: 'none', background: T.color.ink, color: T.color.page, fontFamily: T.font.body, fontSize: 12, fontWeight: 700, letterSpacing: '.14em', textTransform: 'uppercase', padding: '12px 20px' }}>Subscribe →</a>
+        <a href="newsletter.html" style={{ textDecoration: 'none', background: T.color.ink, color: T.color.page, fontFamily: T.font.body, fontSize: 11, fontWeight: 700, letterSpacing: '.14em', textTransform: 'uppercase', padding: '10px 16px', whiteSpace: 'nowrap' }}>Subscribe →</a>
       </div>
+      <button className="nav-hamburger" onClick={() => setOpen(o => !o)} aria-label="Menu" style={{ display: 'none', background: 'none', border: 'none', cursor: 'pointer', padding: 6 }}>
+        <span style={{ display: 'block', width: 22, height: 2, background: c, margin: '5px 0' }} />
+        <span style={{ display: 'block', width: 22, height: 2, background: c, margin: '5px 0' }} />
+        <span style={{ display: 'block', width: 22, height: 2, background: c, margin: '5px 0' }} />
+      </button>
+      {open && (
+        <div style={{ position: 'absolute', top: '100%', left: 0, right: 0, background: T.color.copper, borderBottom: `1px solid rgba(255,255,255,.1)`, zIndex: 200, padding: '12px 0' }}>
+          {items.map(([k, label, href]) => (
+            <a key={k} href={href} style={{ display: 'block', padding: '12px 24px', textDecoration: 'none', color: c, fontFamily: T.font.body, fontSize: 13, fontWeight: 600, letterSpacing: '.14em', textTransform: 'uppercase', opacity: active === k ? 1 : .65, borderLeft: active === k ? `3px solid ${T.color.ink}` : '3px solid transparent' }}>{label}</a>
+          ))}
+          <div style={{ padding: '12px 24px' }}>
+            <a href="newsletter.html" style={{ display: 'inline-block', background: T.color.ink, color: T.color.page, padding: '12px 20px', textDecoration: 'none', fontFamily: T.font.body, fontSize: 12, fontWeight: 700, letterSpacing: '.14em', textTransform: 'uppercase' }}>Subscribe →</a>
+          </div>
+        </div>
+      )}
     </nav>
   );
 }
