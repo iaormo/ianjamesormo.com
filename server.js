@@ -101,8 +101,10 @@ function send404(res) {
   });
 }
 
+// Every signup source maps to one or more GHL tags. 'devotional' implicitly
+// includes 'newsletter' — anyone on the daily is on the weekly letter list too.
 const TAG_MAP = {
-  devotional: ['devotional'],
+  devotional: ['devotional', 'newsletter'],
   newsletter: ['newsletter'],
   both:       ['devotional', 'newsletter'],
   preorder_finished: ['preorder', 'preorder:you-are-not-finished'],
