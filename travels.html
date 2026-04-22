@@ -61,44 +61,52 @@
   .mobile-menu { display: none; }
   .mobile-menu.open { display: flex; }
 
-  /* Travel entry — polaroid card (click to expand) + body */
-  .travel-entry {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    gap: 0;
+  /* Grid of polaroid cards */
+  .travels-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+    gap: 72px 48px;
+    max-width: 1100px;
+    margin: 0 auto;
+    justify-items: center;
+    padding: 40px 0 24px;
   }
   .travel-card {
     display: block;
     width: 100%;
-    max-width: 440px;
+    max-width: 320px;
     background: #FAF7F2;
-    padding: 24px 24px 28px;
-    box-shadow: 0 22px 60px rgba(10,5,3,.16), 0 3px 10px rgba(10,5,3,.08);
+    padding: 20px 20px 22px;
+    box-shadow: 0 22px 54px rgba(10,5,3,.16), 0 3px 10px rgba(10,5,3,.08);
     border: 0;
     cursor: pointer;
     text-align: center;
     font: inherit;
     color: inherit;
-    position: relative;
     transform: rotate(-1.25deg);
     transition: transform .45s cubic-bezier(.22,1,.36,1), box-shadow .45s ease;
   }
-  .travel-card:hover { transform: rotate(0deg) translateY(-3px); box-shadow: 0 28px 70px rgba(10,5,3,.22), 0 3px 10px rgba(10,5,3,.1); }
-  .travel-card.is-open { transform: rotate(0deg); box-shadow: 0 22px 56px rgba(10,5,3,.20), 0 3px 10px rgba(10,5,3,.1); }
+  .travel-card:nth-child(2n) { transform: rotate(1.5deg); }
+  .travel-card:nth-child(3n) { transform: rotate(-.75deg); }
+  .travel-card:hover { transform: rotate(0deg) translateY(-4px); box-shadow: 0 30px 70px rgba(10,5,3,.22), 0 3px 10px rgba(10,5,3,.12); }
+  .travel-card.is-active {
+    transform: rotate(0deg) translateY(-4px);
+    box-shadow: 0 0 0 2px #B8471C, 0 30px 70px rgba(10,5,3,.22), 0 3px 10px rgba(10,5,3,.12);
+  }
   .travel-card-photo { aspect-ratio: 4/5; overflow: hidden; background: #0A0A0A; }
-  .travel-card-photo img { width: 100%; height: 100%; object-fit: cover; display: block; }
-  .travel-card-meta { padding: 20px 4px 4px; }
+  .travel-card-photo img { width: 100%; height: 100%; object-fit: cover; display: block; transition: transform .6s cubic-bezier(.22,1,.36,1); }
+  .travel-card:hover .travel-card-photo img { transform: scale(1.04); }
+  .travel-card-meta { padding: 18px 4px 4px; }
   .travel-card-place {
     font-family: "Archivo", sans-serif;
-    font-weight: 900; font-size: 22px;
+    font-weight: 900; font-size: 20px;
     letter-spacing: -0.025em;
     text-transform: uppercase;
     color: #111;
   }
   .travel-card-date {
     font-family: "JetBrains Mono", ui-monospace, monospace;
-    font-size: 11px; letter-spacing: .22em;
+    font-size: 10px; letter-spacing: .2em;
     text-transform: uppercase;
     color: #B8471C;
     margin-top: 6px;
@@ -106,46 +114,61 @@
   .travel-card-caption {
     font-family: "Fraunces", Georgia, serif;
     font-style: italic;
-    font-size: 16px; line-height: 1.45;
+    font-size: 14px; line-height: 1.4;
     color: #6B6B6B;
-    margin: 14px 0 18px;
-  }
-  .travel-card-cue {
-    font-family: "Inter", -apple-system, sans-serif;
-    font-size: 11px; font-weight: 700;
-    letter-spacing: .2em; text-transform: uppercase;
-    color: #B8471C;
-    padding-top: 14px;
-    border-top: 1px solid #E6E1D8;
+    margin: 12px 0 0;
   }
 
-  /* Collapsible body — grid-row animation (modern browsers) */
-  .travel-body-wrap {
-    display: grid;
-    grid-template-rows: 0fr;
-    width: 100%;
+  /* Story panel — swaps in the active card's body */
+  .travel-story {
     max-width: 820px;
-    transition: grid-template-rows .6s cubic-bezier(.22,1,.36,1);
+    margin: 0 auto;
+    padding: 24px 8px 24px;
+    animation: ij-story-in .55s cubic-bezier(.22,1,.36,1);
   }
-  .travel-body-wrap.is-open { grid-template-rows: 1fr; }
-  .travel-body-inner {
-    min-height: 0;
-    overflow: hidden;
-    opacity: 0;
-    transition: opacity .45s ease .05s;
-    padding: 0 8px;
+  @keyframes ij-story-in {
+    from { opacity: 0; transform: translateY(12px); }
+    to   { opacity: 1; transform: translateY(0); }
   }
-  .travel-body-wrap.is-open .travel-body-inner {
-    opacity: 1;
-    padding-top: 56px;
+  .travel-story-meta {
+    display: flex; justify-content: space-between; align-items: baseline;
+    font-family: "JetBrains Mono", ui-monospace, monospace;
+    font-size: 12px; letter-spacing: .18em; text-transform: uppercase;
+    color: #B8471C;
+    margin-bottom: 20px; flex-wrap: wrap; gap: 12px;
+    padding-bottom: 18px;
+    border-bottom: 1px solid #E6E1D8;
+  }
+  .travel-story h2 {
+    font-family: "Archivo", sans-serif;
+    font-size: clamp(28px, 4.6vw, 56px);
+    font-weight: 900; line-height: 1.02;
+    letter-spacing: -0.035em; text-transform: uppercase;
+    color: #111;
+    margin: 0 0 32px;
   }
   .travel-body p { margin: 0 0 22px; }
   .travel-body p:last-child { margin-bottom: 0; }
+  .travel-story-close {
+    margin-top: 48px;
+    display: inline-block;
+    background: transparent;
+    border: 1px solid #111;
+    color: #111;
+    padding: 12px 24px;
+    font-family: "Inter", -apple-system, sans-serif;
+    font-size: 11px; font-weight: 700;
+    letter-spacing: .2em; text-transform: uppercase;
+    cursor: pointer;
+    transition: background .2s ease, color .2s ease;
+  }
+  .travel-story-close:hover { background: #111; color: #FAF7F2; }
+
   @media (max-width: 600px) {
-    .travel-card { padding: 18px 18px 22px; max-width: 340px; }
-    .travel-card-place { font-size: 20px; }
-    .travel-card-caption { font-size: 15px; }
-    .travel-body-wrap.is-open .travel-body-inner { padding-top: 40px; }
+    .travels-grid { gap: 56px 24px; padding: 32px 0 16px; }
+    .travel-card { padding: 16px 16px 20px; max-width: 300px; }
+    .travel-card-place { font-size: 18px; }
+    .travel-card-caption { font-size: 13px; }
     .travel-body { font-size: 19px !important; }
   }
 </style>
@@ -254,7 +277,7 @@ const travels = [
     date:    'Summer 2023',
     title:   'Caramoan, not a set.',
     caption: 'We came because of a TV show. The real thing had more to say.',
-    image:   '/images/travels/caramoan-beach.jpg',
+    image:   '/images/travels/caramoan.jpg',
     imageAlt:'Our family of five on a small beach at Caramoan, in front of dramatic grey limestone cliffs and turquoise water.',
     body: [
       "We drove into Caramoan because of a TV show. Most people who go will admit the same thing. You see those spiky limestone cliffs on some season of Survivor, you catch a frame of white sand and impossible blue water, and you think: that is a set. Then you find out it is a peninsula in Camarines Sur. Then you find out you can actually go there. So we went.",
@@ -310,32 +333,39 @@ function Hero() {
   );
 }
 
-function Entry({ e, initialOpen = false }) {
-  const [open, setOpen] = useState(initialOpen);
+function Card({ e, active, onClick }) {
   return (
-    <article className="travel-entry">
-      <button className={'travel-card' + (open ? ' is-open' : '')} type="button" onClick={() => setOpen(o => !o)} aria-expanded={open}>
-        <div className="travel-card-photo">
-          <img src={e.image} alt={e.imageAlt} loading="lazy" />
-        </div>
-        <div className="travel-card-meta">
-          <div className="travel-card-place">{e.place}</div>
-          <div className="travel-card-date">{e.region} · {e.date}</div>
-          <p className="travel-card-caption">{e.caption}</p>
-          <div className="travel-card-cue">{open ? 'Close ↑' : 'Read the story ↓'}</div>
-        </div>
-      </button>
-      <div className={'travel-body-wrap' + (open ? ' is-open' : '')} aria-hidden={!open}>
-        <div className="travel-body-inner">
-          <h2 style={{ fontFamily: T.font.head, fontSize: 'clamp(28px, 4.6vw, 56px)', fontWeight: 900, lineHeight: 1.02, letterSpacing: '-0.035em', textTransform: 'uppercase', color: T.color.ink, margin: '0 0 32px' }}>
-            {e.title}
-          </h2>
-          <div className="travel-body" style={{ fontFamily: T.font.quote, fontSize: 22, lineHeight: 1.55, color: T.color.ink }}>
-            {e.body.map((p, i) => <p key={i}>{p}</p>)}
-          </div>
-          <div style={{ marginTop: 48, fontFamily: T.font.body, fontSize: 12, fontWeight: 700, letterSpacing: '.25em', textTransform: 'uppercase', color: T.color.copper }}>Ian</div>
-        </div>
+    <button className={'travel-card' + (active ? ' is-active' : '')} type="button" onClick={onClick} aria-pressed={active}>
+      <div className="travel-card-photo">
+        <img src={e.image} alt={e.imageAlt} loading="lazy" />
       </div>
+      <div className="travel-card-meta">
+        <div className="travel-card-place">{e.place}</div>
+        <div className="travel-card-date">{e.region} · {e.date}</div>
+        <p className="travel-card-caption">{e.caption}</p>
+      </div>
+    </button>
+  );
+}
+
+function Story({ e, onClose }) {
+  const ref = React.useRef(null);
+  // Scroll the story into view when it changes so the user sees the switch.
+  React.useEffect(() => {
+    if (ref.current) ref.current.scrollIntoView({ behavior: 'smooth', block: 'start' });
+  }, [e.slug]);
+  return (
+    <article ref={ref} className="travel-story" key={e.slug}>
+      <div className="travel-story-meta">
+        <span>{e.place} · {e.region}</span>
+        <span>{e.date}</span>
+      </div>
+      <h2>{e.title}</h2>
+      <div className="travel-body" style={{ fontFamily: T.font.quote, fontSize: 22, lineHeight: 1.55, color: T.color.ink }}>
+        {e.body.map((p, i) => <p key={i}>{p}</p>)}
+      </div>
+      <div style={{ marginTop: 32, fontFamily: T.font.body, fontSize: 12, fontWeight: 700, letterSpacing: '.25em', textTransform: 'uppercase', color: T.color.copper }}>Ian</div>
+      <button className="travel-story-close" type="button" onClick={onClose}>Close ↑</button>
     </article>
   );
 }
@@ -366,15 +396,24 @@ function SubscribeCTA() {
 }
 
 function App() {
+  const [activeSlug, setActiveSlug] = useState(travels[0] ? travels[0].slug : null);
+  const active = travels.find(e => e.slug === activeSlug);
   return (
     <>
       <Nav active="travels" />
       <Hero />
-      <section className="section-pad" style={{ padding: '48px 56px 96px', background: T.color.page }}>
-        <div style={{ maxWidth: 1100, margin: '0 auto', display: 'flex', flexDirection: 'column', gap: 72 }}>
-          {travels.map((e, i) => <Entry key={e.slug} e={e} initialOpen={i === 0} />)}
+      <section className="section-pad" style={{ padding: '24px 56px 0', background: T.color.page }}>
+        <div className="travels-grid">
+          {travels.map(e => (
+            <Card key={e.slug} e={e} active={activeSlug === e.slug} onClick={() => setActiveSlug(s => s === e.slug ? null : e.slug)} />
+          ))}
         </div>
       </section>
+      {active && (
+        <section className="section-pad" style={{ padding: '48px 56px 96px', background: T.color.page }}>
+          <Story e={active} onClose={() => setActiveSlug(null)} />
+        </section>
+      )}
       <SubscribeCTA />
       <Footer />
     </>
