@@ -418,6 +418,50 @@ function handlePostMusing(req, res) {
   });
 }
 
+// Pick the devotional that should be featured right now.
+// Matches daily.html's client-side pickToday logic so the initial HTML
+// and the subsequent API fetch agree.
+function pickTodaysDevotional() {
+  if (!Array.isArray(devotionals) || devotionals.length === 0) return null;
+  const todayKey = new Date().toISOString().slice(0, 10);
+  const withKeys = devotionals.map(d => {
+    const t = Date.parse(d.date);
+    return { d, key: isNaN(t) ? '' : new Date(t).toISOString().slice(0, 10) };
+  });
+  const exact = withKeys.find(x => x.key === todayKey);
+  if (exact) return exact.d;
+  const past = withKeys
+    .filter(x => x.key && x.key <= todayKey)
+    .sort((a, b) => (a.key < b.key ? 1 : -1))[0];
+  if (past) return past.d;
+  return devotionals.find(d => d.today) || devotionals[0];
+}
+
+// Serve index.html with the homepage Daily fallback rewritten to today's
+// entry, so there's no stale-verse flash and crawlers see current content.
+function serveIndexWithToday(res) {
+  const indexPath = path.join(ROOT, 'index.html');
+  fs.readFile(indexPath, 'utf8', (err, html) => {
+    if (err) return send404(res);
+    const today = pickTodaysDevotional();
+    if (today) {
+      const bodyPreview = (today.body || '').split('\n\n').slice(-1)[0] || today.body || '';
+      const json = v => JSON.stringify(v);
+      html = html.replace(
+        /(const \[today, setToday\] = React\.useState\(\{)[\s\S]*?(\}\);)/,
+        (_m, p1, p2) =>
+          `${p1}\n      day: ${json(today.day || '')},\n      verse: ${json(today.verse || '')},\n      quote: ${json(today.quote || '')},\n      body: ${json(bodyPreview)},\n    ${p2}`
+      );
+    }
+    res.writeHead(200, {
+      'Content-Type': 'text/html; charset=utf-8',
+      'Cache-Control': 'public, max-age=0, must-revalidate',
+      'X-Content-Type-Options': 'nosniff',
+    });
+    res.end(html);
+  });
+}
+
 function handlePostDaily(req, res) {
   if (!requireApiKey(req, res)) return;
   readBody(req, (err, data) => {
@@ -457,6 +501,11 @@ const server = http.createServer((req, res) => {
 
   let urlPath = decodeURIComponent(req.url.split('?')[0]);
   if (urlPath.endsWith('/')) urlPath += 'index.html';
+
+  // Homepage: inject today's devotional so the Daily fallback is never stale.
+  if (urlPath === '/index.html') {
+    return serveIndexWithToday(res);
+  }
 
   // Legacy URL → new slug (preserves backlinks and share cards)
   if (urlPath === '/essays.html' || urlPath === '/essays') {
