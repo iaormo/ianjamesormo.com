@@ -44,6 +44,12 @@
   @media (max-width: 600px) {
     .section-pad { padding-left: 20px !important; padding-right: 20px !important; }
   }
+/* DAILY META 3-LINE MOBILE */
+@media (max-width: 600px) {
+  .daily-meta-left { display: flex; flex-direction: column; gap: 2px; }
+  .daily-meta-sep { display: none; }
+  .daily-meta-line { display: block; }
+}
 /* MOBILE-OVERRIDES-V1 */
 @media (max-width: 600px) {
   [style*="font-size: 168px"]{font-size:56px !important; line-height: 1.02 !important;}
@@ -283,7 +289,13 @@ function Featured({ d }) {
       <div style={{ maxWidth: 1400, margin: '0 auto' }}>
         <div style={{ background: T.color.ink, color: T.color.page, padding: '72px 72px 48px', position: 'relative' }}>
           <div style={{ display: 'flex', justifyContent: 'space-between', fontFamily: T.font.mono, fontSize: 11, letterSpacing: '.18em', textTransform: 'uppercase', color: T.color.copper, marginBottom: 60 }}>
-            <span>Day {d.day} · Today · {d.date}</span>
+            <span className="daily-meta-left">
+              <span className="daily-meta-line">Day {d.day}</span>
+              <span className="daily-meta-sep"> · </span>
+              <span className="daily-meta-line">Today</span>
+              <span className="daily-meta-sep"> · </span>
+              <span className="daily-meta-line">{d.date}</span>
+            </span>
             <span>{d.verse}</span>
           </div>
           <div style={{ maxWidth: 900, margin: '0 auto' }}>
