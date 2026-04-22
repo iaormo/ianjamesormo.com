@@ -113,6 +113,9 @@
     var candidates = (root || document).querySelectorAll('span, a, div, [data-verse]');
     for (var i = 0; i < candidates.length; i++) {
       var el = candidates[i];
+      // Skip anything inside the verse modal itself — the modal's own eyebrow
+      // displays the reference in plain form and must not get a "Read" prefix.
+      if (el.closest && el.closest('.ij-verse-modal')) continue;
       // Re-heal any verse-link whose "Read" span was wiped by a React re-render
       if (el.classList.contains('ij-verse-link') && !el.querySelector('.ij-rd')) {
         var vref = el.getAttribute('data-verse') || el.textContent.replace(/^\s*Read\s+/i, '').trim();
