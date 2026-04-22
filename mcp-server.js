@@ -109,7 +109,7 @@ async function handleTool(name, args) {
   switch (name) {
     case 'publish_musing': {
       const result = await apiPost('/api/content/musing', args);
-      return `✅ Musing published!\nNo. ${args.num} — "${args.title}"\nLive at: ${API_URL}/essays.html`;
+      return `✅ Musing published!\nNo. ${args.num} — "${args.title}"\nLive at: ${API_URL}/musings.html`;
     }
     case 'publish_daily': {
       const result = await apiPost('/api/content/daily', args);

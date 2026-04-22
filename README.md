@@ -9,7 +9,7 @@ Author site for Ian James Ormo. Static HTML + inline React (via CDN). No build s
 - `books.html` — book list
 - `book-you-are-not-finished.html` — book detail
 - `daily.html` — devotionals
-- `essays.html` — essays
+- `musings.html` — essays
 - `newsletter.html` — subscribe
 - `contact.html` — contact form
 - `404.html` — not found
@@ -37,11 +37,11 @@ Pushed to Railway via `railway up`. Serves statically with `serve` on `$PORT`.
 
 Every essay and devotional has a dedicated 1200×630 PNG share card under `/og/`
 and a matching redirect page under `/share/`. When someone shares `https://ianjamesormo-com-production.up.railway.app/share/essay-014.html`, social scrapers read the per-piece
-`og:image` tag; clicking the link bounces them to `essays.html#014`.
+`og:image` tag; clicking the link bounces them to `musings.html#014`.
 
 **Adding a new entry:**
 
-1. Add the essay to the `essays` array in `essays.html` (or the devotional to
+1. Add the essay to the `essays` array in `musings.html` (or the devotional to
    `devotionals` in `daily.html`) as usual.
 2. Add a matching object to the `essays` or `daily` array in
    `scripts/gen-og.js`.
@@ -53,6 +53,6 @@ and a matching redirect page under `/share/`. When someone shares `https://ianja
 4. Commit the new PNG + share HTML files alongside the essay/devotional.
 
 **Fallback behavior:** If a per-piece PNG is missing, the page-level `og:image`
-on `essays.html` (`/og/default-essays.png`) or `daily.html`
+on `musings.html` (`/og/default-essays.png`) or `daily.html`
 (`/og/default-daily.png`) is still served for any share link pointing at those
 pages directly.

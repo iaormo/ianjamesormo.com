@@ -448,7 +448,7 @@
   // Static metadata map — site links → preview card content
   var PEEK_MAP = {
     '/daily.html':    { kicker:'Daily devotional', title:'Three minutes. One question. Every morning.', desc:'Short, honest readings on grace, work, and the unglamorous middle.', img:'/og/daily.png' },
-    '/essays.html':   { kicker:'Essays',           title:'Longer reads on faith and work', desc:'Essays on rebuilding, freelancing, and the long way home.', img:'/og/essays.png' },
+    '/musings.html':   { kicker:'Essays',           title:'Longer reads on faith and work', desc:'Essays on rebuilding, freelancing, and the long way home.', img:'/og/essays.png' },
     '/books.html':    { kicker:'Books',            title:'Two books by Ian James', desc:'A memoir on grace and a freelancing guide on identity beyond your paycheck.', img:'/og/books.png' },
     '/book-you-are-not-finished.html': { kicker:'Memoir', title:'You Are Not Finished', desc:'Grace, grit, and the long way home. A memoir on rebuilding.', img:'/og/book-you-are-not-finished.png' },
     '/book-you-are-not-your-paycheck.html': { kicker:'Freelancing guide', title:'You Are Not Your Paycheck', desc:'On identity, work, and the number that was never yours.', img:'/og/book-you-are-not-your-paycheck.png' },

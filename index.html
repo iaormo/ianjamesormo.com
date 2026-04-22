@@ -28,7 +28,7 @@
 <meta name="twitter:card" content="summary_large_image" />
 <meta name="twitter:title" content="Ian James Ormo — Self-Help Author & Freelance Writer | Philippines" />
 <meta name="twitter:description" content="Self-help books, daily devotionals, and musings on faith, work, and freelancing by Ian James Ormo — author and writer based in the Philippines." />
-<script type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@type":"Person","@id":"https://ianjamesormo-com-production.up.railway.app/#person","name":"Ian James Ormo","alternateName":["Ian James","Ian Ormo"],"url":"https://ianjamesormo-com-production.up.railway.app/","image":"https://ianjamesormo-com-production.up.railway.app/images/ian-author.png","jobTitle":["Self-Help Author","Freelance Writer","AI Automation Consultant","Remote Work Consultant","Call Center Executive (former)","Tech Freelancer","Founder"],"description":"Self-help author, freelance writer, AI and automation consultant, and remote work specialist based in the Philippines. Writes on faith, work, freelancing, call center life, and the unglamorous middle.","knowsAbout":["Self-Help","Freelancing","Remote Work","AI Automation","Artificial Intelligence","Business Process Automation","Call Center Operations","Consulting","Christian Devotionals","Memoir Writing","Career Change","Tech Consulting","Faith and Work","Writing"],"address":{"@type":"PostalAddress","addressRegion":"Philippines","addressCountry":"PH"},"homeLocation":{"@type":"Place","name":"Philippines","address":{"@type":"PostalAddress","addressRegion":"Philippines","addressCountry":"PH"}},"worksFor":{"@type":"Organization","name":"ScalePlus"},"sameAs":["https://www.instagram.com/ianjamesormo"]},{"@type":"WebSite","@id":"https://ianjamesormo-com-production.up.railway.app/#website","url":"https://ianjamesormo-com-production.up.railway.app/","name":"Ian James Ormo","inLanguage":"en-PH","description":"Self-help books, daily devotionals, and musings on faith, work, and freelancing from the Philippines.","keywords":"self-help author Philippines, freelance writer Philippines, Christian writer, daily devotional Philippines","author":{"@id":"https://ianjamesormo-com-production.up.railway.app/#person"},"publisher":{"@id":"https://ianjamesormo-com-production.up.railway.app/#person"},"potentialAction":{"@type":"SearchAction","target":"https://ianjamesormo-com-production.up.railway.app/essays.html?q={search_term_string}","query-input":"required name=search_term_string"}},{"@type":"ProfessionalService","name":"Ian James Ormo — Writer & Freelance Consultant","areaServed":{"@type":"AdministrativeArea","name":"Philippines"},"provider":{"@id":"https://ianjamesormo-com-production.up.railway.app/#person"},"serviceType":["Self-Help Writing","Freelance Consulting","AI Automation","Remote Work Consulting","Call Center Advisory","Business Process Automation","Tech Consulting","Speaking"]}]}</script>
+<script type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@type":"Person","@id":"https://ianjamesormo-com-production.up.railway.app/#person","name":"Ian James Ormo","alternateName":["Ian James","Ian Ormo"],"url":"https://ianjamesormo-com-production.up.railway.app/","image":"https://ianjamesormo-com-production.up.railway.app/images/ian-author.png","jobTitle":["Self-Help Author","Freelance Writer","AI Automation Consultant","Remote Work Consultant","Call Center Executive (former)","Tech Freelancer","Founder"],"description":"Self-help author, freelance writer, AI and automation consultant, and remote work specialist based in the Philippines. Writes on faith, work, freelancing, call center life, and the unglamorous middle.","knowsAbout":["Self-Help","Freelancing","Remote Work","AI Automation","Artificial Intelligence","Business Process Automation","Call Center Operations","Consulting","Christian Devotionals","Memoir Writing","Career Change","Tech Consulting","Faith and Work","Writing"],"address":{"@type":"PostalAddress","addressRegion":"Philippines","addressCountry":"PH"},"homeLocation":{"@type":"Place","name":"Philippines","address":{"@type":"PostalAddress","addressRegion":"Philippines","addressCountry":"PH"}},"worksFor":{"@type":"Organization","name":"ScalePlus"},"sameAs":["https://www.instagram.com/ianjamesormo"]},{"@type":"WebSite","@id":"https://ianjamesormo-com-production.up.railway.app/#website","url":"https://ianjamesormo-com-production.up.railway.app/","name":"Ian James Ormo","inLanguage":"en-PH","description":"Self-help books, daily devotionals, and musings on faith, work, and freelancing from the Philippines.","keywords":"self-help author Philippines, freelance writer Philippines, Christian writer, daily devotional Philippines","author":{"@id":"https://ianjamesormo-com-production.up.railway.app/#person"},"publisher":{"@id":"https://ianjamesormo-com-production.up.railway.app/#person"},"potentialAction":{"@type":"SearchAction","target":"https://ianjamesormo-com-production.up.railway.app/musings.html?q={search_term_string}","query-input":"required name=search_term_string"}},{"@type":"ProfessionalService","name":"Ian James Ormo — Writer & Freelance Consultant","areaServed":{"@type":"AdministrativeArea","name":"Philippines"},"provider":{"@id":"https://ianjamesormo-com-production.up.railway.app/#person"},"serviceType":["Self-Help Writing","Freelance Consulting","AI Automation","Remote Work Consulting","Call Center Advisory","Business Process Automation","Tech Consulting","Speaking"]}]}</script>
 
 
 <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -250,7 +250,7 @@ function Nav({ active, onDark = false }) {
     ['about', 'About', 'about.html'],
     ['books', 'Books', 'books.html'],
     ['daily', 'Devotional', 'daily.html'],
-    ['essays', 'Musings', 'essays.html'],
+    ['essays', 'Musings', 'musings.html'],
     ['contact', 'Contact', 'contact.html'],
   ];
   const c = onDark ? T.color.page : T.color.ink;
@@ -308,7 +308,7 @@ function Footer() {
           </div>
         </div>
         {[
-          ['Read', [['Books', 'books.html'], ['Devotional', 'daily.html'], ['Musings', 'essays.html']]],
+          ['Read', [['Books', 'books.html'], ['Devotional', 'daily.html'], ['Musings', 'musings.html']]],
           ['About', [['Story', 'about.html'], ['Press / Media', 'about.html'], ['Contact', 'contact.html']]],
           ['Follow', [['Newsletter', 'newsletter.html'], ['Instagram', 'https://www.instagram.com/ianormore'], ['LinkedIn', 'https://www.linkedin.com/in/ianjamesormo/'], ['Facebook', 'https://www.facebook.com/ian.ormo']]],
         ].map(([title, links]) => (
@@ -625,11 +625,11 @@ function Eyebrow({ children, color }) {
                 Longer<br />than a post.<br />Shorter<br />than a book.
               </div>
             </div>
-            <a href="essays.html" style={{ fontFamily: T.font.body, fontSize: 12, fontWeight: 700, letterSpacing: '.2em', textTransform: 'uppercase', textDecoration: 'none', color: T.color.copper, flexShrink: 0 }}>All musings →</a>
+            <a href="musings.html" style={{ fontFamily: T.font.body, fontSize: 12, fontWeight: 700, letterSpacing: '.2em', textTransform: 'uppercase', textDecoration: 'none', color: T.color.copper, flexShrink: 0 }}>All musings →</a>
           </div>
           <div>
             {essays.map(([n, t, d, r], i) => (
-              <a key={n} href="essays.html" className="essay-row" style={{ display: 'grid', gridTemplateColumns: '80px 1fr 140px 80px', gap: 32, alignItems: 'center', padding: '32px 0', borderTop: `1px solid ${T.color.mist}`, borderBottom: i === essays.length - 1 ? `1px solid ${T.color.mist}` : 'none', textDecoration: 'none', color: T.color.ink }}>
+              <a key={n} href="musings.html" className="essay-row" style={{ display: 'grid', gridTemplateColumns: '80px 1fr 140px 80px', gap: 32, alignItems: 'center', padding: '32px 0', borderTop: `1px solid ${T.color.mist}`, borderBottom: i === essays.length - 1 ? `1px solid ${T.color.mist}` : 'none', textDecoration: 'none', color: T.color.ink }}>
                 <div className="essay-num" style={{ fontFamily: T.font.mono, fontSize: 12, color: T.color.copper, letterSpacing: '.1em' }}>No. {n}</div>
                 <div>
                   <div style={{ fontFamily: T.font.head, fontSize: 28, fontWeight: 800, lineHeight: 1.1, letterSpacing: '-0.02em', marginBottom: 8 }}>{t}</div>
@@ -733,7 +733,7 @@ function Eyebrow({ children, color }) {
   ReactDOM.createRoot(document.getElementById('root')).render(<App />);
 </script>
 <script>(function(){var obs=new IntersectionObserver(function(e){e.forEach(function(x){if(x.isIntersecting){x.target.classList.add('in-view');obs.unobserve(x.target);}});},{threshold:0.05,rootMargin:'0px 0px -40px 0px'});var attached=new WeakSet();function attach(){document.querySelectorAll('section').forEach(function(s){if(!attached.has(s)){attached.add(s);obs.observe(s);}});}var tries=0;function poll(){attach();tries++;if(tries<60)setTimeout(poll,100);}if(document.readyState==='complete'){poll();}else{window.addEventListener('load',poll);}})();</script>
-<script src="/js/newsletter-popup.js" defer></script>
+<script src="/js/newsletter-popup.js?v=2" defer></script>
 <script src="/js/verse-popup.js?v=2" defer></script>
 <script src="/js/cursor.js?v=5" defer></script>
 <script src="/js/nav-prefetch.js?v=2" defer></script>

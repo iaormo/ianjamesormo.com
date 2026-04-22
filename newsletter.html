@@ -143,7 +143,7 @@ const T = window.IJ_TOKENS;
 
 function Nav() {
   const [open, setOpen] = useState(false);
-  const items = [['home','Home','index.html'],['about','About','about.html'],['books','Books','books.html'],['daily','Devotional','daily.html'],['essays','Musings','essays.html'],['contact','Contact','contact.html']];
+  const items = [['home','Home','index.html'],['about','About','about.html'],['books','Books','books.html'],['daily','Devotional','daily.html'],['essays','Musings','musings.html'],['contact','Contact','contact.html']];
   return (
     <nav className="nav-pad" style={{ position: 'relative', display: 'flex', justifyContent: 'space-between', alignItems: 'center', padding: '28px 56px', borderBottom: `1px solid ${T.color.mist}`, background: T.color.page }}>
       <div className="nav-full" style={{ display: 'flex', gap: 36, alignItems: 'center', flexWrap: 'wrap' }}>
@@ -175,7 +175,7 @@ function Footer() {
           <div style={{ fontFamily: T.font.quote, fontStyle: 'italic', fontSize: 17, marginTop: 20, maxWidth: 380, lineHeight: 1.5, opacity: .85 }}>Writer of the unglamorous middle. Faith, work, and the long way home.</div>
         </div>
         {[
-          ['Read',[['Books','books.html'],['Devotional','daily.html'],['Musings','essays.html']]],
+          ['Read',[['Books','books.html'],['Devotional','daily.html'],['Musings','musings.html']]],
           ['About',[['Story','about.html'],['Contact','contact.html']]],
           ['Follow',[['Newsletter','newsletter.html'],['Instagram','https://www.instagram.com/ianormore'],['LinkedIn','https://www.linkedin.com/in/ianjamesormo/'],['Facebook','https://www.facebook.com/ian.ormo']]],
         ].map(([title, links]) => (
@@ -301,7 +301,7 @@ function Sample() {
         <div style={{ fontFamily: T.font.quote, fontSize: 19, lineHeight: 1.7, color: T.color.ink, marginBottom: 40 }}>
           Your value was never the number. But your nervous system never got that memo.
         </div>
-        <a href="essays.html" style={{ fontFamily: T.font.body, fontSize: 12, fontWeight: 700, letterSpacing: '.2em', textTransform: 'uppercase', color: T.color.copper, textDecoration: 'none' }}>Read past musings →</a>
+        <a href="musings.html" style={{ fontFamily: T.font.body, fontSize: 12, fontWeight: 700, letterSpacing: '.2em', textTransform: 'uppercase', color: T.color.copper, textDecoration: 'none' }}>Read past musings →</a>
       </div>
     </section>
   );

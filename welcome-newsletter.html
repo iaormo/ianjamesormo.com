@@ -24,6 +24,7 @@
     * { -ms-text-size-adjust:100%; -webkit-text-size-adjust:100%; }
     table, td { mso-table-lspace:0pt !important; mso-table-rspace:0pt !important; border-collapse:collapse !important; }
     img { border:0; outline:none; text-decoration:none; -ms-interpolation-mode:bicubic; display:block; max-width:100%; height:auto; }
+    *, *::before, *::after { box-sizing:border-box; }
     a { text-decoration:none; word-break:break-word; }
     body { background:#FAF7F2; font-family:'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Arial, sans-serif; color:#111111; word-wrap:break-word; }
 
@@ -44,10 +45,10 @@
     }
 
     /* ----- MOBILE (<=620px) ----- */
-    @media screen and (max-width: 620px) {
+    @media screen and (max-width: 680px) {
       .ij-container { width:100% !important; max-width:100% !important; }
-      .ij-px { padding-left:20px !important; padding-right:20px !important; }
-      .ij-hero-title { font-size:44px !important; line-height:1.02 !important; letter-spacing:-0.02em !important; }
+      .ij-px { padding-left:16px !important; padding-right:16px !important; }
+      .ij-hero-title { font-size:32px !important; line-height:1.05 !important; letter-spacing:-0.02em !important; word-break:break-all !important; overflow-wrap:anywhere !important; }
       .ij-section-title { font-size:28px !important; line-height:1.08 !important; }
       .ij-quote { font-size:22px !important; line-height:1.35 !important; }
       .ij-stack { display:block !important; width:100% !important; box-sizing:border-box !important; }
@@ -56,9 +57,9 @@
       .ij-footer-col { display:block !important; width:100% !important; padding:0 0 24px 0 !important; }
       .ij-btn-mobile { display:block !important; width:100% !important; box-sizing:border-box !important; text-align:center !important; }
       .ij-btn-mobile a { display:block !important; width:100% !important; box-sizing:border-box !important; text-align:center !important; }
-      .ij-hero-pad { padding:40px 20px 48px 20px !important; }
-      .ij-section-pad { padding:48px 20px 16px 20px !important; }
-      .ij-invite-pad { padding:0 20px 40px 20px !important; }
+      .ij-hero-pad { padding:36px 16px 40px 16px !important; }
+      .ij-section-pad { padding:40px 16px 16px 16px !important; }
+      .ij-invite-pad { padding:0 16px 32px 16px !important; }
     }
 
     /* ----- SMALL PHONES (<=380px) ----- */
@@ -94,11 +95,11 @@
     You&rsquo;re in. A quiet letter for the unglamorous middle &mdash; grace, grit, and the long way home.
   </div>
 
-  <table role="presentation" width="100%" cellpadding="0" cellspacing="0" border="0" class="ij-bg-page" style="background:#FAF7F2;">
+  <table role="presentation" width="100%" cellpadding="0" cellspacing="0" border="0" class="ij-bg-page" style="background:#FAF7F2; table-layout:fixed;">
     <tr>
-      <td align="center" style="padding:32px 16px;">
+      <td align="center" style="padding:16px 0;">
 
-        <table role="presentation" width="600" cellpadding="0" cellspacing="0" border="0" class="ij-container" style="width:100%; max-width:600px; background:#FAF7F2;">
+        <table role="presentation" width="100%" cellpadding="0" cellspacing="0" border="0" class="ij-container" style="width:100%; max-width:560px; background:#FAF7F2; margin:0 auto; table-layout:fixed;">
 
           <!-- HEADER -->
           <tr>
@@ -114,22 +115,22 @@
 
           <!-- HERO (CINEMATIC) -->
           <tr>
-            <td style="background:#0A0A0A; background-image: radial-gradient(circle at 92% 8%, rgba(184,71,28,0.55), rgba(184,71,28,0) 42%), radial-gradient(circle at 8% 100%, rgba(255,170,90,0.22), rgba(255,170,90,0) 48%), radial-gradient(ellipse at center, rgba(10,10,10,0) 35%, rgba(0,0,0,0.62) 100%), url(&quot;data:image/svg+xml;utf8,&lt;svg xmlns='http://www.w3.org/2000/svg' width='240' height='240'&gt;&lt;filter id='n'&gt;&lt;feTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='2' stitchTiles='stitch'/&gt;&lt;feColorMatrix values='0 0 0 0 1  0 0 0 0 1  0 0 0 0 1  0 0 0 0.28 0'/&gt;&lt;/filter&gt;&lt;rect width='100%25' height='100%25' filter='url(%23n)'/&gt;&lt;/svg&quot;); background-repeat: no-repeat, no-repeat, no-repeat, repeat; background-size: auto, auto, auto, 240px 240px;">
+            <td style="background:#0A0A0A; background-image: radial-gradient(circle at 92% 8%, rgba(184,71,28,0.55), rgba(184,71,28,0) 42%), radial-gradient(circle at 8% 100%, rgba(255,170,90,0.22), rgba(255,170,90,0) 48%), radial-gradient(ellipse at center, rgba(10,10,10,0) 35%, rgba(0,0,0,0.62) 100%), url(&quot;data:image/svg+xml;utf8,&lt;svg xmlns='http://www.w3.org/2000/svg' width='240' height='240'&gt;&lt;filter id='n'&gt;&lt;feTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='2' stitchTiles='stitch'/&gt;&lt;feColorMatrix values='0 0 0 0 1  0 0 0 0 1  0 0 0 0 1  0 0 0 0.28 0'/&gt;&lt;/filter&gt;&lt;rect width='100%25' height='100%25' filter='url(%23n)'/&gt;&lt;/svg&quot;); background-repeat: no-repeat, no-repeat, no-repeat, repeat; background-size: auto, auto, auto, 240px 240px; overflow:hidden; word-break:break-word;">
               <!--[if mso]>
-              <v:rect xmlns:v="urn:schemas-microsoft-com:vml" fill="true" stroke="false" style="width:600px;height:520px;"><v:fill type="gradient" color="#0A0A0A" color2="#1a0d07" angle="45"/><v:textbox inset="0,0,0,0"><![endif]-->
+              <v:rect xmlns:v="urn:schemas-microsoft-com:vml" fill="true" stroke="false" style="width:100%;mso-width-percent:1000;height:520px;"><v:fill type="gradient" color="#0A0A0A" color2="#1a0d07" angle="45"/><v:textbox inset="0,0,0,0"><![endif]-->
               <table role="presentation" width="100%" cellpadding="0" cellspacing="0" border="0">
 
                 <tr><td style="height:6px; background:#000000; line-height:6px; font-size:6px;">&nbsp;</td></tr>
 
                 <tr>
-                  <td class="ij-px" style="padding:56px 40px 64px 40px;">
+                  <td class="ij-px ij-hero-pad" style="padding:40px 24px 48px 24px;">
                     <p style="margin:0 0 28px 0; font-family:'JetBrains Mono', 'Courier New', monospace; font-size:11px; letter-spacing:0.18em; color:#B8471C; text-transform:uppercase;">&mdash;&nbsp;&nbsp;Scene&nbsp;01&nbsp;&nbsp;/&nbsp;&nbsp;You&rsquo;re&nbsp;in</p>
-                    <h1 class="ij-hero-title" style="margin:0 0 28px 0; font-family:'Archivo', Arial, sans-serif; font-weight:900; font-size:78px; line-height:0.94; letter-spacing:-0.025em; color:#FAF7F2; text-shadow: 0 1px 0 rgba(0,0,0,0.4);">
+                    <h1 class="ij-hero-title" style="margin:0 0 28px 0; font-family:\'Archivo\', Arial, sans-serif; font-weight:900; font-size:40px; line-height:1.02; letter-spacing:-0.02em; color:#FAF7F2; text-shadow: 0 1px 0 rgba(0,0,0,0.4); word-break:break-word; overflow-wrap:break-word; max-width:100%;">
                       Thank&nbsp;you,<br/>
-                      <span style="color:#B8471C; text-shadow: 0 0 30px rgba(184,71,28,0.35), 0 1px 0 rgba(0,0,0,0.4);">{{contact.first_name}}.</span>
+                      <span style="color:#B8471C; text-shadow: 0 0 30px rgba(184,71,28,0.35), 0 1px 0 rgba(0,0,0,0.4); word-break:break-all; overflow-wrap:anywhere; display:inline-block; max-width:100%;">{{contact.first_name}}.</span>
                     </h1>
                     <table role="presentation" cellpadding="0" cellspacing="0" border="0" style="margin:0 0 28px 0;"><tr><td style="width:64px; height:2px; background:#B8471C; line-height:2px; font-size:2px;">&nbsp;</td></tr></table>
-                    <p style="margin:0; font-family:'Inter', Arial, sans-serif; font-weight:400; font-size:18px; line-height:1.7; color:#FAF7F2; opacity:0.9; max-width:460px;">
+                    <p style="margin:0; font-family:'Inter', Arial, sans-serif; font-weight:400; font-size:16px; line-height:1.65; color:#FAF7F2; opacity:0.9; max-width:460px;">
                       You just signed up for something quiet. A weekly letter for the unglamorous middle &mdash; the part nobody writes about, because there&rsquo;s no finish line to post a photo next to.
                     </p>
                   </td>
@@ -147,9 +148,9 @@
             <td style="background:#EFEAE0; background-image: url(&quot;data:image/svg+xml;utf8,&lt;svg xmlns='http://www.w3.org/2000/svg' width='200' height='200'&gt;&lt;filter id='n'&gt;&lt;feTurbulence type='fractalNoise' baseFrequency='1.1' numOctaves='1' stitchTiles='stitch'/&gt;&lt;feColorMatrix values='0 0 0 0 0  0 0 0 0 0  0 0 0 0 0  0 0 0 0.09 0'/&gt;&lt;/filter&gt;&lt;rect width='100%25' height='100%25' filter='url(%23n)'/&gt;&lt;/svg&quot;); background-repeat: repeat; background-size: 200px 200px;">
               <table role="presentation" width="100%" cellpadding="0" cellspacing="0" border="0">
                 <tr>
-                  <td class="ij-px" style="padding:64px 40px 64px 40px;">
+                  <td class="ij-px" style="padding:64px 24px 64px 24px;">
                     <p style="margin:0 0 12px 0; font-family:'Fraunces', Georgia, serif; font-style:italic; font-size:56px; line-height:0.9; color:#B8471C;">&ldquo;</p>
-                    <p class="ij-quote" style="margin:0; font-family:'Fraunces', Georgia, 'Times New Roman', serif; font-style:italic; font-weight:400; font-size:30px; line-height:1.35; letter-spacing:-0.01em; color:#111111;">
+                    <p class="ij-quote" style="margin:0; font-family:'Fraunces', Georgia, 'Times New Roman', serif; font-style:italic; font-weight:400; font-size:26px; line-height:1.35; letter-spacing:-0.01em; color:#111111;">
                       You are not your paycheck.<br/>
                       You are not finished.
                     </p>
@@ -166,16 +167,16 @@
             <td style="background:#FAF7F2;">
               <table role="presentation" width="100%" cellpadding="0" cellspacing="0" border="0">
                 <tr>
-                  <td class="ij-px" style="padding:64px 40px 16px 40px;">
+                  <td class="ij-px" style="padding:64px 24px 16px 24px;">
                     <p style="margin:0 0 20px 0; font-family:'JetBrains Mono', 'Courier New', monospace; font-size:11px; letter-spacing:0.10em; color:#B8471C; text-transform:uppercase;">A short note before the first letter</p>
-                    <h2 class="ij-section-title" style="margin:0 0 32px 0; font-family:'Archivo', Arial, sans-serif; font-weight:900; font-size:40px; line-height:1.0; letter-spacing:-0.02em; color:#111111;">What you can expect.</h2>
-                    <p style="margin:0 0 20px 0; font-family:'Inter', Arial, sans-serif; font-size:18px; line-height:1.75; color:#111111;">
+                    <h2 class="ij-section-title" style="margin:0 0 32px 0; font-family:'Archivo', Arial, sans-serif; font-weight:900; font-size:32px; line-height:1.05; letter-spacing:-0.02em; color:#111111;">What you can expect.</h2>
+                    <p style="margin:0 0 20px 0; font-family:'Inter', Arial, sans-serif; font-size:16px; line-height:1.7; color:#111111;">
                       I write once a week. Sometimes twice if something won&rsquo;t let me sleep. No push notifications, no urgency, no one&ndash;weird&ndash;trick. Just a letter from one person who&rsquo;s been rebuilding &mdash; to another who probably is too.
                     </p>
-                    <p style="margin:0 0 20px 0; font-family:'Inter', Arial, sans-serif; font-size:18px; line-height:1.75; color:#111111;">
+                    <p style="margin:0 0 20px 0; font-family:'Inter', Arial, sans-serif; font-size:16px; line-height:1.7; color:#111111;">
                       Each letter sits somewhere between faith, freelancing, fatherhood, and the slow work of becoming someone you&rsquo;d actually want to be. If that sounds like you, you&rsquo;re in the right place. If it doesn&rsquo;t, there&rsquo;s an <a class="ij-link" href="{{unsubscribe_url}}" style="color:#B8471C;">unsubscribe link</a> at the bottom and no hard feelings.
                     </p>
-                    <p style="margin:0 0 40px 0; font-family:'Inter', Arial, sans-serif; font-size:18px; line-height:1.75; color:#111111;">
+                    <p style="margin:0 0 40px 0; font-family:'Inter', Arial, sans-serif; font-size:16px; line-height:1.7; color:#111111;">
                       While you wait for the first letter &mdash; here&rsquo;s somewhere to start. The daily devotional, or the musings.
                     </p>
                   </td>
@@ -189,7 +190,7 @@
             <td style="background:#FAF7F2;">
               <table role="presentation" width="100%" cellpadding="0" cellspacing="0" border="0">
                 <tr>
-                  <td class="ij-px" style="padding:0 40px 48px 40px;">
+                  <td class="ij-px" style="padding:0 24px 48px 24px;">
                     <table role="presentation" width="100%" cellpadding="0" cellspacing="0" border="0" style="border:1px solid #E6E1D8;">
                       <tr>
                         <td class="ij-stack ij-stack-pad" valign="top" style="width:100%; padding:32px; background:#EFEAE0;">
@@ -211,7 +212,7 @@
             <td style="background:#FAF7F2;">
               <table role="presentation" width="100%" cellpadding="0" cellspacing="0" border="0">
                 <tr>
-                  <td class="ij-px" style="padding:0 40px 48px 40px;">
+                  <td class="ij-px" style="padding:0 24px 48px 24px;">
                     <table role="presentation" width="100%" cellpadding="0" cellspacing="0" border="0" style="border:1px solid #E6E1D8; background:#EFEAE0;">
                       <tr>
                         <td class="ij-stack-pad" style="padding:32px;">
@@ -235,7 +236,7 @@
             <td style="background:#FAF7F2;">
               <table role="presentation" width="100%" cellpadding="0" cellspacing="0" border="0">
                 <tr>
-                  <td class="ij-px" align="left" style="padding:0 40px 64px 40px;">
+                  <td class="ij-px" align="left" style="padding:0 24px 64px 24px;">
                     <table role="presentation" cellpadding="0" cellspacing="0" border="0">
                       <tr>
                         <td class="ij-btn ij-btn-mobile" style="background:#111111; border:1px solid #111111;">
@@ -270,7 +271,7 @@
             <td style="background:#0A0A0A; background-image: radial-gradient(circle at 10% 0%, rgba(184,71,28,0.32), rgba(184,71,28,0) 45%), radial-gradient(circle at 100% 100%, rgba(255,170,90,0.14), rgba(255,170,90,0) 50%), url(&quot;data:image/svg+xml;utf8,&lt;svg xmlns='http://www.w3.org/2000/svg' width='220' height='220'&gt;&lt;filter id='n'&gt;&lt;feTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/&gt;&lt;feColorMatrix values='0 0 0 0 1  0 0 0 0 1  0 0 0 0 1  0 0 0 0.22 0'/&gt;&lt;/filter&gt;&lt;rect width='100%25' height='100%25' filter='url(%23n)'/&gt;&lt;/svg&quot;); background-repeat: no-repeat, no-repeat, repeat; background-size: auto, auto, 220px 220px;">
               <table role="presentation" width="100%" cellpadding="0" cellspacing="0" border="0">
                 <tr>
-                  <td class="ij-px" style="padding:40px 40px 32px 40px;">
+                  <td class="ij-px" style="padding:40px 24px 32px 24px;">
                     <p style="margin:0 0 10px 0; font-family:'JetBrains Mono', 'Courier New', monospace; font-size:10px; letter-spacing:0.22em; color:#6B6B6B; text-transform:uppercase;">End&nbsp;credits</p>
                     <p style="margin:0 0 8px 0; font-family:'Archivo', Arial, sans-serif; font-weight:900; font-size:16px; letter-spacing:-0.01em; color:#FAF7F2; text-transform:uppercase;">IAN&nbsp;JAMES&nbsp;ORMO</p>
                     <p style="margin:0 0 32px 0; font-family:'JetBrains Mono', 'Courier New', monospace; font-size:11px; letter-spacing:0.10em; color:#B8471C; text-transform:uppercase;">Writer&nbsp;&middot;&nbsp;Freelancer&nbsp;&middot;&nbsp;Homeschooling&nbsp;father&nbsp;&middot;&nbsp;Still&nbsp;building</p>

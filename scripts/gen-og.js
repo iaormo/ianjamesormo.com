@@ -57,7 +57,7 @@ async function main() {
   function writeSharePage(type, item) {
     const img = `${SITE}/og/${type}-${item.num}.png`;
     const canonical = type === 'essay'
-      ? `${SITE}/essays.html#${item.num}`
+      ? `${SITE}/musings.html#${item.num}`
       : `${SITE}/daily.html#${item.num}`;
     const pageTitle = type === 'essay'
       ? `${item.title} — Ian James Ormo`

@@ -1,4 +1,4 @@
-/* Ian James — newsletter popup. Shows once after 10s on idle pages. */
+/* Ian James — newsletter popup. Shows once after 60s on idle pages. */
 (function () {
   'use strict';
 
@@ -155,8 +155,8 @@
     showCrossPromo();
   }
 
-  // Random delay between 10–15s, first visit only.
-  var delay = 10000 + Math.floor(Math.random() * 5000);
+  // Fires once, 1 minute after page load (first visit only).
+  var delay = 60000;
   setTimeout(function () {
     if (document.hidden) {
       document.addEventListener('visibilitychange', function fire() {

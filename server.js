@@ -376,6 +376,13 @@ const server = http.createServer((req, res) => {
   let urlPath = decodeURIComponent(req.url.split('?')[0]);
   if (urlPath.endsWith('/')) urlPath += 'index.html';
 
+  // Legacy URL → new slug (preserves backlinks and share cards)
+  if (urlPath === '/essays.html' || urlPath === '/essays') {
+    const query = req.url.indexOf('?') >= 0 ? req.url.slice(req.url.indexOf('?')) : '';
+    res.writeHead(301, { Location: '/musings.html' + query, 'Cache-Control': 'no-store' });
+    return res.end();
+  }
+
   const resolved = path.normalize(path.join(ROOT, urlPath));
   if (!resolved.startsWith(ROOT)) {
     res.writeHead(403); return res.end('Forbidden');

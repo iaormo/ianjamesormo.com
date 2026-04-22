@@ -158,7 +158,7 @@ function Wordmark({ size = 0.7, onDark = false }) {
 
 function Nav({ active }) {
   const [open, setOpen] = React.useState(false);
-  const items = [['home','Home','index.html'],['about','About','about.html'],['books','Books','books.html'],['daily','Devotional','daily.html'],['essays','Musings','essays.html'],['contact','Contact','contact.html']];
+  const items = [['home','Home','index.html'],['about','About','about.html'],['books','Books','books.html'],['daily','Devotional','daily.html'],['essays','Musings','musings.html'],['contact','Contact','contact.html']];
   const c = T.color.page;
   return (
     <nav style={{ position: 'relative', display: 'flex', justifyContent: 'flex-end', alignItems: 'center', padding: '20px 28px', borderBottom: `1px solid rgba(255,255,255,.1)`, background: T.color.ink }}>
@@ -196,7 +196,7 @@ function Footer() {
           <div style={{ fontFamily: T.font.quote, fontStyle: 'italic', fontSize: 18, marginTop: 28, maxWidth: 380, lineHeight: 1.5, opacity: .85 }}>Writer of the unglamorous middle. Faith, work, and the long way home.</div>
         </div>
         {[
-          ['Read',[['Books','books.html'],['Devotional','daily.html'],['Musings','essays.html']]],
+          ['Read',[['Books','books.html'],['Devotional','daily.html'],['Musings','musings.html']]],
           ['About',[['Story','about.html'],['Press / Media','about.html'],['Contact','contact.html']]],
           ['Follow',[['Newsletter','newsletter.html'],['Instagram','https://www.instagram.com/ianormore'],['LinkedIn','https://www.linkedin.com/in/ianjamesormo/'],['Facebook','https://www.facebook.com/ian.ormo']]],
         ].map(([title, links]) => (
@@ -424,7 +424,7 @@ ReactDOM.createRoot(document.getElementById('root')).render(<>
 </>);
 </script>
 <script>(function(){var obs=new IntersectionObserver(function(e){e.forEach(function(x){if(x.isIntersecting){x.target.classList.add("in-view");obs.unobserve(x.target);}});},{threshold:0.05,rootMargin:"0px 0px -40px 0px"});var attached=new WeakSet();function attach(){document.querySelectorAll("section").forEach(function(s){if(!attached.has(s)){attached.add(s);obs.observe(s);}});}var tries=0;function poll(){attach();tries++;if(tries<60)setTimeout(poll,100);}if(document.readyState==="complete"){poll();}else{window.addEventListener("load",poll);}})();</script>
-<script src="/js/newsletter-popup.js" defer></script>
+<script src="/js/newsletter-popup.js?v=2" defer></script>
 <script src="/js/cursor.js?v=5" defer></script>
 <script src="/js/nav-prefetch.js?v=2" defer></script>
 <script src="/js/preorder-popup.js?v=1" defer></script>
