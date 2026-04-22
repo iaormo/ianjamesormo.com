@@ -169,9 +169,6 @@ function Nav({ active, onDark = false }) {
   const c = onDark ? T.color.page : T.color.ink;
   return (
     <nav style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', padding: '28px 56px', borderBottom: `1px solid ${onDark ? 'rgba(255,255,255,.1)' : T.color.mist}` }}>
-      <a href="index.html" style={{ textDecoration: 'none', color: c, display: 'inline-flex', flexDirection: 'column', lineHeight: 1, gap: 6, marginRight: 48, whiteSpace: 'nowrap' }}>
-        <span style={{ fontFamily: T.font.head, fontSize: 22, fontWeight: 900, letterSpacing: '-0.03em', textTransform: 'uppercase', lineHeight: .85, display: 'block' }}>IAN</span><span style={{ fontFamily: T.font.head, fontSize: 22, fontWeight: 900, letterSpacing: '-0.03em', textTransform: 'uppercase', lineHeight: .85, display: 'block', color: T.color.copper }}>JAMES</span>
-      </a>
       <div style={{ display: 'flex', gap: 36, alignItems: 'center' }}>
         {items.map(([k, label, href]) => (
           <a key={k} href={href} style={{

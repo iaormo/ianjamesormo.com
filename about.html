@@ -142,9 +142,7 @@ function Nav({ active }) {
   const items = [['home','Home','index.html'],['about','About','about.html'],['books','Books','books.html'],['daily','Devotional','daily.html'],['essays','Musings','essays.html'],['contact','Contact','contact.html']];
   return (
     <nav style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', padding: '28px 56px', borderBottom: `1px solid ${T.color.mist}` }}>
-      <a href="index.html" style={{ textDecoration: 'none', color: T.color.ink, display: 'inline-flex', flexDirection: 'column', lineHeight: 1, gap: 6, marginRight: 48, whiteSpace: 'nowrap' }}>
-        <span style={{ fontFamily: T.font.head, fontSize: 22, fontWeight: 900, letterSpacing: '-0.03em', textTransform: 'uppercase', lineHeight: .85, display: 'block' }}>IAN</span><span style={{ fontFamily: T.font.head, fontSize: 22, fontWeight: 900, letterSpacing: '-0.03em', textTransform: 'uppercase', lineHeight: .85, display: 'block', color: T.color.copper }}>JAMES</span>
-      </a>
+      
       <div style={{ display: 'flex', gap: 36, alignItems: 'center', flexWrap: 'wrap' }}>
         {items.map(([k, label, href]) => (
           <a key={k} href={href} style={{ textDecoration: 'none', color: T.color.ink, fontFamily: T.font.body, fontSize: 12, fontWeight: 600, letterSpacing: '.14em', textTransform: 'uppercase', opacity: active === k ? 1 : .55, borderBottom: active === k ? `2px solid ${T.color.copper}` : '2px solid transparent', paddingBottom: 4 }}>{label}</a>
