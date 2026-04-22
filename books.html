@@ -31,8 +31,8 @@
   * { box-sizing: border-box; }
   a { color: inherit; }
   @media (max-width: 900px) {
-    .book-row { grid-template-columns: 1fr !important; gap: 72px !important; }
-    .book-row > div:nth-child(2) { padding-top: 48px !important; }
+    .book-row { grid-template-columns: 1fr !important; gap: 72px !important; padding: 48px 0 !important; }
+    .book-row .book-text { padding-top: 56px !important; }
     .section-pad { padding-left: 24px !important; padding-right: 24px !important; }
     .hero-h { font-size: clamp(64px, 14vw, 144px) !important; }
   }
@@ -278,7 +278,7 @@ function BookRow({ cover, cat, title, sub, desc, href, cta, flipped = false }) {
     </div>
   );
   const textEl = (
-    <div style={{ display: 'flex', flexDirection: 'column', justifyContent: 'center', padding: '48px 0' }}>
+    <div className="book-text" style={{ display: 'flex', flexDirection: 'column', justifyContent: 'center', padding: '48px 0' }}>
       <div style={{ fontFamily: T.font.mono, fontSize: 12, color: T.color.copper, marginBottom: 16, letterSpacing: '.1em' }}>[ {cat} ]</div>
       <div style={{ fontFamily: T.font.head, fontSize: 56, fontWeight: 900, lineHeight: .9, letterSpacing: '-0.04em', textTransform: 'uppercase', marginBottom: 24 }}>{title}</div>
       <div style={{ fontFamily: T.font.quote, fontStyle: 'italic', fontSize: 22, lineHeight: 1.45, color: T.color.steel, marginBottom: 20, maxWidth: 560 }}>{sub}</div>
