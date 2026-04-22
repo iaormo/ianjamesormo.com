@@ -276,7 +276,7 @@ const travels = [
     region:  'Malaybalay, Bukidnon',
     date:    'November 2022',
     title:   'Misty Mountain, after the rain.',
-    caption: 'The storm was a detail. The ridge was the point.',
+    caption: 'The storm was a detail. The ridge was the point. The stakes held, and the morning paid us back.',
     image:   '/images/travels/bukidnon.jpg',
     aspect:  '5 / 3',
     imageAlt:'Tent pitched on a ridge at Misty Mountain Haven in Malaybalay, Bukidnon, family at a camp table and the Ertiga parked nearby, dramatic sunset sky over rolling mountain ridges.',
@@ -298,7 +298,7 @@ const travels = [
     region:  'Camarines Sur',
     date:    'Summer 2023',
     title:   'Caramoan, not a set.',
-    caption: 'We came because of a TV show. The real thing had more to say.',
+    caption: 'We came because of a TV show. The real thing had more to say. The ocean was not auditioning.',
     image:   '/images/travels/caramoan.jpg',
     imageAlt:'Our family of five on a small beach at Caramoan, in front of dramatic grey limestone cliffs and turquoise water.',
     body: [
@@ -318,7 +318,7 @@ const travels = [
     region:  'Ligao, Albay',
     date:    'Summer 2023',
     title:   'Mayon, from Hobbit Hill.',
-    caption: 'Two huts, one fire, and a volcano that held still while we did.',
+    caption: 'Two huts, one fire, and a volcano that held still while we did. The stars did the rest before we closed the doors.',
     image:   '/images/travels/mayon-hobbit-hill.jpg',
     imageAlt:'Mayon Volcano at sunrise and the family watching at dusk, from Hobbit Hill in Ligao, Albay.',
     body: [
@@ -362,8 +362,8 @@ function Card({ e, active, onClick }) {
         <img src={e.image} alt={e.imageAlt} loading="lazy" />
       </div>
       <div className="travel-card-meta">
-        <div className="travel-card-place">{e.place}</div>
-        <div className="travel-card-date">{e.region} · {e.date}</div>
+        <div className="travel-card-place">{e.place} · {e.date}</div>
+        <div className="travel-card-date">{e.region}</div>
         <p className="travel-card-caption">{e.caption}</p>
       </div>
     </button>
