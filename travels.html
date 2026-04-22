@@ -39,10 +39,9 @@
   body { font-family: "Inter", -apple-system, sans-serif; }
   * { box-sizing: border-box; }
   a { color: inherit; }
-  .nav-mobile-btn { display: none; }
   @media (max-width: 900px) {
-    .nav-full { display: none !important; }
-    .nav-mobile-btn { display: block !important; }
+    .nav-desktop { display: none !important; }
+    .nav-hamburger { display: block !important; }
     .travels-hero-h { font-size: clamp(36px, 9.5vw, 88px) !important; }
     .section-pad { padding-left: 32px !important; padding-right: 32px !important; }
     .footer-grid { grid-template-columns: 1fr 1fr !important; }
@@ -223,10 +222,9 @@ function Wordmark({ size = 0.7, onDark = false }) {
   const scale = typeof size === 'number' ? size : 0.7;
   const nameColor = onDark ? T.color.page : T.color.ink;
   return (
-    <div style={{ display: 'inline-flex', flexDirection: 'column', lineHeight: 1, gap: 10 * scale }}>
-      <div style={{ fontFamily: T.font.head, fontSize: 64 * scale, fontWeight: 900, letterSpacing: '-0.04em', textTransform: 'uppercase', color: nameColor }}>IAN</div>
-      <div style={{ fontFamily: T.font.head, fontSize: 64 * scale, fontWeight: 900, letterSpacing: '-0.04em', textTransform: 'uppercase', color: T.color.copper }}>JAMES</div>
-      <div style={{ fontFamily: T.font.head, fontSize: 64 * scale, fontWeight: 900, letterSpacing: '-0.04em', textTransform: 'uppercase', color: nameColor }}>ORMO</div>
+    <div style={{ display: 'inline-flex', flexDirection: 'column', lineHeight: .85, gap: 6 * scale }}>
+      <div style={{ fontFamily: T.font.head, fontWeight: 900, fontSize: 96 * scale, letterSpacing: '-0.05em', textTransform: 'uppercase', color: nameColor }}>IAN</div>
+      <div style={{ fontFamily: T.font.head, fontWeight: 900, fontSize: 96 * scale, letterSpacing: '-0.05em', textTransform: 'uppercase', color: T.color.copper }}>JAMES</div>
     </div>
   );
 }

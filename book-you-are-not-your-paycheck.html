@@ -343,29 +343,6 @@ function Excerpt() {
   );
 }
 
-function Praise() {
-  const q = [
-    ['The first book I have read on leaving a salary that treats the reader like a competent adult with a budget, not a dreamer with a Pinterest board.', 'Noah K.'],
-    ['Ian refuses to romanticize the jump. That is exactly why this book is useful.', 'Jenna M.'],
-    ['A quiet, practical, almost stubbornly honest manual for the long middle of self-employment.', 'Elena P.'],
-  ];
-  return (
-    <section className="section-pad" style={{ padding: '120px 56px', background: T.color.ink, color: T.color.page }}>
-      <div style={{ maxWidth: 1200, margin: '0 auto' }}>
-        <Eyebrow color={T.color.copper}>Early praise</Eyebrow>
-        <div className="contents-grid" style={{ display: 'grid', gridTemplateColumns: 'repeat(3, 1fr)', gap: 40, marginTop: 40 }}>
-          {q.map(([a, b]) => (
-            <div key={b}>
-              <div style={{ fontFamily: T.font.quote, fontStyle: 'italic', fontSize: 22, lineHeight: 1.4 }}>&ldquo;{a}&rdquo;</div>
-              <div style={{ fontFamily: T.font.body, fontSize: 12, fontWeight: 700, letterSpacing: '.15em', textTransform: 'uppercase', color: T.color.copper, marginTop: 20 }}>{b}</div>
-            </div>
-          ))}
-        </div>
-      </div>
-    </section>
-  );
-}
-
 ReactDOM.createRoot(document.getElementById('root')).render(<>
   <Nav active="books" />
   <main>
@@ -373,7 +350,6 @@ ReactDOM.createRoot(document.getElementById('root')).render(<>
     <AboutBook />
     <Contents />
     <Excerpt />
-    <Praise />
   </main>
   <Footer />
 </>);
