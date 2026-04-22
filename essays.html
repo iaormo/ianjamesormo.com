@@ -126,11 +126,16 @@
   .nav-desktop { display: none !important; }
   .nav-hamburger { display: block !important; }
 }
-/* MUSINGS HERO — desktop: two lines, mobile: four stacked lines */
+/* MUSINGS HERO — desktop: two lines, mobile: four stacked lines with the
+   short halves scaled up so each column is visually aligned to its partner. */
 @media (max-width: 700px) {
   .essays-hero-h { font-size: clamp(34px, 11.8vw, 64px) !important; letter-spacing: -0.045em !important; line-height: .98 !important; }
   .essays-hero-h > span { white-space: nowrap !important; display: block !important; margin-bottom: 6px !important; }
   .essays-hero-h .hh-a, .essays-hero-h .hh-b { display: block !important; white-space: nowrap !important; }
+  /* A POST. sized to visually match LONGER THAN */
+  .essays-hero-h > span:nth-child(1) .hh-b { font-size: 1.75em !important; line-height: .9 !important; letter-spacing: -0.05em !important; }
+  /* A BOOK. sized to visually match SHORTER THAN */
+  .essays-hero-h > span:nth-child(2) .hh-b { font-size: 1.85em !important; line-height: .9 !important; letter-spacing: -0.05em !important; }
 }
 /* FILTER BAR — compact chips on mobile */
 @media (max-width: 768px) {
