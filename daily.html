@@ -30,7 +30,8 @@
 
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Archivo:wght@400;500;600;700;800;900&family=Inter:wght@400;500;600;700&family=Fraunces:ital,wght@0,400;0,500;0,600;1,400;1,500&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Archivo:wght@400;500;600;700;800;900&family=Inter:wght@400;500;600;700&family=Fraunces:ital,wght@0,400;0,500;0,600;1,400;1,500&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" media="print" onload="this.media='all'">
+<noscript><link href="https://fonts.googleapis.com/css2?family=Archivo:wght@400;500;600;700;800;900&family=Inter:wght@400;500;600;700&family=Fraunces:ital,wght@0,400;0,500;0,600;1,400;1,500&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet"></noscript>
 <style>
   html, body { margin: 0; padding: 0; background: #FAF7F2; color: #111; overflow-x: hidden; max-width: 100%; }
   body { font-family: "Inter", -apple-system, sans-serif; }
@@ -84,7 +85,7 @@
   [style*="font-size: 26px"]{font-size:17px !important;}
   [style*="font-size: 24px"]{font-size:17px !important;}
   [style*="font-size: 22px"]{font-size:16px !important;}
-  .hero-h1, .hero-h, .essays-hero-h, .newsletter-h { font-size: clamp(32px, 10vw, 52px) !important; line-height: 1.05 !important; letter-spacing: -0.03em !important; }
+  .hero-h1, .hero-h, .essays-hero-h, .newsletter-h { font-size: clamp(44px, 13.5vw, 84px) !important; line-height: 1 !important; letter-spacing: -0.04em !important; font-weight: 900 !important; }
   .hero-h1 span, .hero-h span, .essays-hero-h span, .newsletter-h span, h1 span { white-space: normal !important; }
   [style*="white-space: nowrap"]:not(nav *):not(button):not(a[href*=".html"]) { white-space: normal !important; }
   /* Nav on mobile - wrap and reduce */
@@ -268,7 +269,17 @@ function ShareBar({ title, num, pagePath, onDark }) {
 
 const devotionals = [
   {
-    day: '047', date: 'April 21, 2026', title: 'The quiet rebuild', verse: 'Proverbs 4:23', today: true,
+    day: '049', date: 'April 23, 2026', title: 'The small yes', verse: 'Luke 16:10', today: false,
+    quote: 'You do not have a big-faith problem. You have a small-yes problem.',
+    body: `Whoever is faithful in very little is also faithful in much.\n\nI wanted the big yes. The launch, the call, the moment I would know for sure. I kept waiting for a door to open wide enough that I would not have to guess whether to walk through it. That door did not come. What came was the small yes, over and over, and the quiet question of whether I was going to take it seriously.\n\nThe small yes is the text you finally send. The apology you stop rehearsing and actually say. The fifteen minutes you give to the prayer you keep postponing. The one honest sentence to your wife instead of the managed version. These do not feel like anything. They feel like nothing. They are not nothing.\n\nFaithfulness is not built in the moments you expected it to be tested. It is built in the ones you almost did not notice were a test at all.\n\nToday: find the small yes. Say it. Count it.`,
+  },
+  {
+    day: '048', date: 'April 22, 2026', title: 'The ordinary hours', verse: 'Colossians 3:23', today: true,
+    quote: 'The holy is not elsewhere. It is the hour you were going to call boring.',
+    body: `Whatever you do, do it with all your heart, as working for the Lord, not for men.\n\nI used to read that verse as a motivation line. Work harder. Show up better. I think I was reading the wrong word. The word is whatever. The verse does not promise you an impressive assignment. It promises that the unimpressive one counts.\n\nMost of your life will be ordinary hours. The meeting that was not remarkable. The dinner that was the same dinner. The prayer that felt like nothing. These are not the waiting room for the real life. They are the life.\n\nToday: do the next thing with your whole chest. Not because it matters to anyone watching. Because Someone is.`,
+  },
+  {
+    day: '047', date: 'April 21, 2026', title: 'The quiet rebuild', verse: 'Proverbs 4:23',
     quote: 'Grace does not wait for your readiness. It arrives before you have cleaned up.',
     body: `This is the quiet theology of the rebuild. You do not earn your way back into the room. You are carried in, and then you are asked to stay.\n\nToday, do the small, unglamorous thing. Count it. Go again tomorrow. The foundation is being laid whether you can see it or not. That is not a metaphor. That is the mechanism.`,
   },
@@ -528,6 +539,6 @@ ReactDOM.createRoot(document.getElementById('root')).render(<DailyApp />);
 <script src="/js/newsletter-popup.js" defer></script>
 <script src="/js/verse-popup.js" defer></script>
 <script src="/js/cursor.js" defer></script>
-<script src="/js/animations.js" defer></script>
+<script src="/js/animations.js?v=12" defer></script>
 </body>
 </html>

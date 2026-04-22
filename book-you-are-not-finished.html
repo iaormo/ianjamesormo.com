@@ -30,7 +30,8 @@
 
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Archivo:wght@400;500;600;700;800;900&family=Inter:wght@400;500;600;700&family=Fraunces:ital,wght@0,400;0,500;0,600;1,400;1,500&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Archivo:wght@400;500;600;700;800;900&family=Inter:wght@400;500;600;700&family=Fraunces:ital,wght@0,400;0,500;0,600;1,400;1,500&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" media="print" onload="this.media='all'">
+<noscript><link href="https://fonts.googleapis.com/css2?family=Archivo:wght@400;500;600;700;800;900&family=Inter:wght@400;500;600;700&family=Fraunces:ital,wght@0,400;0,500;0,600;1,400;1,500&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet"></noscript>
 <style>
   html, body { margin: 0; padding: 0; background: #FAF7F2; color: #111; }
   body { font-family: "Inter", -apple-system, sans-serif; }
@@ -78,7 +79,7 @@
   [style*="font-size: 26px"]{font-size:17px !important;}
   [style*="font-size: 24px"]{font-size:17px !important;}
   [style*="font-size: 22px"]{font-size:16px !important;}
-  .hero-h1, .hero-h, .essays-hero-h, .newsletter-h { font-size: clamp(32px, 10vw, 52px) !important; line-height: 1.05 !important; letter-spacing: -0.03em !important; }
+  .hero-h1, .hero-h, .essays-hero-h, .newsletter-h { font-size: clamp(44px, 13.5vw, 84px) !important; line-height: 1 !important; letter-spacing: -0.04em !important; font-weight: 900 !important; }
   .hero-h1 span, .hero-h span, .essays-hero-h span, .newsletter-h span, h1 span { white-space: normal !important; }
   [style*="white-space: nowrap"]:not(nav *):not(button):not(a[href*=".html"]) { white-space: normal !important; }
   /* Nav on mobile - wrap and reduce */
@@ -122,9 +123,9 @@
   .nav-hamburger { display: block !important; }
 }
 </style>
-<script src="https://unpkg.com/react@18.3.1/umd/react.production.min.js" crossorigin="anonymous"></script>
-<script src="https://unpkg.com/react-dom@18.3.1/umd/react-dom.production.min.js" crossorigin="anonymous"></script>
-<script src="https://unpkg.com/@babel/standalone@7.29.0/babel.min.js" crossorigin="anonymous"></script>
+<script src="https://unpkg.com/react@18.3.1/umd/react.production.min.js" crossorigin="anonymous" defer></script>
+<script src="https://unpkg.com/react-dom@18.3.1/umd/react-dom.production.min.js" crossorigin="anonymous" defer></script>
+<script src="https://unpkg.com/@babel/standalone@7.29.0/babel.min.js" crossorigin="anonymous" defer></script>
 </head>
 <body>
 <div id="root"></div>
@@ -424,6 +425,6 @@ ReactDOM.createRoot(document.getElementById('root')).render(<>
 <script>(function(){var obs=new IntersectionObserver(function(e){e.forEach(function(x){if(x.isIntersecting){x.target.classList.add("in-view");obs.unobserve(x.target);}});},{threshold:0.05,rootMargin:"0px 0px -40px 0px"});var attached=new WeakSet();function attach(){document.querySelectorAll("section").forEach(function(s){if(!attached.has(s)){attached.add(s);obs.observe(s);}});}var tries=0;function poll(){attach();tries++;if(tries<60)setTimeout(poll,100);}if(document.readyState==="complete"){poll();}else{window.addEventListener("load",poll);}})();</script>
 <script src="/js/newsletter-popup.js" defer></script>
 <script src="/js/cursor.js" defer></script>
-<script src="/js/animations.js" defer></script>
+<script src="/js/animations.js?v=12" defer></script>
 </body>
 </html>

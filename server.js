@@ -88,6 +88,8 @@ const TAG_MAP = {
   devotional: ['devotional'],
   newsletter: ['newsletter'],
   both:       ['devotional', 'newsletter'],
+  preorder_finished: ['preorder', 'preorder:you-are-not-finished'],
+  preorder_paycheck: ['preorder', 'preorder:you-are-not-your-paycheck'],
 };
 
 function sendJson(res, status, obj) {
