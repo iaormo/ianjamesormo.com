@@ -236,7 +236,7 @@ function Hero() {
           ) : step === 'cross' ? (
             <div>
               <div style={{ fontFamily: T.font.body, fontSize: 11, fontWeight: 700, letterSpacing: '.3em', textTransform: 'uppercase', color: T.color.copper, marginBottom: 14 }}>One more?</div>
-              <div style={{ fontFamily: T.font.quote, fontStyle: 'italic', fontSize: 20, lineHeight: 1.45, color: T.color.page, marginBottom: 24 }}>Would you like the daily devotional too? Three minutes every morning.</div>
+              <div style={{ fontFamily: T.font.quote, fontStyle: 'italic', fontSize: 20, lineHeight: 1.45, color: T.color.page, marginBottom: 24 }}>Want the daily devotional too? Three honest minutes every morning &mdash; a passage, a question, and something to carry into the day.</div>
               <button onClick={addBoth} style={{ width: '100%', background: T.color.copper, color: T.color.page, border: 'none', padding: '14px 20px', marginBottom: 10, fontFamily: T.font.body, fontSize: 12, fontWeight: 700, letterSpacing: '.2em', textTransform: 'uppercase', cursor: 'pointer' }}>Yes, send me that too</button>
               <button onClick={() => setStep('thanks')} style={{ width: '100%', background: 'transparent', color: T.color.page, border: `1px solid rgba(255,255,255,.35)`, padding: '12px 20px', fontFamily: T.font.body, fontSize: 12, fontWeight: 700, letterSpacing: '.2em', textTransform: 'uppercase', cursor: 'pointer' }}>No thanks</button>
             </div>
@@ -262,7 +262,7 @@ function Hero() {
 
 function What() {
   const features = [
-    ['One letter', 'Not a newsletter roundup. Not three things I liked this week. One piece, written for you.'],
+    ['One or two letters', 'Not a newsletter roundup. Not three things I liked this week. Real letters, written for you.'],
     ['No subject-line tricks', 'No urgency theater. No curiosity gaps. The subject line is the subject.'],
     ['From a real person', 'Written by me. No ghostwriter. No team. Just what I wrote that week.'],
   ];
@@ -314,6 +314,6 @@ ReactDOM.createRoot(document.getElementById('root')).render(
 <script>(function(){var obs=new IntersectionObserver(function(e){e.forEach(function(x){if(x.isIntersecting){x.target.classList.add("in-view");obs.unobserve(x.target);}});},{threshold:0.05,rootMargin:"0px 0px -40px 0px"});var attached=new WeakSet();function attach(){document.querySelectorAll("section").forEach(function(s){if(!attached.has(s)){attached.add(s);obs.observe(s);}});}var tries=0;function poll(){attach();tries++;if(tries<60)setTimeout(poll,100);}if(document.readyState==="complete"){poll();}else{window.addEventListener("load",poll);}})();</script>
 <script src="/js/cursor.js?v=6" defer></script>
 <script src="/js/nav-prefetch.js?v=3" defer></script>
-<script src="/js/animations.js?v=18" defer></script>
+<script src="/js/animations.js?v=19" defer></script>
 </body>
 </html>
