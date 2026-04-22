@@ -14,6 +14,23 @@
   // ─── 1. TEXT REVEAL ON HERO HEADINGS ─────────────────────────────────────
   function injectStyles() {
     var css = ''+
+      /* ── CURSOR-FOLLOWING SPOTLIGHT on cards & sections ──────────────── */
+      '.ij-spotlight { position: relative; overflow: hidden; }'+
+      '.ij-spotlight::before { content:""; position:absolute; inset:0; pointer-events:none;'+
+        'background: radial-gradient(420px circle at var(--ij-mx,50%) var(--ij-my,50%),'+
+          'rgba(184,71,28,.22) 0%, rgba(184,71,28,.08) 30%, transparent 55%);'+
+        'opacity: 0; transition: opacity .45s ease; z-index: 1; mix-blend-mode: screen; }'+
+      '.ij-spotlight:hover::before { opacity: 1; }'+
+      '.ij-spotlight > * { position: relative; z-index: 2; }'+
+      /* Subtle border highlight that tracks the cursor — a thin copper ring */
+      '.ij-spotlight::after { content:""; position:absolute; inset:-1px; pointer-events:none;'+
+        'border-radius: inherit;'+
+        'background: radial-gradient(200px circle at var(--ij-mx,50%) var(--ij-my,50%),'+
+          'rgba(184,71,28,.45), transparent 60%);'+
+        '-webkit-mask: linear-gradient(#000,#000) content-box, linear-gradient(#000,#000);'+
+        '-webkit-mask-composite: xor; mask-composite: exclude;'+
+        'padding: 1px; opacity: 0; transition: opacity .4s ease; z-index: 3; }'+
+      '.ij-spotlight:hover::after { opacity: 1; }'+
       /* ── SHARE ICON HOVER ANIMATIONS ─────────────────────────────────── */
       '.ij-share-btn { position: relative; overflow: hidden; isolation: isolate;'+
         'transition: color .3s cubic-bezier(.22,1,.36,1), border-color .3s ease, transform .35s cubic-bezier(.22,1,.36,1); }'+
@@ -25,26 +42,43 @@
       '.ij-share-btn:hover svg { transform: scale(1.12) rotate(-4deg); }'+
       '.ij-share-btn:active { transform: translateY(0); }'+
       /* ── FILM GRAIN + CINEMATIC BURN on dark sections ─────────────────── */
-      /* Inline SVG turbulence noise, encoded as data URI for perf */
-      ".ij-grain-host { position: relative; }"+
-      ".ij-grain-host::before { content:''; position:absolute; inset:0; pointer-events:none; z-index:1; opacity:.07;"+
-        "background-image: url(\"data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='260' height='260'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/><feColorMatrix type='matrix' values='0 0 0 0 1 0 0 0 0 1 0 0 0 0 1 0 0 0 .6 0'/></filter><rect width='100%25' height='100%25' filter='url(%23n)'/></svg>\");"+
-        "mix-blend-mode: overlay; animation: ij-grain 1.2s steps(4) infinite; }"+
-      /* Cinematic burn: warm vignette + edge glow */
+      ".ij-grain-host { position: relative; isolation: isolate; }"+
+      /* Animated film grain */
+      ".ij-grain-host::before { content:''; position:absolute; inset:-10%; pointer-events:none; z-index:1; opacity:.10;"+
+        "background-image: url(\"data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='300' height='300'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='3' stitchTiles='stitch'/><feColorMatrix type='matrix' values='0 0 0 0 1 0 0 0 0 1 0 0 0 0 1 0 0 0 .65 0'/></filter><rect width='100%25' height='100%25' filter='url(%23n)'/></svg>\");"+
+        "mix-blend-mode: overlay; animation: ij-grain 1.05s steps(5) infinite, ij-flicker 6s ease-in-out infinite; }"+
+      /* Cinematic burn: warm vignette + edge glow + sweeping burn flare */
       ".ij-grain-host::after { content:''; position:absolute; inset:0; pointer-events:none; z-index:1;"+
-        "background: radial-gradient(ellipse at center, transparent 38%, rgba(10,6,4,.35) 78%, rgba(5,3,2,.7) 100%),"+
-                    "radial-gradient(ellipse at 80% 10%, rgba(184,71,28,.18) 0%, transparent 55%),"+
-                    "radial-gradient(ellipse at 20% 90%, rgba(184,71,28,.10) 0%, transparent 50%);"+
-        "mix-blend-mode: screen; }"+
+        "background: radial-gradient(ellipse at center, transparent 32%, rgba(10,6,4,.45) 75%, rgba(3,2,1,.82) 100%),"+
+                    "radial-gradient(900px circle at 85% 8%, rgba(184,71,28,.28) 0%, transparent 55%),"+
+                    "radial-gradient(700px circle at 15% 95%, rgba(184,71,28,.15) 0%, transparent 50%),"+
+                    "linear-gradient(115deg, transparent 45%, rgba(255,180,120,.06) 52%, transparent 58%);"+
+        "mix-blend-mode: screen; animation: ij-burn 14s ease-in-out infinite; }"+
       ".ij-grain-host > * { position: relative; z-index: 2; }"+
       "@keyframes ij-grain {"+
-        "0% { transform: translate(0,0); }"+
-        "25% { transform: translate(-3%,1%); }"+
-        "50% { transform: translate(2%,-2%); }"+
-        "75% { transform: translate(-1%,3%); }"+
+        "0%   { transform: translate(0,0); }"+
+        "20%  { transform: translate(-4%,2%); }"+
+        "40%  { transform: translate(3%,-3%); }"+
+        "60%  { transform: translate(-2%,4%); }"+
+        "80%  { transform: translate(4%,-1%); }"+
         "100% { transform: translate(0,0); }"+
       "}"+
-      "@media (prefers-reduced-motion: reduce) { .ij-grain-host::before { animation: none; } }"+
+      "@keyframes ij-flicker {"+
+        "0%,100% { opacity: .10; }"+
+        "43% { opacity: .13; }"+
+        "47% { opacity: .08; }"+
+        "50% { opacity: .15; }"+
+        "53% { opacity: .09; }"+
+        "72% { opacity: .12; }"+
+        "75% { opacity: .07; }"+
+      "}"+
+      "@keyframes ij-burn {"+
+        "0%,100% { filter: brightness(1) hue-rotate(0deg); }"+
+        "45%     { filter: brightness(1.08) hue-rotate(-3deg); }"+
+      "}"+
+      "@media (prefers-reduced-motion: reduce) {"+
+        ".ij-grain-host::before, .ij-grain-host::after { animation: none; }"+
+      "}"+
       /* ── EXISTING ANIMATIONS ─────────────────────────────────────────── */
       '.ij-reveal-word { display: inline-block; overflow: hidden; vertical-align: bottom; }'+
       '.ij-reveal-word > span { display: inline-block; transform: translateY(110%); opacity: 0;'+
@@ -191,7 +225,27 @@
     });
   }
 
-  // ─── 5. CINEMATIC FILM GRAIN ON DARK SECTIONS ─────────────────────────────
+  // ─── 5. CURSOR-TRACKING SPOTLIGHT on cards / covers / interactive panels ──
+  function setupSpotlight() {
+    if (!FINE || REDUCED) return;
+    // Candidates: book covers, featured card, filter buttons, share buttons, daily card, CTA buttons
+    var sel = '.book-cover, .featured-card, .daily-meta-left, .essays-list-row, [data-spotlight]';
+    var nodes = document.querySelectorAll(sel);
+    nodes.forEach(function(n){
+      if (n.__ijSpot) return;
+      n.__ijSpot = true;
+      n.classList.add('ij-spotlight');
+      n.addEventListener('mousemove', function(e){
+        var r = n.getBoundingClientRect();
+        var x = ((e.clientX - r.left) / r.width) * 100;
+        var y = ((e.clientY - r.top) / r.height) * 100;
+        n.style.setProperty('--ij-mx', x + '%');
+        n.style.setProperty('--ij-my', y + '%');
+      });
+    });
+  }
+
+  // ─── 6. CINEMATIC FILM GRAIN ON DARK SECTIONS ─────────────────────────────
   function setupGrain() {
     if (REDUCED) return;
     // Find sections/footers whose computed background is dark (luminance < 0.22)
@@ -220,6 +274,7 @@
       setupMagnetic();
       setupTilt();
       setupUnderlines();
+      setupSpotlight();
       setupGrain();
       if (++tries < 20) setTimeout(rerun, 500);
     })();
