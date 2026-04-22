@@ -52,9 +52,9 @@
 <div id="ij-pop-card">\
   <button id="ij-pop-close" aria-label="Close">&times;</button>\
   <div id="ij-pop-body">\
-    <div class="ij-eyebrow">One letter · Sunday morning</div>\
+    <div class="ij-eyebrow">One or two letters · Every week</div>\
     <h2 class="ij-h">You&rsquo;ve been here a while.</h2>\
-    <p class="ij-sub">Most of what you read today will not stay with you. Stay with me. Every Sunday I write one short, honest thing &mdash; the piece I actually meant. Nothing else lands in your inbox. Nothing else earns it.</p>\
+    <p class="ij-sub">Most of what you read today will not stay with you. Stay with this. One or two short, honest letters a week &mdash; the piece you actually needed to hear, not the one that sounds good in a subject line. Nothing else lands in your inbox. Nothing else earns it.</p>\
     <form id="ij-pop-form" novalidate>\
       <div class="ij-row">\
         <input type="text" name="first" placeholder="First name" required autocomplete="given-name" />\
@@ -121,7 +121,7 @@
     var body = overlay.querySelector('#ij-pop-body');
     body.innerHTML = '\
 <div class="ij-thanks-eyebrow">You&rsquo;re in.</div>\
-<h2 class="ij-thanks-h">See you Sunday. I&rsquo;ll write to you like I mean it, because I will.</h2>';
+<h2 class="ij-thanks-h">See you soon. The next letter will be written like it means something, because it does.</h2>';
     setTimeout(close, 4200);
   }
 

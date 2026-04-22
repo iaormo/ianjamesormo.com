@@ -309,7 +309,7 @@ function Timeline() {
     ['A decade in', 'Built teams, operations, floors, clients. Also built something else, quietly, in the wrong direction.'],
     ['The parking lot', 'Lost the job. Sat in a white Ford Fiesta with a Marlboro and a corporate envelope. Came home and started doing the next small unglamorous thing.'],
     ['Nearly a decade ago', 'Left the building with a manila envelope and no clean plan. Started freelancing in tech and automations. Founded ScalePlus.'],
-    ['Now', 'Writing from Dauin, Negros Oriental. Homeschooling three children. Running ScalePlus. Getting the Sunday letter out every week.'],
+    ['Now', 'Writing from Dauin, Negros Oriental. Homeschooling three children. Running ScalePlus. Sending one or two letters out every week.'],
   ];
   return (
     <section className="section-pad" style={{ padding: '120px 56px', background: T.color.page }}>
@@ -347,15 +347,15 @@ function NewsletterCTA() {
   return (
     <section className="section-pad" style={{ padding: '120px 56px', background: T.color.copper, color: T.color.page }}>
       <div style={{ maxWidth: 840, margin: '0 auto', textAlign: 'center' }}>
-        <Eyebrow color={T.color.ink}>The Sunday letter</Eyebrow>
+        <Eyebrow color={T.color.ink}>The weekly letter</Eyebrow>
         <div style={{ fontFamily: T.font.head, fontSize: 72, fontWeight: 900, lineHeight: .9, letterSpacing: '-0.04em', textTransform: 'uppercase', marginBottom: 32 }}>
-          Get one letter<br />every Sunday<br />morning.
+          Get one or two<br />letters every<br />week.
         </div>
         <div style={{ fontFamily: T.font.quote, fontSize: 20, fontStyle: 'italic', lineHeight: 1.55, maxWidth: 580, margin: '0 auto 40px' }}>
-          Some weeks it&rsquo;s a passage that hit me at 5am. Some weeks it&rsquo;s a question I&rsquo;ve been sitting with. Every week it&rsquo;s the thing I actually needed to hear.
+          Some weeks it&rsquo;s a passage that meets you where you already are. Some weeks it&rsquo;s a question you&rsquo;ve been avoiding. Every week it&rsquo;s the thing you actually needed to hear.
         </div>
         {step === 'thanks' ? (
-          <div style={{ fontFamily: T.font.quote, fontSize: 28, fontStyle: 'italic', color: T.color.ink }}>You&rsquo;re in. See you Sunday.</div>
+          <div style={{ fontFamily: T.font.quote, fontSize: 28, fontStyle: 'italic', color: T.color.ink }}>You&rsquo;re in. See you soon.</div>
         ) : step === 'cross' ? (
           <div style={{ maxWidth: 560, margin: '0 auto' }}>
             <div style={{ fontFamily: T.font.quote, fontStyle: 'italic', fontSize: 22, lineHeight: 1.45, color: T.color.ink, marginBottom: 24 }}>You&rsquo;re in. Would you like the daily devotional too? Three minutes every morning.</div>
@@ -395,7 +395,7 @@ ReactDOM.createRoot(document.getElementById('root')).render(<>
 </>);
 </script>
 <script>(function(){var obs=new IntersectionObserver(function(e){e.forEach(function(x){if(x.isIntersecting){x.target.classList.add("in-view");obs.unobserve(x.target);}});},{threshold:0.05,rootMargin:"0px 0px -40px 0px"});var attached=new WeakSet();function attach(){document.querySelectorAll("section").forEach(function(s){if(!attached.has(s)){attached.add(s);obs.observe(s);}});}var tries=0;function poll(){attach();tries++;if(tries<60)setTimeout(poll,100);}if(document.readyState==="complete"){poll();}else{window.addEventListener("load",poll);}})();</script>
-<script src="/js/newsletter-popup.js?v=3" defer></script>
+<script src="/js/newsletter-popup.js?v=4" defer></script>
 <script src="/js/verse-popup.js?v=3" defer></script>
 <script src="/js/cursor.js?v=6" defer></script>
 <script src="/js/nav-prefetch.js?v=3" defer></script>
