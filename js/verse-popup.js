@@ -8,6 +8,7 @@
     var css = ''+
       '.ij-verse-link{cursor:pointer;text-decoration:underline;text-decoration-style:dotted;text-decoration-thickness:1px;text-underline-offset:3px;transition:color .15s ease;}'+
       '.ij-verse-link:hover{color:'+BRAND.copper+';}'+
+      '.ij-verse-link .ij-rd{color:'+BRAND.copper+';margin-right:.35em;font-weight:700;letter-spacing:.08em;}'+
       '.ij-verse-modal{position:fixed;inset:0;z-index:9999;display:none;align-items:center;justify-content:center;background:rgba(10,10,10,.72);padding:24px;}'+
       '.ij-verse-modal.open{display:flex;animation:ij-fade .18s ease-out;}'+
       '@keyframes ij-fade{from{opacity:0}to{opacity:1}}'+
@@ -15,7 +16,6 @@
       '.ij-verse-close{position:absolute;top:14px;right:16px;background:none;border:none;font-size:22px;cursor:pointer;color:'+BRAND.steel+';padding:6px 10px;line-height:1;}'+
       '.ij-verse-close:hover{color:'+BRAND.ink+';}'+
       '.ij-verse-eyebrow{font-family:Archivo,Inter,-apple-system,sans-serif;font-weight:900;font-size:26px;letter-spacing:-0.02em;line-height:1.15;text-transform:uppercase;color:'+BRAND.ink+';margin:0 0 22px;}'+
-      '.ij-verse-eyebrow .rd{color:'+BRAND.copper+';margin-right:8px;}'+
       '.ij-verse-body{font-family:Fraunces,"Source Serif 4",Georgia,serif;font-size:19px;line-height:1.65;color:'+BRAND.ink+';white-space:pre-wrap;}'+
       '.ij-verse-body .v{font-family:"JetBrains Mono",ui-monospace,monospace;font-size:11px;color:'+BRAND.copper+';vertical-align:super;margin-right:2px;}'+
       '.ij-verse-copyright{border-top:1px solid '+BRAND.mist+';margin-top:28px;padding-top:16px;font-size:11px;color:'+BRAND.steel+';letter-spacing:.02em;}'+
@@ -76,7 +76,7 @@
 
   function show(ref) {
     open();
-    refEl.innerHTML = '<span class="rd">Read</span>' + escapeHtml(ref);
+    refEl.textContent = ref;
     bodyEl.innerHTML = '<div class="ij-verse-loading">Loading passage…</div>';
     copyEl.textContent = '';
     fetch('/api/verse?q=' + encodeURIComponent(ref))
@@ -86,7 +86,7 @@
           bodyEl.innerHTML = '<div class="ij-verse-error">Could not load passage. Please try again.</div>';
           return;
         }
-        refEl.innerHTML = '<span class="rd">Read</span>' + escapeHtml(data.reference || ref);
+        refEl.textContent = data.reference || ref;
         var fmt = formatPassage(data.passages.join('\n\n'), data.reference || ref);
         bodyEl.innerHTML = fmt.body;
         copyEl.textContent = fmt.copyright || 'Scripture quotations from the ESV® Bible. Copyright © by Crossway.';
@@ -117,9 +117,15 @@
       el.__ijVerseChecked = true;
       if (el.children.length !== 0) continue; // only leaves
       var txt = (el.textContent || '').trim();
-      if (txt && txt.length < 40 && VERSE_RE.test(txt)) {
+      // Allow the text to already include "Read" prefix so re-scans don't double up
+      var stripped = txt.replace(/^\s*Read\s+/i, '').trim();
+      if (stripped && stripped.length < 40 && VERSE_RE.test(stripped)) {
         el.classList.add('ij-verse-link');
-        if (!el.getAttribute('data-verse')) el.setAttribute('data-verse', txt);
+        if (!el.getAttribute('data-verse')) el.setAttribute('data-verse', stripped);
+        // Prepend a visible "Read " label if not already prefixed
+        if (!/^\s*Read\s+/i.test(txt)) {
+          el.innerHTML = '<span class="ij-rd">Read</span>' + ' ' + escapeHtml(stripped);
+        }
       }
     }
   }
