@@ -14,6 +14,10 @@ const CHROME_PATHS = [
   '/Applications/Brave Browser.app/Contents/MacOS/Brave Browser',
 ];
 
+// 1200x1200 square — universally compatible (FB, LinkedIn, X, WhatsApp,
+// iMessage, Instagram) and renders cleanly at any crop ratio.
+const SIZE = 1200;
+
 const HTML = `<!doctype html>
 <html>
 <head>
@@ -23,12 +27,12 @@ const HTML = `<!doctype html>
 <link href="https://fonts.googleapis.com/css2?family=Archivo:wght@900&family=Inter:wght@500;700&family=Fraunces:ital,wght@1,400&family=JetBrains+Mono:wght@500&display=swap" rel="stylesheet">
 <style>
   html, body { margin:0; padding:0; background:#0b0b0b; }
-  body { width:1200px; height:630px; overflow:hidden; font-family: Inter, sans-serif; color:#FAF7F2; }
+  body { width:${SIZE}px; height:${SIZE}px; overflow:hidden; font-family: Inter, sans-serif; color:#FAF7F2; }
   .card {
-    width:1200px; height:630px;
+    width:${SIZE}px; height:${SIZE}px;
     background: #111111;
     position: relative;
-    padding: 72px 80px;
+    padding: 96px 96px;
     box-sizing: border-box;
     display: flex;
     flex-direction: column;
@@ -36,49 +40,49 @@ const HTML = `<!doctype html>
   }
   /* Warm copper glow top-left */
   .card::before {
-    content:''; position:absolute; top:-120px; left:-120px;
-    width:700px; height:700px;
-    background: radial-gradient(circle at center, rgba(210,90,25,.40) 0%, rgba(184,71,28,.15) 35%, transparent 70%);
+    content:''; position:absolute; top:-200px; left:-200px;
+    width:900px; height:900px;
+    background: radial-gradient(circle at center, rgba(210,90,25,.42) 0%, rgba(184,71,28,.18) 35%, transparent 70%);
     pointer-events:none;
   }
-  /* Oversized IJ watermark bottom-right */
+  /* Secondary glow bottom-right */
   .card::after {
-    content:'IJ'; position:absolute; right: -60px; bottom: -200px;
-    font-family: Archivo, sans-serif; font-weight:900; font-size: 720px;
+    content:'IJ'; position:absolute; right: -80px; bottom: -260px;
+    font-family: Archivo, sans-serif; font-weight:900; font-size: 900px;
     color: #B8471C; opacity: .10; line-height: 1; letter-spacing: -.06em;
     pointer-events: none;
   }
   .kicker {
     font-family: 'JetBrains Mono', monospace;
-    font-size: 15px; color:#B8471C;
+    font-size: 18px; color:#B8471C;
     letter-spacing: .35em; text-transform: uppercase;
     z-index: 2; position: relative;
   }
   .middle { z-index: 2; position: relative; }
   .headline {
     font-family: Archivo, sans-serif;
-    font-weight: 900; font-size: 108px;
+    font-weight: 900; font-size: 132px;
     letter-spacing: -0.048em;
     text-transform: uppercase;
     line-height: .92;
-    max-width: 980px;
-    margin: 0 0 28px;
+    max-width: 1000px;
+    margin: 0 0 36px;
   }
   .headline .copper { color:#B8471C; }
   .tagline {
     font-family: Fraunces, Georgia, serif;
     font-style: italic; font-weight: 400;
-    font-size: 26px; line-height: 1.35;
+    font-size: 34px; line-height: 1.35;
     color: rgba(250,247,242,.82);
-    max-width: 780px;
+    max-width: 920px;
     margin: 0;
   }
   .bottom {
     display: flex; justify-content: space-between; align-items: flex-end;
     z-index: 2; position: relative;
   }
-  .name { font-family: Archivo, sans-serif; font-size: 26px; font-weight: 900; letter-spacing: -.02em; text-transform: uppercase; }
-  .url  { font-family: 'JetBrains Mono', monospace; font-size: 15px; color:#B8471C; letter-spacing: .25em; text-transform: uppercase; text-align: right; }
+  .name { font-family: Archivo, sans-serif; font-size: 34px; font-weight: 900; letter-spacing: -.02em; text-transform: uppercase; }
+  .url  { font-family: 'JetBrains Mono', monospace; font-size: 18px; color:#B8471C; letter-spacing: .25em; text-transform: uppercase; text-align: right; }
 </style>
 </head>
 <body>
@@ -106,7 +110,7 @@ async function main() {
     args: ['--no-sandbox', '--disable-dev-shm-usage'],
   });
   const page = await browser.newPage();
-  await page.setViewport({ width: 1200, height: 630, deviceScaleFactor: 2 });
+  await page.setViewport({ width: SIZE, height: SIZE, deviceScaleFactor: 2 });
   await page.setContent(HTML, { waitUntil: 'networkidle0' });
   await page.evaluateHandle('document.fonts.ready');
   await new Promise(r => setTimeout(r, 450));
