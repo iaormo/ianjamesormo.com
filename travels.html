@@ -57,10 +57,30 @@
   .mobile-menu { display: none; }
   .mobile-menu.open { display: flex; }
 
-  /* Travel entry — photo-forward */
-  .travel-photo { width: 100%; height: auto; display: block; background: #0A0A0A; }
-  .travel-body p { margin: 0 0 20px; }
+  /* Travel entry — photo floats in the middle, text wraps */
+  .travel-body p { margin: 0 0 22px; }
   .travel-body p:last-child { margin-bottom: 0; }
+  .travel-float {
+    float: right;
+    width: 46%;
+    margin: 6px 0 24px 36px;
+    shape-outside: margin-box;
+  }
+  .travel-float img { width: 100%; height: auto; display: block; background: #0A0A0A; }
+  .travel-float figcaption {
+    font-family: "JetBrains Mono", ui-monospace, monospace;
+    font-size: 11px;
+    letter-spacing: .18em;
+    text-transform: uppercase;
+    color: #B8471C;
+    margin-top: 10px;
+    text-align: right;
+  }
+  .travel-body::after { content: ''; display: block; clear: both; }
+  @media (max-width: 700px) {
+    .travel-float { float: none; width: 100%; margin: 28px 0 28px; }
+    .travel-float figcaption { text-align: left; }
+  }
 </style>
 <script src="https://unpkg.com/react@18.3.1/umd/react.production.min.js" crossorigin="anonymous" defer></script>
 <script src="https://unpkg.com/react-dom@18.3.1/umd/react-dom.production.min.js" crossorigin="anonymous" defer></script>
@@ -201,13 +221,11 @@ function Hero() {
 }
 
 function Entry({ e }) {
+  // Insert the photo after this many paragraphs so text wraps around it mid-body.
+  const photoAfter = 2;
   return (
-    <section className="section-pad" style={{ padding: '32px 56px 96px', background: T.color.page }}>
+    <section className="section-pad" style={{ padding: '72px 56px 96px', background: T.color.page }}>
       <article style={{ maxWidth: 960, margin: '0 auto' }}>
-        {/* Photo */}
-        <div style={{ position: 'relative', marginBottom: 40, background: T.color.ink }}>
-          <img className="travel-photo" src={e.image} alt={e.imageAlt} loading="lazy" />
-        </div>
         {/* Meta row */}
         <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'baseline', fontFamily: T.font.mono, fontSize: 12, letterSpacing: '.18em', textTransform: 'uppercase', color: T.color.copper, marginBottom: 20, flexWrap: 'wrap', gap: 12 }}>
           <span>{e.place} · {e.region}</span>
@@ -217,9 +235,19 @@ function Entry({ e }) {
         <h2 style={{ fontFamily: T.font.head, fontSize: 'clamp(32px, 5.4vw, 64px)', fontWeight: 900, lineHeight: 1.02, letterSpacing: '-0.035em', textTransform: 'uppercase', color: T.color.ink, margin: '0 0 36px' }}>
           {e.title}
         </h2>
-        {/* Body */}
+        {/* Body with photo floated mid-way so text wraps around it */}
         <div className="travel-body" style={{ fontFamily: T.font.quote, fontSize: 22, lineHeight: 1.55, color: T.color.ink }}>
-          {e.body.map((p, i) => <p key={i}>{p}</p>)}
+          {e.body.map((p, i) => (
+            <React.Fragment key={i}>
+              {i === photoAfter && e.image && (
+                <figure className="travel-float">
+                  <img src={e.image} alt={e.imageAlt} loading="lazy" />
+                  <figcaption>{e.place} · {e.date}</figcaption>
+                </figure>
+              )}
+              <p>{p}</p>
+            </React.Fragment>
+          ))}
         </div>
         <div style={{ marginTop: 48, fontFamily: T.font.body, fontSize: 12, fontWeight: 700, letterSpacing: '.25em', textTransform: 'uppercase', color: T.color.copper }}>Ian</div>
       </article>
