@@ -52,7 +52,7 @@ async function main() {
   const shareDir = path.join(__dirname, '..', 'share');
   fs.mkdirSync(shareDir, { recursive: true });
 
-  const SITE = 'https://ianjamesormo-com-production.up.railway.app';
+  const SITE = 'https://ianjamesormo.com';
 
   function writeSharePage(type, item) {
     const img = `${SITE}/og/${type}-${item.num}.png`;

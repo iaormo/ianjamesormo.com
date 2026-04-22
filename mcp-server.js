@@ -4,13 +4,13 @@
  * Exposes publish_musing and publish_daily as MCP tools.
  *
  * Usage: node mcp-server.js
- * Env:   IJ_API_URL   – base URL of the site (default: https://ianjamesormo-com-production.up.railway.app)
+ * Env:   IJ_API_URL   – base URL of the site (default: https://ianjamesormo.com)
  *        IJ_API_KEY   – your API key
  */
 
 const readline = require('readline');
 
-const API_URL = (process.env.IJ_API_URL || 'https://ianjamesormo-com-production.up.railway.app').replace(/\/$/, '');
+const API_URL = (process.env.IJ_API_URL || 'https://ianjamesormo.com').replace(/\/$/, '');
 const API_KEY = process.env.IJ_API_KEY || '';
 
 // ── MCP Protocol helpers ──────────────────────────────────────────────────────

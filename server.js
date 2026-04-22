@@ -353,6 +353,54 @@ function handleGetVerse(req, res) {
   });
 }
 
+// Write a /share/<kind>-<num>.html redirect page so social crawlers have a URL
+// with proper OG tags to scrape. Falls back to default OG image if per-entry
+// image isn't generated yet.
+function writeShareRedirect({ kind, num, title, quote, landing }) {
+  const SITE = 'https://ianjamesormo.com';
+  const escAttr = s => String(s || '').replace(/&/g, '&amp;').replace(/"/g, '&quot;').replace(/</g, '&lt;');
+  const imgFile = fs.existsSync(path.join(__dirname, 'og', `${kind}-${num}.png`))
+    ? `${kind}-${num}.png`
+    : (kind === 'daily' ? 'default-daily.png' : 'default-essays.png');
+  const imgUrl = `${SITE}/og/${imgFile}`;
+  const headLabel = kind === 'daily' ? `Day ${num}` : `No. ${num}`;
+  const metaTitle = `${headLabel}: ${title} — Ian James Ormo`;
+  const html = `<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>${escAttr(metaTitle)}</title>
+<meta name="description" content="${escAttr(quote)}" />
+<meta name="robots" content="index, follow" />
+<link rel="canonical" href="${landing}" />
+<meta property="og:type" content="article" />
+<meta property="og:site_name" content="Ian James Ormo" />
+<meta property="og:title" content="${escAttr(metaTitle)}" />
+<meta property="og:description" content="${escAttr(quote)}" />
+<meta property="og:url" content="${landing}" />
+<meta property="og:image" content="${imgUrl}" />
+<meta property="og:image:width" content="1200" />
+<meta property="og:image:height" content="630" />
+<meta name="twitter:card" content="summary_large_image" />
+<meta name="twitter:title" content="${escAttr(metaTitle)}" />
+<meta name="twitter:description" content="${escAttr(quote)}" />
+<meta name="twitter:image" content="${imgUrl}" />
+<meta http-equiv="refresh" content="0; url=${landing}" />
+<style>body{margin:0;font-family:-apple-system,sans-serif;background:#FAF7F2;color:#111;padding:40px;}a{color:#B8471C}</style>
+</head>
+<body>
+<p>Redirecting to <a href="${landing}">${escAttr(title)}</a>…</p>
+<script>location.replace(${JSON.stringify(landing)});</script>
+</body>
+</html>
+`;
+  const file = path.join(__dirname, 'share', `${kind}-${num}.html`);
+  fs.mkdirSync(path.dirname(file), { recursive: true });
+  fs.writeFileSync(file, html, 'utf8');
+  console.log(`[share] wrote ${file}`);
+}
+
 function handlePostMusing(req, res) {
   if (!requireApiKey(req, res)) return;
   readBody(req, (err, data) => {
@@ -364,6 +412,7 @@ function handlePostMusing(req, res) {
               ...essays.filter(e => e.num !== num)];
     saveContent('essays.json', essays);
     commitToGitHub('essays.json', essays, `content: add musing No.${num} — ${title}`);
+    writeShareRedirect({ kind: 'essay', num, title, quote: quote || '', landing: `https://ianjamesormo.com/musings.html#${num}` });
     console.log(`[content] musing added: No.${num} — ${title}`);
     sendJson(res, 200, { ok: true, num, title });
   });
@@ -380,6 +429,7 @@ function handlePostDaily(req, res) {
                    ...devotionals.filter(d => d.day !== day).map(d => ({ ...d, today: false }))];
     saveContent('daily.json', devotionals);
     commitToGitHub('daily.json', devotionals, `content: add daily Day ${day} — ${title}`);
+    writeShareRedirect({ kind: 'daily', num: day, title, quote: quote || '', landing: `https://ianjamesormo.com/daily.html#${day}` });
     console.log(`[content] daily added: Day ${day} — ${title}`);
     sendJson(res, 200, { ok: true, day, title });
   });

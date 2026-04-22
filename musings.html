@@ -15,16 +15,16 @@
 <meta name="geo.position" content="10.3157;123.8854" />
 <meta name="ICBM" content="10.3157, 123.8854" />
 <meta property="og:locale" content="en_PH" />
-<link rel="canonical" href="https://ianjamesormo-com-production.up.railway.app/musings.html" />
+<link rel="canonical" href="https://ianjamesormo.com/musings.html" />
 <meta property="og:type" content="website" />
 <meta property="og:site_name" content="Ian James Ormo" />
 <meta property="og:title" content="Musings on Self-Help, Faith & Freelancing — Ian James Ormo" />
 <meta property="og:description" content="Weekly musings on self-help, freelancing, faith, marriage, and the unglamorous middle. Writing from Ian James Ormo, author based in the Philippines." />
-<meta property="og:url" content="https://ianjamesormo-com-production.up.railway.app/musings.html" />
-<meta property="og:image" content="https://ianjamesormo-com-production.up.railway.app/og/default-essays.png" />
+<meta property="og:url" content="https://ianjamesormo.com/musings.html" />
+<meta property="og:image" content="https://ianjamesormo.com/og/default-essays.png" />
 <meta property="og:image:width" content="1200" />
 <meta property="og:image:height" content="630" />
-<meta name="twitter:image" content="https://ianjamesormo-com-production.up.railway.app/og/default-essays.png" />
+<meta name="twitter:image" content="https://ianjamesormo.com/og/default-essays.png" />
 <meta name="twitter:card" content="summary_large_image" />
 <meta name="twitter:title" content="Musings on Self-Help, Faith & Freelancing — Ian James Ormo" />
 <meta name="twitter:description" content="Weekly musings on self-help, freelancing, faith, marriage, and the unglamorous middle. Writing from Ian James Ormo, author based in the Philippines." />
@@ -298,7 +298,7 @@ const T = window.IJ_TOKENS;
 
 function ShareBar({ title, num, pagePath }) {
   const [copied, setCopied] = useState(false);
-  const url = `https://ianjamesormo-com-production.up.railway.app/share/essay-${num}.html`;
+  const url = `https://ianjamesormo.com/share/essay-${num}.html`;
   const shareText = `"${title}" — Ian James Ormo`;
   const twitter = `https://twitter.com/intent/tweet?text=${encodeURIComponent(shareText)}&url=${encodeURIComponent(url)}`;
   const facebook = `https://www.facebook.com/sharer/sharer.php?u=${encodeURIComponent(url)}`;
@@ -336,10 +336,10 @@ function ShareBar({ title, num, pagePath }) {
   return (
     <div className="ij-share" style={{ display: 'flex', gap: 10, flexWrap: 'wrap', marginTop: 40, paddingTop: 28, borderTop: `1px solid ${T.color.mist}`, alignItems: 'center' }}>
       <div style={{ fontFamily: T.font.body, fontSize: 11, fontWeight: 700, letterSpacing: '.25em', textTransform: 'uppercase', color: T.color.copper, marginRight: 8 }}>Share</div>
-      <a href={twitter} target="_blank" rel="noopener noreferrer" onClick={nativeShare} className="ij-share-btn" style={btn} aria-label="Share on X" title="Share on X">{ICON.x}</a>
-      <a href={facebook} target="_blank" rel="noopener noreferrer" className="ij-share-btn" style={btn} aria-label="Share on Facebook" title="Share on Facebook">{ICON.facebook}</a>
-      <a href={linkedin} target="_blank" rel="noopener noreferrer" className="ij-share-btn" style={btn} aria-label="Share on LinkedIn" title="Share on LinkedIn">{ICON.linkedin}</a>
-      <a href={whatsapp} target="_blank" rel="noopener noreferrer" className="ij-share-btn" style={btn} aria-label="Share on WhatsApp" title="Share on WhatsApp">{ICON.whatsapp}</a>
+      <a href={twitter}  target="_blank" rel="noopener noreferrer" onClick={nativeShare} className="ij-share-btn" style={btn} aria-label="Share on X"        title="Share on X">{ICON.x}</a>
+      <a href={facebook} target="_blank" rel="noopener noreferrer" onClick={nativeShare} className="ij-share-btn" style={btn} aria-label="Share on Facebook" title="Share on Facebook">{ICON.facebook}</a>
+      <a href={linkedin} target="_blank" rel="noopener noreferrer" onClick={nativeShare} className="ij-share-btn" style={btn} aria-label="Share on LinkedIn" title="Share on LinkedIn">{ICON.linkedin}</a>
+      <a href={whatsapp} target="_blank" rel="noopener noreferrer" onClick={nativeShare} className="ij-share-btn" style={btn} aria-label="Share on WhatsApp" title="Share on WhatsApp">{ICON.whatsapp}</a>
       <button onClick={copy} className="ij-share-btn" style={btn} aria-label={copied ? 'Link copied' : 'Copy link'} title={copied ? 'Copied' : 'Copy link'}>{copied ? ICON.check : ICON.link}</button>
     </div>
   );

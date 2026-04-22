@@ -36,7 +36,7 @@ Pushed to Railway via `railway up`. Serves statically with `serve` on `$PORT`.
 ## Social share images
 
 Every essay and devotional has a dedicated 1200×630 PNG share card under `/og/`
-and a matching redirect page under `/share/`. When someone shares `https://ianjamesormo-com-production.up.railway.app/share/essay-014.html`, social scrapers read the per-piece
+and a matching redirect page under `/share/`. When someone shares `https://ianjamesormo.com/share/essay-014.html`, social scrapers read the per-piece
 `og:image` tag; clicking the link bounces them to `musings.html#014`.
 
 **Adding a new entry:**
