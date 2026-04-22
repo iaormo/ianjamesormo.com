@@ -5,6 +5,38 @@ const path = require('path');
 const PORT = parseInt(process.env.PORT, 10) || 3000;
 const ROOT = __dirname;
 
+// ── Content store ─────────────────────────────────────────────────────────────
+const CONTENT_DIR = path.join(__dirname, 'content');
+
+function loadContent(file) {
+  try { return JSON.parse(fs.readFileSync(path.join(CONTENT_DIR, file), 'utf8')); }
+  catch { return []; }
+}
+function saveContent(file, data) {
+  fs.mkdirSync(CONTENT_DIR, { recursive: true });
+  fs.writeFileSync(path.join(CONTENT_DIR, file), JSON.stringify(data, null, 2), 'utf8');
+}
+
+let essays      = loadContent('essays.json');
+let devotionals = loadContent('daily.json');
+
+// GitHub commit — async, best-effort, persists content across Railway deploys
+async function commitToGitHub(filename, data, message) {
+  const token = process.env.GITHUB_TOKEN;
+  if (!token) return;
+  const repo   = process.env.GITHUB_REPO   || 'iaormo/ianjamesormo.com';
+  const branch = process.env.GITHUB_BRANCH || 'main';
+  try {
+    const filePath = `content/${filename}`;
+    const apiBase  = `https://api.github.com/repos/${repo}/contents/${filePath}`;
+    const headers  = { Authorization: `Bearer ${token}`, Accept: 'application/vnd.github+json', 'X-GitHub-Api-Version': '2022-11-28', 'Content-Type': 'application/json' };
+    const getRes   = await fetch(`${apiBase}?ref=${branch}`, { headers });
+    const current  = getRes.ok ? await getRes.json() : {};
+    const content  = Buffer.from(JSON.stringify(data, null, 2), 'utf8').toString('base64');
+    await fetch(apiBase, { method: 'PUT', headers, body: JSON.stringify({ message, content, sha: current.sha, branch }) });
+  } catch (e) { console.error('GitHub commit failed (non-fatal):', e.message); }
+}
+
 const MIME = {
   '.html': 'text/html; charset=utf-8',
   '.js':   'application/javascript; charset=utf-8',
@@ -123,7 +155,71 @@ function handleSubscribe(req, res) {
   });
 }
 
+// ── Content API ───────────────────────────────────────────────────────────────
+
+function requireApiKey(req, res) {
+  const key = process.env.API_KEY;
+  if (!key) { sendJson(res, 500, { ok: false, error: 'API_KEY not configured on server' }); return false; }
+  const auth = req.headers['authorization'] || '';
+  if (auth !== `Bearer ${key}`) { sendJson(res, 401, { ok: false, error: 'Unauthorized' }); return false; }
+  return true;
+}
+
+function readBody(req, cb) {
+  let raw = '';
+  req.on('data', c => { raw += c; if (raw.length > 200 * 1024) req.destroy(); });
+  req.on('end', () => { try { cb(null, JSON.parse(raw || '{}')); } catch (e) { cb(e); } });
+}
+
+function handleGetMusings(req, res) {
+  sendJson(res, 200, essays);
+}
+
+function handleGetDaily(req, res) {
+  sendJson(res, 200, devotionals);
+}
+
+function handlePostMusing(req, res) {
+  if (!requireApiKey(req, res)) return;
+  readBody(req, (err, data) => {
+    if (err) return sendJson(res, 400, { ok: false, error: 'Invalid JSON' });
+    const { num, date, title, sub, time, tag, quote, body } = data;
+    if (!num || !date || !title || !body) return sendJson(res, 400, { ok: false, error: 'Missing required fields: num, date, title, body' });
+    // Remove any existing entry with same num, then prepend
+    essays = [{ num, date, title, sub: sub || '', time: time || '5 min', tag: tag || 'General', quote: quote || '', body: Array.isArray(body) ? body : [body] },
+              ...essays.filter(e => e.num !== num)];
+    saveContent('essays.json', essays);
+    commitToGitHub('essays.json', essays, `content: add musing No.${num} — ${title}`);
+    console.log(`[content] musing added: No.${num} — ${title}`);
+    sendJson(res, 200, { ok: true, num, title });
+  });
+}
+
+function handlePostDaily(req, res) {
+  if (!requireApiKey(req, res)) return;
+  readBody(req, (err, data) => {
+    if (err) return sendJson(res, 400, { ok: false, error: 'Invalid JSON' });
+    const { day, date, title, verse, quote, body } = data;
+    if (!day || !date || !title || !body) return sendJson(res, 400, { ok: false, error: 'Missing required fields: day, date, title, body' });
+    // Mark all others as not today, prepend new one as today
+    devotionals = [{ day, date, title, verse: verse || '', today: true, quote: quote || '', body },
+                   ...devotionals.filter(d => d.day !== day).map(d => ({ ...d, today: false }))];
+    saveContent('daily.json', devotionals);
+    commitToGitHub('daily.json', devotionals, `content: add daily Day ${day} — ${title}`);
+    console.log(`[content] daily added: Day ${day} — ${title}`);
+    sendJson(res, 200, { ok: true, day, title });
+  });
+}
+
 const server = http.createServer((req, res) => {
+  // CORS for API routes
+  res.setHeader('Access-Control-Allow-Origin', '*');
+  if (req.method === 'OPTIONS') { res.writeHead(204); return res.end(); }
+
+  if (req.method === 'GET'  && req.url === '/api/content/musings') return handleGetMusings(req, res);
+  if (req.method === 'GET'  && req.url === '/api/content/daily')   return handleGetDaily(req, res);
+  if (req.method === 'POST' && req.url === '/api/content/musing')  return handlePostMusing(req, res);
+  if (req.method === 'POST' && req.url === '/api/content/daily')   return handlePostDaily(req, res);
   if (req.method === 'POST' && req.url === '/api/subscribe') {
     return handleSubscribe(req, res);
   }

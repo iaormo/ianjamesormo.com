@@ -95,7 +95,8 @@
 }
 @media (max-width: 600px) {
   .book-row [style*="height: 560"] { min-height: 240px !important; }
-  .book-row [style*="width: 320px"] { width: min(220px, 65vw) !important; }
+  /* Scale the entire book cover proportionally so fonts stay in bounds */
+  .book-cover { transform: perspective(1600px) rotateY(-7deg) scale(0.68) !important; }
   /* Devotional heading shrink */
   [style*="font-size: 84px"] { font-size: 36px !important; line-height: 1 !important; }
 }
@@ -309,7 +310,7 @@ function BookCover({ title, subtitle, variant = 'ink', w = 280, h = 420, rotate 
   };
   const p = palettes[variant] || palettes.ink;
   return (
-    <div style={{
+    <div className="book-cover" style={{
       width: w, height: h, background: p.bg, color: p.fg, position: 'relative',
       boxShadow: `0 0 0 1px rgba(0,0,0,.05), 40px 55px 110px -30px rgba(0,0,0,.55), 14px 22px 44px -10px rgba(0,0,0,.32), inset 10px 0 14px -10px rgba(0,0,0,.45), inset -2px 0 0 rgba(255,255,255,.06)`,
       transform: `perspective(1600px) rotateY(-7deg) rotate(${rotate}deg)`,
