@@ -201,7 +201,7 @@ function Footer() {
         {[
           ['Read',[['Books','books.html'],['Devotional','daily.html'],['Musings','essays.html']]],
           ['About',[['Story','about.html'],['Press / Media','about.html'],['Contact','contact.html']]],
-          ['Follow',[['Newsletter','newsletter.html'],['Instagram','#'],['YouTube','#']]],
+          ['Follow',[['Newsletter','newsletter.html'],['Instagram','https://www.instagram.com/ianormore'],['LinkedIn','https://www.linkedin.com/in/ianjamesormo/'],['Facebook','https://www.facebook.com/ian.ormo']]],
         ].map(([title, links]) => (
           <div key={title}>
             <div style={{ fontFamily: T.font.body, fontSize: 11, fontWeight: 700, letterSpacing: '.25em', textTransform: 'uppercase', color: T.color.copper, marginBottom: 18 }}>{title}</div>
@@ -285,11 +285,12 @@ function Stats() {
     ['2', 'Books in print'],
     ['~10 yrs', 'Freelancing in tech and automations'],
     ['14 yrs', 'Marriage · still showing up'],
+    ['5 yrs', 'Alcohol & nicotine free'],
   ];
   return (
     <section className="section-pad" style={{ padding: '96px 56px', background: T.color.ink, color: T.color.page }}>
       <div style={{ maxWidth: 1200, margin: '0 auto' }}>
-        <div className="stats-grid" style={{ display: 'grid', gridTemplateColumns: 'repeat(3, 1fr)', gap: 1, background: 'rgba(255,255,255,.08)' }}>
+        <div className="stats-grid" style={{ display: 'grid', gridTemplateColumns: 'repeat(4, 1fr)', gap: 1, background: 'rgba(255,255,255,.08)' }}>
           {stats.map(([n, l]) => (
             <div key={l} style={{ background: T.color.ink, padding: '40px 24px' }}>
               <div style={{ fontFamily: T.font.head, fontSize: 64, fontWeight: 900, lineHeight: 1, letterSpacing: '-0.04em', color: T.color.copper, marginBottom: 16 }}>{n}</div>
@@ -397,6 +398,7 @@ ReactDOM.createRoot(document.getElementById('root')).render(<>
 <script src="/js/newsletter-popup.js" defer></script>
 <script src="/js/verse-popup.js?v=2" defer></script>
 <script src="/js/cursor.js?v=5" defer></script>
+<script src="/js/nav-prefetch.js?v=2" defer></script>
 <script src="/js/animations.js?v=15" defer></script>
 </body>
 </html>

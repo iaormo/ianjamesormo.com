@@ -242,7 +242,7 @@ function Footer() {
         {[
           ['Read', [['Books', 'books.html'], ['Devotional', 'daily.html'], ['Musings', 'essays.html']]],
           ['About', [['Story', 'about.html'], ['Press / Media', 'about.html'], ['Contact', 'contact.html']]],
-          ['Follow', [['Newsletter', 'newsletter.html'], ['Instagram', '#'], ['YouTube', '#']]],
+          ['Follow', [['Newsletter', 'newsletter.html'], ['Instagram', 'https://www.instagram.com/ianormore'], ['LinkedIn', 'https://www.linkedin.com/in/ianjamesormo/'], ['Facebook', 'https://www.facebook.com/ian.ormo']]],
         ].map(([title, links]) => (
           <div key={title}>
             <div style={{ fontFamily: T.font.body, fontSize: 11, fontWeight: 700, letterSpacing: '.25em', textTransform: 'uppercase', color: T.color.copper, marginBottom: 18 }}>{title}</div>
@@ -680,6 +680,7 @@ ReactDOM.createRoot(document.getElementById('root')).render(<App />);
 <script src="/js/newsletter-popup.js" defer></script>
 <script src="/js/verse-popup.js?v=2" defer></script>
 <script src="/js/cursor.js?v=5" defer></script>
+<script src="/js/nav-prefetch.js?v=2" defer></script>
 <script src="/js/animations.js?v=15" defer></script>
 </body>
 </html>

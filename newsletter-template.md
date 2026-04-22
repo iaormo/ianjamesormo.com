@@ -277,7 +277,8 @@ Cinematic here means *35mm, golden hour, slightly worn* — not *blockbuster tra
 
 ## 13. Files
 
-- **`ghl-welcome-email.html`** — paste-into-GHL HTML template (the master)
+- **`ghl-welcome-email.html`** — weekly-letter welcome (paste into GHL)
+- **`ghl-welcome-email-devotional.html`** — daily-devotional-only welcome (paste into GHL)
 - **`newsletter-template.md`** — this guide
 - **`DESIGN-GUIDE.md`** — the source of truth for all design decisions
 

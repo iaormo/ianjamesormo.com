@@ -178,7 +178,7 @@ function Footer() {
         {[
           ['Read',[['Books','books.html'],['Devotional','daily.html'],['Musings','essays.html']]],
           ['About',[['Story','about.html'],['Contact','contact.html']]],
-          ['Follow',[['Newsletter','newsletter.html'],['Instagram','#'],['YouTube','#']]],
+          ['Follow',[['Newsletter','newsletter.html'],['Instagram','https://www.instagram.com/ianormore'],['LinkedIn','https://www.linkedin.com/in/ianjamesormo/'],['Facebook','https://www.facebook.com/ian.ormo']]],
         ].map(([title, links]) => (
           <div key={title}>
             <div style={{ fontFamily: T.font.body, fontSize: 11, fontWeight: 700, letterSpacing: '.25em', textTransform: 'uppercase', color: T.color.copper, marginBottom: 18 }}>{title}</div>
@@ -281,8 +281,9 @@ function ContactForm() {
           <div style={{ padding: '32px 28px', border: `1px solid ${T.color.mist}` }}>
             <div style={{ fontFamily: T.font.body, fontSize: 11, fontWeight: 700, letterSpacing: '.25em', textTransform: 'uppercase', color: T.color.copper, marginBottom: 14 }}>Follow</div>
             <div style={{ display: 'flex', flexDirection: 'column', gap: 10 }}>
-              <a href="#" style={{ color: T.color.ink, textDecoration: 'none', fontFamily: T.font.body, fontSize: 14, fontWeight: 500 }}>Instagram →</a>
-              <a href="#" style={{ color: T.color.ink, textDecoration: 'none', fontFamily: T.font.body, fontSize: 14, fontWeight: 500 }}>YouTube →</a>
+              <a href="https://www.instagram.com/ianormore" target="_blank" rel="noopener noreferrer" style={{ color: T.color.ink, textDecoration: 'none', fontFamily: T.font.body, fontSize: 14, fontWeight: 500 }}>Instagram →</a>
+              <a href="https://www.linkedin.com/in/ianjamesormo/" target="_blank" rel="noopener noreferrer" style={{ color: T.color.ink, textDecoration: 'none', fontFamily: T.font.body, fontSize: 14, fontWeight: 500 }}>LinkedIn →</a>
+              <a href="https://www.facebook.com/ian.ormo" target="_blank" rel="noopener noreferrer" style={{ color: T.color.ink, textDecoration: 'none', fontFamily: T.font.body, fontSize: 14, fontWeight: 500 }}>Facebook →</a>
               <a href="newsletter.html" style={{ color: T.color.ink, textDecoration: 'none', fontFamily: T.font.body, fontSize: 14, fontWeight: 500 }}>Newsletter →</a>
             </div>
           </div>
@@ -300,6 +301,7 @@ ReactDOM.createRoot(document.getElementById('root')).render(
 <script src="/js/newsletter-popup.js" defer></script>
 <script src="/js/verse-popup.js?v=2" defer></script>
 <script src="/js/cursor.js?v=5" defer></script>
+<script src="/js/nav-prefetch.js?v=2" defer></script>
 <script src="/js/animations.js?v=15" defer></script>
 </body>
 </html>
