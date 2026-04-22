@@ -14,8 +14,8 @@
       '.ij-verse-card{background:'+BRAND.page+';color:'+BRAND.ink+';max-width:600px;width:100%;max-height:82vh;overflow-y:auto;padding:40px 36px 32px;border-radius:4px;position:relative;box-shadow:0 30px 80px rgba(0,0,0,.4);font-family:Inter,-apple-system,sans-serif;}'+
       '.ij-verse-close{position:absolute;top:14px;right:16px;background:none;border:none;font-size:22px;cursor:pointer;color:'+BRAND.steel+';padding:6px 10px;line-height:1;}'+
       '.ij-verse-close:hover{color:'+BRAND.ink+';}'+
-      '.ij-verse-eyebrow{font-family:"JetBrains Mono",ui-monospace,monospace;font-size:11px;letter-spacing:.18em;text-transform:uppercase;color:'+BRAND.copper+';margin-bottom:8px;}'+
-      '.ij-verse-ref{font-family:Archivo,Inter,-apple-system,sans-serif;font-weight:900;font-size:28px;letter-spacing:-0.02em;line-height:1.1;margin:0 0 24px;}'+
+      '.ij-verse-eyebrow{font-family:Archivo,Inter,-apple-system,sans-serif;font-weight:900;font-size:26px;letter-spacing:-0.02em;line-height:1.15;text-transform:uppercase;color:'+BRAND.ink+';margin:0 0 22px;}'+
+      '.ij-verse-eyebrow .rd{color:'+BRAND.copper+';margin-right:8px;}'+
       '.ij-verse-body{font-family:Fraunces,"Source Serif 4",Georgia,serif;font-size:19px;line-height:1.65;color:'+BRAND.ink+';white-space:pre-wrap;}'+
       '.ij-verse-body .v{font-family:"JetBrains Mono",ui-monospace,monospace;font-size:11px;color:'+BRAND.copper+';vertical-align:super;margin-right:2px;}'+
       '.ij-verse-copyright{border-top:1px solid '+BRAND.mist+';margin-top:28px;padding-top:16px;font-size:11px;color:'+BRAND.steel+';letter-spacing:.02em;}'+
@@ -34,13 +34,12 @@
     modalEl.innerHTML =
       '<div class="ij-verse-card" role="dialog" aria-modal="true">'+
         '<button class="ij-verse-close" aria-label="Close">×</button>'+
-        '<div class="ij-verse-eyebrow">Scripture</div>'+
-        '<div class="ij-verse-ref"></div>'+
+        '<div class="ij-verse-eyebrow"></div>'+
         '<div class="ij-verse-body"></div>'+
         '<div class="ij-verse-copyright"></div>'+
       '</div>';
     document.body.appendChild(modalEl);
-    refEl = modalEl.querySelector('.ij-verse-ref');
+    refEl = modalEl.querySelector('.ij-verse-eyebrow');
     bodyEl = modalEl.querySelector('.ij-verse-body');
     copyEl = modalEl.querySelector('.ij-verse-copyright');
     modalEl.addEventListener('click', function(e){ if (e.target === modalEl) close(); });
@@ -49,6 +48,12 @@
   }
   function open() { ensureModal(); modalEl.classList.add('open'); document.body.style.overflow = 'hidden'; }
   function close() { if (modalEl) { modalEl.classList.remove('open'); document.body.style.overflow = ''; } }
+
+  function escapeHtml(s) {
+    return String(s || '').replace(/[&<>"']/g, function(c){
+      return {'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c];
+    });
+  }
 
   function formatPassage(text, ref) {
     if (!text) return { body: '', copyright: '' };
@@ -71,7 +76,7 @@
 
   function show(ref) {
     open();
-    refEl.textContent = ref;
+    refEl.innerHTML = '<span class="rd">Read</span>' + escapeHtml(ref);
     bodyEl.innerHTML = '<div class="ij-verse-loading">Loading passage…</div>';
     copyEl.textContent = '';
     fetch('/api/verse?q=' + encodeURIComponent(ref))
@@ -81,7 +86,7 @@
           bodyEl.innerHTML = '<div class="ij-verse-error">Could not load passage. Please try again.</div>';
           return;
         }
-        refEl.textContent = data.reference || ref;
+        refEl.innerHTML = '<span class="rd">Read</span>' + escapeHtml(data.reference || ref);
         var fmt = formatPassage(data.passages.join('\n\n'), data.reference || ref);
         bodyEl.innerHTML = fmt.body;
         copyEl.textContent = fmt.copyright || 'Scripture quotations from the ESV® Bible. Copyright © by Crossway.';
