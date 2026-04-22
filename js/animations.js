@@ -276,6 +276,9 @@
       "@media (max-width: 768px) {"+
         "#ij-cinema-scratch,#ij-cinema-scratch2 { display:none !important; }"+
       "}"+
+      /* Section dividers — separate adjacent blocks that share a tone */
+      ".ij-div-dark  { border-top: 1px solid rgba(250,247,242,.08); }"+
+      ".ij-div-light { border-top: 1px solid rgba(17,17,17,.08); }"+
 
       /* ── TEXT REVEAL ──────────────────────────────────────────────────── */
       '.ij-reveal-word { display: inline-block; overflow: hidden; vertical-align: bottom; }'+
@@ -397,6 +400,31 @@
         n.style.setProperty('--ij-my', ((e.clientY-r.top)/r.height*100)+'%');
       });
     });
+  }
+
+  // ─── 7a. SECTION DIVIDERS — separate adjacent same-tone blocks ────────────
+  function sectionLum(el) {
+    var bg = getComputedStyle(el).backgroundColor;
+    var m = bg.match(/rgba?\(([^)]+)\)/);
+    if (!m) return null;
+    var p = m[1].split(',').map(parseFloat);
+    if (p.length < 3) return null;
+    if (p[3] !== undefined && p[3] < 0.5) return null;
+    return (0.299 * p[0] + 0.587 * p[1] + 0.114 * p[2]) / 255;
+  }
+  function setupDividers() {
+    var blocks = document.querySelectorAll('section, footer');
+    for (var i = 1; i < blocks.length; i++) {
+      var prev = blocks[i - 1];
+      var curr = blocks[i];
+      if (curr.__ijDiv) continue;
+      var pL = sectionLum(prev);
+      var cL = sectionLum(curr);
+      if (pL === null || cL === null) continue;
+      curr.__ijDiv = true;
+      if (pL < 0.25 && cL < 0.25)      curr.classList.add('ij-div-dark');
+      else if (pL > 0.70 && cL > 0.70) curr.classList.add('ij-div-light');
+    }
   }
 
   // ─── 7. FILM GRAIN ON DARK SECTIONS ──────────────────────────────────────
@@ -623,6 +651,7 @@
       setupUnderlines();
       setupSpotlight();
       setupGrain();
+      setupDividers();
       setupHoverPeek();
       setupHoverLinks();
       setup3DTilt();

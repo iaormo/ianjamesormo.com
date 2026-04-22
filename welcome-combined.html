@@ -19,29 +19,71 @@
   <link href="https://fonts.googleapis.com/css2?family=Archivo:wght@400;500;600;700;900&family=Inter:wght@400;500;600&family=Fraunces:ital,wght@1,400;1,500&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
 
   <style type="text/css">
+    /* ----- RESETS ----- */
     html, body { margin:0 !important; padding:0 !important; height:100% !important; width:100% !important; }
     * { -ms-text-size-adjust:100%; -webkit-text-size-adjust:100%; }
     table, td { mso-table-lspace:0pt !important; mso-table-rspace:0pt !important; border-collapse:collapse !important; }
-    img { border:0; outline:none; text-decoration:none; -ms-interpolation-mode:bicubic; display:block; }
-    a { text-decoration:none; }
-    body { background:#FAF7F2; font-family:'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Arial, sans-serif; color:#111111; }
+    img { border:0; outline:none; text-decoration:none; -ms-interpolation-mode:bicubic; display:block; max-width:100%; height:auto; }
+    a { text-decoration:none; word-break:break-word; }
+    body { background:#FAF7F2; font-family:'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Arial, sans-serif; color:#111111; word-wrap:break-word; }
+
+    /* ----- LINKS ----- */
     a.ij-link { color:#B8471C !important; border-bottom:1px solid rgba(184,71,28,0.35); transition: border-color .3s ease; }
     a.ij-link:hover { border-bottom-color:#B8471C; }
+
+    /* ----- BUTTON ----- */
     .ij-btn { transition: background-color .3s ease, border-color .3s ease; }
     .ij-btn:hover { background:#B8471C !important; border-color:#B8471C !important; }
-    @media screen and (max-width: 620px) {
-      .ij-container { width:100% !important; }
-      .ij-px { padding-left:24px !important; padding-right:24px !important; }
-      .ij-hero-title { font-size:44px !important; line-height:1.02 !important; }
-      .ij-section-title { font-size:26px !important; line-height:1.1 !important; }
-      .ij-quote { font-size:22px !important; line-height:1.35 !important; }
-      .ij-stack { display:block !important; width:100% !important; }
-      .ij-stack-pad { padding:24px !important; }
-      .ij-hide-mobile { display:none !important; }
-      .ij-footer-col { display:block !important; width:100% !important; padding-bottom:24px !important; }
+
+    /* ----- FIX iOS AUTO-LINKING OF DATES/ADDRESSES ----- */
+    .appleLinks a { color:inherit !important; text-decoration:none !important; }
+
+    /* ----- TABLET (<=1024px) ----- */
+    @media screen and (max-width: 1024px) {
+      .ij-container { width:100% !important; max-width:600px !important; }
     }
+
+    /* ----- MOBILE (<=620px) ----- */
+    @media screen and (max-width: 620px) {
+      .ij-container { width:100% !important; max-width:100% !important; }
+      .ij-px { padding-left:20px !important; padding-right:20px !important; }
+      .ij-hero-title { font-size:44px !important; line-height:1.02 !important; letter-spacing:-0.02em !important; }
+      .ij-section-title { font-size:28px !important; line-height:1.08 !important; }
+      .ij-quote { font-size:22px !important; line-height:1.35 !important; }
+      .ij-stack { display:block !important; width:100% !important; box-sizing:border-box !important; }
+      .ij-stack-pad { padding:24px !important; }
+      .ij-hide-mobile { display:none !important; width:0 !important; max-height:0 !important; overflow:hidden !important; }
+      .ij-footer-col { display:block !important; width:100% !important; padding:0 0 24px 0 !important; }
+      .ij-btn-mobile { display:block !important; width:100% !important; box-sizing:border-box !important; text-align:center !important; }
+      .ij-btn-mobile a { display:block !important; width:100% !important; box-sizing:border-box !important; text-align:center !important; }
+      .ij-hero-pad { padding:40px 20px 48px 20px !important; }
+      .ij-section-pad { padding:48px 20px 16px 20px !important; }
+      .ij-invite-pad { padding:0 20px 40px 20px !important; }
+    }
+
+    /* ----- SMALL PHONES (<=380px) ----- */
+    @media screen and (max-width: 380px) {
+      .ij-px { padding-left:16px !important; padding-right:16px !important; }
+      .ij-hero-title { font-size:36px !important; }
+      .ij-section-title { font-size:24px !important; }
+      .ij-quote { font-size:20px !important; }
+    }
+
+    /* ----- DARK MODE (kept neutral — design is light-only) ----- */
     @media (prefers-color-scheme: dark) {
       body, .ij-bg-page { background:#FAF7F2 !important; color:#111111 !important; }
+      .ij-dark-invert { color:#111111 !important; }
+    }
+    [data-ogsc] body, [data-ogsc] .ij-bg-page { background:#FAF7F2 !important; color:#111111 !important; }
+
+    /* ----- HIGH-DPI (RETINA) ----- */
+    @media only screen and (-webkit-min-device-pixel-ratio: 2), only screen and (min-resolution: 192dpi) {
+      img.ij-crisp { image-rendering: -webkit-optimize-contrast; }
+    }
+
+    /* ----- PREFERS REDUCED MOTION ----- */
+    @media (prefers-reduced-motion: reduce) {
+      .ij-btn, .ij-link { transition: none !important; }
     }
   </style>
 </head>
@@ -56,7 +98,7 @@
     <tr>
       <td align="center" style="padding:32px 16px;">
 
-        <table role="presentation" width="600" cellpadding="0" cellspacing="0" border="0" class="ij-container" style="width:600px; max-width:600px; background:#FAF7F2;">
+        <table role="presentation" width="600" cellpadding="0" cellspacing="0" border="0" class="ij-container" style="width:100%; max-width:600px; background:#FAF7F2;">
 
           <!-- HEADER -->
           <tr>
@@ -181,7 +223,7 @@
                   <td class="ij-px" align="left" style="padding:0 40px 64px 40px;">
                     <table role="presentation" cellpadding="0" cellspacing="0" border="0">
                       <tr>
-                        <td class="ij-btn" style="background:#111111; border:1px solid #111111;">
+                        <td class="ij-btn ij-btn-mobile" style="background:#111111; border:1px solid #111111;">
                           <a href="https://ianjamesormo.com" class="ij-btn" style="display:inline-block; padding:16px 32px; font-family:'Archivo', Arial, sans-serif; font-weight:600; font-size:13px; letter-spacing:0.10em; color:#FAF7F2; text-transform:uppercase;">Visit&nbsp;the&nbsp;Site&nbsp;&rarr;</a>
                         </td>
                       </tr>

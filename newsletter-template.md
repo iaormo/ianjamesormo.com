@@ -23,6 +23,21 @@ Every email follows the same rule as the website: *does it serve the writing, or
 2. Use a *Wait 1 minute* step at the top so tags from a multi-checkbox form settle before the branch fires.
 3. Gate each automation with a *If/Else* on tag membership so only one welcome ever fires per contact.
 
+**Cross-list opt-in (newsletter → daily):**
+The `welcome-newsletter.html` template does NOT include a Daily Devotional entry point in the archive grid — newsletter-only subscribers should not be pushed straight to daily content before they opt in. Instead, the soft invite panel near the bottom has a link with tracked parameters:
+
+```
+https://ianjamesormo.com/daily.html?add=daily-devotional&utm_source=welcome-newsletter&utm_campaign=add-daily
+```
+
+Wire this up in GHL:
+1. Create a workflow triggered by *Email Link Clicked* filtered on URL contains `add=daily-devotional`.
+2. Action: *Add Tag → `daily`* and *Add to Daily Devotional campaign*.
+3. Send a short confirmation email (or trigger a thank-you that matches `welcome-devotional.html` lite).
+4. Optional: redirect `/daily.html?add=daily-devotional` to a landing page that confirms the subscription visually.
+
+Same pattern for `welcome-devotional.html`'s weekly-letter invite — use a distinct `?add=weekly-letter` parameter.
+
 All three templates share design tokens, typography, spacing, cinematic hero/footer, and the same sign-off (*With grace and grit,*). The sections below apply to all three unless otherwise noted.
 
 ---
@@ -248,6 +263,55 @@ The welcome file is the canonical master. Save additional templates as:
 Each variant keeps the same tokens, typography, and spacing — only the content blocks change.
 
 ---
+
+## 11b. Device & client optimization
+
+All three templates share a responsive layer tuned for modern and legacy mail clients. The key optimizations:
+
+**Responsive breakpoints (from the `<style>` block):**
+- `@media (max-width: 1024px)` — container flexes to 100% with 600px max, so tablets never show horizontal scroll
+- `@media (max-width: 620px)` — mobile pass:
+  - Container goes edge-to-edge, inner padding drops to 20px
+  - Hero headline scales 78px → 44px with tighter leading
+  - Section headings scale 40px → 28px
+  - Pull quote scales 30px → 22px
+  - The two-column archive grid stacks to one column via `.ij-stack`
+  - Footer link columns stack via `.ij-footer-col`
+  - The primary CTA button goes full-width and centers (via `.ij-btn-mobile`), giving a ≥44px tap target per iOS HIG
+- `@media (max-width: 380px)` — small phones (iPhone SE 1st gen, older Androids):
+  - Container padding tightens to 16px
+  - Hero headline drops to 36px
+  - Section heading drops to 24px
+
+**Client-specific fixes baked in:**
+- `-webkit-text-size-adjust:100%` + `-ms-text-size-adjust:100%` — prevents iOS/WP auto-zoom
+- `mso-table-lspace/rspace:0pt` — removes Outlook's mystery 1.5pt table gaps
+- VML `<v:rect>` fallback inside `<!--[if mso]>` for the cinematic hero background (Outlook desktop uses Word rendering and strips multi-layer CSS backgrounds)
+- `max-width:100%; height:auto` on all `img` — handles retina/2x and arbitrary image inserts
+- `word-wrap:break-word` on body + links — long unbroken URLs or merge-tag expansions never overflow the container
+- `[data-ogsc]` selector for Outlook.com dark-mode overrides
+- `@media (prefers-color-scheme: dark)` forces the light design back to light-mode colors — Apple Mail and Outlook.com both respect this
+- `@media (prefers-reduced-motion: reduce)` disables link/button transitions for accessibility
+
+**What still can't be optimized:**
+- Outlook desktop 2007–2019 Windows (Word engine) — ignores radial gradients, SVG backgrounds, and multi-layer `background-image`. Falls back to the solid deep `#0A0A0A` + VML gradient. The hero headline and type still render correctly; the cinematic overlay is reserved for modern clients.
+- Yahoo Mail and AOL — partial support for radial gradients and SVG data URIs. They render the base color plus one gradient layer; grain is dropped silently.
+- GHL's test-send sometimes injects its own `<style>` block above yours. After pasting, save, then re-open the template and *Send Test* from GHL — not from the HTML preview — to see the real rendering.
+
+**Tap-target & accessibility:**
+- All CTAs have ≥44×44px touch area (16px vertical + 32px horizontal padding + text)
+- Minimum body font size is 15px (archive card body) — never below iOS's comfortable-reading threshold
+- All interactive links use color + underline, not color alone (passes WCAG 1.4.1)
+- Contrast ratios pass 4.5:1 on all body text, 3:1 on large display text (already enforced by the design tokens)
+
+**Testing order:**
+1. Apple Mail on macOS (native render — best baseline)
+2. Gmail web in Chrome
+3. Gmail iOS/Android app
+4. Outlook for Mac
+5. Outlook.com in a browser
+6. Outlook desktop Windows (if available) — fallback confirmation
+7. Mobile Safari Mail on an actual device, not just the simulator
 
 ## 12. Cinematic system (email edition)
 
