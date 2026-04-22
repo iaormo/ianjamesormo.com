@@ -48,7 +48,8 @@
 @media (max-width: 600px) {
   .daily-meta-left { display: flex; flex-direction: column; gap: 2px; }
   .daily-meta-sep { display: none; }
-  .daily-meta-line { display: block; }
+  .daily-meta-line { display: block; white-space: nowrap; font-size: 10px !important; letter-spacing: .12em !important; }
+  .featured-card { padding: 32px 24px 28px !important; }
 }
 /* MOBILE-OVERRIDES-V1 */
 @media (max-width: 600px) {
@@ -287,7 +288,7 @@ function Featured({ d }) {
   return (
     <section className="section-pad" style={{ padding: '40px 56px 72px', background: T.color.page }}>
       <div style={{ maxWidth: 1400, margin: '0 auto' }}>
-        <div style={{ background: T.color.ink, color: T.color.page, padding: '72px 72px 48px', position: 'relative' }}>
+        <div className="featured-card" style={{ background: T.color.ink, color: T.color.page, padding: '72px 72px 48px', position: 'relative' }}>
           <div style={{ display: 'flex', justifyContent: 'space-between', fontFamily: T.font.mono, fontSize: 11, letterSpacing: '.18em', textTransform: 'uppercase', color: T.color.copper, marginBottom: 60 }}>
             <span className="daily-meta-left">
               <span className="daily-meta-line">Day {d.day}</span>
