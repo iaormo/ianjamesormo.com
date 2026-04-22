@@ -118,6 +118,24 @@ function sendJson(res, status, obj) {
   res.end(JSON.stringify(obj));
 }
 
+async function addTagsToGHLContact(contactId, tags) {
+  const PIT = process.env.GHL_PIT;
+  if (!PIT || !contactId || !tags || !tags.length) return null;
+  const r = await fetch(`https://services.leadconnectorhq.com/contacts/${contactId}/tags`, {
+    method: 'POST',
+    headers: {
+      'Authorization': `Bearer ${PIT}`,
+      'Version': '2021-07-28',
+      'Content-Type': 'application/json',
+      'Accept': 'application/json',
+    },
+    body: JSON.stringify({ tags }),
+  });
+  const text = await r.text();
+  if (!r.ok) { console.error(`GHL add-tags ${r.status}: ${text.slice(0, 500)}`); return null; }
+  try { return JSON.parse(text); } catch { return null; }
+}
+
 async function upsertToGHL({ first, last, email, source }) {
   const PIT = process.env.GHL_PIT;
   const LOC = process.env.GHL_LOCATION_ID;
@@ -125,6 +143,10 @@ async function upsertToGHL({ first, last, email, source }) {
   const tags = TAG_MAP[source];
   if (!tags) throw new Error('invalid source');
 
+  // Step 1: upsert without tags — GHL's upsert endpoint REPLACES tags
+  // on existing contacts, which would clobber any tags applied from
+  // previous signups. Use the dedicated add-tags endpoint below for
+  // additive (merge-safe) tag behavior across sessions.
   const r = await fetch('https://services.leadconnectorhq.com/contacts/upsert', {
     method: 'POST',
     headers: {
@@ -138,16 +160,24 @@ async function upsertToGHL({ first, last, email, source }) {
       firstName: first,
       lastName:  last,
       email,
-      tags,
       source: 'ianjamesormo.com',
     }),
   });
 
   const body = await r.text();
   if (!r.ok) {
-    throw new Error(`GHL ${r.status}: ${body.slice(0, 500)}`);
+    throw new Error(`GHL upsert ${r.status}: ${body.slice(0, 500)}`);
   }
-  try { return JSON.parse(body); } catch { return { ok: true }; }
+  let parsed = {};
+  try { parsed = JSON.parse(body); } catch { parsed = { ok: true }; }
+
+  // Step 2: add the source-specific tags additively.
+  const contactId = parsed?.contact?.id || parsed?.id;
+  if (contactId) {
+    await addTagsToGHLContact(contactId, tags);
+  }
+
+  return parsed;
 }
 
 async function addNoteToGHLContact(contactId, body) {
