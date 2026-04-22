@@ -90,6 +90,7 @@ const TAG_MAP = {
   both:       ['devotional', 'newsletter'],
   preorder_finished: ['preorder', 'preorder:you-are-not-finished'],
   preorder_paycheck: ['preorder', 'preorder:you-are-not-your-paycheck'],
+  contact_form: ['contact-form'],
 };
 
 function sendJson(res, status, obj) {
@@ -130,6 +131,55 @@ async function upsertToGHL({ first, last, email, source }) {
     throw new Error(`GHL ${r.status}: ${body.slice(0, 500)}`);
   }
   try { return JSON.parse(body); } catch { return { ok: true }; }
+}
+
+async function addNoteToGHLContact(contactId, body) {
+  const PIT = process.env.GHL_PIT;
+  if (!PIT || !contactId || !body) return null;
+  const r = await fetch(`https://services.leadconnectorhq.com/contacts/${contactId}/notes`, {
+    method: 'POST',
+    headers: {
+      'Authorization': `Bearer ${PIT}`,
+      'Version': '2021-07-28',
+      'Content-Type': 'application/json',
+      'Accept': 'application/json',
+    },
+    body: JSON.stringify({ body: String(body).slice(0, 5000) }),
+  });
+  const text = await r.text();
+  if (!r.ok) { console.error(`GHL note ${r.status}: ${text.slice(0, 500)}`); return null; }
+  try { return JSON.parse(text); } catch { return null; }
+}
+
+function handleContactForm(req, res) {
+  let raw = '';
+  req.on('data', c => { raw += c; if (raw.length > 20 * 1024) req.destroy(); });
+  req.on('end', async () => {
+    try {
+      const data    = JSON.parse(raw || '{}');
+      const first   = String(data.first   || '').trim().slice(0, 80);
+      const last    = String(data.last    || '').trim().slice(0, 80);
+      const email   = String(data.email   || '').trim().toLowerCase().slice(0, 160);
+      const reason  = String(data.reason  || '').trim().slice(0, 160);
+      const message = String(data.message || '').trim().slice(0, 5000);
+      if (!first || !email || !message) {
+        return sendJson(res, 400, { ok: false, error: 'missing field' });
+      }
+      if (!/^[^@\s]+@[^@\s]+\.[^@\s]+$/.test(email)) {
+        return sendJson(res, 400, { ok: false, error: 'invalid email' });
+      }
+      const result = await upsertToGHL({ first, last: last || '—', email, source: 'contact_form' });
+      const contactId = result?.contact?.id || result?.id;
+      if (contactId) {
+        const header = reason ? `[${reason}]` : '[Contact form]';
+        await addNoteToGHLContact(contactId, `${header}\n\n${message}`);
+      }
+      sendJson(res, 200, { ok: true, id: contactId || null });
+    } catch (err) {
+      console.error('contact-form error:', err.message);
+      sendJson(res, 502, { ok: false, error: 'upstream error' });
+    }
+  });
 }
 
 function handleSubscribe(req, res) {
@@ -298,6 +348,9 @@ const server = http.createServer((req, res) => {
   if (req.method === 'POST' && req.url === '/api/content/daily')   return handlePostDaily(req, res);
   if (req.method === 'POST' && req.url === '/api/subscribe') {
     return handleSubscribe(req, res);
+  }
+  if (req.method === 'POST' && req.url === '/api/contact-form') {
+    return handleContactForm(req, res);
   }
   if (req.method !== 'GET' && req.method !== 'HEAD') {
     res.writeHead(405); return res.end('Method not allowed');

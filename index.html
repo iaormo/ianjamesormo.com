@@ -174,6 +174,20 @@
   [style*="font-size: 40px"]{font-size:28px !important;}
 }
 /* END-MOBILE-OVERRIDES */
+/* NEWSLETTER CTA + FOOTER MOBILE FIXES */
+@media (max-width: 600px) {
+  /* Newsletter: stack name inputs, email on its own row, button full-width */
+  .ij-news-form { max-width: 100% !important; }
+  .ij-news-names { flex-direction: column !important; margin-bottom: 2px !important; }
+  .ij-news-names input { border-right: none !important; border-bottom: 1px solid #E6E1D8 !important; width: 100% !important; }
+  .ij-news-names input:last-child { border-bottom: none !important; }
+  .ij-news-email { flex-direction: column !important; }
+  .ij-news-email input { width: 100% !important; }
+  .ij-news-email button[type=submit] { width: 100% !important; padding: 18px !important; }
+  /* Footer: single-column on very small, smaller text, tighter padding */
+  .footer-grid { grid-template-columns: 1fr !important; gap: 32px !important; padding-bottom: 40px !important; }
+  footer { padding: 56px 20px 32px !important; }
+}
 </style>
 
 <script src="https://unpkg.com/react@18.3.1/umd/react.production.min.js" crossorigin="anonymous"></script>
@@ -679,12 +693,12 @@ function Eyebrow({ children, color }) {
               </div>
             </div>
           ) : (
-            <form onSubmit={handleSubmit} style={{ maxWidth: 540, margin: '0 auto' }}>
-              <div style={{ display: 'flex', background: T.color.page, marginBottom: 2 }}>
+            <form onSubmit={handleSubmit} className="ij-news-form" style={{ maxWidth: 540, margin: '0 auto' }}>
+              <div className="ij-news-names" style={{ display: 'flex', background: T.color.page, marginBottom: 2 }}>
                 <input type="text" placeholder="First name" value={form.first} onChange={e => setForm(f => ({...f, first: e.target.value}))} required style={{...inputStyle, borderRight: `1px solid #E6E1D8`}} />
                 <input type="text" placeholder="Last name" value={form.last} onChange={e => setForm(f => ({...f, last: e.target.value}))} required style={inputStyle} />
               </div>
-              <div style={{ display: 'flex', background: T.color.page }}>
+              <div className="ij-news-email" style={{ display: 'flex', background: T.color.page }}>
                 <input type="email" placeholder="your@email.com" value={form.email} onChange={e => setForm(f => ({...f, email: e.target.value}))} required style={inputStyle} />
                 <button type="submit" disabled={step === 'submitting'} style={{ background: T.color.ink, color: T.color.page, border: 'none', padding: '0 28px', fontFamily: T.font.body, fontSize: 11, fontWeight: 700, letterSpacing: '.18em', textTransform: 'uppercase', cursor: 'pointer', whiteSpace: 'nowrap', opacity: step === 'submitting' ? .6 : 1 }}>
                   {step === 'submitting' ? 'Sending…' : 'Subscribe →'}
@@ -723,6 +737,7 @@ function Eyebrow({ children, color }) {
 <script src="/js/verse-popup.js?v=2" defer></script>
 <script src="/js/cursor.js?v=5" defer></script>
 <script src="/js/nav-prefetch.js?v=2" defer></script>
+<script src="/js/preorder-popup.js?v=1" defer></script>
 <script src="/js/animations.js?v=15" defer></script>
 </body>
 </html>

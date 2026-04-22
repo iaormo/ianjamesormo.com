@@ -215,14 +215,27 @@ function Hero() {
 
 function ContactForm() {
   const [form, setForm] = useState({ first: '', last: '', email: '', reason: '', message: '' });
-  const [submitted, setSubmitted] = useState(false);
+  const [step, setStep] = useState('idle'); // idle | submitting | done | error
+  const submitted = step === 'done';
   const reasons = ['General hello', 'Press / interview', 'Podcast guest', 'Bulk book order', 'Something else'];
   const inputStyle = { width: '100%', border: `1px solid ${T.color.mist}`, background: T.color.page, padding: '16px 18px', fontFamily: T.font.body, fontSize: 15, color: T.color.ink, outline: 'none' };
   const labelStyle = { display: 'block', fontFamily: T.font.body, fontSize: 11, fontWeight: 700, letterSpacing: '.22em', textTransform: 'uppercase', color: T.color.copper, marginBottom: 10 };
 
-  function submit(e) {
+  async function submit(e) {
     e.preventDefault();
-    if (form.first && form.email && form.message) setSubmitted(true);
+    if (!form.first || !form.email || !form.message) return;
+    setStep('submitting');
+    try {
+      const r = await fetch('/api/contact-form', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(form),
+      });
+      if (!r.ok) throw new Error('server');
+      setStep('done');
+    } catch (err) {
+      setStep('error');
+    }
   }
 
   return (
@@ -262,9 +275,10 @@ function ContactForm() {
                 <label style={labelStyle}>Message *</label>
                 <textarea required rows={6} value={form.message} onChange={e => setForm(f => ({ ...f, message: e.target.value }))} style={{ ...inputStyle, resize: 'vertical', fontFamily: T.font.body }} />
               </div>
-              <button type="submit" style={{ background: T.color.ink, color: T.color.page, border: 'none', padding: '18px 36px', fontFamily: T.font.body, fontSize: 12, fontWeight: 700, letterSpacing: '.2em', textTransform: 'uppercase', cursor: 'pointer' }}>
-                Send message →
+              <button type="submit" disabled={step === 'submitting'} style={{ background: T.color.ink, color: T.color.page, border: 'none', padding: '18px 36px', fontFamily: T.font.body, fontSize: 12, fontWeight: 700, letterSpacing: '.2em', textTransform: 'uppercase', cursor: step === 'submitting' ? 'wait' : 'pointer', opacity: step === 'submitting' ? .65 : 1 }}>
+                {step === 'submitting' ? 'Sending…' : 'Send message →'}
               </button>
+              {step === 'error' && <div style={{ marginTop: 16, color: T.color.copper, fontSize: 13 }}>Didn't go through. Try again?</div>}
             </form>
           )}
         </div>
