@@ -93,7 +93,7 @@
     transform: rotate(0deg) translateY(-4px);
     box-shadow: 0 0 0 2px #B8471C, 0 30px 70px rgba(10,5,3,.22), 0 3px 10px rgba(10,5,3,.12);
   }
-  .travel-card-photo { aspect-ratio: 4/5; overflow: hidden; background: #0A0A0A; }
+  .travel-card-photo { overflow: hidden; background: #0A0A0A; }
   .travel-card-photo img { width: 100%; height: 100%; object-fit: cover; display: block; transition: transform .6s cubic-bezier(.22,1,.36,1); }
   .travel-card:hover .travel-card-photo img { transform: scale(1.04); }
   .travel-card-meta { padding: 18px 4px 4px; }
@@ -278,6 +278,7 @@ const travels = [
     title:   'Misty Mountain, after the rain.',
     caption: 'The storm was a detail. The ridge was the point.',
     image:   '/images/travels/bukidnon.jpg',
+    aspect:  '5 / 3',
     imageAlt:'Tent pitched on a ridge at Misty Mountain Haven in Malaybalay, Bukidnon, family at a camp table and the Ertiga parked nearby, dramatic sunset sky over rolling mountain ridges.',
     body: [
       "The wind started about an hour after we zipped ourselves into the tent. Then the rain. Then both at the same time, pulling on the stakes in a way that made me reconsider the stakes.",
@@ -357,7 +358,7 @@ function Hero() {
 function Card({ e, active, onClick }) {
   return (
     <button className={'travel-card' + (active ? ' is-active' : '')} type="button" onClick={onClick} aria-pressed={active}>
-      <div className="travel-card-photo">
+      <div className="travel-card-photo" style={{ aspectRatio: e.aspect || '4 / 5' }}>
         <img src={e.image} alt={e.imageAlt} loading="lazy" />
       </div>
       <div className="travel-card-meta">
