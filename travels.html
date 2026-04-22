@@ -164,9 +164,35 @@
   }
   .travel-story-close:hover { background: #111; color: #FAF7F2; }
 
-  @media (max-width: 600px) {
-    .travels-grid { gap: 56px 24px; padding: 32px 0 16px; }
-    .travel-card { padding: 16px 16px 20px; max-width: 300px; }
+  /* Mobile: horizontal swipe carousel. Cards stack side-by-side,
+     user swipes left/right with scroll-snap. The next card peeks
+     at the edge so the swipe affordance reads without a scrollbar. */
+  @media (max-width: 700px) {
+    .travels-grid {
+      display: flex;
+      grid-template-columns: unset;
+      overflow-x: auto;
+      overflow-y: visible;
+      scroll-snap-type: x mandatory;
+      gap: 18px;
+      padding: 32px 20px 24px;
+      margin: 0 -20px;
+      -webkit-overflow-scrolling: touch;
+      scrollbar-width: none;
+      justify-items: initial;
+    }
+    .travels-grid::-webkit-scrollbar { display: none; }
+    .travel-card {
+      flex: 0 0 calc(100% - 56px);
+      max-width: 300px;
+      scroll-snap-align: center;
+      scroll-margin: 0 20px;
+      padding: 16px 16px 20px;
+      transform: rotate(-1deg);
+    }
+    .travel-card:nth-child(2n) { transform: rotate(1deg); }
+    .travel-card:nth-child(3n) { transform: rotate(-.5deg); }
+    .travel-card.is-active { transform: rotate(0); }
     .travel-card-place { font-size: 18px; }
     .travel-card-caption { font-size: 13px; }
     .travel-body { font-size: 19px !important; }
@@ -432,7 +458,7 @@ function App() {
         </div>
       </section>
       {active && (
-        <section className="section-pad" style={{ padding: '48px 56px 96px', background: T.color.page }}>
+        <section className="section-pad in-view" style={{ padding: '48px 56px 96px', background: T.color.page, opacity: 1, transform: 'none' }}>
           <Story e={active} onClose={() => setActiveSlug(null)} />
         </section>
       )}
