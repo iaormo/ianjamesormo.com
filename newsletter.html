@@ -208,11 +208,6 @@ function Hero() {
     await api('newsletter');
     setStep('cross');
   }
-  async function addBoth() {
-    setStep('submitting');
-    await api('both');
-    setStep('thanks');
-  }
   const inputStyle = { width: '100%', border: `1px solid rgba(255,255,255,.35)`, background: 'transparent', padding: '16px 18px', fontFamily: T.font.body, fontSize: 15, color: T.color.page, outline: 'none' };
   return (
     <section className="section-pad" style={{ padding: '96px 56px 120px', background: T.color.copper, color: T.color.page }}>
@@ -230,15 +225,15 @@ function Hero() {
         <div style={{ background: T.color.ink, padding: 36 }}>
           {step === 'thanks' ? (
             <div>
-              <div style={{ fontFamily: T.font.body, fontSize: 11, fontWeight: 700, letterSpacing: '.3em', textTransform: 'uppercase', color: T.color.copper, marginBottom: 14 }}>You are in</div>
-              <div style={{ fontFamily: T.font.quote, fontStyle: 'italic', fontSize: 24, lineHeight: 1.4, color: T.color.page }}>See you soon. Check your inbox for the confirmation.</div>
+              <div style={{ fontFamily: T.font.body, fontSize: 11, fontWeight: 700, letterSpacing: '.3em', textTransform: 'uppercase', color: '#FFFFFF', marginBottom: 14 }}>You are in</div>
+              <div style={{ fontFamily: T.font.quote, fontStyle: 'italic', fontSize: 24, lineHeight: 1.4, color: '#FFFFFF' }}>See you soon. Check your inbox for the confirmation.</div>
             </div>
           ) : step === 'cross' ? (
             <div>
-              <div style={{ fontFamily: T.font.body, fontSize: 11, fontWeight: 700, letterSpacing: '.3em', textTransform: 'uppercase', color: T.color.copper, marginBottom: 14 }}>One more?</div>
-              <div style={{ fontFamily: T.font.quote, fontStyle: 'italic', fontSize: 20, lineHeight: 1.45, color: T.color.page, marginBottom: 24 }}>Want the daily devotional too? Three honest minutes every morning &mdash; a passage, a question, and something to carry into the day.</div>
-              <button onClick={addBoth} style={{ width: '100%', background: T.color.copper, color: T.color.page, border: 'none', padding: '14px 20px', marginBottom: 10, fontFamily: T.font.body, fontSize: 12, fontWeight: 700, letterSpacing: '.2em', textTransform: 'uppercase', cursor: 'pointer' }}>Yes, send me that too</button>
-              <button onClick={() => setStep('thanks')} style={{ width: '100%', background: 'transparent', color: T.color.page, border: `1px solid rgba(255,255,255,.35)`, padding: '12px 20px', fontFamily: T.font.body, fontSize: 12, fontWeight: 700, letterSpacing: '.2em', textTransform: 'uppercase', cursor: 'pointer' }}>No thanks</button>
+              <div style={{ fontFamily: T.font.body, fontSize: 11, fontWeight: 700, letterSpacing: '.3em', textTransform: 'uppercase', color: '#FFFFFF', marginBottom: 14 }}>One more?</div>
+              <div style={{ fontFamily: T.font.quote, fontStyle: 'italic', fontSize: 20, lineHeight: 1.45, color: '#FFFFFF', marginBottom: 24 }}>Want a quieter morning? Browse the Daily Devotional &mdash; three honest minutes. A passage, a question, and something to carry into the day.</div>
+              <a href="daily.html" style={{ display: 'block', width: '100%', boxSizing: 'border-box', textAlign: 'center', background: T.color.copper, color: '#FFFFFF', textDecoration: 'none', border: 'none', padding: '14px 20px', marginBottom: 10, fontFamily: T.font.body, fontSize: 12, fontWeight: 700, letterSpacing: '.2em', textTransform: 'uppercase', cursor: 'pointer' }}>Browse the Daily Devotional →</a>
+              <button onClick={() => setStep('thanks')} style={{ width: '100%', background: 'transparent', color: '#FFFFFF', border: `1px solid rgba(255,255,255,.35)`, padding: '12px 20px', fontFamily: T.font.body, fontSize: 12, fontWeight: 700, letterSpacing: '.2em', textTransform: 'uppercase', cursor: 'pointer' }}>No thanks</button>
             </div>
           ) : (
             <form onSubmit={submit}>

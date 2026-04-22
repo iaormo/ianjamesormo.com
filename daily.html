@@ -567,13 +567,7 @@ function Subscribe() {
     e.preventDefault();
     if (!form.first || !form.last || !form.email) return;
     setStep('submitting');
-    await api('devotional');
-    setStep('cross');
-  }
-
-  async function addBoth() {
-    setStep('submitting');
-    await api('both');
+    await api('newsletter');
     setStep('thanks');
   }
 
@@ -581,21 +575,13 @@ function Subscribe() {
     <section className="section-pad" style={{ padding: '120px 56px', background: T.color.copper, color: T.color.page, overflow: 'hidden' }}>
       <div style={{ maxWidth: 900, margin: '0 auto', textAlign: 'center' }}>
         <div style={{ fontFamily: T.font.head, fontSize: 'clamp(32px, 11vw, 80px)', fontWeight: 900, lineHeight: .9, letterSpacing: '-0.045em', textTransform: 'uppercase', marginBottom: 28 }}>
-          Get it in your inbox.
+          Get the letter in your inbox.
         </div>
         <div style={{ fontFamily: T.font.quote, fontSize: 20, fontStyle: 'italic', lineHeight: 1.5, marginBottom: 40, opacity: .95 }}>
-          One reading, one question. Every morning. 3 minutes or less.
+          One or two honest letters a week. The thing you actually needed to hear, not the one that sounds good in a subject line.
         </div>
         {step === 'thanks' ? (
-          <div style={{ fontFamily: T.font.quote, fontSize: 28, fontStyle: 'italic', color: T.color.ink }}>You&rsquo;re in. See you tomorrow morning.</div>
-        ) : step === 'cross' ? (
-          <div style={{ maxWidth: 560, margin: '0 auto' }}>
-            <div style={{ fontFamily: T.font.quote, fontStyle: 'italic', fontSize: 22, lineHeight: 1.45, color: T.color.ink, marginBottom: 28 }}>You&rsquo;re in. Would you like the weekly letter too? One or two honest notes a week.</div>
-            <div style={{ display: 'flex', gap: 10, justifyContent: 'center', flexWrap: 'wrap' }}>
-              <button onClick={addBoth} style={{ background: T.color.ink, color: T.color.page, border: 'none', padding: '14px 26px', fontFamily: T.font.body, fontSize: 12, fontWeight: 700, letterSpacing: '.18em', textTransform: 'uppercase', cursor: 'pointer' }}>Yes, send me that too</button>
-              <button onClick={() => setStep('thanks')} style={{ background: 'transparent', color: T.color.ink, border: `2px solid ${T.color.ink}`, padding: '12px 24px', fontFamily: T.font.body, fontSize: 12, fontWeight: 700, letterSpacing: '.18em', textTransform: 'uppercase', cursor: 'pointer' }}>No thanks</button>
-            </div>
-          </div>
+          <div style={{ fontFamily: T.font.quote, fontSize: 28, fontStyle: 'italic', color: T.color.ink }}>You&rsquo;re in. See you soon.</div>
         ) : (
           <form onSubmit={handleSubmit} style={{ maxWidth: 540, margin: '0 auto' }}>
             <div style={{ display: 'flex', background: T.color.page, marginBottom: 2 }}>
