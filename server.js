@@ -201,6 +201,57 @@ function handleGetDaily(req, res) {
   sendJson(res, 200, devotionals);
 }
 
+// ESV Bible API proxy — keeps the API key server-side. Usage: /api/verse?q=John+1:1
+const verseCache = new Map(); // in-memory LRU-ish cache
+function handleGetVerse(req, res) {
+  const qMatch = req.url.match(/[?&]q=([^&]+)/);
+  if (!qMatch) { sendJson(res, 400, { ok: false, error: 'Missing q' }); return; }
+  const q = decodeURIComponent(qMatch[1]).trim();
+  if (!q || q.length > 120) { sendJson(res, 400, { ok: false, error: 'Invalid q' }); return; }
+  if (verseCache.has(q)) { sendJson(res, 200, verseCache.get(q)); return; }
+
+  const key = process.env.ESV_API_KEY;
+  if (!key) { sendJson(res, 500, { ok: false, error: 'ESV_API_KEY not configured' }); return; }
+
+  const https = require('https');
+  const params = new URLSearchParams({
+    q,
+    'include-headings': 'false',
+    'include-footnotes': 'false',
+    'include-verse-numbers': 'true',
+    'include-short-copyright': 'true',
+    'include-passage-references': 'true',
+    'indent-paragraphs': '0',
+    'include-first-verse-numbers': 'false',
+  });
+  const options = {
+    hostname: 'api.esv.org',
+    path: '/v3/passage/text/?' + params.toString(),
+    headers: { 'Authorization': 'Token ' + key, 'User-Agent': 'ianjamesormo.com' },
+  };
+  https.get(options, (r) => {
+    let raw = '';
+    r.on('data', c => { raw += c; });
+    r.on('end', () => {
+      try {
+        const data = JSON.parse(raw);
+        const out = {
+          ok: true,
+          reference: data.canonical || q,
+          passages: data.passages || [],
+        };
+        if (verseCache.size > 200) verseCache.clear();
+        verseCache.set(q, out);
+        sendJson(res, 200, out);
+      } catch (e) {
+        sendJson(res, 502, { ok: false, error: 'ESV API bad response' });
+      }
+    });
+  }).on('error', () => {
+    sendJson(res, 502, { ok: false, error: 'ESV API request failed' });
+  });
+}
+
 function handlePostMusing(req, res) {
   if (!requireApiKey(req, res)) return;
   readBody(req, (err, data) => {
@@ -240,6 +291,7 @@ const server = http.createServer((req, res) => {
 
   if (req.method === 'GET'  && req.url === '/api/content/musings') return handleGetMusings(req, res);
   if (req.method === 'GET'  && req.url === '/api/content/daily')   return handleGetDaily(req, res);
+  if (req.method === 'GET'  && req.url.startsWith('/api/verse'))    return handleGetVerse(req, res);
   if (req.method === 'POST' && req.url === '/api/content/musing')  return handlePostMusing(req, res);
   if (req.method === 'POST' && req.url === '/api/content/daily')   return handlePostDaily(req, res);
   if (req.method === 'POST' && req.url === '/api/subscribe') {
