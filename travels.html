@@ -40,17 +40,21 @@
   * { box-sizing: border-box; }
   a { color: inherit; }
   .nav-mobile-btn { display: none; }
-  @media (max-width: 1024px) {
+  @media (max-width: 900px) {
     .nav-full { display: none !important; }
     .nav-mobile-btn { display: block !important; }
     .travels-hero-h { font-size: clamp(36px, 9.5vw, 88px) !important; }
     .section-pad { padding-left: 32px !important; padding-right: 32px !important; }
     .footer-grid { grid-template-columns: 1fr 1fr !important; }
+    .footer-wordmark { transform: scale(0.6); transform-origin: left top; display: block; margin-bottom: -22px; }
   }
   @media (max-width: 600px) {
     .section-pad { padding-left: 20px !important; padding-right: 20px !important; }
-    .footer-grid { grid-template-columns: 1fr !important; }
-    .footer-wordmark { transform: scale(0.6); transform-origin: left top; display: block; margin-bottom: -22px; }
+  }
+  /* FOOTER BOTTOM ROW MOBILE — matches main page */
+  @media (max-width: 600px) {
+    .footer-bottom { font-size: 9px !important; gap: 6px !important; flex-wrap: nowrap !important; }
+    .footer-bottom span { white-space: nowrap; }
   }
   section { opacity: 0; transform: translateY(28px); transition: opacity .65s cubic-bezier(.22,1,.36,1), transform .65s cubic-bezier(.22,1,.36,1); }
   section.in-view { opacity: 1; transform: none; }
@@ -147,18 +151,18 @@ function Nav({ active, onDark = false }) {
 
 function Footer() {
   return (
-    <footer style={{ background: T.color.ink, color: T.color.page, padding: '80px 56px 36px' }}>
-      <div className="footer-grid" style={{ display: 'grid', gridTemplateColumns: '2fr 1fr 1fr 1fr', gap: 48, paddingBottom: 56, borderBottom: '1px solid rgba(255,255,255,.1)', maxWidth: 1400, margin: '0 auto' }}>
-        <div>
-          <div className="footer-wordmark"><Wordmark size={0.38} onDark eyebrow={false} /></div>
+    <footer style={{ background: T.color.ink, color: T.color.page, padding: '72px 56px 36px' }}>
+      <div className="footer-grid" style={{ display: 'grid', gridTemplateColumns: '2fr 1fr 1fr 1fr', gap: 48, paddingBottom: 56, borderBottom: '1px solid rgba(255,255,255,.1)' }}>
+        <div className="footer-wordmark">
+          <Wordmark size={0.38} onDark eyebrow={false} />
           <div style={{ fontFamily: T.font.quote, fontStyle: 'italic', fontSize: 18, marginTop: 28, maxWidth: 380, lineHeight: 1.5, opacity: .85 }}>
             Writer of the unglamorous middle. Faith, work, and the long way home.
           </div>
         </div>
         {[
-          ['Read',   [['Books','books.html'],['Devotional','daily.html'],['Musings','musings.html'],['Travels','travels.html']]],
-          ['About',  [['Story','about.html'],['Press / Media','about.html'],['Contact','contact.html']]],
-          ['Follow', [['Newsletter','newsletter.html'],['Instagram','https://www.instagram.com/ianormore'],['LinkedIn','https://www.linkedin.com/in/ianjamesormo/'],['Facebook','https://www.facebook.com/ian.ormo']]],
+          ['Read', [['Books', 'books.html'], ['Devotional', 'daily.html'], ['Musings', 'musings.html'], ['Travels', 'travels.html']]],
+          ['About', [['Story', 'about.html'], ['Press / Media', 'about.html'], ['Contact', 'contact.html']]],
+          ['Follow', [['Newsletter', 'newsletter.html'], ['Instagram', 'https://www.instagram.com/ianormore'], ['LinkedIn', 'https://www.linkedin.com/in/ianjamesormo/'], ['Facebook', 'https://www.facebook.com/ian.ormo']]],
         ].map(([title, links]) => (
           <div key={title}>
             <div style={{ fontFamily: T.font.body, fontSize: 11, fontWeight: 700, letterSpacing: '.25em', textTransform: 'uppercase', color: T.color.copper, marginBottom: 18 }}>{title}</div>
@@ -170,9 +174,9 @@ function Footer() {
           </div>
         ))}
       </div>
-      <div className="footer-bottom" style={{ maxWidth: 1400, margin: '0 auto', paddingTop: 28, display: 'flex', justifyContent: 'space-between', fontFamily: T.font.body, fontSize: 11, opacity: .55 }}>
-        <span>© 2026 Ian James Ormo. All rights reserved.</span>
-        <span>Manila / Cebu / Dauin</span>
+      <div className="footer-bottom" style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', paddingTop: 28, fontFamily: T.font.body, fontSize: 12, opacity: .55 }}>
+        <span>© 2026 Ian James. All rights reserved.</span>
+        <span style={{ letterSpacing: '.2em', textTransform: 'uppercase' }}>Books · Words · Witness</span>
       </div>
     </footer>
   );
