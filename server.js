@@ -2,6 +2,23 @@ const http = require('http');
 const fs = require('fs');
 const path = require('path');
 
+// ── Auto-load .env at startup (no dependencies) ──────────────────────────
+(function loadDotEnv() {
+  try {
+    var envPath = path.join(__dirname, '.env');
+    if (!fs.existsSync(envPath)) return;
+    var content = fs.readFileSync(envPath, 'utf8');
+    content.split(/\r?\n/).forEach(function (line) {
+      var m = line.match(/^\s*([A-Z0-9_]+)\s*=\s*(.*?)\s*$/);
+      if (!m) return;
+      var key = m[1];
+      var val = m[2].replace(/^["'](.*)["']$/, '$1');
+      if (!process.env[key]) process.env[key] = val;
+    });
+    console.log('[env] loaded .env');
+  } catch (e) { /* ignore */ }
+})();
+
 const PORT = parseInt(process.env.PORT, 10) || 3000;
 const ROOT = __dirname;
 
