@@ -45,11 +45,11 @@
 
       /* ── FILM GRAIN + BURN on dark sections ───────────────────────────── */
       ".ij-grain-host { position: relative; isolation: isolate; }"+
-      /* Grain layer: SVG fractal noise, steps-animated for film feel */
-      ".ij-grain-host::before { content:''; position:absolute; inset:-10%; pointer-events:none; z-index:1;"+
+      /* Grain layer: static — the animated translate version caused repaint on every frame */
+      ".ij-grain-host::before { content:''; position:absolute; inset:0; pointer-events:none; z-index:1;"+
         "background-image: url(\"data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='320' height='320'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='0.80' numOctaves='4' stitchTiles='stitch'/><feColorMatrix type='matrix' values='0 0 0 0 1 0 0 0 0 .92 0 0 0 0 .78 0 0 0 .7 0'/></filter><rect width='100%25' height='100%25' filter='url(%23n)'/></svg>\");"+
-        "mix-blend-mode: overlay; animation: ij-grain 0.95s steps(6) infinite, ij-flicker 8s ease-in-out infinite; opacity:.13; }"+
-      /* Burn layer: vignette + warm corner glows + sweeping burn flare + color temp shift */
+        "mix-blend-mode: overlay; opacity:.12; }"+
+      /* Burn layer: vignette + warm corner glows + sweeping burn flare (static — filter animations cause paint jank on scroll) */
       ".ij-grain-host::after { content:''; position:absolute; inset:0; pointer-events:none; z-index:1;"+
         "background:"+
           "radial-gradient(ellipse at center, transparent 28%, rgba(8,5,3,.50) 70%, rgba(2,1,0,.88) 100%),"+
@@ -57,7 +57,7 @@
           "radial-gradient(800px  circle at 8%  92%, rgba(184,71,28,.22) 0%, transparent 48%),"+
           "radial-gradient(600px  circle at 50% 50%, rgba(180,100,30,.06) 0%, transparent 60%),"+
           "linear-gradient(125deg, transparent 38%, rgba(255,175,100,.07) 50%, transparent 62%);"+
-        "mix-blend-mode: screen; animation: ij-burn 18s ease-in-out infinite; }"+
+        "mix-blend-mode: screen; }"+
       ".ij-grain-host > * { position: relative; z-index: 2; }"+
 
       /* Grain shake */
@@ -91,7 +91,11 @@
         "100% { filter: brightness(1.00) hue-rotate(0deg)  saturate(1.0); }"+
       "}"+
 
-      /* ── GLOBAL CINEMATIC OVERLAY (v5 — subtle, cinematic) ───────────── */
+      /* ── GLOBAL CINEMATIC OVERLAY ─────────────────────────────────────── */
+      /* GPU-promote every fixed overlay so they don't repaint on scroll */
+      "#ij-cinema-paper,#ij-cinema-tint,#ij-cinema-vignette,#ij-cinema-leak-a,#ij-cinema-leak-b,#ij-cinema-leak-c,#ij-cinema-flare,#ij-cinema-scratch,#ij-cinema-scratch2,#ij-cinema-noise,#ij-cinema-dust {"+
+        "transform: translateZ(0); will-change: transform, opacity; backface-visibility: hidden; contain: layout paint size;"+
+      "}"+
       "#ij-cinema-vignette { position:fixed; inset:0; pointer-events:none; z-index:9990;"+
         "background: radial-gradient(ellipse 110% 100% at center, transparent 38%, rgba(30,15,5,.20) 70%, rgba(10,4,1,.48) 100%);"+
       "}"+
@@ -141,30 +145,21 @@
         "animation: ij-dust-drift-a 75s linear infinite, ij-dust-drift-b 110s linear infinite;"+
       "}"+
       "@keyframes ij-dust-drift-a {"+
-        "0%   { background-position: 0 0, 0 0; }"+
-        "50%  { background-position: -40px -160px, 30px -120px; }"+
-        "100% { background-position: -80px -320px, 60px -240px; }"+
+        "0%   { transform: translate3d(0, 0, 0); }"+
+        "50%  { transform: translate3d(-30px, -160px, 0); }"+
+        "100% { transform: translate3d(-60px, -320px, 0); }"+
       "}"+
       "@keyframes ij-dust-drift-b {"+
-        "0%,100% { filter: brightness(1) blur(.2px); }"+
-        "50%     { filter: brightness(1.25) blur(0); }"+
+        "0%,100% { opacity: .22; }"+
+        "50%     { opacity: .32; }"+
       "}"+
 
-      /* Global film noise — always-on fine grain, animated subtly */
-      "#ij-cinema-noise { position:fixed; inset:-10%; pointer-events:none; z-index:9994;"+
+      /* Global film noise — static (animated version caused full-viewport repaint jank) */
+      "#ij-cinema-noise { position:fixed; inset:0; pointer-events:none; z-index:9994;"+
         "background-image: url(\"data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='280' height='280'><filter id='gn'><feTurbulence type='fractalNoise' baseFrequency='.95' numOctaves='3' seed='7' stitchTiles='stitch'/><feColorMatrix type='matrix' values='0 0 0 0 1  0 0 0 0 1  0 0 0 0 1  0 0 0 .72 0'/></filter><rect width='100%25' height='100%25' filter='url(%23gn)'/></svg>\");"+
         "background-size: 280px 280px;"+
-        "opacity: .08;"+
+        "opacity: .07;"+
         "mix-blend-mode: overlay;"+
-        "animation: ij-noise-shift 1.1s steps(6) infinite;"+
-      "}"+
-      "@keyframes ij-noise-shift {"+
-        "0%   { transform:translate(0,0); }"+
-        "20%  { transform:translate(-3%,2%); }"+
-        "40%  { transform:translate(3%,-2%); }"+
-        "60%  { transform:translate(-2%,3%); }"+
-        "80%  { transform:translate(2%,-3%); }"+
-        "100% { transform:translate(0,0); }"+
       "}"+
       /* Film scratch: rare vertical flash */
       "#ij-cinema-scratch { position:fixed; top:0; left:38%; width:1px; height:100%;"+
