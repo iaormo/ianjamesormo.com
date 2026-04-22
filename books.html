@@ -31,7 +31,8 @@
   * { box-sizing: border-box; }
   a { color: inherit; }
   @media (max-width: 900px) {
-    .book-row { grid-template-columns: 1fr !important; gap: 48px !important; }
+    .book-row { grid-template-columns: 1fr !important; gap: 72px !important; }
+    .book-row > div:nth-child(2) { padding-top: 16px !important; }
     .section-pad { padding-left: 24px !important; padding-right: 24px !important; }
     .hero-h { font-size: clamp(64px, 14vw, 144px) !important; }
   }
@@ -228,7 +229,7 @@ function BookCover({ title, subtitle, variant = 'ink', w = 280, h = 420, rotate 
       <div style={{ position: 'absolute', left: 0, top: 0, bottom: 0, width: 6, background: `linear-gradient(90deg, ${p.spine} 0%, rgba(0,0,0,.25) 40%, transparent 100%)`, pointerEvents: 'none' }} />
       <div style={{ position: 'absolute', inset: 0, padding: '9%', display: 'flex', flexDirection: 'column', justifyContent: 'center' }}>
         <div>
-          <div style={{ fontFamily: T.font.head, fontSize: w * .13, fontWeight: 900, lineHeight: .95, letterSpacing: '-0.035em', textTransform: 'uppercase' }}>{title}</div>
+          <div style={{ fontFamily: T.font.head, fontSize: w * .115, fontWeight: 900, lineHeight: .95, letterSpacing: '-0.04em', textTransform: 'uppercase' }}>{title}</div>
           <div style={{ width: w * .22, height: 4, background: p.accent, margin: `${w * .04}px 0` }} />
           {subtitle && <div style={{ fontFamily: T.font.body, fontSize: w * .045, fontWeight: 500, lineHeight: 1.35, opacity: .88 }}>{subtitle}</div>}
         </div>
