@@ -72,6 +72,18 @@
   @media (max-width: 600px) {
     .section-pad { padding-left: 20px !important; padding-right: 20px !important; }
   }
+/* BOOK + DAILY MOBILE FIX */
+@media (max-width: 900px) {
+  .book-row [style*="height: 560"] { height: auto !important; min-height: 300px !important; padding: 32px 0 !important; }
+  .book-row [style*="width: 320px"] { width: min(260px, 72vw) !important; height: auto !important; aspect-ratio: 2/3 !important; }
+  .book-row { margin-top: 48px !important; }
+  .book-row + .book-row, [style*="marginTop: 100"] { margin-top: 0 !important; }
+  .daily-grid > div:last-child { display: none !important; }
+}
+@media (max-width: 600px) {
+  .book-row [style*="height: 560"] { min-height: 240px !important; }
+  .book-row [style*="width: 320px"] { width: min(220px, 65vw) !important; }
+}
 /* MOBILE-OVERRIDES-V1 */
 @media (max-width: 600px) {
   [style*="font-size: 168px"]{font-size:56px !important; line-height: 1.02 !important;}
@@ -381,7 +393,7 @@ function Eyebrow({ children, color }) {
 
   function Books() {
     return (
-      <section className="section-pad" style={{ padding: '120px 56px', background: T.color.bone }}>
+      <section className="section-pad" style={{ padding: '120px 56px', background: T.color.bone, overflow: 'hidden' }}>
         <div style={{ maxWidth: 1400, margin: '0 auto' }}>
           <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-end', marginBottom: 72, flexWrap: 'wrap', gap: 24 }}>
             <div>
@@ -442,7 +454,7 @@ function Eyebrow({ children, color }) {
 
   function Daily() {
     return (
-      <section className="section-pad" style={{ padding: '120px 56px', background: T.color.ink, color: T.color.page }}>
+      <section className="section-pad" style={{ padding: '120px 56px', background: T.color.ink, color: T.color.page, overflow: 'hidden' }}>
         <div style={{ maxWidth: 1400, margin: '0 auto' }}>
           <div className="daily-grid" style={{ display: 'grid', gridTemplateColumns: '1fr 1.4fr', gap: 80 }}>
             <div>
