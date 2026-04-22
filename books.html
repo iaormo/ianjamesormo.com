@@ -260,8 +260,9 @@ function Hero() {
     <section className="section-pad" style={{ padding: '88px 56px 64px', background: T.color.page }}>
       <div style={{ maxWidth: 1400, margin: '0 auto' }}>
         <Eyebrow>The books</Eyebrow>
-        <div className="hero-h" style={{ fontFamily: T.font.head, fontSize: 144, fontWeight: 900, lineHeight: .86, letterSpacing: '-0.05em', textTransform: 'uppercase' }}>
-          Two books.<br /><span style={{ color: T.color.copper }}>One question.</span>
+        <div className="hero-h books-hero-h" style={{ fontFamily: T.font.head, fontSize: 'clamp(56px, 11vw, 144px)', fontWeight: 900, lineHeight: .86, letterSpacing: '-0.05em', textTransform: 'uppercase', whiteSpace: 'nowrap' }}>
+          <span style={{ display: 'block' }}>Two books.</span>
+          <span style={{ display: 'block', color: T.color.copper }}>One question.</span>
         </div>
         <div style={{ fontFamily: T.font.quote, fontSize: 24, fontStyle: 'italic', marginTop: 32, maxWidth: 720, color: T.color.steel, lineHeight: 1.45 }}>
           What does it cost to keep showing up, and is anyone counting the small things?
