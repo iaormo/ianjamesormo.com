@@ -4,20 +4,26 @@ A companion guide to the welcome-email templates. Use this as the master referen
 
 Every email follows the same rule as the website: *does it serve the writing, or compete with it?*
 
-## Two welcome templates — which to use when
+## Three welcome templates — which to use when
 
 | File | When it fires | What's different |
 |---|---|---|
-| `ghl-welcome-email.html` | Someone signs up for the **weekly letter** (newsletter form, tag `newsletter`) | Weekly-letter framing, "What you can expect" body, two-column Daily + Musings archive grid, CTA to the site |
-| `ghl-welcome-email-devotional.html` | Someone signs up for the **daily devotional only** (tag `daily` / `devotional`) | Morning-cadence framing, "A few lines, most mornings" body, CTA to today's devotional, soft *"there's also a weekly letter"* invite panel (not a hard pitch) |
+| `welcome-newsletter.html` | Someone signs up for the **weekly letter only** (tag `newsletter`, no `daily`/`devotional` tag) | Weekly-letter framing, archive grid for Daily + Musings, soft *"there's also a daily devotional"* invite panel, CTA to the site |
+| `welcome-devotional.html` | Someone signs up for the **daily devotional only** (tag `daily` / `devotional`, no `newsletter` tag) | Morning-cadence framing, *"A few lines, most mornings"* body, CTA to today's devotional, soft *"there's also a weekly letter"* invite panel |
+| `welcome-combined.html` | Someone signs up for **both** (tags `newsletter` + `daily`, usually from a single combined form) | *"You're all in"* framing, explains both rhythms, Daily + Musings entry points, no cross-promo panel (they already have both) |
 
 **Segmentation logic in GHL:**
-- If the contact has tag `newsletter` (only) → weekly-letter welcome
-- If the contact has tag `daily` or `devotional` (only) → devotional welcome
-- If the contact has **both** tags from a combined form → send the weekly-letter welcome (it already references the devotional in the archive grid)
-- If someone on the daily list later adds the weekly, do NOT resend either welcome — just let the next weekly letter land normally
+- Tag `newsletter` only → `welcome-newsletter.html`
+- Tag `daily` (or `devotional`) only → `welcome-devotional.html`
+- Both tags → `welcome-combined.html`
+- If someone on one list later adds the other, do NOT resend any welcome — just let the next scheduled send land normally
 
-Both templates share design tokens, typography, spacing, cinematic hero/footer, and the same sign-off. The sections below apply to both unless otherwise noted.
+**Recommended workflow in GHL:**
+1. Create three separate automations, each keyed to its trigger tag combination.
+2. Use a *Wait 1 minute* step at the top so tags from a multi-checkbox form settle before the branch fires.
+3. Gate each automation with a *If/Else* on tag membership so only one welcome ever fires per contact.
+
+All three templates share design tokens, typography, spacing, cinematic hero/footer, and the same sign-off (*With grace and grit,*). The sections below apply to all three unless otherwise noted.
 
 ---
 
@@ -277,8 +283,9 @@ Cinematic here means *35mm, golden hour, slightly worn* — not *blockbuster tra
 
 ## 13. Files
 
-- **`ghl-welcome-email.html`** — weekly-letter welcome (paste into GHL)
-- **`ghl-welcome-email-devotional.html`** — daily-devotional-only welcome (paste into GHL)
+- **`welcome-newsletter.html`** — weekly-letter-only welcome (paste into GHL)
+- **`welcome-devotional.html`** — daily-devotional-only welcome (paste into GHL)
+- **`welcome-combined.html`** — both-lists welcome (paste into GHL)
 - **`newsletter-template.md`** — this guide
 - **`DESIGN-GUIDE.md`** — the source of truth for all design decisions
 

@@ -272,6 +272,10 @@
         ".ij-hoverlink:hover .ij-ltr { animation:none; }"+
         ".ij-3d,.ij-3d-lift,.ij-3d-btn { transform:none !important; }"+
       "}"+
+      /* Hide film scratches on mobile — they read as visual noise at small sizes */
+      "@media (max-width: 768px) {"+
+        "#ij-cinema-scratch,#ij-cinema-scratch2 { display:none !important; }"+
+      "}"+
 
       /* ── TEXT REVEAL ──────────────────────────────────────────────────── */
       '.ij-reveal-word { display: inline-block; overflow: hidden; vertical-align: bottom; }'+
