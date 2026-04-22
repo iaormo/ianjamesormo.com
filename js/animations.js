@@ -14,6 +14,38 @@
   // ─── 1. TEXT REVEAL ON HERO HEADINGS ─────────────────────────────────────
   function injectStyles() {
     var css = ''+
+      /* ── SHARE ICON HOVER ANIMATIONS ─────────────────────────────────── */
+      '.ij-share-btn { position: relative; overflow: hidden; isolation: isolate;'+
+        'transition: color .3s cubic-bezier(.22,1,.36,1), border-color .3s ease, transform .35s cubic-bezier(.22,1,.36,1); }'+
+      '.ij-share-btn svg { position: relative; z-index: 2; transition: transform .4s cubic-bezier(.22,1,.36,1); }'+
+      '.ij-share-btn::before { content: ""; position: absolute; inset: 0; background: #B8471C;'+
+        'transform: translateY(100%); transition: transform .45s cubic-bezier(.22,1,.36,1); z-index: 1; }'+
+      '.ij-share-btn:hover { color: #FAF7F2 !important; border-color: #B8471C !important; transform: translateY(-2px); }'+
+      '.ij-share-btn:hover::before { transform: translateY(0); }'+
+      '.ij-share-btn:hover svg { transform: scale(1.12) rotate(-4deg); }'+
+      '.ij-share-btn:active { transform: translateY(0); }'+
+      /* ── FILM GRAIN + CINEMATIC BURN on dark sections ─────────────────── */
+      /* Inline SVG turbulence noise, encoded as data URI for perf */
+      ".ij-grain-host { position: relative; }"+
+      ".ij-grain-host::before { content:''; position:absolute; inset:0; pointer-events:none; z-index:1; opacity:.07;"+
+        "background-image: url(\"data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='260' height='260'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/><feColorMatrix type='matrix' values='0 0 0 0 1 0 0 0 0 1 0 0 0 0 1 0 0 0 .6 0'/></filter><rect width='100%25' height='100%25' filter='url(%23n)'/></svg>\");"+
+        "mix-blend-mode: overlay; animation: ij-grain 1.2s steps(4) infinite; }"+
+      /* Cinematic burn: warm vignette + edge glow */
+      ".ij-grain-host::after { content:''; position:absolute; inset:0; pointer-events:none; z-index:1;"+
+        "background: radial-gradient(ellipse at center, transparent 38%, rgba(10,6,4,.35) 78%, rgba(5,3,2,.7) 100%),"+
+                    "radial-gradient(ellipse at 80% 10%, rgba(184,71,28,.18) 0%, transparent 55%),"+
+                    "radial-gradient(ellipse at 20% 90%, rgba(184,71,28,.10) 0%, transparent 50%);"+
+        "mix-blend-mode: screen; }"+
+      ".ij-grain-host > * { position: relative; z-index: 2; }"+
+      "@keyframes ij-grain {"+
+        "0% { transform: translate(0,0); }"+
+        "25% { transform: translate(-3%,1%); }"+
+        "50% { transform: translate(2%,-2%); }"+
+        "75% { transform: translate(-1%,3%); }"+
+        "100% { transform: translate(0,0); }"+
+      "}"+
+      "@media (prefers-reduced-motion: reduce) { .ij-grain-host::before { animation: none; } }"+
+      /* ── EXISTING ANIMATIONS ─────────────────────────────────────────── */
       '.ij-reveal-word { display: inline-block; overflow: hidden; vertical-align: bottom; }'+
       '.ij-reveal-word > span { display: inline-block; transform: translateY(110%); opacity: 0;'+
         'transition: transform .9s cubic-bezier(.2,.8,.2,1), opacity .9s ease; }'+
@@ -159,6 +191,26 @@
     });
   }
 
+  // ─── 5. CINEMATIC FILM GRAIN ON DARK SECTIONS ─────────────────────────────
+  function setupGrain() {
+    if (REDUCED) return;
+    // Find sections/footers whose computed background is dark (luminance < 0.22)
+    var nodes = document.querySelectorAll('section, footer, .ij-grain-candidate');
+    nodes.forEach(function(n){
+      if (n.__ijGrain) return;
+      var bg = getComputedStyle(n).backgroundColor;
+      var m = bg.match(/rgba?\(([^)]+)\)/);
+      if (!m) return;
+      var parts = m[1].split(',').map(function(x){ return parseFloat(x); });
+      if (parts.length < 3) return;
+      var lum = (0.299*parts[0] + 0.587*parts[1] + 0.114*parts[2]) / 255;
+      if (lum < 0.22 && (parts[3] === undefined || parts[3] > 0.5)) {
+        n.__ijGrain = true;
+        n.classList.add('ij-grain-host');
+      }
+    });
+  }
+
   function init() {
     injectStyles();
     setupReveals();
@@ -168,6 +220,7 @@
       setupMagnetic();
       setupTilt();
       setupUnderlines();
+      setupGrain();
       if (++tries < 20) setTimeout(rerun, 500);
     })();
   }
