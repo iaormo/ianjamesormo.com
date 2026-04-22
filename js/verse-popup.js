@@ -110,19 +110,26 @@
   // Pattern: "Book Chapter:Verse" like "Colossians 3:23" or "Proverbs 4:23"
   var VERSE_RE = /^\s*(?:[1-3]\s)?[A-Z][a-zA-Z]+\.?\s+\d+:\d+(?:-\d+)?\s*$/;
   function autoWire(root) {
-    var candidates = (root || document).querySelectorAll('span, a, div');
+    var candidates = (root || document).querySelectorAll('span, a, div, [data-verse]');
     for (var i = 0; i < candidates.length; i++) {
       var el = candidates[i];
+      // Re-heal any verse-link whose "Read" span was wiped by a React re-render
+      if (el.classList.contains('ij-verse-link') && !el.querySelector('.ij-rd')) {
+        var vref = el.getAttribute('data-verse') || el.textContent.replace(/^\s*Read\s+/i, '').trim();
+        if (vref) {
+          el.innerHTML = '<span class="ij-rd">Read</span>' + ' ' + escapeHtml(vref);
+          if (!el.getAttribute('data-verse')) el.setAttribute('data-verse', vref);
+        }
+        continue;
+      }
       if (el.__ijVerseChecked) continue;
       el.__ijVerseChecked = true;
       if (el.children.length !== 0) continue; // only leaves
       var txt = (el.textContent || '').trim();
-      // Allow the text to already include "Read" prefix so re-scans don't double up
       var stripped = txt.replace(/^\s*Read\s+/i, '').trim();
       if (stripped && stripped.length < 40 && VERSE_RE.test(stripped)) {
         el.classList.add('ij-verse-link');
         if (!el.getAttribute('data-verse')) el.setAttribute('data-verse', stripped);
-        // Prepend a visible "Read " label if not already prefixed
         if (!/^\s*Read\s+/i.test(txt)) {
           el.innerHTML = '<span class="ij-rd">Read</span>' + ' ' + escapeHtml(stripped);
         }
@@ -137,6 +144,22 @@
     // Re-scan periodically — React apps mount/update after initial load
     var tries = 0;
     var iv = setInterval(function(){ autoWire(); if (++tries > 30) clearInterval(iv); }, 400);
+    // Also react to React re-renders that strip the "Read" prefix — repair immediately.
+    if (window.MutationObserver) {
+      var scheduled = false;
+      var mo = new MutationObserver(function(muts){
+        // Ignore mutations we caused ourselves (autoWire rewrites .ij-verse-link innerHTML)
+        for (var i = 0; i < muts.length; i++) {
+          var t = muts[i].target;
+          if (t && t.classList && t.classList.contains('ij-verse-link')) return;
+          if (t && t.parentElement && t.parentElement.classList && t.parentElement.classList.contains('ij-verse-link')) return;
+        }
+        if (scheduled) return;
+        scheduled = true;
+        requestAnimationFrame(function(){ scheduled = false; autoWire(); });
+      });
+      mo.observe(document.body, { childList: true, subtree: true, characterData: true });
+    }
   }
 
   if (document.readyState === 'complete' || document.readyState === 'interactive') init();

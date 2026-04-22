@@ -137,12 +137,11 @@
     });
 
     function tick() {
-      // Dot tracks nearly instantly
-      dx += (tx - dx) * 0.55;
-      dy += (ty - dy) * 0.55;
-      // Ring eases for classic "reticle acquiring target" feel
-      rx += (tx - rx) * 0.22;
-      ry += (ty - ry) * 0.22;
+      // Dot snaps to cursor position directly (one-frame latency, feels instant)
+      dx = tx; dy = ty;
+      // Ring eases — snappier than before for "reticle acquiring" feel
+      rx += (tx - rx) * 0.35;
+      ry += (ty - ry) * 0.35;
       dot.style.transform  = 'translate3d(' + dx.toFixed(1) + 'px,' + dy.toFixed(1) + 'px,0) translate(-50%,-50%)';
       ring.style.transform = 'translate3d(' + rx.toFixed(1) + 'px,' + ry.toFixed(1) + 'px,0) translate(-50%,-50%)';
       requestAnimationFrame(tick);

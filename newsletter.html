@@ -312,7 +312,7 @@ ReactDOM.createRoot(document.getElementById('root')).render(
 );
 </script>
 <script>(function(){var obs=new IntersectionObserver(function(e){e.forEach(function(x){if(x.isIntersecting){x.target.classList.add("in-view");obs.unobserve(x.target);}});},{threshold:0.05,rootMargin:"0px 0px -40px 0px"});var attached=new WeakSet();function attach(){document.querySelectorAll("section").forEach(function(s){if(!attached.has(s)){attached.add(s);obs.observe(s);}});}var tries=0;function poll(){attach();tries++;if(tries<60)setTimeout(poll,100);}if(document.readyState==="complete"){poll();}else{window.addEventListener("load",poll);}})();</script>
-<script src="/js/cursor.js?v=3" defer></script>
+<script src="/js/cursor.js?v=4" defer></script>
 <script src="/js/animations.js?v=15" defer></script>
 </body>
 </html>
