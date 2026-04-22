@@ -43,6 +43,7 @@
   }
   @media (max-width: 600px) {
     .section-pad { padding-left: 20px !important; padding-right: 20px !important; }
+    .footer-wordmark { transform: scale(0.6); transform-origin: left top; display: block; margin-bottom: -22px; }
   }
 /* DAILY META 3-LINE MOBILE */
 @media (max-width: 600px) {
@@ -189,7 +190,7 @@ function Footer() {
   return (
     <footer style={{ background: T.color.ink, color: T.color.page, padding: '72px 56px 36px' }}>
       <div style={{ display: 'grid', gridTemplateColumns: '2fr 1fr 1fr 1fr', gap: 48, paddingBottom: 56, borderBottom: '1px solid rgba(255,255,255,.1)' }}>
-        <div>
+        <div className="footer-wordmark">
           <Wordmark size={0.55} onDark />
           <div style={{ fontFamily: T.font.quote, fontStyle: 'italic', fontSize: 18, marginTop: 28, maxWidth: 380, lineHeight: 1.5, opacity: .85 }}>Writer of the unglamorous middle. Faith, work, and the long way home.</div>
         </div>

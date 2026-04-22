@@ -40,6 +40,7 @@
     .section-pad { padding-left: 24px !important; padding-right: 24px !important; }
     .footer-grid { grid-template-columns: 1fr 1fr !important; }
     .filter-bar { padding-left: 24px !important; padding-right: 24px !important; }
+    .footer-wordmark { transform: scale(0.6); transform-origin: left top; display: block; margin-bottom: -22px; }
   }
   section { opacity: 0; transform: translateY(28px); transition: opacity .65s cubic-bezier(.22,1,.36,1), transform .65s cubic-bezier(.22,1,.36,1); }
   section.in-view { opacity: 1; transform: none; }
@@ -208,7 +209,7 @@ function Footer() {
   return (
     <footer style={{ background: T.color.ink, color: T.color.page, padding: '72px 56px 36px' }}>
       <div className="footer-grid" style={{ display: 'grid', gridTemplateColumns: '2fr 1fr 1fr 1fr', gap: 48, paddingBottom: 56, borderBottom: '1px solid rgba(255,255,255,.1)' }}>
-        <div>
+        <div className="footer-wordmark">
           <Wordmark size={0.55} onDark eyebrow={false} />
           <div style={{ fontFamily: T.font.quote, fontStyle: 'italic', fontSize: 18, marginTop: 28, maxWidth: 380, lineHeight: 1.5, opacity: .85 }}>
             Writer of the unglamorous middle. Faith, work, and the long way home.
@@ -638,7 +639,7 @@ function App() {
 
 ReactDOM.createRoot(document.getElementById('root')).render(<App />);
 </script>
-<script>(function(){var obs=new IntersectionObserver(function(e){e.forEach(function(x){if(x.isIntersecting){x.target.classList.add("in-view");obs.unobserve(x.target);}});},{threshold:0.05,rootMargin:"0px 0px -40px 0px"});var attached=new WeakSet();function attach(){document.querySelectorAll("section").forEach(function(s){if(!attached.has(s)){attached.add(s);obs.observe(s);}});}var tries=0;function poll(){attach();tries++;if(tries<60)setTimeout(poll,100);}if(document.readyState==="complete"){poll();}else{window.addEventListener("load",poll);}})();</script>
+<script>(function(){var obs=new IntersectionObserver(function(e){e.forEach(function(x){if(x.isIntersecting){x.target.classList.add("in-view");obs.unobserve(x.target);}});},{threshold:0,rootMargin:"0px 0px 0px 0px"});var attached=new WeakSet();function attach(){document.querySelectorAll("section").forEach(function(s){if(!attached.has(s)){attached.add(s);obs.observe(s);}});}var tries=0;function poll(){attach();tries++;if(tries<60)setTimeout(poll,100);}if(document.readyState==="complete"){poll();}else{window.addEventListener("load",poll);}})();</script>
 <script src="/js/newsletter-popup.js" defer></script>
 </body>
 </html>
