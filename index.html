@@ -48,7 +48,9 @@
     .hero-grid { grid-template-columns: 1fr !important; gap: 40px !important; }
     .themes-header { grid-template-columns: 1fr !important; }
     .themes-grid { grid-template-columns: 1fr 1fr !important; }
-    .book-row { grid-template-columns: 1fr !important; gap: 48px !important; }
+    .book-row { grid-template-columns: 1fr !important; gap: 72px !important; }
+    .book-row .book-text-col { padding-top: 64px !important; }
+    .book-row .book-cover-col { height: auto !important; min-height: 420px; }
     .daily-grid { grid-template-columns: 1fr !important; }
     .about-grid { grid-template-columns: 1fr !important; }
     .essays-header { flex-direction: column !important; align-items: flex-start !important; gap: 24px !important; }
@@ -449,10 +451,10 @@ function Eyebrow({ children, color }) {
 
           {/* Book 1 */}
           <div className="book-row" style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 80, alignItems: 'center' }}>
-            <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', height: 560 }}>
+            <div className="book-cover-col" style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', height: 560 }}>
               <BookCover title={<>You are<br /><span style={{fontFamily:T.font.quote,fontStyle:'italic',fontWeight:400,letterSpacing:'0em',textTransform:'none',fontSize:'1.5em',lineHeight:.8}}>not</span><br />finished</>} subtitle="Grace, grit, and the long way home." variant="ink" w={320} h={480} rotate={-2} />
             </div>
-            <div>
+            <div className="book-text-col">
               <div style={{ fontFamily: T.font.mono, fontSize: 12, color: T.color.copper, marginBottom: 16 }}>[ Memoir · Coming soon ]</div>
               <div style={{ fontFamily: T.font.head, fontSize: 48, fontWeight: 900, lineHeight: .95, letterSpacing: '-0.035em', textTransform: 'uppercase', marginBottom: 24 }}>
                 You are not finished.
@@ -472,7 +474,7 @@ function Eyebrow({ children, color }) {
 
           {/* Book 2 */}
           <div className="book-row" style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 80, alignItems: 'center', marginTop: 100 }}>
-            <div>
+            <div className="book-text-col">
               <div style={{ fontFamily: T.font.mono, fontSize: 12, color: T.color.copper, marginBottom: 16 }}>[ Self-help · Business · Coming soon ]</div>
               <div style={{ fontFamily: T.font.head, fontSize: 48, fontWeight: 900, lineHeight: .95, letterSpacing: '-0.035em', textTransform: 'uppercase', marginBottom: 24 }}>
                 You are not<br />your paycheck.
@@ -485,7 +487,7 @@ function Eyebrow({ children, color }) {
                 <Btn kind="ghost" href="books.html">Buy</Btn>
               </div>
             </div>
-            <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', height: 560 }}>
+            <div className="book-cover-col" style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', height: 560 }}>
               <BookCover title={<>You are<br /><span style={{fontFamily:T.font.quote,fontStyle:'italic',fontWeight:400,letterSpacing:'0em',textTransform:'none',fontSize:'1.5em',lineHeight:.8}}>not</span><br />your<br />paycheck</>} subtitle="Stop letting a number set your ceiling." variant="copper" w={320} h={480} rotate={2} />
             </div>
           </div>
