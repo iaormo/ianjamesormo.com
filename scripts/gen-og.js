@@ -24,14 +24,23 @@ const essays = [
 ];
 
 const daily = [
-  { num:'047', date:'April 21, 2026', tag:'Proverbs 4:23',     title:'The quiet rebuild',      quote:'Grace does not wait for your readiness. It arrives before you have cleaned up.' },
-  { num:'046', date:'April 20, 2026', tag:'Romans 5:8',        title:'Grace before readiness', quote:'God did not wait until you had your life together. He moved while you were still making the mess.' },
-  { num:'045', date:'April 19, 2026', tag:'Psalm 139:14',      title:'What the body carried',  quote:'The body remembered what the mind could not yet narrate.' },
-  { num:'044', date:'April 18, 2026', tag:'Galatians 6:9',     title:'Faithfulness, not resilience', quote:'Do not grow weary. The harvest comes to the ones who did not leave.' },
-  { num:'043', date:'April 17, 2026', tag:'1 Peter 3:7',       title:'Dwell with knowledge',   quote:'To dwell is to be present inside the room, not adjacent to it.' },
-  { num:'042', date:'April 16, 2026', tag:'John 15:13',        title:'Cost as evidence',       quote:'The cross is the shape of love because the cross is the shape of maximum cost.' },
-  { num:'041', date:'April 15, 2026', tag:'Proverbs 23:7',     title:'The paycheck number',    quote:'As a man thinks in his heart, so is he. The number was in his heart.' },
-  { num:'040', date:'April 14, 2026', tag:'Lamentations 3:22', title:'New every morning',      quote:'Every morning is a new landing. His mercies are new, and so are you.' },
+  { num:'056', date:'April 30, 2026', tag:'Psalm 90:12',        title:'At the end of the month', quote:'To number our days is not morbid. It is how we learn to spend them.' },
+  { num:'055', date:'April 29, 2026', tag:'Zechariah 4:6',      title:'Not your strength',       quote:'The strength that actually holds you is not the one you manufactured.' },
+  { num:'054', date:'April 28, 2026', tag:'Isaiah 55:10-11',    title:'The long obedience',      quote:'Your faithfulness is not wasted. It is doing work you cannot see.' },
+  { num:'053', date:'April 27, 2026', tag:'Psalm 23:5',         title:'The table',               quote:'You did not earn the table. You were invited to it.' },
+  { num:'052', date:'April 26, 2026', tag:'1 Kings 19:12',      title:'The still voice',         quote:'God was not in the earthquake. God was in the small quiet that came after.' },
+  { num:'051', date:'April 25, 2026', tag:'Matthew 11:28-30',   title:'The yoke',                quote:'A yoke is not the absence of weight. It is a way to carry it without breaking.' },
+  { num:'050', date:'April 24, 2026', tag:'Colossians 3:3',     title:'The hidden work',         quote:'The work that counts is often the work nobody is watching.' },
+  { num:'049', date:'April 23, 2026', tag:'Luke 16:10',         title:'The small yes',           quote:'You do not have a big-faith problem. You have a small-yes problem.' },
+  { num:'048', date:'April 22, 2026', tag:'Colossians 3:23',    title:'The ordinary hours',      quote:'The holy is not elsewhere. It is the hour you were going to call boring.' },
+  { num:'047', date:'April 21, 2026', tag:'Proverbs 4:23',      title:'The quiet rebuild',       quote:'Grace does not wait for your readiness. It arrives before you have cleaned up.' },
+  { num:'046', date:'April 20, 2026', tag:'Romans 5:8',         title:'Grace before readiness',  quote:'God did not wait until you had your life together. He moved while you were still making the mess.' },
+  { num:'045', date:'April 19, 2026', tag:'Psalm 139:14',       title:'What the body carried',   quote:'The body remembered what the mind could not yet narrate.' },
+  { num:'044', date:'April 18, 2026', tag:'Galatians 6:9',      title:'Faithfulness, not resilience', quote:'Do not grow weary. The harvest comes to the ones who did not leave.' },
+  { num:'043', date:'April 17, 2026', tag:'1 Peter 3:7',        title:'Dwell with knowledge',    quote:'To dwell is to be present inside the room, not adjacent to it.' },
+  { num:'042', date:'April 16, 2026', tag:'John 15:13',         title:'Cost as evidence',        quote:'The cross is the shape of love because the cross is the shape of maximum cost.' },
+  { num:'041', date:'April 15, 2026', tag:'Proverbs 23:7',      title:'The paycheck number',     quote:'As a man thinks in his heart, so is he. The number was in his heart.' },
+  { num:'040', date:'April 14, 2026', tag:'Lamentations 3:22',  title:'New every morning',       quote:'Every morning is a new landing. His mercies are new, and so are you.' },
 ];
 
 async function main() {

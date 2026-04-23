@@ -299,7 +299,12 @@ function refreshTodayFlag() {
 
 function handleGetDaily(req, res) {
   refreshTodayFlag();
-  sendJson(res, 200, devotionals);
+  const todayKey = new Date().toISOString().slice(0, 10);
+  const visible = devotionals.filter(d => {
+    const key = isNaN(Date.parse(d.date)) ? '' : new Date(Date.parse(d.date)).toISOString().slice(0, 10);
+    return key <= todayKey;
+  });
+  sendJson(res, 200, visible);
 }
 
 // ESV Bible API proxy — keeps the API key server-side. Usage: /api/verse?q=John+1:1

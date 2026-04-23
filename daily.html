@@ -554,7 +554,12 @@ function ArchiveEntry({ d, last }) {
 function Archive() {
   const list = (typeof window !== 'undefined' && Array.isArray(window.__IJ_DAILY_LIST)) ? window.__IJ_DAILY_LIST : devotionals;
   const today = (typeof window !== 'undefined' && window.__IJ_DAILY_TODAY) ? window.__IJ_DAILY_TODAY : list.find(d => d.today);
-  const past = list.filter(d => d !== today);
+  const todayKey = new Date().toISOString().slice(0, 10);
+  const past = list.filter(d => {
+    if (d === today) return false;
+    const key = isNaN(Date.parse(d.date)) ? '' : new Date(Date.parse(d.date)).toISOString().slice(0, 10);
+    return key <= todayKey;
+  });
   return (
     <section className="section-pad" style={{ padding: '72px 56px 120px', background: T.color.page }}>
       <div style={{ maxWidth: 1400, margin: '0 auto' }}>
