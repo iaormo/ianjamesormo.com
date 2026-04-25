@@ -554,10 +554,11 @@ function ArchiveEntry({ d, last }) {
 function Archive() {
   const list = (typeof window !== 'undefined' && Array.isArray(window.__IJ_DAILY_LIST)) ? window.__IJ_DAILY_LIST : devotionals;
   const today = (typeof window !== 'undefined' && window.__IJ_DAILY_TODAY) ? window.__IJ_DAILY_TODAY : list.find(d => d.today);
-  const todayKey = new Date().toISOString().slice(0, 10);
+  const todayKey = localDateKey(new Date());
   const past = list.filter(d => {
     if (d === today) return false;
-    const key = isNaN(Date.parse(d.date)) ? '' : new Date(Date.parse(d.date)).toISOString().slice(0, 10);
+    const t = Date.parse(d.date);
+    const key = isNaN(t) ? '' : localDateKey(new Date(t));
     return key <= todayKey;
   });
   return (
@@ -622,15 +623,26 @@ function Subscribe() {
   );
 }
 
+// Local-time YYYY-MM-DD key. Avoids the toISOString() pitfall where parsing
+// "April 25, 2026" as local midnight then formatting via UTC shifts the day
+// in non-UTC timezones (e.g. Asia/Manila), causing tomorrow's entry to show
+// as "Today".
+function localDateKey(d) {
+  const y = d.getFullYear();
+  const m = String(d.getMonth() + 1).padStart(2, '0');
+  const day = String(d.getDate()).padStart(2, '0');
+  return y + '-' + m + '-' + day;
+}
+
 // SAFEGUARD: pick today's devotional by matching current date, not by the
 // stale `today: true` flag baked into the JSON. Falls back to the most recent
 // entry whose date is <= today, then to the flagged one, then to the first.
 function pickToday(list) {
   if (!Array.isArray(list) || list.length === 0) return null;
-  const todayKey = new Date().toISOString().slice(0, 10);
+  const todayKey = localDateKey(new Date());
   const withKeys = list.map(d => {
     const t = Date.parse(d.date);
-    return { d, key: isNaN(t) ? '' : new Date(t).toISOString().slice(0, 10) };
+    return { d, key: isNaN(t) ? '' : localDateKey(new Date(t)) };
   });
   const exact = withKeys.find(x => x.key === todayKey);
   if (exact) return exact.d;

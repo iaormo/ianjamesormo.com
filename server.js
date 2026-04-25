@@ -276,16 +276,25 @@ function handleGetMusings(req, res) {
   sendJson(res, 200, essays);
 }
 
+// Local-time YYYY-MM-DD key. Avoids toISOString() shifting the date in
+// non-UTC server timezones (e.g. midnight April 25 PHT → 2026-04-24 UTC),
+// which would otherwise cause tomorrow's entry to surface as "Today".
+function localDateKey(d) {
+  const y = d.getFullYear();
+  const m = String(d.getMonth() + 1).padStart(2, '0');
+  const day = String(d.getDate()).padStart(2, '0');
+  return `${y}-${m}-${day}`;
+}
+
 // Safeguard: compute which devotional should be "today" based on current date.
 // Picks the entry whose parsed date matches today (server time), or failing that,
 // the most recent entry whose date is <= today. Mutates `today` flags in-place.
 function refreshTodayFlag() {
   if (!Array.isArray(devotionals) || devotionals.length === 0) return;
-  const now = new Date();
-  const todayKey = now.toISOString().slice(0, 10);
+  const todayKey = localDateKey(new Date());
   const parsed = devotionals.map((d, i) => {
     const t = Date.parse(d.date);
-    return { i, key: isNaN(t) ? '' : new Date(t).toISOString().slice(0, 10) };
+    return { i, key: isNaN(t) ? '' : localDateKey(new Date(t)) };
   });
   let chosen = parsed.find(p => p.key === todayKey);
   if (!chosen) {
@@ -299,9 +308,10 @@ function refreshTodayFlag() {
 
 function handleGetDaily(req, res) {
   refreshTodayFlag();
-  const todayKey = new Date().toISOString().slice(0, 10);
+  const todayKey = localDateKey(new Date());
   const visible = devotionals.filter(d => {
-    const key = isNaN(Date.parse(d.date)) ? '' : new Date(Date.parse(d.date)).toISOString().slice(0, 10);
+    const t = Date.parse(d.date);
+    const key = isNaN(t) ? '' : localDateKey(new Date(t));
     return key <= todayKey;
   });
   sendJson(res, 200, visible);
@@ -428,10 +438,10 @@ function handlePostMusing(req, res) {
 // and the subsequent API fetch agree.
 function pickTodaysDevotional() {
   if (!Array.isArray(devotionals) || devotionals.length === 0) return null;
-  const todayKey = new Date().toISOString().slice(0, 10);
+  const todayKey = localDateKey(new Date());
   const withKeys = devotionals.map(d => {
     const t = Date.parse(d.date);
-    return { d, key: isNaN(t) ? '' : new Date(t).toISOString().slice(0, 10) };
+    return { d, key: isNaN(t) ? '' : localDateKey(new Date(t)) };
   });
   const exact = withKeys.find(x => x.key === todayKey);
   if (exact) return exact.d;
