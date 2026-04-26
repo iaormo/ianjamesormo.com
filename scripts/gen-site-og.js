@@ -18,6 +18,10 @@ const CHROME_PATHS = [
 // iMessage, Instagram) and renders cleanly at any crop ratio.
 const SIZE = 1200;
 
+// Mirrors the live homepage hero (index.html → <Hero/>): same dark ink
+// background, oversized "IJ" watermark, "You / are not / finished." headline
+// with the last word in copper, and the memoir tagline. Anyone seeing this
+// share preview should recognize the page they're about to land on.
 const HTML = `<!doctype html>
 <html>
 <head>
@@ -32,25 +36,22 @@ const HTML = `<!doctype html>
     width:${SIZE}px; height:${SIZE}px;
     background: #111111;
     position: relative;
-    padding: 96px 96px;
+    padding: 88px 96px;
     box-sizing: border-box;
     display: flex;
     flex-direction: column;
     justify-content: space-between;
+    overflow: hidden;
   }
-  /* Warm copper glow top-left */
-  .card::before {
-    content:''; position:absolute; top:-200px; left:-200px;
-    width:900px; height:900px;
-    background: radial-gradient(circle at center, rgba(210,90,25,.42) 0%, rgba(184,71,28,.18) 35%, transparent 70%);
-    pointer-events:none;
-  }
-  /* Secondary glow bottom-right */
-  .card::after {
-    content:'IJ'; position:absolute; right: -80px; bottom: -260px;
-    font-family: Archivo, sans-serif; font-weight:900; font-size: 900px;
-    color: #B8471C; opacity: .10; line-height: 1; letter-spacing: -.06em;
-    pointer-events: none;
+  /* Oversized "IJ" watermark — matches the homepage hero exactly */
+  .watermark {
+    position: absolute;
+    top: -60px; right: -80px;
+    font-family: Archivo, sans-serif;
+    font-weight: 900; font-size: 880px;
+    color: #B8471C; opacity: .09;
+    line-height: .8; letter-spacing: -.06em;
+    pointer-events: none; user-select: none;
   }
   .kicker {
     font-family: 'JetBrains Mono', monospace;
@@ -61,40 +62,50 @@ const HTML = `<!doctype html>
   .middle { z-index: 2; position: relative; }
   .headline {
     font-family: Archivo, sans-serif;
-    font-weight: 900; font-size: 132px;
-    letter-spacing: -0.048em;
+    font-weight: 900; font-size: 200px;
+    letter-spacing: -0.05em;
     text-transform: uppercase;
-    line-height: .92;
-    max-width: 1000px;
-    margin: 0 0 36px;
+    line-height: .85;
+    margin: 0 0 48px;
   }
   .headline .copper { color:#B8471C; }
   .tagline {
     font-family: Fraunces, Georgia, serif;
     font-style: italic; font-weight: 400;
-    font-size: 34px; line-height: 1.35;
-    color: rgba(250,247,242,.82);
-    max-width: 920px;
+    font-size: 32px; line-height: 1.4;
+    color: rgba(250,247,242,.9);
+    max-width: 880px;
     margin: 0;
   }
   .bottom {
     display: flex; justify-content: space-between; align-items: flex-end;
     z-index: 2; position: relative;
   }
-  .name { font-family: Archivo, sans-serif; font-size: 34px; font-weight: 900; letter-spacing: -.02em; text-transform: uppercase; }
+  .name { font-family: Archivo, sans-serif; font-size: 30px; font-weight: 900; letter-spacing: -.02em; text-transform: uppercase; }
   .url  { font-family: 'JetBrains Mono', monospace; font-size: 18px; color:#B8471C; letter-spacing: .25em; text-transform: uppercase; text-align: right; }
+  .pill {
+    display: inline-block;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 14px; color:#B8471C;
+    letter-spacing: .25em; text-transform: uppercase;
+    border: 1px solid rgba(184,71,28,.55);
+    padding: 8px 14px;
+    margin-bottom: 28px;
+  }
 </style>
 </head>
 <body>
   <div class="card">
+    <div class="watermark">IJ</div>
     <div class="kicker">[ Ian James Ormo · ianjamesormo.com ]</div>
     <div class="middle">
-      <h1 class="headline">Writer of the<br/><span class="copper">unglamorous middle.</span></h1>
-      <p class="tagline">Memoir, daily devotionals, and musings on faith, work, and the long way home.</p>
+      <div class="pill">[ Memoir · Coming soon ]</div>
+      <h1 class="headline">You<br/>are not<br/><span class="copper">finished.</span></h1>
+      <p class="tagline">A memoir about the unglamorous daily work of being rebuilt. By grace you didn&rsquo;t earn, a wife who stayed, and a God who keeps no receipts.</p>
     </div>
     <div class="bottom">
       <div class="name">Ian James Ormo</div>
-      <div class="url">Freelance Writer · Homeschool Father</div>
+      <div class="url">Pre-order · Read the opening</div>
     </div>
   </div>
 </body>
@@ -111,9 +122,13 @@ async function main() {
   });
   const page = await browser.newPage();
   await page.setViewport({ width: SIZE, height: SIZE, deviceScaleFactor: 2 });
-  await page.setContent(HTML, { waitUntil: 'networkidle0' });
-  await page.evaluateHandle('document.fonts.ready');
-  await new Promise(r => setTimeout(r, 450));
+  await page.setContent(HTML, { waitUntil: 'domcontentloaded', timeout: 15000 });
+  // Wait up to 8s for webfonts to load — Google Fonts CDN can stall.
+  await Promise.race([
+    page.evaluateHandle('document.fonts.ready'),
+    new Promise(r => setTimeout(r, 8000)),
+  ]);
+  await new Promise(r => setTimeout(r, 600));
 
   const outPath = path.join(__dirname, '..', 'og', 'default-site.png');
   await page.screenshot({ path: outPath });
