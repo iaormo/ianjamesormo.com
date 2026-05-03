@@ -127,10 +127,12 @@ async function main() {
   for (const e of essays) await render('essay', e);
   for (const d of daily)  await render('daily', d);
 
-  // Default fallbacks
+  // Default fallbacks for the per-piece pages.
+  // NOTE: og/default-site.png is owned by scripts/gen-site-og.js (it mirrors
+  // the live homepage hero, square 1200x1200) — do NOT regenerate it here or
+  // we'll overwrite it with the older "unglamorous middle" 1200x630 card.
   await renderDefault('default-essays', 'Longer than a post. Shorter than a book.', 'Writing on presence, faith, work, and the unglamorous middle.', 'Essays', 'essays');
   await renderDefault('default-daily',  'Three minutes. One question. Every morning.', 'Short, honest readings for people looking for something truer, slower, and harder to fake.', 'Daily', 'daily');
-  await renderDefault('default-site',   'Writer of the unglamorous middle.', 'Memoir, devotionals, and essays on faith, work, and the long way home.', 'Ian James', 'essays');
 
   await browser.close();
 }
