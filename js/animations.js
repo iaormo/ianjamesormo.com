@@ -458,17 +458,21 @@
   }
 
   // ─── 8a. HOVERPEEK LINK PREVIEW ───────────────────────────────────────────
-  // Static metadata map — site links → preview card content
+  // Static metadata map — site links → preview card content.
+  // Image paths must point at files that actually exist in /og/ — we only have
+  // default-site.png, default-daily.png, default-essays.png, plus per-piece
+  // daily-NNN.png and essay-NNN.png. Pages without a dedicated card use the
+  // generic site card rather than 404'ing the preview thumbnail.
   var PEEK_MAP = {
-    '/daily.html':    { kicker:'Daily devotional', title:'Three minutes. One question. Every morning.', desc:'Short, honest readings on grace, work, and the unglamorous middle.', img:'/og/daily.png' },
-    '/musings.html':   { kicker:'Essays',           title:'Longer reads on faith and work', desc:'Essays on rebuilding, freelancing, and the long way home.', img:'/og/essays.png' },
-    '/books.html':    { kicker:'Books',            title:'Two books by Ian James', desc:'A memoir on grace and a freelancing guide on identity beyond your paycheck.', img:'/og/books.png' },
-    '/book-you-are-not-finished.html': { kicker:'Memoir', title:'You Are Not Finished', desc:'Grace, grit, and the long way home. A memoir on rebuilding.', img:'/og/book-you-are-not-finished.png' },
-    '/book-you-are-not-your-paycheck.html': { kicker:'Freelancing guide', title:'You Are Not Your Paycheck', desc:'On identity, work, and the number that was never yours.', img:'/og/book-you-are-not-your-paycheck.png' },
-    '/newsletter.html':{kicker:'Weekly letter',    title:'The weekly letter', desc:'One or two honest letters a week. Short, hard to fake.', img:'/og/newsletter.png' },
+    '/daily.html':    { kicker:'Daily devotional', title:'Three minutes. One question. Every morning.', desc:'Short, honest readings on grace, work, and the unglamorous middle.', img:'/og/default-daily.png' },
+    '/musings.html':   { kicker:'Essays',           title:'Longer reads on faith and work', desc:'Essays on rebuilding, freelancing, and the long way home.', img:'/og/default-essays.png' },
+    '/books.html':    { kicker:'Books',            title:'Two books by Ian James', desc:'A memoir on grace and a freelancing guide on identity beyond your paycheck.', img:'/og/default-site.png' },
+    '/book-you-are-not-finished.html': { kicker:'Memoir', title:'You Are Not Finished', desc:'Grace, grit, and the long way home. A memoir on rebuilding.', img:'/og/default-site.png' },
+    '/book-you-are-not-your-paycheck.html': { kicker:'Freelancing guide', title:'You Are Not Your Paycheck', desc:'On identity, work, and the number that was never yours.', img:'/og/default-site.png' },
+    '/newsletter.html':{kicker:'Weekly letter',    title:'The weekly letter', desc:'One or two honest letters a week. Short, hard to fake.', img:'/og/default-essays.png' },
     '/travels.html':  { kicker:'Travels',           title:'Where we went. What it took with us.', desc:'Slow travel with a wife and three kids. Notebooks, fires, tent pitches.', img:'/og/default-site.png' },
-    '/about.html':    { kicker:'About',            title:'Ian James Ormo', desc:'Writer from the Philippines. Memoir, devotionals, essays.', img:'/og/about.png' },
-    '/contact.html':  { kicker:'Contact',          title:'Get in touch', desc:'For speaking, press, or a real conversation.', img:'/og/contact.png' },
+    '/about.html':    { kicker:'About',            title:'Ian James Ormo', desc:'Writer from the Philippines. Memoir, devotionals, essays.', img:'/og/default-site.png' },
+    '/contact.html':  { kicker:'Contact',          title:'Get in touch', desc:'For speaking, press, or a real conversation.', img:'/og/default-site.png' },
   };
 
   function getPeekData(href) {

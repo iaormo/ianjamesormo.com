@@ -520,19 +520,24 @@ function Eyebrow({ children, color }) {
 
   function Daily() {
     const [today, setToday] = React.useState({
-      day: '049',
-      verse: 'Luke 16:10',
-      quote: 'You do not have a big-faith problem. You have a small-yes problem.',
-      body: 'Today: find the small yes. Say it. Count it.',
+      day: '056',
+      verse: 'Psalm 90:12',
+      quote: 'To number our days is not morbid. It is how we learn to spend them.',
+      body: 'Today: close the month honestly. Count what was given. Begin tomorrow clean.',
     });
     React.useEffect(() => {
       // Safeguard: fetch the live devotional list and pick today's entry based on date.
+      // Uses local-time YYYY-MM-DD (NOT toISOString) so the date doesn't shift in
+      // non-UTC timezones like Asia/Manila — same fix that lives in daily.html / server.js.
+      function localDateKey(d) {
+        return d.getFullYear() + '-' + String(d.getMonth() + 1).padStart(2, '0') + '-' + String(d.getDate()).padStart(2, '0');
+      }
       fetch('/api/content/daily').then(r => r.json()).then(list => {
         if (!Array.isArray(list) || list.length === 0) return;
-        const todayKey = new Date().toISOString().slice(0, 10);
+        const todayKey = localDateKey(new Date());
         const withKeys = list.map(d => {
           const t = Date.parse(d.date);
-          return { ...d, _key: isNaN(t) ? '' : new Date(t).toISOString().slice(0, 10) };
+          return { ...d, _key: isNaN(t) ? '' : localDateKey(new Date(t)) };
         });
         let pick = withKeys.find(d => d._key === todayKey);
         if (!pick) pick = withKeys.filter(d => d._key && d._key <= todayKey).sort((a, b) => (a._key < b._key ? 1 : -1))[0];
@@ -610,12 +615,22 @@ function Eyebrow({ children, color }) {
   }
 
   function Essays() {
-    const essays = [
+    // First-paint fallback (kept fresh by hand). Replaced once the API responds
+    // so newly added essays surface without a code change to this file.
+    const FALLBACK = [
+      ['015', 'The man who could not receive.', 'On the pride that wore humility’s clothes for thirty years.', '7 min'],
       ['014', 'The room you are already in.', 'On presence, attention, and the marriage I was not actually showing up to.', '6 min'],
       ['013', 'A letter to the man rebuilding.', 'The foundations you are laying in secret are being counted.', '8 min'],
       ['012', 'Worth and the paycheck ceiling.', 'How a number on a stub quietly trained you to stay small.', '11 min'],
-      ['011', 'The body as witness.', 'What it carried, and why I trust it more than what I understood.', '7 min'],
     ];
+    const [essays, setEssays] = React.useState(FALLBACK);
+    React.useEffect(() => {
+      fetch('/api/content/musings').then(r => r.json()).then(list => {
+        if (!Array.isArray(list) || list.length === 0) return;
+        // Keep top 4, in the [num, title, sub, time] tuple shape this section expects.
+        setEssays(list.slice(0, 4).map(e => [e.num, e.title, e.sub, e.time]));
+      }).catch(() => {});
+    }, []);
     return (
       <section className="section-pad" style={{ padding: '120px 56px', background: T.color.page }}>
         <div style={{ maxWidth: 1400, margin: '0 auto' }}>

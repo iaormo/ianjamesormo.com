@@ -1,6 +1,7 @@
 // Generate OG images for every essay and devotional.
 // Usage: node scripts/gen-og.js
-// Requires: puppeteer-core (system Chrome on macOS).
+// Requires: puppeteer-core (system Chrome on macOS) AND a dev server running
+// on http://localhost:3000 (npm start) so the renderer can load /og/card.html.
 
 const puppeteer = require('puppeteer-core');
 const path = require('path');
@@ -12,36 +13,29 @@ const CHROME_PATHS = [
   '/Applications/Arc.app/Contents/MacOS/Arc',
 ];
 
-const essays = [
-  { num:'014', date:'Apr 19 · 2026', tag:'Presence',  title:'The room you are already in.',      quote:'The room has been there. You just haven\u2019t been in it.' },
-  { num:'013', date:'Apr 15 · 2026', tag:'Grace',     title:'A letter to the man rebuilding.',   quote:'Nobody hands you credit for the work you did before anyone was watching. But it still happened.' },
-  { num:'012', date:'Apr 08 · 2026', tag:'Work',      title:'Worth and the paycheck ceiling.',   quote:'Your value was never the number. But your nervous system never got that memo.' },
-  { num:'011', date:'Apr 05 · 2026', tag:'Body',      title:'The body as witness.',              quote:'My body knew before I did. It was keeping a record I did not know how to read.' },
-  { num:'010', date:'Mar 29 · 2026', tag:'Faith',     title:'Faithfulness is not resilience.',   quote:'Resilience is for people who expect the fall. Faithfulness is for people who stay anyway.' },
-  { num:'009', date:'Mar 22 · 2026', tag:'Marriage',  title:'On wives who stay.',                quote:'She was not waiting for me to become someone worth staying for. She had already decided.' },
-  { num:'008', date:'Mar 15 · 2026', tag:'Grace',     title:'Cost as proof.',                    quote:'If it costs nothing, I do not know what to do with it.' },
-  { num:'007', date:'Mar 08 · 2026', tag:'Memoir',    title:'The man you were in the kitchen.',  quote:'Nothing important was happening. That was exactly what made it matter.' },
-];
+// Source of truth: /content/{essays,daily}.json. Reading from there means new
+// entries get share cards on the next run without a code change to this file.
+// Map each entry into the {num, date, tag, title, quote} shape the renderer
+// expects — for daily, we use the verse reference as the tag.
+const ROOT = path.join(__dirname, '..');
+const essaysJson = JSON.parse(fs.readFileSync(path.join(ROOT, 'content', 'essays.json'), 'utf8'));
+const dailyJson  = JSON.parse(fs.readFileSync(path.join(ROOT, 'content', 'daily.json'),  'utf8'));
 
-const daily = [
-  { num:'056', date:'April 30, 2026', tag:'Psalm 90:12',        title:'At the end of the month', quote:'To number our days is not morbid. It is how we learn to spend them.' },
-  { num:'055', date:'April 29, 2026', tag:'Zechariah 4:6',      title:'Not your strength',       quote:'The strength that actually holds you is not the one you manufactured.' },
-  { num:'054', date:'April 28, 2026', tag:'Isaiah 55:10-11',    title:'The long obedience',      quote:'Your faithfulness is not wasted. It is doing work you cannot see.' },
-  { num:'053', date:'April 27, 2026', tag:'Psalm 23:5',         title:'The table',               quote:'You did not earn the table. You were invited to it.' },
-  { num:'052', date:'April 26, 2026', tag:'1 Kings 19:12',      title:'The still voice',         quote:'God was not in the earthquake. God was in the small quiet that came after.' },
-  { num:'051', date:'April 25, 2026', tag:'Matthew 11:28-30',   title:'The yoke',                quote:'A yoke is not the absence of weight. It is a way to carry it without breaking.' },
-  { num:'050', date:'April 24, 2026', tag:'Colossians 3:3',     title:'The hidden work',         quote:'The work that counts is often the work nobody is watching.' },
-  { num:'049', date:'April 23, 2026', tag:'Luke 16:10',         title:'The small yes',           quote:'You do not have a big-faith problem. You have a small-yes problem.' },
-  { num:'048', date:'April 22, 2026', tag:'Colossians 3:23',    title:'The ordinary hours',      quote:'The holy is not elsewhere. It is the hour you were going to call boring.' },
-  { num:'047', date:'April 21, 2026', tag:'Proverbs 4:23',      title:'The quiet rebuild',       quote:'Grace does not wait for your readiness. It arrives before you have cleaned up.' },
-  { num:'046', date:'April 20, 2026', tag:'Romans 5:8',         title:'Grace before readiness',  quote:'God did not wait until you had your life together. He moved while you were still making the mess.' },
-  { num:'045', date:'April 19, 2026', tag:'Psalm 139:14',       title:'What the body carried',   quote:'The body remembered what the mind could not yet narrate.' },
-  { num:'044', date:'April 18, 2026', tag:'Galatians 6:9',      title:'Faithfulness, not resilience', quote:'Do not grow weary. The harvest comes to the ones who did not leave.' },
-  { num:'043', date:'April 17, 2026', tag:'1 Peter 3:7',        title:'Dwell with knowledge',    quote:'To dwell is to be present inside the room, not adjacent to it.' },
-  { num:'042', date:'April 16, 2026', tag:'John 15:13',         title:'Cost as evidence',        quote:'The cross is the shape of love because the cross is the shape of maximum cost.' },
-  { num:'041', date:'April 15, 2026', tag:'Proverbs 23:7',      title:'The paycheck number',     quote:'As a man thinks in his heart, so is he. The number was in his heart.' },
-  { num:'040', date:'April 14, 2026', tag:'Lamentations 3:22',  title:'New every morning',       quote:'Every morning is a new landing. His mercies are new, and so are you.' },
-];
+const essays = essaysJson.map(e => ({
+  num:   e.num,
+  date:  e.date,
+  tag:   e.tag || 'Essay',
+  title: e.title,
+  quote: e.quote || '',
+}));
+
+const daily = dailyJson.map(d => ({
+  num:   d.day,
+  date:  d.date,
+  tag:   d.verse || '',
+  title: d.title,
+  quote: d.quote || '',
+}));
 
 async function main() {
   const chrome = CHROME_PATHS.find(p => fs.existsSync(p));

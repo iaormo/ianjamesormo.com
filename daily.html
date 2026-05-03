@@ -566,7 +566,7 @@ function Archive() {
       <div style={{ maxWidth: 1400, margin: '0 auto' }}>
         <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-end', marginBottom: 40 }}>
           <div style={{ fontFamily: T.font.head, fontSize: 48, fontWeight: 900, lineHeight: .95, letterSpacing: '-0.035em', textTransform: 'uppercase' }}>Last week</div>
-          <span style={{ fontFamily: T.font.body, fontSize: 12, fontWeight: 700, letterSpacing: '.18em', textTransform: 'uppercase', color: T.color.steel }}>47 readings total</span>
+          <span style={{ fontFamily: T.font.body, fontSize: 12, fontWeight: 700, letterSpacing: '.18em', textTransform: 'uppercase', color: T.color.steel }}>{(today ? past.length + 1 : past.length)} readings total</span>
         </div>
         {past.map((d, i) => <ArchiveEntry key={d.day} d={d} last={i === past.length - 1} />)}
       </div>
