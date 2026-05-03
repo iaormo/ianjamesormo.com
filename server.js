@@ -112,6 +112,42 @@ const TAG_MAP = {
   contact_form: ['contact-form'],
 };
 
+// In-memory sliding-window rate limiter — keyed by client IP. Targets the
+// unauthenticated POST endpoints (subscribe, contact-form) to keep a scraper
+// from burning the GHL quota or spamming form submissions. Memory-only on
+// purpose: a single Railway dyno restart resets state and that is fine.
+const RATE_LIMIT_WINDOW_MS = 60 * 1000;
+const RATE_LIMIT_MAX = 10;
+const rateBuckets = new Map(); // ip -> [timestamp, ...]
+
+function clientIp(req) {
+  // Railway sits behind Cloudflare; trust the leftmost x-forwarded-for hop.
+  const xff = req.headers['x-forwarded-for'];
+  if (xff) return String(xff).split(',')[0].trim();
+  return (req.socket && req.socket.remoteAddress) || 'unknown';
+}
+
+function rateLimit(req, res) {
+  const ip = clientIp(req);
+  const now = Date.now();
+  const recent = (rateBuckets.get(ip) || []).filter(t => now - t < RATE_LIMIT_WINDOW_MS);
+  if (recent.length >= RATE_LIMIT_MAX) {
+    sendJson(res, 429, { ok: false, error: 'rate limited — try again in a minute' });
+    return false;
+  }
+  recent.push(now);
+  rateBuckets.set(ip, recent);
+  // Cheap pruning so the Map doesn't grow forever — once per ~256 hits.
+  if (rateBuckets.size > 1000 && Math.random() < 0.004) {
+    for (const [k, v] of rateBuckets) {
+      const pruned = v.filter(t => now - t < RATE_LIMIT_WINDOW_MS);
+      if (pruned.length === 0) rateBuckets.delete(k);
+      else rateBuckets.set(k, pruned);
+    }
+  }
+  return true;
+}
+
 function sendJson(res, status, obj) {
   res.writeHead(status, {
     'Content-Type': 'application/json; charset=utf-8',
@@ -505,9 +541,11 @@ const server = http.createServer((req, res) => {
   if (req.method === 'POST' && req.url === '/api/content/musing')  return handlePostMusing(req, res);
   if (req.method === 'POST' && req.url === '/api/content/daily')   return handlePostDaily(req, res);
   if (req.method === 'POST' && req.url === '/api/subscribe') {
+    if (!rateLimit(req, res)) return;
     return handleSubscribe(req, res);
   }
   if (req.method === 'POST' && req.url === '/api/contact-form') {
+    if (!rateLimit(req, res)) return;
     return handleContactForm(req, res);
   }
   if (req.method !== 'GET' && req.method !== 'HEAD') {

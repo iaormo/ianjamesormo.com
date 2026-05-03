@@ -69,7 +69,13 @@
       var esc = ref.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
       text = text.replace(new RegExp('^\\s*' + esc + '\\s*\\n+'), '');
     }
-    // Wrap verse numbers like [1] in a small-superscript span
+    // Defense-in-depth: escape HTML in the upstream text BEFORE we inject our
+    // own verse-number markup. ESV's API is trusted today, but treating any
+    // upstream string as innerHTML-safe would be a textbook DOM XSS sink if
+    // that assumption ever changed.
+    text = escapeHtml(text);
+    // Now wrap verse numbers like [1] in a small-superscript span. Safe to do
+    // after escape since "[N]" contains no HTML-significant characters.
     text = text.replace(/\s*\[(\d+)\]\s*/g, ' <span class="v">$1</span>');
     return { body: text.trim(), copyright: copyright };
   }
