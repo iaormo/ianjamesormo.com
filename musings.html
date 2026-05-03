@@ -357,6 +357,25 @@ function ShareBar({ title, num, pagePath }) {
 
 const essays = [
   {
+    num: '015',
+    date: 'May 03 · 2026',
+    title: 'The man who could not receive.',
+    sub: 'On the pride that wore humility’s clothes for thirty years.',
+    time: '7 min',
+    tag: 'Receiving',
+    quote: 'I called it self-sufficiency. It was actually a refusal to be loved.',
+    body: [
+      'My wife brought me a coffee one Tuesday. Nothing dramatic. She had been at the market and picked one up on her way home, the way she does sometimes, no occasion. She put it on the counter in front of me and I deflected before I had even looked at her. I said I was fine. I said she did not have to do that. I said it the way I had said it to everyone for twenty years, with the small smile that meant I was being gracious. The coffee got cold on the counter. She did not say anything. She put down the keys and walked into the next room. I told myself I had been considerate by not making a big deal of it.',
+      'I learned, eventually, that this was not consideration. It was a refusal. A refusal of a small offered love, dressed up in the language of humility. I had been doing this my whole life. I called it self-sufficiency. I called it not wanting to inconvenience anyone. I called it being low-maintenance. None of those names were honest. The honest name was pride, and the pride was strong enough to look like a virtue.',
+      'The mechanism is this. Receiving puts you in debt to someone. It admits you needed something. It makes the other person the giver, and you, briefly, the one who needed. For a man who has built his identity around being the one who provides, the one who has it together, the one who does not require help, that small reversal is intolerable. So you decline. With a smile. With a nice phrase. The decline reads as humility from the outside. It is actually a wall.',
+      'The cost of this is enormous and almost invisible. The people in your life stop offering. Not because they are angry. Because they have learned. They tried for years. They were waved off. Eventually they stop trying, and you walk through life feeling, with great satisfaction, that you do not need anyone. You do not notice that the offers stopped because you killed them.',
+      'In a marriage this is fatal. A wife who cannot give you anything cannot love you out loud. She can love you in private. She can love you in her own quiet ways. But the daily small acts of love, the coffee, the picked-up shirt, the noticed bad day, those require you to receive them. If you have trained her to expect a deflection, she will eventually stop trying. Not because the love is gone. Because the love has nowhere to land.',
+      'There is a spiritual layer to this that is harder to name, and it is the part I have thought about the most. The whole architecture of grace requires receiving. You cannot earn your way into it. You can only accept what was already given. A man who has spent his life refusing to receive small gifts from his wife is not going to suddenly know how to receive grace from God. The muscle has atrophied. The instinct is to deflect. The instinct is to clarify that you are fine, you have it covered, you do not need this. That is exactly the posture grace will not enter.',
+      'I have been in remedial training on this for years now. The practice is small and humbling. When my wife brings me coffee, I say thank you and drink it. I do not editorialize. I do not say she should not have. I do not balance the ledger by making her one in return that same hour. I just receive. When a friend offers to pay for the meal, I let him. When my mother insists on sending food across the city, I eat it without protest. I am thirty-eight years old and I am learning, late, how to be given to.',
+      'If you are reading this and you recognize yourself, I want to tell you that the deflections you have made all your life have not made you strong. They have made you alone. The fix is not dramatic. It is one received cup of coffee at a time. Take the gift. Do not interpret it. Do not measure it. Do not promise to repay it. Just receive. That is the whole practice, and the rest of your life depends on it more than you currently know.',
+    ],
+  },
+  {
     num: '014',
     date: 'Apr 19 · 2026',
     title: 'The room you are already in.',
@@ -664,7 +683,17 @@ function SubscribeCTA() {
 
 function App() {
   const [activeTag, setActiveTag] = useState('All');
-  const filtered = activeTag === 'All' ? essays : essays.filter(e => e.tag === activeTag);
+  // Start from the embedded fallback so first paint isn't empty, then upgrade
+  // to whatever the API returns (so freshly added essays surface without a
+  // matching code change to this file).
+  const [list, setList] = useState(essays);
+  useEffect(() => {
+    fetch('/api/content/musings')
+      .then(r => r.json())
+      .then(d => { if (Array.isArray(d) && d.length) setList(d); })
+      .catch(() => {});
+  }, []);
+  const filtered = activeTag === 'All' ? list : list.filter(e => e.tag === activeTag);
 
   return (
     <>
