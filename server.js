@@ -530,7 +530,34 @@ function handlePostDaily(req, res) {
   });
 }
 
+// Canonical-host enforcement. Runs before anything else so 301s short-circuit
+// the entire request pipeline. Two cases:
+//   1. www.ianjamesormo.com → ianjamesormo.com  (collapse to apex)
+//   2. http://ianjamesormo.com → https://ianjamesormo.com  (force TLS)
+// Both rely on Railway/Cloudflare forwarding the original Host and Protocol
+// in standard headers — never trust req.url for protocol since the proxy
+// always speaks plain HTTP to the dyno.
+const CANONICAL_HOST = 'ianjamesormo.com';
+function enforceCanonicalHost(req, res) {
+  const host = String(req.headers.host || '').toLowerCase().split(':')[0];
+  // Only enforce on prod-style hostnames; let localhost/Railway internal hits through.
+  if (!host || host === 'localhost' || host.endsWith('.railway.app') || host.startsWith('127.') || host.startsWith('0.0.0.0')) {
+    return false;
+  }
+  const proto = String(req.headers['x-forwarded-proto'] || 'http').toLowerCase().split(',')[0].trim();
+  const wantsRedirect = host !== CANONICAL_HOST || proto !== 'https';
+  if (!wantsRedirect) return false;
+  const target = `https://${CANONICAL_HOST}${req.url}`;
+  res.writeHead(301, { Location: target, 'Cache-Control': 'public, max-age=3600' });
+  res.end();
+  return true;
+}
+
 const server = http.createServer((req, res) => {
+  // Send any non-canonical host (e.g. www, plain http) to the canonical URL
+  // before we waste cycles on routing or static-file lookups.
+  if (enforceCanonicalHost(req, res)) return;
+
   // CORS for API routes
   res.setHeader('Access-Control-Allow-Origin', '*');
   if (req.method === 'OPTIONS') { res.writeHead(204); return res.end(); }
