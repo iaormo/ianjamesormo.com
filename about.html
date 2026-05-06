@@ -256,10 +256,7 @@ function Story() {
         <div className="story-grid" style={{ display: 'grid', gridTemplateColumns: '380px 1fr', gap: 72 }}>
           <div>
             <div style={{ aspectRatio: '3/4', position: 'relative', marginBottom: 20, overflow: 'hidden' }}>
-              <picture>
-                <source srcSet="images/ian-author.webp" type="image/webp" />
-                <img src="images/ian-author.png" alt="Ian James Ormo" loading="lazy" decoding="async" style={{ position: 'absolute', inset: 0, width: '100%', height: '100%', objectFit: 'cover', objectPosition: 'center top' }} />
-              </picture>
+              <picture><source srcSet="images/ian-author.webp" type="image/webp" /><img src="images/ian-author.png" alt="Ian James Ormo" loading="lazy" decoding="async" style={{ position: 'absolute', inset: 0, width: '100%', height: '100%', objectFit: 'cover', objectPosition: 'center top' }} /></picture>
             </div>
             <div style={{ fontFamily: T.font.mono, fontSize: 11, color: T.color.steel, letterSpacing: '.1em' }}>IAN JAMES ORMO · DAUIN, PHILIPPINES</div>
           </div>
