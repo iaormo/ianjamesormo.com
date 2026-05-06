@@ -1,0 +1,794 @@
+<!DOCTYPE html>
+<!-- saved from url=(0119)https://linkedhelper.onfastspring.com/account/order/LINKEDHELPER260501-3029-23141B/invoice/IVUFKPHSHOIVHLVAZ3YV4XXSVVSQ -->
+<html data-qb-installed="true"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8"><style>body {transition: opacity ease-in 0.2s; } 
+body[unresolved] {opacity: 0; display: block; overflow: hidden; position: relative; } 
+</style><link rel="stylesheet" href="./Linkedhelper_files/font-awesome.min.css"><script src="./Linkedhelper_files/jquery.min.js"></script><script>
+$(document).ready(function(){
+$("a.downloadAndPrintIcon").click(function() {
+var split = window.location.href.split("?") 
+var location = split[0] + "/pdf?" + (split[1] === undefined ? "" : split[1]) 
+window.open(location)
+  });
+$("a.editPurchaseOrder").click(function(event) {
+event.preventDefault();
+$("a.editPurchaseOrder").toggle();
+$("#purchaseOrderUpdateView").show();
+$("div.purchaseOrderField").show();
+  });
+if( false) {
+$("#purchaseOrderUpdateView").hide();
+$("#purchaseOrderEditView").show();
+$("#purchaseOrderEditView").css('display', 'inline');
+$("input.purchaseOrderInput").val( "null");
+}
+$("input.purchaseOrderInput").bind("keypress",function () {  
+var regex = new RegExp("[a-zA-Z0-9-\\s]+$");
+var key = String.fromCharCode(!event.charCode ? event.which : event.charCode);
+if (!regex.test(key)) {
+return false;
+}
+});
+$("span.customerReferenceEditIconFS").click(function() {
+  $("#purchaseOrderEditView").hide();
+  $("#purchaseOrderUpdateView").show();
+});
+$("a.customerReferenceBtn").click(function(event) {
+event.preventDefault();
+var invoice = {
+customerReference: $("input.purchaseOrderInput").val() ,
+invoiceSecret: "2TWMA72LDZAZZOWLLIVAKA6EZMA2TF6JF6AVEQ7GT6F2LJZYQCNU" ,
+invoiceId: "IVUFKPHSHOIVHLVAZ3YV4XXSVVSQ" 
+};
+if(invoice.customerReference != null && invoice.customerReference.length > 0) {
+if(invoice.customerReference != "null") {
+$.ajax({
+type: "PUT",
+url: "https://api.fastspring.com/invoices/purchaseOrders",
+headers: { "Content-Type": "application/json" },
+data: JSON.stringify(invoice),
+success: function(result) {
+location.reload();
+},
+error: function(result) {
+alert('Error updating PO reference field. Value can only include uppercase letters, lowercase letters, numbers and special characters hyphen and space');
+}
+});
+} else {
+location.reload();
+}
+}
+  });
+});
+</script><script src="chrome-extension://liecbddmkiiihnedobmlmillhodjkdmb/js/recordConsoleEvents.js"></script></head>
+
+
+
+
+
+<body data-new-gr-c-s-check-loaded="14.1288.0" data-gr-ext-installed="">
+<style type="text/css">
+        /* latin-ext */
+        @font-face {
+        font-family: 'Roboto';
+        src: local('Roboto Latin Regular'), local('RobotoRegular'),
+        url("https://s3.amazonaws.com/resource.fastspring.com/invoice/roboto/RobotoLatinRegular.woff2") format('woff2'),
+        url("https://s3.amazonaws.com/resource.fastspring.com/invoice/roboto/RobotoRegular.woff") format('woff');
+        unicode-range: U+0100-024F, U+0259, U+1E00-1EFF, U+2020, U+20A0-20AB, U+20AD-20CF, U+2113, U+2C60-2C7F, U+A720-A7FF;
+        font-weight: normal;
+        font-style: normal;
+        font-display: swap;
+        }
+
+        /* latin */
+        @font-face {
+        font-family: 'Roboto';
+        src: local('Roboto Latin Regular'), local('RobotoRegular'),
+        url("https://s3.amazonaws.com/resource.fastspring.com/invoice/roboto/RobotoLatinExtRegular.woff2") format('woff2'),
+        url("https://s3.amazonaws.com/resource.fastspring.com/invoice/roboto/RobotoRegular.woff") format('woff');
+        unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+2000-206F, U+2074, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+        font-style: normal;
+        font-weight: 400;
+        }
+
+
+        @font-face {
+        font-family: 'proxima-nova';
+        src: local('Proxima Nova Regular'), local('ProximaNovaRegular'),
+        url("https://s3.amazonaws.com/resource.fastspring.com/invoice/proxima/ProximaNovaRegular.woff2") format('woff2'),
+        url("https://s3.amazonaws.com/resource.fastspring.com/invoice/proxima/ProximaNovaRegular.woff") format('woff');
+        font-weight: normal;
+        font-style: normal;
+        font-display: swap;
+        }
+
+        @font-face {
+        font-family: 'proxima-nova';
+        src: local('Proxima Nova Regular Italic'), local('ProximaNovaRegularItalic'),
+        url("https://s3.amazonaws.com/resource.fastspring.com/invoice/proxima/ProximaNovaRegularItalic.woff2") format('woff2'),
+        url("https://s3.amazonaws.com/resource.fastspring.com/invoice/proxima/ProximaNovaRegularItalic.woff") format('woff');
+        font-weight: normal;
+        font-style: italic;
+        font-display: swap;
+        }
+
+        @font-face {
+        font-family: 'proxima-nova';
+        src: local('Proxima Nova Bold'), local('ProximaNovaBold'),
+        url("https://s3.amazonaws.com/resource.fastspring.com/invoice/proxima/ProximaNovaBold.woff2") format('woff2'),
+        url("https://s3.amazonaws.com/resource.fastspring.com/invoice/proxima/ProximaNovaBold.woff") format('woff');
+        font-weight: bold;
+        font-style: normal;
+        font-display: swap;
+        }
+
+        @font-face {
+        font-family: 'proxima-nova';
+        src: local('Proxima Nova Bold Italic'), local('ProximaNovaBoldItalic'),
+        url("https://s3.amazonaws.com/resource.fastspring.com/invoice/proxima/ProximaNovaBoldItalic.woff2") format('woff2'),
+        url("https://s3.amazonaws.com/resource.fastspring.com/invoice/proxima/ProximaNovaBoldItalic.woff") format('woff');
+        font-weight: bold;
+        font-style: italic;
+        font-display: swap;
+        }
+
+        @font-face {
+        font-family: 'proxima-nova';
+        src: local('Proxima Nova Medium'), local('ProximaNovaMedium'),
+        url("https://s3.amazonaws.com/resource.fastspring.com/invoice/proxima/ProximaNovaMedium.woff2") format('woff2'),
+        url("https://s3.amazonaws.com/resource.fastspring.com/invoice/proxima/ProximaNovaMedium.woff") format('woff');
+        font-weight: 500;
+        font-style: normal;
+        font-display: swap;
+        }
+
+        @font-face {
+        font-family: 'proxima-nova';
+        src: local('Proxima Nova Semibold'), local('ProximaNovaSemibold'),
+        url("https://s3.amazonaws.com/resource.fastspring.com/invoice/proxima/ProximaNovaSemibold.woff2") format('woff2'),
+        url("https://s3.amazonaws.com/resource.fastspring.com/invoice/proxima/ProximaNovaSemibold.woff") format('woff');
+        font-weight: 600;
+        font-style: normal;
+        font-display: swap;
+        }
+
+        @font-face {
+        font-family: 'proxima-nova';
+        src: local('Proxima Nova Light'), local('ProximaNovaLight'),
+        url("https://s3.amazonaws.com/resource.fastspring.com/invoice/proxima/ProximaNovaLight.woff2") format('woff2'),
+        url("https://s3.amazonaws.com/resource.fastspring.com/invoice/proxima/ProximaNovaLight.woff") format('woff');
+        font-weight: 300;
+        font-style: normal;
+        font-display: swap;
+        }
+        body {
+        font-family: "proxima-nova", Roboto, Arial, Helvetica, sans-serif;
+        line-height: 1.4em;
+        font-size: 14px;
+        background: #f3f3f3;
+        margin: 30px;
+        color: #333;
+        }
+        /* HTML STYLES */
+        p {
+        margin: 8px 0;
+        }
+        h1 {
+        font-size: 40px;
+        color: #ccc;
+        text-transform: uppercase;
+        margin: 0px;
+        height: 50px;  /* allot for logo and padding under text height */
+        line-height: normal;
+        }
+        #logoArea {
+        position: relative;
+        top: -100%;
+        }
+        #logoImage {
+        max-height: 75px;
+        max-width: 300px;
+        display: block;
+        margin-left: auto;
+        padding-bottom: 10px;
+        }
+        #logoMessage {
+        font-size: 8px;
+        float: none;
+        color: black;
+        text-transform: none;
+        font-weight: normal;
+        text-align: right;
+        }
+        h2 {
+        font-size: 1.18em;
+        }
+        h3 {
+        font-size: 1em;
+        margin: 10px 0 0 0;
+        }
+        a:link, a:visited {
+        color: navy;
+        }
+        a:hover {
+        text-decoration: none;
+        color: blue;
+        }
+        /* LAYOUT STYLES */
+        #container {
+        max-width: 960px;
+        border: 1px #ddd solid;
+        -webkit-border-radius: 4px;
+        -moz-border-radius: 4px;
+        border-radius: 4px;
+        margin: 0 auto;
+        padding: 24px;
+        background: #fff;
+        box-shadow: 5px 5px 15px #aaa;
+        }
+        /* not readable enough
+        #leftside {
+        color: #777;
+        }*/
+        .leftside-td, .recipient-td{
+            border: none;
+            width: 25%;
+            vertical-align: text-top;
+        }
+        .seller-td, .support-td {
+            border: none;
+            width: 20%;
+            vertical-align: text-top;
+        }
+        .cb {
+        clear: both;
+        }
+        /* TYPOGRAPHIC STYLES */
+        h2.notice {
+        color: #66afe9;
+        background: #F9FCFF;
+        padding: 10px;
+        border: 1px #66afe9 solid;
+        border-radius: 4px;
+        font-size:
+        1.15em;
+        text-shadow: 2px 2px 2px #fff;
+        }
+        .u {
+        text-decoration: underline;
+        }
+        .mt {
+        margin-top: 25px;
+        }
+        .address {
+        padding-left: 10px;
+        border-left: 4px #eee solid;
+        }
+        /* TABLE STYLES */
+        table {
+        border-width: 0px;
+        border-style: solid;
+        border-color: #ccc;
+        border-spacing: 0;
+        }
+        td, th {
+        padding: 10px;
+        border-width: 0px 0px 1px 0px;
+        border-color: #ddd;
+        border-style: solid;
+        }
+        th.headerRow {
+        background: #f3f3f3;
+        border: 0px;
+        }
+        .tableColumnLeft{
+        width: 60%;
+        }
+
+        .tableColumnCenter{
+        width: 25%;
+        }
+
+        .tableColumnRight{
+        width: 15%;
+        }
+        .sectionHeading {
+        border-bottom: 1px solid #000;
+        display:inline;
+        font-weight: 800;
+        color: #888;
+        }
+        .red {
+        color: #f00;
+        }
+        .payByCheckOrMoneyOrder{
+        float: right;
+        }
+        .payLink{
+        width: 50%;
+        float: left;
+        }
+
+        .customerReferenceBtn {
+            padding: 5px 20px;
+            font-size: .95em;
+            font-weight: initial;
+        }
+
+        .customerReferenceEditIcon {
+            cursor: pointer;
+        }
+        /* In house edit icon*/
+        .customerReferenceEditIconFSImage {
+            cursor: pointer;
+            width: 12px;
+        }
+        .customerReferenceEditIconFS {
+            cursor: pointer;
+        }
+
+        input.purchaseOrderInput {
+            margin-right: 10px;
+            padding: 1px 13px;
+            border: 2px solid #CCCCCC;
+            border-radius: 3px;
+            height: 20px;
+        }
+
+        input.purchaseOrderInput::placeholder {
+            color: #CCCCCC;
+            text-transform: none
+        }
+        input.purchaseOrderInput::-webkit-input-placeholder { /* WebKit browsers */
+            color: #CCCCCC;
+        text-transform: none
+        }
+        input.purchaseOrderInput:-moz-placeholder { /* Mozilla Firefox 4 to 18 */
+            color: #CCCCCC;
+            text-transform: none
+        }
+        input.purchaseOrderInput::-moz-placeholder { /* Mozilla Firefox 19+ */
+            color: #CCCCCC;
+            text-transform: none
+        }
+        input.purchaseOrderInput:-ms-input-placeholder { /* Internet Explorer 10+ */
+            color: #CCCCCC;
+            text-transform: none
+        }
+
+        .refundSubHeader {
+            font-weight: normal;
+        }
+
+        .button {
+        margin: 40px 0px;
+        text-align: center;
+        cursor: pointer;
+        outline: none;
+        color: #fff !important;
+        background-color: #0083FF;
+        border: none;
+        border-radius: 4px;
+        text-decoration: none;
+        }
+
+        .button:hover {
+        background-color: #0083CC;
+        }
+
+        .button:active {
+        background-color: #0083CC;
+        transform: translateY(1px);
+        }
+
+        .columnRight {
+        float: right;
+        width: 70%;
+        padding: 10px;
+        }
+
+        .columnLeft {
+        float: left;
+        width: 100%;
+        padding: 10px;
+        text-align: center;
+        margin: auto;
+        }
+
+        a.editPurchaseOrder {
+            color: #008AFF;
+            cursor: pointer;
+        }
+
+        .payBtn {
+        padding: 10px 80px;
+        font-size: 1.15em;
+        }
+
+        .payBtnUsps {
+            margin: 6px 0px 20px 0px !important;
+        }
+
+        .payByCardMessage{
+        margin-top: 15px;
+        font-style: italic;
+        }
+
+        #purchaseOrderUpdateView, #purchaseOrderEditView {
+        display: none;
+        margin: 0px;
+        }
+
+        .row:after {
+        content: "";
+        display: table;
+        clear: both;
+        }
+
+        .row{
+        display: flex;
+        }
+
+        .totalTd{
+        border: 0px;
+        }
+
+        .downloadAndPrintIcon{
+        float: right;
+        position: relative;
+        top: -45px;
+        right: -20px;
+        cursor: pointer
+        }
+
+        .titleUnpaid{
+        color: #008AFF;
+        }
+
+        .titleUnpaidExpired{
+        color: red;
+        }
+
+        .subscription-details{
+        font-size: 12px;
+        color: #979797;
+        }
+
+        .button-for-pdf{
+        display: none;
+        }
+
+        .align-center {
+        margin-left: auto;
+        margin-right: auto;
+        display: flex;
+        }
+
+        .align-text-left {
+        text-align: left !important;
+        }
+
+        .align-text-center {
+        text-align: center !important;
+        }
+
+        .invoice-footer {
+            text-align: left;
+            color: #aaa;
+            border-top: 1px solid #aaa;
+        }
+
+        .invoice-footer-usps {
+        text-align: left;
+        color: inherit !important;
+        }
+
+        .invoice-rs-ctax-text {
+            font-weight: 400;
+        }
+        .invoice-jp-ctax-text {
+            font-weight: 400;
+        }
+        .orUsps {
+        background-color: #fff;
+        height: 20px;
+        width: 100px;
+        margin: -10px auto 0 auto;
+        position: absolute;
+        left: 46%;
+        text-align: center;
+        color: #aaa;
+        }
+
+        .invoice-refunds-header {
+            height: 30px;
+            background: white;
+            border-bottom: 1px solid #ddd;
+        }
+
+        .invoice-refunds-footer {
+            text-align: right;
+            padding: 10px;
+            list-style: none;
+        }
+
+        .invoice-refunds-footer li {
+            padding-bottom: 5px;
+        }
+
+        #invoice-refunds-table {
+            border-radius: 5px;
+            overflow: hidden;
+            border-width: 1px 1px 0px 1px;
+            border-style: solid;
+            border-color: #ddd;
+        }
+
+        #invoice-refunds-table td {
+        width: 33%;
+        }
+
+        .notes-section{
+        background-color: #f3f3f3;
+        max-width: 1000px;
+        border-radius: 4px;
+        padding: 10px 10px 10px 10px;
+        margin: 30px 0px 40px 0px;
+        border:1px solid #DFDEDE;
+        white-space:pre-wrap;
+        overflow-wrap: break-word;
+        }
+
+        .line{display:block; margin:25px}
+        .line h2{font-size:15px; text-align:center; border-bottom:1px solid #aaa; position:relative; }
+        .line h2 span { background-color: white; position: relative; top: 10px; padding: 0 10px;}
+        .seller-td {width: 20%; border: none; vertical-align:baseline;}
+        .billing-descriptor-td {width: 25%; border: none; vertical-align:text-top;}
+
+        .subtotalLine {
+            float:right;
+            font-size: smaller;
+            font-style: italic;
+            opacity: 50%;
+        }
+        .totalLineStrike {
+            text-decoration:line-through;
+        }
+        #purchaseOrderEditView {
+            overflow: scroll;
+            word-wrap: break-word;
+        }
+
+        div#tooltip a span {display: none;}
+        div#tooltip a:hover span {
+            display: block;
+            position: absolute;
+            color: #FFF;
+            background-color:#979797;
+            border: 0px solid #ccc;
+            font: 12px proxima-nova, sans-serif; text-align: center;
+        }
+
+        div#tooltip a {
+            position:relative;
+        }
+        div#tooltip a span {
+            display:none;
+        }
+        div#tooltip a:hover span {
+            display:block;
+            position:absolute;
+            top: 10px; left: 10px;
+            padding: 5px 5px 5px 5px;
+            margin: 5px; z-index: 100;
+            min-width: max-content;
+            background-color:#979797;
+            font: 12px proxima-nova, sans-serif; text-align: left;
+        }
+        div#tooltip a:hover {text-indent:0;}
+        #tooltip button { border-radius: 50%;
+        border: 1px solid black;
+        padding-top: 3px; }
+        .extendedItemDescriptionText {
+            font-weight: lighter;
+            font-size: 11px;
+        }
+        .contactDetails {
+            font-size: 0.9em;
+            font-weight: 500;
+        }
+    </style>    <style type="text/css">        body {
+        color: #212121 !important; }
+        #container { box-shadow: none; }
+        h2 {
+        font-size: 1.13em; }
+        #orderIdArea {
+        border-bottom: 1px solid #aaa;
+        padding-bottom: 0.5em;
+        }
+    </style>
+    <div id="container">        <div class="downloadButtonContainer">                                        <a class="downloadAndPrintIcon"><img src="./Linkedhelper_files/downloadicon.png"></a>
+            
+        </div>
+        <h1>                                Receipt
+                
+                            <div id="logoArea">                    <img id="logoImage" src="./Linkedhelper_files/LH2.png">
+                    <div id="logoMessage">                        Sold and fulfilled by
+                        <a href="https://fastspring.com/purchasing-through-fastspring/" target="_blank">                            FastSpring
+                        </a>                         an authorized reseller
+                    </div>
+                </div>
+            
+        </h1>
+        <h3 id="orderIdArea">            Order ID: LINKEDHELPER260501-3029-23141B
+            <br>
+                                                    Order Created: 1 May 2026
+                <br>
+            
+                            <div class="titlePaid">Paid In Full: 1 May 2026</div>
+            
+
+            
+                    </h3>
+        <table border="0" cellpadding="0" cellspacing="0" style="margin-top: 5px; border: none;" width="100%">            <tbody><tr>                                <td class="leftside-td">                    <div id="leftside">                                                                            <p class="sectionHeading">                                                                    Purchaser
+                                
+                                                            </p>
+                        
+                        <p>                            Ian James Ormo
+                            <br>
+                                                            Scaleplus
+                                <br>
+                            
+                                                                                                                                                                                                                                                                                                
+                                        <br>
+                                        Philippines
+                                    
+                            
+                            
+                                                                                        
+                        </p>
+                    </div>
+                </td>
+                                                                <td class="seller-td">                    <div id="rightside">                                                                            <p class="sectionHeading">Seller</p>
+                        
+                        <p>                                                                FastSpring
+                                
+                            <br>
+                            801 Garden Street
+                            <br>
+                                                            Suite 201
+                                <br>
+                            
+
+                            Santa Barbara,
+                                                                CA
+                                                            93101
+                                                            <br>
+                                US
+                                                    </p>
+
+                        <p>                            questionacharge.com
+                            <br>
+                            
+                                                                                                                                                VAT Number: 
+                                                                            
+                            
+                        </p>
+                    </div>
+                </td>
+                                  <td class="support-td">                    <p>                        <span class="sectionHeading">                            Product Support
+                        </span>
+                        <br>
+                        https://www.linkedhelper.com
+                        <br>
+                        info@linkedhelper.com
+                    </p>                  </td>
+                
+            </tr>
+        </tbody></table>
+
+        
+        <div style="clear: both;"></div>
+        <table border="0" cellpadding="1" cellspacing="0" width="100%">                            <tbody><tr><th align="left" class="headerRow tableColumnLeft" style="width:45%">                    Description
+                </th>
+                <th align="center" class="headerRow tableColumnCenter" style="width:20%">                    Quantity
+                </th>
+                <th align="right" class="headerRow tableColumnCenter" style="width:15%">                                                VAT
+                        
+                </th>
+                <th align="right" class="headerRow tableColumnCenter" style="width:10%">                                    </th>
+                <th align="right" class="headerRow tableColumnRight">                    Amount
+                </th>
+            
+
+            
+                                        </tr><tr>                    <td style="vertical-align:text-top; line-height: 1">Charge #24673 for subscription #592405 of workspace #604068 (see details in app)
+                        <br>
+                                                                            <span class="subscription-details">                                Billed
+                                managed
+                                                                                                                                                                                                                                                                                                                                                            </span>
+                            <br>
+                        
+                    </td>
+
+                                            <td align="center" style="vertical-align:text-top">                            1
+                        </td>                        <td align="right">US$9.00</td>
+                        <td align="right" colspan="2">                                                        US$75.00
+                                                                                </td>
+                    
+
+                                                        </tr>
+
+                            
+
+                        
+                                                    
+
+                                                    
+
+                        <tr>                
+                                    <td align="left" colspan="3"></td>
+                    <td align="right">                        Subtotal
+                    </td>
+                    <td align="right">US$75.00</td>
+                
+            </tr>
+
+                        <tr>                                    <td align="right" colspan="4">                                                        VAT
+                                (12%)
+                            
+                        </td><td align="right">US$9.00</td>
+                    
+                
+
+                            </tr>
+
+                        <tr>                
+                                    <td class="round-left totalTd" colspan="3"></td>
+                    <td align="right" class="totalTd">                        <strong>                            Total
+                        </strong>
+                    </td>
+                    <td align="right" class="round-right totalTd">US$84.00</td>
+                
+            </tr>
+        </tbody></table>
+
+                
+                                            <div class="notes-section"></div>
+            
+        
+
+        
+                
+
+                            <div class="invoice-footer">                                    <h3 class="invoice-id">                        Invoice ID: IVUFKPHSHOIVHLVAZ3YV4XXSVVSQ
+                    </h3>                
+                                                                
+                
+                                            </div>
+    </div>
+
+<div id="guidejar-container" ext-id="nljfdifffnfijpidnjfbibbdeipnnlln" ext-version="2.2.2" style="position: fixed; width: 0px; height: 0px; top: 0px; left: 0px; z-index: 2147483647; overflow: visible;"><template shadowrootmode="open">
+  <link rel="stylesheet" href="chrome-extension://nljfdifffnfijpidnjfbibbdeipnnlln/global.css">
+  <div id="guidejar-root" style="position: fixed; width: 0px; height: 0px; top: 0px; left: 0px; z-index: 2147483647; overflow: visible;font-family:&#39;DM Sans&#39;"></div></template>
+  <link type="text/css" href="chrome-extension://nljfdifffnfijpidnjfbibbdeipnnlln/fonts.css" rel="stylesheet">
+  </div><veepn-lock-screen><template shadowrootmode="open"><style>html{box-sizing:border-box;text-size-adjust:100%;word-break:normal;tab-size:4}*,:before,:after{background-repeat:no-repeat;box-sizing:border-box}:before,:after{text-decoration:inherit;vertical-align:inherit}*{padding:0;margin:0}hr{overflow:visible;height:0;color:inherit;border:0;border-top:1px solid}details,main{display:block}summary{display:list-item}small{font-size:80%}[hidden]{display:none!important}abbr[title]{border-bottom:none;text-decoration:underline;text-decoration:underline dotted}a{background-color:transparent}a:active,a:hover{outline-width:0}code,kbd,pre,samp{font-family:monospace}pre{font-size:1em}b,strong{font-weight:bolder}sub,sup{font-size:75%;line-height:0;position:relative;vertical-align:baseline}sub{bottom:-.25em}sup{top:-.5em}table{border-color:inherit;text-indent:0}iframe{border-style:none}input{border-radius:0}[type=number]::-webkit-inner-spin-button,[type=number]::-webkit-outer-spin-button{height:auto}[type=search]{appearance:textfield;outline-offset:-2px}[type=search]::-webkit-search-decoration{appearance:none}textarea{overflow:auto;resize:vertical}button,input,optgroup,select,textarea{font:inherit;color:inherit}optgroup{font-weight:700}button{overflow:visible}button,select{text-transform:none}button,[type=button],[type=reset],[type=submit],[role=button]{cursor:pointer}button::-moz-focus-inner,[type=button]::-moz-focus-inner,[type=reset]::-moz-focus-inner,[type=submit]::-moz-focus-inner{border-style:none;padding:0}button,html [type=button],[type=reset],[type=submit]{appearance:auto}button,input,select,textarea{background-color:transparent;border-style:none}button:-moz-focusring,[type=button]::-moz-focus-inner,[type=reset]::-moz-focus-inner,[type=submit]::-moz-focus-inner{outline:1px dotted ButtonText}select{appearance:none}a:focus,button:focus,input:focus,select:focus,textarea:focus{outline-width:0}select::-ms-expand{display:none}select::-ms-value{color:currentcolor}legend{border:0;color:inherit;display:table;white-space:normal;max-width:100%}::-webkit-file-upload-button{appearance:auto;color:inherit;font:inherit}[disabled]{cursor:default}img{border-style:none}progress{vertical-align:baseline}[aria-busy=true]{cursor:progress}[aria-controls]{cursor:pointer}[aria-disabled=true]{cursor:default}ul,ol{list-style-type:none}figure{margin:0}@keyframes slide-in{0%{opacity:0;transform:translateY(16px)}to{opacity:1;transform:translateY(0)}}.gradient-blue{background:radial-gradient(106.41% 128.47% at 50.15% 128.47%,#23abff,#3066ff)}.gradient-green{background:radial-gradient(92.26% 118.88% at 50.15% .13%,#00c3c3,#00aab3)}.gradient-purple{background:radial-gradient(165.12% 115.56% at 50.15% .13%,#a15aff,#00a0eb)}.bg-blue{background-color:#f2f5ff}.bg-purple{background-color:#f7f0ff}.bg-green{background-color:#ebffed}.lock-screen{font-family:FigtreeVF,sans-serif;letter-spacing:normal;position:fixed;z-index:2147483638;right:24px;bottom:24px;width:327px;border-radius:24px;overflow:hidden;box-shadow:0 24px 32px #00000014;animation:slide-in .3s ease-in-out forwards}.lock-screen__content{position:relative;padding:24px 24px 64px}.lock-screen__close{position:absolute;top:16px;right:16px;width:24px;height:24px;display:flex;align-items:center;justify-content:center;opacity:.5}.lock-screen__label{height:26px;width:fit-content;border-radius:50px;background-color:#fff3;padding-inline:16px;display:flex;align-items:center;justify-content:center;gap:8px;color:#fff;font-size:12px;line-height:18px;margin:-8px auto 16px}.lock-screen__title{color:#fff;text-align:center;font-size:20px;line-height:28px;font-weight:600;margin-bottom:8px}.lock-screen__description{color:#f5f6f7;text-align:center;font-size:14px;line-height:20px}.lock-screen__description b{font-weight:600}.lock-screen__card{position:relative;z-index:1;margin-top:-44px;background-color:#fff;border-radius:24px;padding:32px 20px 20px}.lock-screen__inner{margin-bottom:24px}.lock-screen__submit{display:flex;align-items:center;justify-content:center;gap:10px;font-weight:700;font-size:16px;height:40px;width:100%;border-radius:12px;padding-inline:16px;background-color:#f70;color:#fff;margin-bottom:16px}.lock-screen__skip{display:flex;align-items:center;justify-content:center;font-size:14px;line-height:20px;color:#82829c;margin-inline:auto}.price-card{border:1px solid #f2f2fc;background:linear-gradient(254.14deg,#fafbff .04%,#f5f8ff 100.04%);border-radius:24px;padding:24px 28px}.price-card__label{color:#4a5764;text-align:center;font-size:14px;line-height:20px;text-transform:uppercase;margin-bottom:16px}.price-card__price{display:flex;justify-content:center;align-items:flex-start;column-gap:2px;margin-bottom:12px}.price-card__currency{color:#515478;font-size:18px;line-height:28px}.price-card__number{color:#14142a;text-align:center;font-size:64px;line-height:54px}.price-card__wrap{display:flex;flex-direction:column}.price-card__decimal{color:#515478;font-size:18px;line-height:28px;font-weight:600}.price-card__period{color:#515478;font-size:14px;line-height:20px;margin-top:-6px}.price-card__discount{position:relative;display:flex;align-items:center;justify-content:center;margin-bottom:12px}.price-card__discount-divider{position:absolute;z-index:0;top:50%;left:0;width:100%;height:1px;background-color:#dbe2f9;transform:translateY(-50%)}.price-card__discount-icon{position:absolute;z-index:1;top:50%;left:50%;transform:translate(-50%,-50%)}.price-card__discount-text{position:relative;z-index:2;color:#fff;font-size:12px;font-weight:600;line-height:18px}.price-card__features{display:flex;align-items:center;justify-content:center;column-gap:16px}.price-card__feature{color:#222e3a;font-size:14px;line-height:20px;display:flex;align-items:center;gap:6px}.price-card__feature:before{content:"";display:block;width:4px;height:4px;background-color:#20df9e;border-radius:50%;flex-shrink:0}.features-list{display:grid;grid-template-columns:repeat(3,1fr);gap:12px}.features-list__item{display:flex;flex-direction:column;align-items:center;gap:6px}.features-list__icon{width:52px;height:52px;border-radius:12px;display:flex;align-items:center;justify-content:center}.features-list__text{color:#293a53;text-align:center;font-size:16px;line-height:24px;letter-spacing:-.1px}</style></template><style>@font-face{font-family:FigtreeVF;src:url(chrome-extension://majdfhpaihoncoakbjgbdhglocklcgno/fonts/FigtreeVF.woff2) format("woff2 supports variations"),url(chrome-extension://majdfhpaihoncoakbjgbdhglocklcgno/fonts/FigtreeVF.woff2) format("woff2-variations");font-weight:100 1000;font-display:swap}</style></veepn-lock-screen></body><grammarly-desktop-integration data-grammarly-shadow-root="true"><template shadowrootmode="open"><style>
+      div.grammarly-desktop-integration {
+        position: absolute;
+        width: 1px;
+        height: 1px;
+        padding: 0;
+        margin: -1px;
+        overflow: hidden;
+        clip: rect(0, 0, 0, 0);
+        white-space: nowrap;
+        border: 0;
+        -moz-user-select: none;
+        -webkit-user-select: none;
+        -ms-user-select:none;
+        user-select:none;
+      }
+
+      div.grammarly-desktop-integration:before {
+        content: attr(data-content);
+      }
+    </style><div aria-label="grammarly-integration" role="group" tabindex="-1" class="grammarly-desktop-integration" data-content="{&quot;mode&quot;:&quot;full&quot;,&quot;isActive&quot;:true,&quot;isUserDisabled&quot;:false}"></div></template></grammarly-desktop-integration></html>
