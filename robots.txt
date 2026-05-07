@@ -1,5 +1,17 @@
+# Ian James Ormo — robots.txt
+# https://ianjamesormo.com/robots.txt
+
 User-agent: *
 Allow: /
 Disallow: /author-website/
+Disallow: /email-sequence/
+Disallow: /ghl-welcome-email.html
+Disallow: /ghl-welcome-email-devotional.html
+Disallow: /node_modules/
+Disallow: /scripts/
+Disallow: /.claude/
 
-Sitemap: https://ianjamesormo-com-production.up.railway.app/sitemap.xml
+# Crawl rate (be polite)
+Crawl-delay: 2
+
+Sitemap: https://ianjamesormo.com/sitemap.xml
