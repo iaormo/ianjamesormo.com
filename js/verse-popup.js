@@ -122,12 +122,20 @@
       // Skip anything inside the verse modal itself — the modal's own eyebrow
       // displays the reference in plain form and must not get a "Read" prefix.
       if (el.closest && el.closest('.ij-verse-modal')) continue;
-      // Re-heal any verse-link whose "Read" span was wiped by a React re-render
+      // Re-heal any verse-link whose "Read" span was wiped by a React re-render.
+      // Important: after a React re-render the element's textContent holds the
+      // FRESH reference (e.g. "James 1:19" for today) while data-verse still
+      // carries whatever was set on the very first auto-wire pass (e.g. the
+      // hardcoded fallback "Psalm 90:12"). Always prefer textContent so the
+      // displayed reference and the popup target stay in sync with React.
       if (el.classList.contains('ij-verse-link') && !el.querySelector('.ij-rd')) {
-        var vref = el.getAttribute('data-verse') || el.textContent.replace(/^\s*Read\s+/i, '').trim();
+        var fromText = (el.textContent || '').replace(/^\s*Read\s+/i, '').trim();
+        var fromAttr = el.getAttribute('data-verse') || '';
+        var vref = fromText || fromAttr;
         if (vref) {
           el.innerHTML = '<span class="ij-rd">Read</span>' + ' ' + escapeHtml(vref);
-          if (!el.getAttribute('data-verse')) el.setAttribute('data-verse', vref);
+          // Replace, don't preserve — the attribute may be stale from a prior render.
+          el.setAttribute('data-verse', vref);
         }
         continue;
       }

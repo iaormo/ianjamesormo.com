@@ -489,7 +489,10 @@ function Featured({ d }) {
               <span className="daily-meta-sep"> · </span>
               <span className="daily-meta-line">{d.date}</span>
             </span>
-            <span>{d.verse}</span>
+            {/* key + explicit data-verse force a fresh DOM node when the verse
+                changes so the verse-popup auto-wirer can't pin the stale
+                reference from the initial fallback render. */}
+            <span key={d.verse} data-verse={d.verse}>{d.verse}</span>
           </div>
           <div style={{ maxWidth: 900, margin: '0 auto' }}>
             <div style={{ fontFamily: T.font.quote, fontSize: 52, fontStyle: 'italic', lineHeight: 1.1, letterSpacing: '-0.01em' }}>
@@ -528,13 +531,13 @@ function ArchiveEntry({ d, last }) {
         <div style={{ fontFamily: T.font.mono, fontSize: 12, color: T.color.copper, letterSpacing: '.1em' }}>Day {d.day}</div>
         <div style={{ fontFamily: T.font.mono, fontSize: 12, color: T.color.steel }}>{d.date}</div>
         <div style={{ fontFamily: T.font.head, fontSize: 24, fontWeight: 800, lineHeight: 1.1, letterSpacing: '-0.02em' }}>{d.title}</div>
-        <div style={{ fontFamily: T.font.body, fontSize: 13, color: T.color.steel, fontStyle: 'italic' }}>{d.verse}</div>
+        <div key={d.verse} data-verse={d.verse} style={{ fontFamily: T.font.body, fontSize: 13, color: T.color.steel, fontStyle: 'italic' }}>{d.verse}</div>
         <div style={{ textAlign: 'right', fontFamily: T.font.body, fontSize: 20, color: T.color.copper, transition: 'transform .2s', transform: open ? 'rotate(90deg)' : 'none' }}>→</div>
       </button>
       {open && (
         <div style={{ background: T.color.bone, padding: '48px 56px', borderBottom: last ? `1px solid ${T.color.mist}` : 'none' }}>
           <div style={{ maxWidth: 760, margin: '0 auto' }}>
-            <div style={{ fontFamily: T.font.mono, fontSize: 11, color: T.color.copper, letterSpacing: '.15em', textTransform: 'uppercase', marginBottom: 32 }}>{d.verse}</div>
+            <div key={d.verse} data-verse={d.verse} style={{ fontFamily: T.font.mono, fontSize: 11, color: T.color.copper, letterSpacing: '.15em', textTransform: 'uppercase', marginBottom: 32 }}>{d.verse}</div>
             <div style={{ fontFamily: T.font.quote, fontStyle: 'italic', fontSize: 28, lineHeight: 1.25, color: T.color.ink, marginBottom: 36 }}>
               &ldquo;{d.quote}&rdquo;
             </div>
@@ -678,7 +681,7 @@ ReactDOM.createRoot(document.getElementById('root')).render(<DailyApp />);
 </script>
 <script>(function(){var obs=new IntersectionObserver(function(e){e.forEach(function(x){if(x.isIntersecting){x.target.classList.add("in-view");obs.unobserve(x.target);}});},{threshold:0.05,rootMargin:"0px 0px -40px 0px"});var attached=new WeakSet();function attach(){document.querySelectorAll("section").forEach(function(s){if(!attached.has(s)){attached.add(s);obs.observe(s);}});}var tries=0;function poll(){attach();tries++;if(tries<60)setTimeout(poll,100);}if(document.readyState==="complete"){poll();}else{window.addEventListener("load",poll);}})();</script>
 <script src="/js/newsletter-popup.js?v=4" defer></script>
-<script src="/js/verse-popup.js?v=3" defer></script>
+<script src="/js/verse-popup.js?v=4" defer></script>
 <script src="/js/cursor.js?v=6" defer></script>
 <script src="/js/nav-prefetch.js?v=3" defer></script>
 <script src="/js/animations.js?v=20" defer></script>

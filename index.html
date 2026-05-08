@@ -562,7 +562,11 @@ function Eyebrow({ children, color }) {
             <div style={{ background: T.color.page, color: T.color.ink, padding: 56, position: 'relative' }}>
               <div style={{ position: 'absolute', top: 28, left: 28, right: 28, display: 'flex', justifyContent: 'space-between', fontFamily: T.font.mono, fontSize: 11, letterSpacing: '.15em', textTransform: 'uppercase', color: T.color.steel }}>
                 <span>Day {today.day}</span>
-                <span>{today.verse}</span>
+                {/* key + explicit data-verse keep this in sync when today.verse
+                    arrives from /api/content/daily after the initial fallback
+                    render — without this the verse-popup auto-wirer can hold
+                    onto the original "Psalm 90:12" reference. */}
+                <span key={today.verse} data-verse={today.verse}>{today.verse}</span>
               </div>
               <div style={{ marginTop: 60 }}>
                 <div style={{ fontFamily: T.font.quote, fontStyle: 'italic', fontSize: 42, lineHeight: 1.15, letterSpacing: '-0.01em' }}>
@@ -749,7 +753,7 @@ function Eyebrow({ children, color }) {
 </script>
 <script>(function(){var obs=new IntersectionObserver(function(e){e.forEach(function(x){if(x.isIntersecting){x.target.classList.add('in-view');obs.unobserve(x.target);}});},{threshold:0.05,rootMargin:'0px 0px -40px 0px'});var attached=new WeakSet();function attach(){document.querySelectorAll('section').forEach(function(s){if(!attached.has(s)){attached.add(s);obs.observe(s);}});}var tries=0;function poll(){attach();tries++;if(tries<60)setTimeout(poll,100);}if(document.readyState==='complete'){poll();}else{window.addEventListener('load',poll);}})();</script>
 <script src="/js/newsletter-popup.js?v=4" defer></script>
-<script src="/js/verse-popup.js?v=3" defer></script>
+<script src="/js/verse-popup.js?v=4" defer></script>
 <script src="/js/cursor.js?v=6" defer></script>
 <script src="/js/nav-prefetch.js?v=3" defer></script>
 <script src="/js/preorder-popup.js?v=1" defer></script>
